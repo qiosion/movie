@@ -16,17 +16,6 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<servlet>
-		<servlet-name>FrontController</servlet-name>
-		<!-- 2. FrontController 서블릿을 찾아와보니 아래 클래스를 찾아가라 -->
-		<servlet-class>com.cbox.common.FrontController</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<!-- 1. 주소창에서 .do로 넘어오면 무조건 FrontController 서블릿을 수행해라 -->
-		<servlet-name>FrontController</servlet-name>
-		<url-pattern>*.do</url-pattern>
-	</servlet-mapping>
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
