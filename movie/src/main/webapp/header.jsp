@@ -7,27 +7,25 @@
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<div>
-		<table class="top" align="right">
-			<tr align="right">
-				<td>
-					<!-- Mypage 링크 메뉴  --> <a href="member_MyPage.do?mode=myPageMain"><font
-						size="2.5px" face="BareunDotum1"> MyPage &nbsp;</a> <!-- 회원가입 링크 메뉴  -->
-					<c:if test='${empty loginId}'>
-						<a href="member_JoinCheck.do"><font size="2.5px"
-							face="BareunDotum1"> 회원가입 &nbsp;</a>
-					</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty loginId}'>
-						<a href="member_Login.do"><font size="2.5px"
-							face="BareunDotum1"> 로그인 &nbsp;</font></a>
-					</c:if> <!-- 로그아웃 링크 메뉴  --> <c:if test='${!empty loginId}'>
-						<a href="member_Logout.do"><font size="2.5px"
-							face="BareunDotum1"> 로그아웃 &nbsp;</font></a>
-					</c:if> <!-- <a href="customer_main.do?mode=customerMain"><font
+	<table class="top">
+		<tr>
+			<td>
+				<!-- Mypage 링크 메뉴  --> <a href="#"><font size="2.5px"
+					face="BareunDotum1"> MyPage &nbsp;</a> <!-- 회원가입 링크 메뉴  --> <c:if
+					test='${empty loginId}'>
+					<a href="#"><font size="2.5px" face="BareunDotum1"> 회원가입
+							&nbsp;</a>
+				</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty loginId}'>
+					<a href="#"><font size="2.5px" face="BareunDotum1"> 로그인
+							&nbsp;</font></a>
+				</c:if> <!-- 로그아웃 링크 메뉴  --> <c:if test='${!empty loginId}'>
+					<a href="#"><font size="2.5px" face="BareunDotum1"> 로그아웃
+							&nbsp;</font></a>
+				</c:if> <!-- <a href="customer_main.do?mode=customerMain"><font
 						size="2.5px" face="BareunDotum1"> 고객센터 &nbsp;</font></a> &nbsp;&nbsp; -->
-					<!-- 메뉴 간격 가독성을 위한 공백 -->
-				</td>
-			</tr>
-		</table>
-	</div>
+				<!-- 메뉴 간격 가독성을 위한 공백 -->
+			</td>
+		</tr>
+	</table>
 </body>
 </html>

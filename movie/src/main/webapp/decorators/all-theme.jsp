@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="decorator" uri="http://www.opensymphony.com/sitemesh/decorator" %>
+<%@ taglib prefix="decorator"
+	uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,9 +22,17 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
 	integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
 	crossorigin="anonymous"></script>
+<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-	<jsp:include page="/header.jsp" />
-	<decorator:body />
+	<header>
+		header
+		<jsp:include page="/header.jsp" />
+	</header>
+	<hr>
+	<div class="content">
+		<decorator:body />
+	</div><hr>
+	<footer>footer</footer>
 </body>
 </html>
