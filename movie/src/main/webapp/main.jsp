@@ -4,9 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index</title>
 </head>
 <body>
-	<% response.sendRedirect("main.do"); %>
+	main
 </body>
 </html>

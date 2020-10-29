@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/decorators">
+	<decorator name="all-theme" page="all-theme.jsp">
+		<pattern>/*</pattern>
+	</decorator>
+	<decorator name="basic-theme" page="admin-theme.jsp">
+		<pattern>/admin/*</pattern>
+	</decorator>
+	<decorator name="basic-theme" page="user-theme.jsp">
+		<pattern>/user/*</pattern>
+	</decorator>
+	<!-- Excludes will never be decorated by Sitemesh. -->
+	<excludes>
+		<pattern>*/exclude/*</pattern>
+		<pattern>/data/plaintext/*</pattern>
+		<!-- <pattern>/index.jsp</pattern> -->
+	</excludes>
+</decorators>

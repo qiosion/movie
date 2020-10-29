@@ -1,0 +1,10 @@
+.topmenu {
+	height: 50px;
+	font-size: 3px;
+	flex-shrink: 0;
+	font-family: BareunDotum1;
+}
+
+.topmenu td {
+	text-align: right;
+}
