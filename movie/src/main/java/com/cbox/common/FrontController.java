@@ -67,7 +67,7 @@ public class FrontController extends HttpServlet {
 		
 		// 재훈
 		
-//		map.put("/memberForm.do", new memberFormAction());
+		map.put("/infoList.do", new infoListAction()); //게시판 전체목록 불러오기
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());
 	}
