@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.reservation.command.ReservationForm;
+
 @MultipartConfig
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {

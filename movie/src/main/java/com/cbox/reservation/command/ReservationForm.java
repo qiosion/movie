@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.cbox.common.Action;
 import com.cbox.movie.dao.MovieDAO;
 import com.cbox.movie.vo.MovieVO;
+import com.cbox.reservation.dao.MovieReservationDAO;
 
 public class ReservationForm implements Action {
     //action servelt상속받음
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		MovieDAO dao = new MovieDAO();//DB 액세스 객체		
+		MovieReservationDAO dao = new MovieReservationDAO();//DB 액세스 객체		
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		
 		list = dao.selectAll(); //moive 전체 조회 리스트
