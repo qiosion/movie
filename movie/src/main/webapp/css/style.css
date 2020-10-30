@@ -19,3 +19,8 @@ footer {
 div.content {
 	height: 500px;
 }
+
+table {
+	border-collapse: collapse;
+	text-align: center;
+}

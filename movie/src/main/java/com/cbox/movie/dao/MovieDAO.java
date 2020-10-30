@@ -10,44 +10,65 @@ import com.cbox.common.DAO;
 import com.cbox.movie.vo.MovieVO;
 
 public class MovieDAO extends DAO {
-	private PreparedStatement psmt; // sql ��ɹ� ����
-	private ResultSet rs; // select �� ��� �� ����
+
+	
+	private PreparedStatement psmt;
+	private ResultSet rs;
+
 	private MovieVO vo;
-	
-	private final String SELECT_ALL = "SELECT * FROM MOVIE";
-	
-	public List<MovieVO> selectAll(){ //Moive 전체 조회
-		List<MovieVO> list = new ArrayList<>();
-		
+
+	private final String SELECT_ALL = "select * from movie order by 1";
+
+	public List<MovieVO> selectAll() {
+		System.out.println("selectall");
+		List<MovieVO> list = new ArrayList<MovieVO>();
+
 		try {
-			psmt = conn.prepareStatement(SELECT_ALL); //DAO를 상속받아서 conn 바로 접근가능
-			rs = psmt.executeQuery();//준비된 selectall query문을 실행
-			
-			while(rs.next()) { //실행한 쿼리의 결과값이 1개라도 존재하면 true, 없으면 false
-				vo = new MovieVO(
-						rs.getInt("mv_num"),
-						rs.getString("mv_title"),
-						rs.getString("mv_dir"),
-						rs.getString("mv_com"),
-						rs.getString("mv_cha"),
-						rs.getDate("mv_strdate"),
-						rs.getDate("mv_findate"),
-						rs.getString("mv_sum"),
-						rs.getString("mv_type"),
-						rs.getString("mv_cont"),
-						rs.getString("mv_img"),
-						rs.getString("mv_teaser"),
-						rs.getInt("mv_rank"));
+			System.out.println("selectall try");
+			psmt = conn.prepareStatement(SELECT_ALL);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				vo = new MovieVO();
+				vo.setMvNum(rs.getInt("mv_num"));
+				vo.setMvTitle(rs.getString("mv_title"));
+				vo.setMvDiv(rs.getString("mv_dir"));
+				vo.setMvCom(rs.getString("mv_com"));
+				vo.setMvCha(rs.getString("mv_cha"));
+				vo.setStrdate(rs.getDate("strdate"));
+				vo.setFindate(rs.getDate("findate"));
+				vo.setMvSum(rs.getString("mv_sum"));
+				vo.setMvType(rs.getString("mv_type"));
+				vo.setMvCont(rs.getString("mv_cont"));
+				vo.setMvPost(rs.getString("mv_post"));
+				vo.setMvImg(rs.getString("mv_img"));
+				vo.setMvTeaser(rs.getString("mv_teaser"));
+				vo.setMvRank(rs.getInt("mv_rank"));
+
+				System.out.println(">> " + vo.getMvTitle());
 				list.add(vo);
-				
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return list;
+	}
+
+	// 모든 동작 후 연결 끊어주기
+	private void close() {
+		try {
+			// 열어준거의 반대방향으로 닫아준다.
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		
-		return list;
-		
 	}
+
 }

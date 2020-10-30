@@ -9,13 +9,13 @@
 	<table class="top">
 		<tr>
 			<td>
-				<!-- Mypage 링크 메뉴  --> <a href="#"><font size="2.5px"
+				<!-- Mypage 링크 메뉴  --> <a href="${pageContext.request.contextPath}/jsp/user/member/memberInfo.jsp"><font size="2.5px"
 					face="BareunDotum1"> MyPage &nbsp;</a> <!-- 회원가입 링크 메뉴  --> <c:if
 					test='${empty loginId}'>
-					<a href="#"><font size="2.5px" face="BareunDotum1"> 회원가입
+					<a href="${pageContext.request.contextPath}/jsp/user/member/memberForm.jsp"><font size="2.5px" face="BareunDotum1"> 회원가입
 							&nbsp;</a>
 				</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty loginId}'>
-					<a href="#"><font size="2.5px" face="BareunDotum1"> 로그인
+					<a href="${pageContext.request.contextPath}/jsp/user/member/loginForm.jsp"><font size="2.5px" face="BareunDotum1"> 로그인
 							&nbsp;</font></a>
 				</c:if> <!-- 로그아웃 링크 메뉴  --> <c:if test='${!empty loginId}'>
 					<a href="#"><font size="2.5px" face="BareunDotum1"> 로그아웃

@@ -3,19 +3,21 @@ package com.cbox.movie.vo;
 import java.sql.Date;
 
 public class MovieVO {
-	private int mvNum; // ��ȭ��ȣ
-	private String mvTitle; // ����
-	private String mvDiv; // ����
-	private String mvCom; // ��޻�
-	private String mvCha; // �����ι�
-	private Date strdate; // ������
-	private Date findate; // ������
-	private String mvSum; // �ٰŸ�
-	private String mvType; // �帣
-	private String mvCont; // ����
-	private String mvImg; // �̹���
-	private String mvTeaser; // Ƽ������
-	private int mvRank; // ��� ����
+
+	private int mvNum; // 영화번호
+	private String mvTitle; // 제목
+	private String mvDiv; // 감독
+	private String mvCom; // 배급사
+	private String mvCha; // 등장인물
+	private Date strdate; // 개봉일
+	private Date findate; // 종료일
+	private String mvSum; // 줄거리
+	private String mvType; // 장르
+	private String mvCont; // 설명
+	private String mvPost; // 포스터 이미지
+	private String mvImg; // 이미지
+	private String mvTeaser; // 티저영상
+	private int mvRank; // 평균 평점
 
 	public MovieVO() {
 
@@ -119,6 +121,14 @@ public class MovieVO {
 
 	public void setMvCont(String mvCont) {
 		this.mvCont = mvCont;
+	}
+
+	public String getMvPost() {
+		return mvPost;
+	}
+
+	public void setMvPost(String mvPost) {
+		this.mvPost = mvPost;
 	}
 
 	public String getMvImg() {

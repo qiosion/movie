@@ -6,6 +6,7 @@ import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.reservation.command.ReservationForm;
 
+@MultipartConfig
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -29,6 +31,8 @@ public class FrontController extends HttpServlet {
 		map.put("/memberForm.do", new memberFormAction());
 		map.put("/loginForm.do", new loginFormAction());
 		map.put("/reservationForm.do", new ReservationForm()); //예매하기 Form
+		map.put("/memberList.do", new MemberListAction());
+
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());
 	}
