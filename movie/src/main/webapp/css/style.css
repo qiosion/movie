@@ -1,5 +1,5 @@
 /* header.jsp S */
-table {
+.top {
 	float: right;
 }
 
@@ -13,7 +13,7 @@ header {
 }
 
 footer {
-	height: 80px;
+	height: 50px;
 }
 
 div.content {
