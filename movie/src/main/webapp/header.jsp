@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 	<table class="top">

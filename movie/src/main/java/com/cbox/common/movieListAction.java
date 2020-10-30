@@ -7,6 +7,6 @@ public class movieListAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		return "/movieList.jsp";
+		return "jsp/user/movie/movieList.jsp";
 	}
 }
