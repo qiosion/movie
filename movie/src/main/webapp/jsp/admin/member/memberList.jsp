@@ -22,17 +22,19 @@
 				<th width="100">가입일</th>
 				<th width="100">포인트</th>
 			</tr>
-		<!-- 데이터가 몇개일지 모르니까 forEach 돌려서 행 만들어준다 -->	
-			<%-- <c:forEach var="member" items="${ members }">
+			<c:forEach var="member" items="${ members }">
 				<tr>
-					<td>${ member.id }</td>
-					<td>${ member.name }</td>
-					<td>${ member.address }</td>
-					<td>${ member.tel }</td>
-					<td>${ member.enterdate }</td>
-					<td>${ member.author }</td>
+					<td>${ member.mbr_no }</td>
+					<td>${ member.mbr_id }</td>
+					<td>${ member.mbr_nm }</td>
+					<td>${ member.mbr_birth }</td>
+					<td>${ member.mbr_phone }</td>
+					<td>${ member.mbr_email }</td>
+					<td>${ member.mbr_e_yn }</td>
+					<td>${ member.mbr_regi_date }</td>
+					<td>${ member.mbr_point }</td>
 				</tr>			
-			</c:forEach> --%>
+			</c:forEach>
 		</table>
 	</div>
 </div>

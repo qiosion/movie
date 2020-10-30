@@ -28,7 +28,7 @@ public class FrontController extends HttpServlet {
 		map.put("/movieList.do", new movieListAction());
 		map.put("/memberForm.do", new memberFormAction());
 		map.put("/loginForm.do", new loginFormAction());
-//		map.put("/memberForm.do", new memberFormAction());
+		map.put("/memberList.do", new MemberListAction());
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());
 	}
