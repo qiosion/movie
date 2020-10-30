@@ -23,6 +23,7 @@ public class FrontController extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 정의. (요청페이지명, 명령)
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
+		map.put("/movieList.do", new movieListAction());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

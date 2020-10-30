@@ -1,0 +1,66 @@
+/* movie S */
+#search {
+	float: right;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	background: #ededed;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background: #ededed;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+.sort {
+	padding-top: 10px;
+	height: 20px;
+}
+
+.sort span {
+	float: left;
+	margin-top: 5px;
+}
+
+.toggleBG {
+	float: left;
+	background: #CCCCCC;
+	width: 50px;
+	height: 20px;
+	border: 1px solid #CCCCCC;
+	border-radius: 15px;
+	margin: 5px;
+	padding: 1px;
+}
+
+.toggleFG {
+	background: #FFFFFF;
+	width: 20px;
+	height: 20px;
+	border: none;
+	border-radius: 15px;
+	position: relative;
+	left: 0px;
+}
+
+/* movie E */
