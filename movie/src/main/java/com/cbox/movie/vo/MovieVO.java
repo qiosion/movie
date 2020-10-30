@@ -24,12 +24,12 @@ public class MovieVO {
 	}
 
 	
-	public MovieVO(int mvNum, String mvTitle, String mvDiv, String mvCom, String mvCha, Date strdate, Date findate,
+	public MovieVO(int mvNum, String mvTitle, String mvDir, String mvCom, String mvCha, Date strdate, Date findate,
 			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank) {
 		super();
 		this.mvNum = mvNum;
 		this.mvTitle = mvTitle;
-		this.mvDiv = mvDiv;
+		this.mvDir = mvDir;
 		this.mvCom = mvCom;
 		this.mvCha = mvCha;
 		this.strdate = strdate;
