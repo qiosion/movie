@@ -52,7 +52,7 @@
         </table>
     </div>
     <div align="right" id="topForm">
-        <c:if test="${}">
+        <c:if test="${sessionScope.sessionID!=null}">
             <input type="button" value="글등록" onclick="writeForm()">
              <input type="button" value="글삭제" onclick="deleteForm()">
         </c:if>    
