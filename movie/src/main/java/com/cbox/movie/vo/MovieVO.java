@@ -3,19 +3,20 @@ package com.cbox.movie.vo;
 import java.sql.Date;
 
 public class MovieVO {
-	private int mvNum; // ¿µÈ­¹øÈ£
-	private String mvTitle; // Á¦¸ñ
-	private String mvDiv; // °¨µ¶
-	private String mvCom; // ¹è±Ş»ç
-	private String mvCha; // µîÀåÀÎ¹°
-	private Date strdate; // °³ºÀÀÏ
-	private Date findate; // Á¾·áÀÏ
-	private String mvSum; // ÁÙ°Å¸®
-	private String mvType; // Àå¸£
-	private String mvCont; // ¼³¸í
-	private String mvImg; // ÀÌ¹ÌÁö
-	private String mvTeaser; // Æ¼Àú¿µ»ó
-	private int mvRank; // Æò±Õ ÆòÁ¡
+	private int mvNum; // ì˜í™”ë²ˆí˜¸
+	private String mvTitle; // ì œëª©
+	private String mvDiv; // ê°ë…
+	private String mvCom; // ë°°ê¸‰ì‚¬
+	private String mvCha; // ë“±ì¥ì¸ë¬¼
+	private Date strdate; // ê°œë´‰ì¼
+	private Date findate; // ì¢…ë£Œì¼
+	private String mvSum; // ì¤„ê±°ë¦¬
+	private String mvType; // ì¥ë¥´
+	private String mvCont; // ì„¤ëª…
+	private String mvPost; // í¬ìŠ¤í„° ì´ë¯¸ì§€
+	private String mvImg; // ì´ë¯¸ì§€
+	private String mvTeaser; // í‹°ì €ì˜ìƒ
+	private int mvRank; // í‰ê·  í‰ì 
 
 	public MovieVO() {
 
@@ -99,6 +100,14 @@ public class MovieVO {
 
 	public void setMvCont(String mvCont) {
 		this.mvCont = mvCont;
+	}
+
+	public String getMvPost() {
+		return mvPost;
+	}
+
+	public void setMvPost(String mvPost) {
+		this.mvPost = mvPost;
 	}
 
 	public String getMvImg() {

@@ -65,7 +65,7 @@
 		}
 	</script>
 	<div>
-		<div class="top">
+		<div class="movietop">
 			<form name="search" id="search" method="post">
 				<input type="text" name="keyword" id="keyword" placeholder="영화 제목">
 				<button type="submit" onclick="return formCheck()">검색</button>
@@ -76,19 +76,32 @@
 				<li class="tab-link" data-tab="tab-3">메뉴_셋</li>
 			</ul>
 		</div>
-		<div class="sort">
-			<span>전체</span>
-			<div class="toggleBG">
-				<button type="button" class="toggleFG"></button>
-			</div>
-			<span>개봉작만</span>
-		</div><br>
 		<div class="mainContent">
-			<div id="tab-1" class="tab-content current">Lorem ipsum dolor
-				sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-				incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-				veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-				ea commodo consequat.</div>
+			<div id="tab-1" class="tab-content current">
+				<div class="sort">
+					<span>전체</span>
+					<div class="toggleBG">
+						<button type="button" class="toggleFG"></button>
+					</div>
+					<span>개봉작만</span>
+				</div>
+				<br>
+				<table border="1">
+					<tr>
+						<th>제목</th>
+						<th>개봉일</th>
+						<th>설명</th>
+						<th>포스터 이미지</th>
+						<th>평균 평점</th>
+					</tr>
+
+					<c:foEach var="movie" items="${movies}">
+						<tr>
+							<td>${movie.mvTitle }</td>
+						</tr>
+					</c:foEach>
+				</table>
+			</div>
 			<div id="tab-2" class="tab-content">Duis aute irure dolor in
 				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
 				pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
