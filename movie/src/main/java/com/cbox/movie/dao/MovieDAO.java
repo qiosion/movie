@@ -2,14 +2,52 @@ package com.cbox.movie.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cbox.common.DAO;
 import com.cbox.movie.vo.MovieVO;
 
 public class MovieDAO extends DAO {
-	private PreparedStatement psmt; // sql ���ɹ� ����
-	private ResultSet rs; // select �� ��� �� ����
+	private PreparedStatement psmt; // sql ��ɹ� ����
+	private ResultSet rs; // select �� ��� �� ����
 	private MovieVO vo;
 	
-	private final String SELECT_ALL = "select * from movie order by 1";
+	private final String SELECT_ALL = "SELECT * FROM MOVIE";
+	
+	public List<MovieVO> selectAll(){ //Moive 전체 조회
+		List<MovieVO> list = new ArrayList<>();
+		
+		try {
+			psmt = conn.prepareStatement(SELECT_ALL); //DAO를 상속받아서 conn 바로 접근가능
+			rs = psmt.executeQuery();//준비된 selectall query문을 실행
+			
+			while(rs.next()) { //실행한 쿼리의 결과값이 1개라도 존재하면 true, 없으면 false
+				vo = new MovieVO(
+						rs.getInt("mv_num"),
+						rs.getString("mv_title"),
+						rs.getString("mv_dir"),
+						rs.getString("mv_com"),
+						rs.getString("mv_cha"),
+						rs.getDate("mv_strdate"),
+						rs.getDate("mv_findate"),
+						rs.getString("mv_sum"),
+						rs.getString("mv_type"),
+						rs.getString("mv_cont"),
+						rs.getString("mv_img"),
+						rs.getString("mv_teaser"),
+						rs.getInt("mv_rank"));
+				list.add(vo);
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+		
+	}
 }

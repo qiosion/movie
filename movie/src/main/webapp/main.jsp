@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	<div class="content">zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</div>
+	<!-- 모든 파일에 대해서 all-theme.jsp 데코레이션. -->
+	<div class="content">메인화면 출력입니다.</div>
 </body>
 </html>

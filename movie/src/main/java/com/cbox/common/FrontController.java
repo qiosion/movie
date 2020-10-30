@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.reservation.command.ReservationForm;
+
 @WebServlet("*.do")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,7 +28,7 @@ public class FrontController extends HttpServlet {
 		map.put("/movieList.do", new movieListAction());
 		map.put("/memberForm.do", new memberFormAction());
 		map.put("/loginForm.do", new loginFormAction());
-//		map.put("/memberForm.do", new memberFormAction());
+		map.put("/reservationForm.do", new ReservationForm()); //예매하기 Form
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());
 	}
