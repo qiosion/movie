@@ -27,6 +27,6 @@ public class loginAction implements Action {
 		session.setAttribute("mbr_author", vo.getMbr_author());
 		
 		request.setAttribute("vo", vo);
-		return "main.jsp";
+		return "jsp/user/member/loginResult.jsp";
 	}
 }
