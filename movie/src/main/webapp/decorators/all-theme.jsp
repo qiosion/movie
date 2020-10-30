@@ -12,6 +12,7 @@
 	crossorigin="anonymous"></script>
 <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet">
 <link href="${pageContext.request.contextPath}/css/movie.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/css/member.css" rel="stylesheet">
 </head>
 <body>
 	<header>
