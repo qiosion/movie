@@ -24,10 +24,46 @@ public class FrontController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 정의. (요청페이지명, 명령)
+		//화진
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
 		map.put("/movieList.do", new movieListAction());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 은선
 		map.put("/memberForm.do", new memberFormAction());
 		map.put("/loginForm.do", new loginFormAction());
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 광희
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 재훈
+		
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());
 //		map.put("/memberForm.do", new memberFormAction());

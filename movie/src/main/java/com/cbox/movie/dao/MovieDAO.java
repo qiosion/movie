@@ -18,22 +18,20 @@ public class MovieDAO extends DAO {
 	private final String SELECT_ALL = "select * from movie order by 1";
 
 	public List<MovieVO> selectAll() {
-		System.out.println("selectall");
 		List<MovieVO> list = new ArrayList<MovieVO>();
 
 		try {
-			System.out.println("selectall try");
 			psmt = conn.prepareStatement(SELECT_ALL);
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new MovieVO();
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
-				vo.setMvDiv(rs.getString("mv_dir"));
+				vo.setMvDir(rs.getString("mv_dir"));
 				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
-				vo.setStrdate(rs.getDate("strdate"));
-				vo.setFindate(rs.getDate("findate"));
+				vo.setStrdate(rs.getDate("mv_strdate"));
+				vo.setFindate(rs.getDate("mv_findate"));
 				vo.setMvSum(rs.getString("mv_sum"));
 				vo.setMvType(rs.getString("mv_type"));
 				vo.setMvCont(rs.getString("mv_cont"));
@@ -42,7 +40,6 @@ public class MovieDAO extends DAO {
 				vo.setMvTeaser(rs.getString("mv_teaser"));
 				vo.setMvRank(rs.getInt("mv_rank"));
 
-				System.out.println(">> " + vo.getMvTitle());
 				list.add(vo);
 			}
 		} catch (SQLException e) {

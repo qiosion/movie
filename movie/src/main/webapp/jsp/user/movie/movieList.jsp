@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -87,21 +87,22 @@
 					<span>개봉작만</span>
 				</div>
 				<br>
-				<table border="1">
-					<tr>
-						<th>제목</th>
-						<th>개봉일</th>
-						<th>설명</th>
-						<th>포스터 이미지</th>
-						<th>평균 평점</th>
-					</tr>
-
-					<c:foEach var="movie" items="${movies}">
-						<tr>
-							<td>${movie.mvTitle }</td>
-						</tr>
-					</c:foEach>
-				</table>
+				<ol>
+					<c:forEach var="movie" items="${movies}">
+					<li>
+						<div><img id="mvList" src="${pageContext.request.contextPath}/images/${movie.mvPost}"></div>
+						<div><p>${movie.mvTitle }</p></div>
+						<div>
+							<span>평점 : ${movie.mvRank }</span> | 
+							<span>개봉일 : ${movie.strdate }</span>
+							<p>${movie.mvCont }</p>
+						</div>
+						<div>
+							<button type="button">예매</button>
+						</div>
+					</li>
+					</c:forEach>
+				</ol>
 			</div>
 			<div id="tab-2" class="tab-content">Duis aute irure dolor in
 				reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla

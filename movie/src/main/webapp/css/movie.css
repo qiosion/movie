@@ -3,6 +3,16 @@
 	float: right;
 }
 
+ol {
+	list-style: none;
+}
+
+ol li {
+	list-style-type: none;
+	float: left;
+	margin: 20px;
+}
+
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -24,7 +34,7 @@ ul.tabs li.current {
 
 .tab-content {
 	display: none;
-	background: #ededed;
+	/* background: #ededed; */
 	padding: 15px;
 }
 
@@ -61,6 +71,15 @@ ul.tabs li.current {
 	border-radius: 15px;
 	position: relative;
 	left: 0px;
+}
+
+#mvList {
+	width: 280px;
+	height: 370px;
+}
+
+.mainContent {
+	float: center;
 }
 
 /* movie E */

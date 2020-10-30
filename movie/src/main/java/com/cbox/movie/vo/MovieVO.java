@@ -5,7 +5,7 @@ import java.sql.Date;
 public class MovieVO {
 	private int mvNum; // 영화번호
 	private String mvTitle; // 제목
-	private String mvDiv; // 감독
+	private String mvDir; // 감독
 	private String mvCom; // 배급사
 	private String mvCha; // 등장인물
 	private Date strdate; // 개봉일
@@ -38,12 +38,12 @@ public class MovieVO {
 		this.mvTitle = mvTitle;
 	}
 
-	public String getMvDiv() {
-		return mvDiv;
+	public String getMvDir() {
+		return mvDir;
 	}
 
-	public void setMvDiv(String mvDiv) {
-		this.mvDiv = mvDiv;
+	public void setMvDir(String mvDir) {
+		this.mvDir = mvDir;
 	}
 
 	public String getMvCom() {
