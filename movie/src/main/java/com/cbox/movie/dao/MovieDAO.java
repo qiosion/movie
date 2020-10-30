@@ -29,7 +29,7 @@ public class MovieDAO extends DAO {
 				vo = new MovieVO();
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
-				vo.setMvDiv(rs.getString("mv_div"));
+				vo.setMvDiv(rs.getString("mv_dir"));
 				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
 				vo.setStrdate(rs.getDate("strdate"));
