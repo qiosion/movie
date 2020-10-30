@@ -42,7 +42,7 @@ public class FrontController extends HttpServlet {
 		// 은선
 		map.put("/memberForm.do", new memberFormAction());
 		map.put("/loginForm.do", new loginFormAction());
-		
+		map.put("/memberList.do", new MemberListAction());
 		
 		
 		
@@ -52,7 +52,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 광희
-		
+		map.put("/reservationForm.do", new ReservationForm()); //예매하기 Form
 		
 		
 		

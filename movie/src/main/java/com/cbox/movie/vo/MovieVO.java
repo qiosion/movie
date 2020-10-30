@@ -3,6 +3,7 @@ package com.cbox.movie.vo;
 import java.sql.Date;
 
 public class MovieVO {
+
 	private int mvNum; // 영화번호
 	private String mvTitle; // 제목
 	private String mvDir; // 감독
@@ -21,6 +22,26 @@ public class MovieVO {
 	public MovieVO() {
 
 	}
+
+	
+	public MovieVO(int mvNum, String mvTitle, String mvDiv, String mvCom, String mvCha, Date strdate, Date findate,
+			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank) {
+		super();
+		this.mvNum = mvNum;
+		this.mvTitle = mvTitle;
+		this.mvDiv = mvDiv;
+		this.mvCom = mvCom;
+		this.mvCha = mvCha;
+		this.strdate = strdate;
+		this.findate = findate;
+		this.mvSum = mvSum;
+		this.mvType = mvType;
+		this.mvCont = mvCont;
+		this.mvImg = mvImg;
+		this.mvTeaser = mvTeaser;
+		this.mvRank = mvRank;
+	}
+
 
 	public int getMvNum() {
 		return mvNum;

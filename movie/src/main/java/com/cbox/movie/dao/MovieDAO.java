@@ -11,8 +11,10 @@ import com.cbox.movie.vo.MovieVO;
 
 public class MovieDAO extends DAO {
 
+	
 	private PreparedStatement psmt;
 	private ResultSet rs;
+
 	private MovieVO vo;
 
 	private final String SELECT_ALL = "select * from movie order by 1";
