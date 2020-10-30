@@ -9,8 +9,7 @@
 <body>
 	<div align="center">
 		<div>
-			<form id="frm" name="frm" method="post">
-<!-- action="memberInsert.do"  -->
+			<form id="frm" name="frm" action="memberForm.do" method="post">
 				<table border="1">
 					<tr>
 						<th width="150">아이디</th>

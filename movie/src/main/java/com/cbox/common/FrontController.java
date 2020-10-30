@@ -25,6 +25,10 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
 		map.put("/movieList.do", new movieListAction());
 		map.put("/memberForm.do", new memberFormAction());
+		map.put("/loginForm.do", new loginFormAction());
+//		map.put("/memberForm.do", new memberFormAction());
+//		map.put("/memberForm.do", new memberFormAction());
+//		map.put("/memberForm.do", new memberFormAction());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
