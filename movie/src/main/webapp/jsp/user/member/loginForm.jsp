@@ -24,7 +24,7 @@
 </head>
 <body>
 <div class="divform">
-	<form class="frm" id="frm" name="frm" action="loginForm.do" method="post">
+	<form class="frm" id="frm" name="frm" action="login.do" method="post">
 		<div class="form-group">
 			<label for="mbr_id">아이디</label>
 			<input type="text" class="form-control" id="mbr_id" name="mbr_id">
