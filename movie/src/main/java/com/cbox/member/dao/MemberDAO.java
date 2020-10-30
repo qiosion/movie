@@ -76,7 +76,8 @@ public class MemberDAO extends DAO{
 		}
 		return vo;
 	}
-	public int insert(MemberVO vo) { // Member 테이블에 insert
+	
+	public int insert(MemberVO vo) {
 		int n = 0;
 		try {
 			pstmt = conn.prepareStatement(INSERT);

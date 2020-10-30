@@ -7,7 +7,7 @@ public class memberFormAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/user/member/memberForm.jsp";
+		return "main.jsp";
 	}
 
 }
