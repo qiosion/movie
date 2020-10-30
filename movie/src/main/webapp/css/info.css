@@ -1,0 +1,22 @@
+@charset "UTF-8";
+ #title{
+            height : 16;
+            font-family :'돋움';
+            font-size : 12;
+            text-align :center;
+        }
+        
+#wrap {
+            width: 800px;
+            margin: 0 auto 0 auto;
+        }
+        #topForm{
+            text-align :right;
+        }
+        #board, #pageForm, #searchForm{
+            text-align :center;
+        }
+        
+        #bList{
+            text-align :center;
+        }
