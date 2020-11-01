@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cbox.member.command.memberListAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
+import com.cbox.member.command.logoutAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInsertAction;
 import com.cbox.reservation.command.ReservationForm;
@@ -53,7 +54,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberInsert.do", new memberInsertAction()); // DB에 회원 추가
 		//map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
-		//map.put("/logout.do", new logoutAction()); // 로그아웃
+		map.put("/logout.do", new logoutAction()); // 로그아웃
 
 		
 		
