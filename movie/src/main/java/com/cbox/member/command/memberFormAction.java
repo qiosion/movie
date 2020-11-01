@@ -1,7 +1,9 @@
-package com.cbox.common;
+package com.cbox.member.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.cbox.common.Action;
 
 public class memberFormAction implements Action {
 

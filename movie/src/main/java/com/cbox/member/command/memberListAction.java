@@ -1,4 +1,4 @@
-package com.cbox.common;
+package com.cbox.member.command;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,10 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.common.Action;
 import com.cbox.member.dao.MemberDAO;
 import com.cbox.member.vo.MemberVO;
 
-public class MemberListAction implements Action {
+public class memberListAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {

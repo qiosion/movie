@@ -12,8 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.member.command.memberListAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
+import com.cbox.member.command.memberFormAction;
+import com.cbox.member.command.memberInsertAction;
 import com.cbox.reservation.command.ReservationForm;
 
 @MultipartConfig
@@ -44,11 +47,12 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 은선
-		map.put("/memberForm.do", new memberFormAction());
-		map.put("/loginForm.do", new loginForm());
-		map.put("/memberList.do", new MemberListAction());
 		map.put("/login.do", new loginAction());
-		
+		map.put("/loginForm.do", new loginForm());
+		map.put("/memberForm.do", new memberFormAction());
+		map.put("/memberInsert.do", new memberInsertAction());
+		map.put("/memberList.do", new memberListAction());
+		//map.put("/logout.do", new logoutAction());
 		
 		
 		

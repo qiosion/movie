@@ -7,15 +7,15 @@
 <title>로그인</title>
 <script type="text/javascript">
 	function formCheck() {
-		var f = document.frm;
-		if (f.id.value == "") {
+		var frm = document.frm;
+		if (frm.mbr_id.value == "") {
 			alert("사용자 아이디를 입력하세요");
-			f.id.focus();
+			frm.mbr_id.focus();
 			return false;
 		}
-		if (f.pw.value == "") {
+		if (frm.mbr_pw.value == "") {
 			alert("비밀번호를 입력하세요");
-			f.pw.focus();
+			frm.mbr_pw.focus();
 			return false;
 		}
 		return true;

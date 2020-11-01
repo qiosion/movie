@@ -9,12 +9,12 @@
 </head>
 <body>
 <jsp:include page="${pageContext.request.contextPath}/main.jsp"></jsp:include>
-<c:if test="${ vo.id eq null }">
-	<h1>${ vo.id }님 로그인에 실패하였습니다.</h1>
+<c:if test="${ vo.getMbr_id eq null }">
+	<h1>${ vo.getMbr_id }님 로그인에 실패하였습니다.</h1>
 </c:if>
-<c:if test="${ vo.name ne null }">
+<c:if test="${ vo.getMbr_id ne null }">
 	<!-- vo가 가진 name 변수가 null값이 아니면 (not equal) -->
-	<h1>${ vo.id }님 안녕하세요.</h1>
+	<h1>${ vo.getMbr_id }님 안녕하세요.</h1>
 </c:if>
 </body>
 </html>
