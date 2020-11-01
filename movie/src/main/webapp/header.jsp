@@ -12,13 +12,13 @@
 				<!-- Mypage 링크 메뉴  --> <a href="${pageContext.request.contextPath}/jsp/user/member/memberInfo.jsp"><font size="2.5px"
 					face="BareunDotum1"> MyPage &nbsp;</a> <!-- 회원가입 링크 메뉴  --> <c:if
 					test='${empty loginId}'>
-					<a href="${pageContext.request.contextPath}/jsp/user/member/memberForm.jsp"><font size="2.5px" face="BareunDotum1"> 회원가입
+					<a href="memberForm.do"><font size="2.5px" face="BareunDotum1"> 회원가입
 							&nbsp;</a>
 				</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty loginId}'>
-					<a href="${pageContext.request.contextPath}/jsp/user/member/loginForm.jsp"><font size="2.5px" face="BareunDotum1"> 로그인
+					<a href="loginForm.do"><font size="2.5px" face="BareunDotum1"> 로그인
 							&nbsp;</font></a>
 				</c:if> <!-- 로그아웃 링크 메뉴  --> <c:if test='${!empty loginId}'>
-					<a href="#"><font size="2.5px" face="BareunDotum1"> 로그아웃
+					<a href="logout.do"><font size="2.5px" face="BareunDotum1"> 로그아웃
 							&nbsp;</font></a>
 				</c:if> <!-- <a href="customer_main.do?mode=customerMain"><font
 						size="2.5px" face="BareunDotum1"> 고객센터 &nbsp;</font></a> &nbsp;&nbsp; -->

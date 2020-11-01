@@ -47,12 +47,12 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 은선
-		map.put("/login.do", new loginAction());
-		map.put("/loginForm.do", new loginForm());
-		map.put("/memberForm.do", new memberFormAction());
-		map.put("/memberInsert.do", new memberInsertAction());
-		map.put("/memberList.do", new memberListAction());
-		//map.put("/logout.do", new logoutAction());
+		map.put("/login.do", new loginAction()); // 로그인 결과
+		map.put("/loginForm.do", new loginForm()); // 로그인 화면
+		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
+		map.put("/memberInsert.do", new memberInsertAction()); // DB에 회원 추가
+		map.put("/memberList.do", new memberListAction()); // 회원목록
+		//map.put("/logout.do", new logoutAction()); // 로그아웃
 		
 		
 		
