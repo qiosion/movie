@@ -9,7 +9,7 @@
 	<table class="top">
 		<tr>
 			<td>
-				<!-- Mypage 링크 메뉴  --> <a href="${pageContext.request.contextPath}/jsp/user/member/memberInfo.jsp"><font size="2.5px"
+				<!-- Mypage 링크 메뉴  --> <a href="memberInfo.do"><font size="2.5px"
 					face="BareunDotum1"> MyPage &nbsp;</a> <!-- 회원가입 링크 메뉴  --> <c:if
 					test='${empty loginId}'>
 					<a href="memberForm.do"><font size="2.5px" face="BareunDotum1"> 회원가입
