@@ -9,11 +9,14 @@
 }
 /* header E */
 
-div.content {
-	height: 500px;
-}
-
 table {
 	border-collapse: collapse;
 	text-align: center;
+}
+.header {
+	min-height: 70px;
+}
+
+.footer {
+	max-height: 500px;
 }

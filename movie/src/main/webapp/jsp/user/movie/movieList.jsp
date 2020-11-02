@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="mv" tagdir="/WEB-INF/tags" %>
 
 
 <!DOCTYPE html>
@@ -103,14 +102,6 @@
 				</li>
 			</c:forEach>
 		</ol>
-		<script type="text/javascript">
-			function goPage(p) {
-				 location.href = "mvList.do?p=" + p;
-			//	searchFrm.p.value = p; // 폼에 페이지 번호 넘긴다.
-				//searchFrm.submit(); // 폼 전송
-			}
-		</script>
-		<mv:paging paging="${paging}" jsfunc="goPage" />
 	</div>
 </body>
 </html>

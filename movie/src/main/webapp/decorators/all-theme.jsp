@@ -18,17 +18,16 @@
 
 </head>
 <body>
-   <header>
-      header 
+   <div class="header">
       <jsp:include page="/header.jsp" />
       <jsp:include page="/jsp/user/menu/mainMenu.jsp" />
       <decorator:head />
-   </header>
+   </div>
    <hr>
-   <div class="content">
+   <div class="container">
       <decorator:body />
    </div>
    <hr>
-   <footer>footer</footer>
+   <div class="footer"><jsp:include page="/footer.jsp" /></div>
 </body>
 </html>
