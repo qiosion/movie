@@ -10,32 +10,69 @@ import com.cbox.common.DAO;
 import com.cbox.info.vo.infoVO;
 
 public class infoDAO extends DAO {
-	private PreparedStatement psmt; //sql 명령문 실행
-	private ResultSet rs; //select 후 결과셋 받기
+	private PreparedStatement psmt; // sql 명령문 실행
+	private ResultSet rs; // select 후 결과셋 받기
 	private infoVO vo;
-	
+
 	private final String SELECT_ALL = "SELECT * FROM INFO";
-	
-	public List<infoVO> selectAll(){
+	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_CATEGORY,INFO_CONT,INFO_DATE)VALUES(?,?,?,?,?)";
+	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
+	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
 			psmt = conn.prepareStatement(SELECT_ALL);
 			rs = psmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				vo = new infoVO();
-				vo.setInfoNum(rs.getInt("infoNum"));
-				vo.setInfoTitle(rs.getString("infoTitle"));
-				vo.setInfoCategory(rs.getString("infoTitle"));
-				vo.setInfoDate(rs.getDate("infoDate"));
-				vo.setInfoChk(rs.getInt("infoChk"));
-				vo.setInfoCont(rs.getString("infoCont"));
+				vo.setInfo_Num(rs.getInt("info_Num"));
+				vo.setInfo_Title(rs.getString("info_Title"));
+				vo.setInfo_Category(rs.getString("info_Category"));
+				vo.setInfo_Date(rs.getDate("info_Date"));
+				vo.setInfo_Chk(rs.getInt("info_Chk"));
+				vo.setInfo_Cont(rs.getString("info_Cont"));
 				list.add(vo);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	public int insert(infoVO vo) {
+		int n = 0;
+		try {
+			psmt = conn.prepareStatement(INSERT);
+			psmt.setInt(1, vo.getInfo_Num());
+			psmt.setString(2, vo.getInfo_Title());
+			psmt.setString(3, vo.getInfo_Category());
+			psmt.setString(4, vo.getInfo_Cont());
+			psmt.setDate(5, vo.getInfo_Date());
+			n = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
+	}
+	
+	public infoVO select(infoVO vo) {
+		try {
+			psmt = conn.prepareStatement(SELECT);
+			psmt.setInt(1, vo.getInfo_Num());
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setInfo_Num(rs.getInt("info_Num"));
+				vo.setInfo_Title(rs.getString("info_Title"));
+				vo.setInfo_Category(rs.getString("info_Category"));
+				vo.setInfo_Cont(rs.getString("info_Cont"));
+				vo.setInfo_Date(rs.getDate("info_Date"));
 			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return list;
+		return vo;
 	}
 	
 }

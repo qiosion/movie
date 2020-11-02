@@ -21,7 +21,7 @@
 					<li><a class="menuLink" href="reservationForm.do ">예매하기</a></li>
 
 					<li>|</li>
-					<li><a class="menuLink" href="#">test</a></li>
+					<li><a class="menuLink" href="infoList.do">공지사항</a></li>
 
 
 				</ul>

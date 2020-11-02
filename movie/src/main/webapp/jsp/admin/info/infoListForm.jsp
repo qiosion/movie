@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/info.css">
     <script>
         function writeForm(){
-            location.href="infoWriteForm.jsp"; //infoWriteForm.do = 글쓰기 버튼을 클릭 시 글 작성 화면으로 이동하는 명령어
+            location.href="infoWriteForm.do"; //글쓰기 버튼 클릭시 작성화면으로 이동
         }
         function deleteForm(){
         	location.href="infoDeleteForm.jsp";
@@ -37,9 +37,9 @@
                 <td>공지번호</td>
                 <td>카테고리</td>
                 <td>제목</td>
-                <td>작성자</td>
                 <td>작성일</td>
                 <td>조회수</td>
+                <td>선택</td>
             </tr>    
             <tr>
                 <td>a1</td>
@@ -47,7 +47,7 @@
                 <td>c1</td>
                 <td>d1</td>
                 <td>e1</td>
-                <td>f1</td>
+                <td><input type="checkbox"></td>
             </tr>
         </table>
     </div>

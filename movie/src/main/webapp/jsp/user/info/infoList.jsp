@@ -23,30 +23,27 @@
         </form>    
     </div>
     <br/>
-    <form action="infoList.do" method="post">
-    <div align="center" id="info" >
-        <table id="bList" width="800" border="3" bordercolor="black">
+    <div align="center">
+        <table  width="800" border="3" bordercolor="black">
             <tr height="30">
                 <td>공지번호</td>
-                <td>카테고리</td>
                 <td>제목</td>
-                <td>작성자</td>
+                <td>카테고리</td>
                 <td>작성일</td>
                 <td>조회수</td>
             </tr>
             <c:forEach var="info" items="${infoList}"> 
             <tr>
-                <td>${info.infoNum}</td>
-                <td>${info.infoCategory}</td>
-                <td>${info.infoTitle}</td>
-                <td>${info.infoDate}</td>
-                <td>${info.infoChk}</td>
-                <td>${info.infoCont}</td>
+                <td>${info.info_Num}</td>
+                <td><a href="DetailView.do">${info.info_Title}</a></td>
+                <td>${info.info_Category}</td>
+                <td>${info.info_Date}</td>
+                <td>${info.info_Chk}</td>
             </tr>
-            </c:forEach>
+            </c:forEach>   
         </table>
     </div>
-    </form>
+    
     <br>
     <div align="center">
         	<a href="#" type="submit">1</a>
