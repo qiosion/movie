@@ -52,7 +52,7 @@
 		</div>
 		<div class="form-group">
     		<label for="mbr_phone">전화번호</label>
-    		<input type="tel" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
+    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
 		</div>
 		<div class="form-group">
     		<label for="mbr_email">이메일</label>

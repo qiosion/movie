@@ -18,12 +18,14 @@
 		<h3>가입일자 : ${ vo.enterdate }</h3>
 		<h3>사용자권한 : ${ vo.author }</h3>
 
-이거처럼 vo만들어서 각 td안에 넣어주면 되는가..--%>
+이거처럼 vo만들어서 각 td안에 넣어주면 되는가..
+아 근데 리스트나 attribute 를 이름 vo 말고selectedMember 해서 해....
+--%>
 <div class="divform">
 	<form class="frm" id="frm" name="frm" action="memberInfo.do" method="post">
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
-    		<p>${ vo.mbr_id }</p>
+    		<input type="text" value="${ selectedMember.mbr_id }" readonly>
   		</div>
 		<div class="form-group">
     		<label for="mbr_pw">비밀번호</label>
@@ -56,15 +58,15 @@
 		</script>
   		<div class="form-group">
     		<label for="mbr_nm">이름</label>
-    		<input type="text" class="form-control" id="mbr_nm" name="mbr_nm" placeholder="이름">
+    		<input type="text" value="${ selectedMember.mbr_nm }" readonly>
 		</div>
 		<div class="form-group">
     		<label for="mbr_birth">생년월일</label>
-    		<input type="date" class="form-control" id="mbr_birth" name="mbr_birth">
+    		<input type="text" value="${ selectedMember.mbr_birth }" readonly>
 		</div>
 		<div class="form-group">
     		<label for="mbr_phone">전화번호</label>
-    		<input type="tel" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
+    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
 		</div>
 		<div class="form-group">
     		<label for="mbr_email">이메일</label>

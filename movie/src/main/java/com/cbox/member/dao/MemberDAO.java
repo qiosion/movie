@@ -134,11 +134,6 @@ public class MemberDAO extends DAO{
 			pstmt.setString(5, vo.getMbr_email());
 			pstmt.setString(6, vo.getMbr_phone());
 			pstmt.setString(7, vo.getMbr_e_yn());
-//			if(vo.getMbr_e_yn() == null) {
-//				pstmt.setString(7, "n");
-//			} else {
-//				pstmt.setString(7, vo.getMbr_e_yn());
-//			}
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
