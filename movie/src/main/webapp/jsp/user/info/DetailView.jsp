@@ -6,49 +6,45 @@
 <title>게시판 - 글쓰기</title>
 <link rel="stylesheet" href="/css/info.css">
 <script>
-	function listFrm(){
-		location.href="infoListForm.jsp";
-	}
+function listFrm(){
+	location.href="infoList.do";
+}
+	
 </script>
 </head>
 <body>
-	<form method="post" action="infoInsert.do" name="infoForm"
-		enctype="multipart/form-data">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
+		<c:forEach var="detail" items="${detail}">
 			<tr>
 				<td id="title">제목</td>
-				<td><input name="info_name" type="text" size="70"
-					maxlength="100" value="" /></td>
+				<td>${detail.info_Title}</td>
 			</tr>
 			<tr>
 				<td id="title">날짜</td>
+				<td>${detail.info_Date}</td>
 			</tr>
 			<tr>
 				<td id="title">카테고리</td>
-				<td><select name="opt">
-						<option value="0">1</option>
-						<option value="1">2</option>
-						<option value="2">3</option>
-						<option value="3">4</option>
-				</select></td>
+				<td>${detail.info_Category}</td>
 				
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
-				<td><textarea name="info_content" cols="70" rows="10"></textarea>
+				<td>${detail.info_Cont}
 				</td>
 			</tr>
-			
+			</c:forEach>
 
 			<tr align="center" valign="middle">
 				<td colspan="5">
-				<input type="reset" value="내용지우기"> 
-				<input type="submit" value="등록">
-				<input type="button" value="작성취소" onclick="listFrm()">
+				<c:if test="admin"><!-- admin이면 수정버튼 보이게 -->
+					<input type ="button" value="수정">
+				</c:if>
+				<input type="reset" value="답글"> 
+				<input type="button" value="목록" onclick="listFrm()">
 				</td>
 			</tr>
 		</table>
-	</form>
 
 </body>
 </html>

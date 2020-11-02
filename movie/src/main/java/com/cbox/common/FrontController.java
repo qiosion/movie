@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.info.command.DetailViewAction;
+import com.cbox.info.command.infoInsertAction;
 import com.cbox.info.command.infoListAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
 import com.cbox.member.command.memberFormAction;
-import com.cbox.member.command.memberInfoAction;
 import com.cbox.member.command.memberInsertAction;
 import com.cbox.member.command.memberListAction;
 import com.cbox.movie.command.movieChartListAction;
@@ -71,7 +72,7 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new loginForm()); // 로그인 화면
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
 		map.put("/memberInsert.do", new memberInsertAction()); // DB에 회원 추가
-		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
+		//map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 
@@ -93,8 +94,8 @@ public class FrontController extends HttpServlet {
 		// 재훈
 		
 		map.put("/infoList.do", new infoListAction()); //게시판 전체목록 불러오기
-//		map.put("/memberForm.do", new memberFormAction());
-//		map.put("/memberForm.do", new memberFormAction());
+		map.put("/DetailView.do", new DetailViewAction());
+		map.put("/infoInsert.do", new infoInsertAction());
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

@@ -3,64 +3,65 @@ package com.cbox.info.vo;
 import java.sql.Date;
 
 public class infoVO {
-	private int infoNum;
-	private String infoTitle;
-	private String infoCategory;
-	private Date infoDate;
-	private int infoChk;
-	private String infoCont;
+	private int info_Num;
+	private String info_Title;
+	private String info_Category;
+	private Date info_Date;
+	private int info_Chk;
+	private String info_Cont;
 	
 	public infoVO() {
-		this.infoNum=infoNum;
+		
 	}
 
-	public int getInfoNum() {
-		return infoNum;
+	public int getInfo_Num() {
+		return info_Num;
 	}
 
-	public void setInfoNum(int infoNum) {
-		this.infoNum = infoNum;
+	public void setInfo_Num(int info_Num) {
+		this.info_Num = info_Num;
 	}
 
-	public String getInfoTitle() {
-		return infoTitle;
+	public String getInfo_Title() {
+		return info_Title;
 	}
 
-	public void setInfoTitle(String infoTitle) {
-		this.infoTitle = infoTitle;
+	public void setInfo_Title(String info_Title) {
+		this.info_Title = info_Title;
 	}
 
-	public String getInfoCategory() {
-		return infoCategory;
+	public String getInfo_Category() {
+		return info_Category;
 	}
 
-	public void setInfoCategory(String infoCategory) {
-		this.infoCategory = infoCategory;
+	public void setInfo_Category(String info_Category) {
+		this.info_Category = info_Category;
 	}
 
-	public Date getInfoDate() {
-		return infoDate;
+	public Date getInfo_Date() {
+		return info_Date;
 	}
 
-	public void setInfoDate(Date infoDate) {
-		this.infoDate = infoDate;
+	public void setInfo_Date(Date info_Date) {
+		this.info_Date = info_Date;
 	}
 
-	public int getInfoChk() {
-		return infoChk;
+	public int getInfo_Chk() {
+		return info_Chk;
 	}
 
-	public void setInfoChk(int infoChk) {
-		this.infoChk = infoChk;
+	public void setInfo_Chk(int info_Chk) {
+		this.info_Chk = info_Chk;
 	}
 
-	public String getInfoCont() {
-		return infoCont;
+	public String getInfo_Cont() {
+		return info_Cont;
 	}
 
-	public void setInfoCont(String infoCont) {
-		this.infoCont = infoCont;
+	public void setInfo_Cont(String info_Cont) {
+		this.info_Cont = info_Cont;
 	}
+
 	
 	
 }
