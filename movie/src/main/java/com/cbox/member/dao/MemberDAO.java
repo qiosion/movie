@@ -81,14 +81,18 @@ public class MemberDAO extends DAO{
 		int n = 0;
 		try {
 			pstmt = conn.prepareStatement(INSERT);
-			pstmt.setInt(1, vo.getMbr_no());
-			pstmt.setString(2, vo.getMbr_id());
-			pstmt.setString(3, vo.getMbr_pw());
-			pstmt.setString(4, vo.getMbr_nm());
-			pstmt.setDate(5, vo.getMbr_birth());
-			pstmt.setString(6, vo.getMbr_email());
-			pstmt.setString(7, vo.getMbr_phone());
-			pstmt.setString(8, vo.getMbr_e_yn());
+			pstmt.setString(1, vo.getMbr_id());
+			pstmt.setString(2, vo.getMbr_pw());
+			pstmt.setString(3, vo.getMbr_nm());
+			pstmt.setDate(4, vo.getMbr_birth());
+			pstmt.setString(5, vo.getMbr_email());
+			pstmt.setString(6, vo.getMbr_phone());
+			pstmt.setString(7, vo.getMbr_e_yn());
+//			if(vo.getMbr_e_yn() == null) {
+//				pstmt.setString(7, "n");
+//			} else {
+//				pstmt.setString(7, vo.getMbr_e_yn());
+//			}
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

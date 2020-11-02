@@ -5,25 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<script>
-	$('.pw').focusout(function(){
-		var pw1 = $("#mbr_pw").val();
-		var pw2 = $("mbr_pw2").val();
-				
-		if (pw1 != "&& pw2 =="){
-			null;
-		} else if (pw1 !="" || pw2 != ""){
-			if(pw1 == pw2) {
-				$("#alert-success").css("display","inline-block");
-				$("#alert-fail").css("display","none");
-			} else{
-				alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
-				$("#alert-success").css("display","none");
-				$("#alert-fail").css("display","inline-block");
-			}
-		}
-	});
-</script>
 </head>
 <body>
 <div class="divform">
@@ -42,6 +23,25 @@
     		<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
     		<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
 		</div>
+		<script>
+	$('.pw').focusout(function(){
+		var pw1 = $("#mbr_pw").val();
+		var pw2 = $("#mbr_pw2").val();
+				
+		if (pw1 != "" && pw2 == ""){
+			null;
+		} else if (pw1 != "" || pw2 != ""){
+			if(pw1 == pw2) {
+				$("#alert-success").css("display","inline-block");
+				$("#alert-fail").css("display","none");
+			} else{
+				alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
+				$("#alert-success").css("display","none");
+				$("#alert-fail").css("display","inline-block");
+			}
+		}
+	});
+		</script>
   		<div class="form-group">
     		<label for="mbr_nm">이름</label>
     		<input type="text" class="form-control" id="mbr_nm" name="mbr_nm">
@@ -59,7 +59,7 @@
     		<input type="email" class="form-control" id="mbr_email" name="mbr_email">
 		</div>  
 		<div class="form-group form-check">
-    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn">
+    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="y">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
     	<button type="submit" class="btn btn-primary">회원가입</button>
