@@ -5,33 +5,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="mv" tagdir="/WEB-INF/tags" %>
 
-<%
-	MovieVO vo = new MovieVO();
-MovieDAO dao = new MovieDAO();
-
-vo.setSearchType(request.getParameter("searchType")); // request.getParameter("searchType") : mvTitle로 고정
-vo.setSearchKeyword(request.getParameter("keyword"));
-
-List<MovieVO> list = new ArrayList<MovieVO>();
-list = dao.selectAll(vo);
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
 <body>
-	<script>
-		function formCheck() {
-			var frm = document.search;
-			if (frm.keyword.value == "") {
-				alert("검색어를 입력해주세요.");
-				return;
-			}
-			/* form.submit(); */
-		}
-	</script>
+	
 
 	<div class="movietop">
 		<ul class="tabs">
@@ -44,13 +26,7 @@ list = dao.selectAll(vo);
 		</ul>
 	</div>
 	<div id="tab-2" class="tab-content current">
-		<form name="search" id="search" method="get"
-			action="movieExpectList.do">
-			<select id="searchType" name="searchType">
-				<option value="title">제목</option>
-			</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
-			<button type="submit" onclick="return formCheck()">검색</button>
-		</form>
+	<mv:searchMv />
 		<ol>
 			<c:forEach var="movie" items="${exMovies}">
 				<li>

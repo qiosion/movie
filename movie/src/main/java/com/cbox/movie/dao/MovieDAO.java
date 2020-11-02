@@ -13,32 +13,19 @@ public class MovieDAO extends DAO {
 
 	private PreparedStatement psmt;
 	private ResultSet rs;
+	private MovieVO vo;
 
 	private final String SELECT_ALL = "select * from movie order by 1";
-	private final String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate";	// 상영 예정작
-	private final String SELECT_SEARCH = "select * from movie where mv_title like '%'||?||'%' order by 1";
+	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
+			+ ") a  ) b where rn between ? and ?";
+	private final String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
 	private final String DETAIL = "select * from movie where mv_num = ?";
 
 	public List<MovieVO> selectAll(MovieVO vo) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		String searchYn = "N";
 
-		System.out.println("type : " + vo.getSearchType());
-		System.out.println("keyword : " + vo.getSearchKeyword());
 		try {
-			if (vo.getSearchType() != null && vo.getSearchKeyword() != null) {
-				searchYn = "Y"; // 검색 o
-			}
-			System.out.println("searchYn : " + searchYn);
-
-			if (searchYn.equals("Y") && vo.getSearchType().equals("title")) {
-				System.out.println("title search");
-				psmt = conn.prepareStatement(SELECT_SEARCH);
-				psmt.setString(1, vo.getSearchKeyword());
-			} else {
-				psmt = conn.prepareStatement(SELECT_ALL);
-			}
-
+			psmt = conn.prepareStatement(SELECT_ALL);
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -57,7 +44,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
-				
+
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 				vo.setMvRank(rs.getInt("mv_rank"));
 
@@ -71,6 +58,63 @@ public class MovieDAO extends DAO {
 
 		return list;
 	}
+
+	public List<MovieVO> selectPage(MovieVO mbrVO) {
+		List<MovieVO> list = new ArrayList<MovieVO>();
+		try {
+			psmt = conn.prepareStatement(SELECT_PAGE);
+			psmt.setInt(1, mbrVO.getFirst());
+			psmt.setInt(2, mbrVO.getLast());
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				vo = new MovieVO();
+				vo.setMvNum(rs.getInt("mv_num"));
+				vo.setMvTitle(rs.getString("mv_title"));
+				vo.setMvDir(rs.getString("mv_dir"));
+				vo.setMvCom(rs.getString("mv_com"));
+				vo.setMvCha(rs.getString("mv_cha"));
+				vo.setStrdate(rs.getDate("mv_strdate"));
+				vo.setFindate(rs.getDate("mv_findate"));
+				vo.setMvSum(rs.getString("mv_sum"));
+				vo.setMvType(rs.getString("mv_type"));
+				vo.setMvCont(rs.getString("mv_cont"));
+				vo.setMvPost(rs.getString("mv_post"));
+				vo.setMvImg(rs.getString("mv_img"));
+				vo.setMvTeaser(rs.getString("mv_teaser"));
+
+				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
+				vo.setMvRank(rs.getInt("mv_rank"));
+
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return list;
+	}
+
+	public int count(MovieVO vo) { // 전체 건수 조회
+		int cnt = 0;
+		try {
+			String sql = "select count(*) from movie";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			rs.next();
+			cnt = rs.getInt(1); // 첫번쨰열. 카운트 결과
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return cnt;
+	}
+
 	public List<MovieVO> selectExpect(MovieVO vo) {
 		System.out.println("selectExpect");
 		List<MovieVO> list = new ArrayList<MovieVO>();
@@ -93,7 +137,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
-				
+
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 //				vo.setMvRank(rs.getInt("mv_rank"));
 

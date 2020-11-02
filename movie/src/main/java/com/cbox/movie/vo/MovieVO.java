@@ -18,15 +18,14 @@ public class MovieVO {
 	private String mvImg; // 이미지
 	private String mvTeaser; // 티저영상
 	private int mvRank; // 평균 평점
-	
-	private String searchType;	// 검색 항목
-	private String searchKeyword;	// 검색어
+
+	private Integer first;
+	private Integer last;
 
 	public MovieVO() {
 
 	}
 
-	
 	public MovieVO(int mvNum, String mvTitle, String mvDir, String mvCom, String mvCha, Date strdate, Date findate,
 			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank) {
 		super();
@@ -44,7 +43,6 @@ public class MovieVO {
 		this.mvTeaser = mvTeaser;
 		this.mvRank = mvRank;
 	}
-
 
 	public int getMvNum() {
 		return mvNum;
@@ -158,23 +156,19 @@ public class MovieVO {
 		this.mvRank = mvRank;
 	}
 
-
-	public String getSearchType() {
-		return searchType;
+	public Integer getFirst() {
+		return first;
 	}
 
-
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
+	public void setFirst(Integer first) {
+		this.first = first;
 	}
 
-
-	public String getSearchKeyword() {
-		return searchKeyword;
+	public Integer getLast() {
+		return last;
 	}
 
-
-	public void setSearchKeyword(String searchKeyword) {
-		this.searchKeyword = searchKeyword;
+	public void setLast(Integer last) {
+		this.last = last;
 	}
 }

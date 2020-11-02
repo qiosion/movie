@@ -5,17 +5,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="mv" tagdir="/WEB-INF/tags" %>
 
-<%
-	MovieVO vo = new MovieVO();
-MovieDAO dao = new MovieDAO();
 
-vo.setSearchType(request.getParameter("searchType")); // request.getParameter("searchType") : mvTitle로 고정
-vo.setSearchKeyword(request.getParameter("keyword"));
-
-List<MovieVO> list = new ArrayList<MovieVO>();
-list = dao.selectAll(vo);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,49 +15,40 @@ list = dao.selectAll(vo);
 </head>
 <body>
 	<script>
-	$().ready(function() {
-		$('.toggleBG').click(function() {
-			var toggleBG = $(this);
-			var toggleFG = $(this).find('.toggleFG');
-			var left = toggleFG.css('left');
-			if (left == '30px') {
-				toggleBG.css('background', '#CCCCCC');
-				type = toggleActionStart(toggleFG, 'TO_LEFT');
-			} else if (left == '0px') {
-				toggleBG.css('background', '#ABD0BC');
-				type = toggleActionStart(toggleFG, 'TO_RIGHT');
-			}
-			console.log("type : " + type);
+		$().ready(function() {
+			$('.toggleBG').click(function() {
+				var toggleBG = $(this);
+				var toggleFG = $(this).find('.toggleFG');
+				var left = toggleFG.css('left');
+				if (left == '30px') {
+					toggleBG.css('background', '#CCCCCC');
+					type = toggleActionStart(toggleFG, 'TO_LEFT');
+				} else if (left == '0px') {
+					toggleBG.css('background', '#ABD0BC');
+					type = toggleActionStart(toggleFG, 'TO_RIGHT');
+				}
+				console.log("type : " + type);
+			});
 		});
-	});
 
-	function formCheck() {
-		var frm = document.search;
-		if (frm.keyword.value == "") {
-			alert("검색어를 입력해주세요.");
-			return;
+		// 토글 버튼 이동 모션 함수
+		function toggleActionStart(toggleBtn, LR) {
+			// 0.01초 단위로 실행
+			var intervalID = setInterval(function() {
+				// 버튼 이동
+				var left = parseInt(toggleBtn.css('left'));
+				left += (LR == 'TO_RIGHT') ? 5 : -5;
+				if (left >= 0 && left <= 30) {
+					left += 'px';
+					toggleBtn.css('left', left);
+				}
+			}, 10);
+			setTimeout(function() {
+				clearInterval(intervalID);
+			}, 201);
+			const left_px = parseInt(toggleBtn.css('left'));
+			return (left_px > 0) ? "전체" : "상영작";
 		}
-		/* form.submit(); */
-	}
-
-	// 토글 버튼 이동 모션 함수
-	function toggleActionStart(toggleBtn, LR) {
-		// 0.01초 단위로 실행
-		var intervalID = setInterval(function() {
-			// 버튼 이동
-			var left = parseInt(toggleBtn.css('left'));
-			left += (LR == 'TO_RIGHT') ? 5 : -5;
-			if (left >= 0 && left <= 30) {
-				left += 'px';
-				toggleBtn.css('left', left);
-			}
-		}, 10);
-		setTimeout(function() {
-			clearInterval(intervalID);
-		}, 201);
-		const left_px = parseInt(toggleBtn.css('left'));
-		return (left_px > 0) ? "전체" : "상영작";
-	}
 	</script>
 
 	<div class="movietop">
@@ -79,12 +62,8 @@ list = dao.selectAll(vo);
 		</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
-		<form name="search" id="search" method="get" action="movieList.do">
-			<select id="searchType" name="searchType">
-				<option value="title">제목</option>
-			</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
-			<button type="submit" onclick="return formCheck()">검색</button>
-		</form>
+	<mv:searchMv />
+		
 		<div class="sort">
 			<span>전체</span>
 			<div class="toggleBG">
@@ -124,5 +103,14 @@ list = dao.selectAll(vo);
 				</li>
 			</c:forEach>
 		</ol>
+		<script type="text/javascript">
+			function goPage(p) {
+				 location.href = "mvList.do?p=" + p;
+			//	searchFrm.p.value = p; // 폼에 페이지 번호 넘긴다.
+				//searchFrm.submit(); // 폼 전송
+			}
+		</script>
+		<mv:paging paging="${paging}" jsfunc="goPage" />
+	</div>
 </body>
 </html>
