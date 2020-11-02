@@ -14,6 +14,8 @@ public class MemberVO {
 	private int mbr_point;
 	private String mbr_e_yn;
 	private String mbr_author;
+	private Integer first;
+	private Integer last;
 	
 	public MemberVO() {
 	}
@@ -82,6 +84,57 @@ public class MemberVO {
 		return mbr_author;
 	}
 	public void setMbr_author(String mbr_author) {
+		this.mbr_author = mbr_author;
+	}
+
+	public Integer getFirst() {
+		return first;
+	}
+
+	public void setFirst(Integer first) {
+		this.first = first;
+	}
+
+	public Integer getLast() {
+		return last;
+	}
+
+	public void setLast(Integer last) {
+		this.last = last;
+	}
+
+	public MemberVO(int mbr_no, String mbr_id, String mbr_pw, String mbr_nm, Date mbr_birth, String mbr_email,
+			String mbr_phone, Date mbr_regi_date, int mbr_point, String mbr_e_yn, String mbr_author, Integer first,
+			Integer last) {
+		super();
+		this.mbr_no = mbr_no;
+		this.mbr_id = mbr_id;
+		this.mbr_pw = mbr_pw;
+		this.mbr_nm = mbr_nm;
+		this.mbr_birth = mbr_birth;
+		this.mbr_email = mbr_email;
+		this.mbr_phone = mbr_phone;
+		this.mbr_regi_date = mbr_regi_date;
+		this.mbr_point = mbr_point;
+		this.mbr_e_yn = mbr_e_yn;
+		this.mbr_author = mbr_author;
+		this.first = first;
+		this.last = last;
+	}
+
+	public MemberVO(int mbr_no, String mbr_id, String mbr_pw, String mbr_nm, Date mbr_birth, String mbr_email,
+			String mbr_phone, Date mbr_regi_date, int mbr_point, String mbr_e_yn, String mbr_author) {
+		super();
+		this.mbr_no = mbr_no;
+		this.mbr_id = mbr_id;
+		this.mbr_pw = mbr_pw;
+		this.mbr_nm = mbr_nm;
+		this.mbr_birth = mbr_birth;
+		this.mbr_email = mbr_email;
+		this.mbr_phone = mbr_phone;
+		this.mbr_regi_date = mbr_regi_date;
+		this.mbr_point = mbr_point;
+		this.mbr_e_yn = mbr_e_yn;
 		this.mbr_author = mbr_author;
 	}
 	

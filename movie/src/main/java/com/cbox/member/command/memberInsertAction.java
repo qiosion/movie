@@ -27,22 +27,40 @@ public class memberInsertAction implements Action {
 		vo.setMbr_e_yn(request.getParameter("mbr_e_yn"));
 		System.out.println(request.getParameter("mbr_e_yn"));
 		int n = dao.insert(vo);
+		System.out.println("n:" + n);
 		
-		String page;
+		String page = null;
+		//request.setAttribute("check", n);
 		if (n != 0) { // n이 0이 아니면 성공
-			page = "main.jsp";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				System.out.println("성공----");
+				out = response.getWriter();
+				out.println("<script>alert('회원가입에 성공하였습니다');");
+				out.flush();
+				page = "main.do";
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
 		} else { // n이 0이면 실패
-			page = "jsp/user/member/memberForm.jsp";
-//			response.setContentType("text/html; charset=UTF-8");
-//			PrintWriter out;
-//			try {
-//				out = response.getWriter(); // 이걸 왜.. try - catch 해줘야하지
-//				out.println("<script>alert('회원가입에 실패하였습니다');");
-//				out.flush();
-//			} catch (IOException e) {
-//				e.printStackTrace();
-//			} 
+			page = "jsp/user/member/insertFail.jsp";
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out;
+			try {
+				System.out.println("실패----");
+				out = response.getWriter();
+				out.println("<script>alert('회원가입에 실패하였습니다');");
+				out.flush();
+				page = "member";
+			} catch (IOException e) {
+				e.printStackTrace();
+			} // 이걸 왜.. try - catch 해줘야하지
+				
 		}
 		return page;
+		
 	}
 }
