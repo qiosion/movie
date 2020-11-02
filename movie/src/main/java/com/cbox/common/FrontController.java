@@ -18,6 +18,14 @@ import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInsertAction;
+import com.cbox.movie.command.movieChartListAction;
+import com.cbox.movie.command.movieDetailAction;
+import com.cbox.movie.command.movieExpectListAction;
+import com.cbox.movie.command.movieListAction;
+import com.cbox.movie.command.mvDetailAction;
+import com.cbox.movie.command.mvListAction;
+import com.cbox.movie.command.mvRegistAction;
+import com.cbox.movie.command.mvRegistFormAction;
 import com.cbox.reservation.command.ReservationForm;
 
 @MultipartConfig
@@ -32,12 +40,21 @@ public class FrontController extends HttpServlet {
 
 	public void init(ServletConfig config) throws ServletException {
 		// 요청 정의. (요청페이지명, 명령)
-		//화진
+		// 화진
+		// user
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
 		map.put("/movieList.do", new movieListAction());
+		map.put("/movieExpectList.do", new movieExpectListAction());
+		map.put("/movieChartList.do", new movieChartListAction());
+		map.put("/movieDetail.do", new movieDetailAction());
 		
+		// admin
+		map.put("/mvList.do", new mvListAction());
+		map.put("/mvRegistForm.do", new mvRegistFormAction());
+		map.put("/mvRegist.do", new mvRegistAction());
 		
-		
+		map.put("/mvDetail.do", new mvDetailAction());
+//		map.put("mvUpdate.do", new mvUpdateAction());
 		
 		
 		

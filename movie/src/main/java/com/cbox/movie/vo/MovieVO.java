@@ -18,6 +18,9 @@ public class MovieVO {
 	private String mvImg; // 이미지
 	private String mvTeaser; // 티저영상
 	private int mvRank; // 평균 평점
+	
+	private String searchType;	// 검색 항목
+	private String searchKeyword;	// 검색어
 
 	public MovieVO() {
 
@@ -153,5 +156,25 @@ public class MovieVO {
 
 	public void setMvRank(int mvRank) {
 		this.mvRank = mvRank;
+	}
+
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+
+
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 }

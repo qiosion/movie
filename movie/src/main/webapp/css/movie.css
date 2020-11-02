@@ -1,8 +1,9 @@
-/* movie S */
-#search {
-	float: right;
+a:link, a:visited, a:hover {
+	color: black;
+	text-decoration: none;
 }
 
+/* movieList S */
 ol {
 	list-style: none;
 	width: 100%;
@@ -16,6 +17,7 @@ ol li {
 	margin: 20px;
 }
 
+/* 탭 메뉴 S */
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -45,6 +47,9 @@ ul.tabs li.current {
 	display: inherit;
 }
 
+/* 탭 메뉴 E */
+
+/* 토글 버튼 S*/
 .sort {
 	padding-top: 10px;
 	height: 20px;
@@ -58,8 +63,8 @@ ul.tabs li.current {
 .toggleBG {
 	float: left;
 	background: #CCCCCC;
-	width: 50px;
-	height: 20px;
+	width: 54px;
+	height: 24px;
 	border: 1px solid #CCCCCC;
 	border-radius: 15px;
 	margin: 5px;
@@ -76,9 +81,146 @@ ul.tabs li.current {
 	left: 0px;
 }
 
-#mvList {
+/* 토글 버튼 E */
+#moviePoster { /* 목록 -> 포스터 */
 	width: 280px;
 	height: 370px;
 }
 
-/* movie E */
+#search { /* 검색폼 */
+	margin: 10px;
+	width: 100%;
+}
+
+#search #keyword {
+	margin-left: 230px;
+}
+
+#searchType { /* 검색타입 : ex) 제목 */
+	height: 29px;
+}
+/* movieList E */
+
+/* ---------------------------------------------- */
+
+/* movieDetail S */
+.info { /* 상세화면 상단 */
+	overflow: auto;
+	height: 500px;
+	width: 100%;
+	margin: 5px;
+	padding: 5px;
+}
+
+.info::after {
+	overflow: auto;
+	height: 500px;
+	width: 100%;
+	background-image: url("../images/event1.jpg"); /* todo */
+	opacity: 0.5;
+}
+
+#info #infoR {
+	float: right;
+	text-align: center;
+}
+
+#info #infoL {
+	margin: 20px;
+}
+
+#info .title {
+	font-size: 50px;
+}
+
+.btnDiv {
+	margin-top: 20px;
+}
+
+a.ticketBtn {
+	text-align: center;
+	background-color: #689E8E;
+	font-size: 20px;
+	color: white;
+	padding: 10px 70px 10px 70px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+#detail {
+	margin: 10px 30px 10px 0px;
+}
+
+/* movieDetail E */
+
+/* admin */
+#mvPoster {
+	margin: 5px;
+	height: 50%;
+}
+
+#topMvMenu {
+	margin: 20px;
+}
+
+#mvList {
+	width: 1000px;
+	margin: auto;
+}
+
+#mvList table {
+	width: 950px;
+	margin: auto;
+}
+
+.btnGrpDiv {
+	float: center;
+	margin-top: 20px;
+}
+
+a.updateBtn {
+	text-align: center;
+	background-color: #F5DD92;
+	font-size: 20px;
+	color: white;
+	padding: 10px 50px 10px 50px;
+	border-radius: 10px;
+	text-decoration: none;
+	margin-right: 5px;
+}
+
+a.listBtn {
+	text-align: center;
+	background-color: #F5DD92;
+	font-size: 20px;
+	color: white;
+	padding: 10px 50px 10px 50px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+a.registBtn {
+	text-align: center;
+	background-color: #1F6096;
+	font-size: 20px;
+	color: white;
+	padding: 10px 20px 10px 20px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+#searchBtn {
+	text-align: center;
+	background-color: #1F6096;
+	font-size: 15px;
+	color: white;
+	padding: 10px;
+	border-radius: 10px;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+
+#mvReg input {
+	width: 95%;
+	border: 0;
+}

@@ -13,7 +13,7 @@
 			<nav id="topMenu">
 				<ul>
 
-					<li><a class="menuLink" href="#">test</a></li>
+					<li><a class="menuLink" href="movieList.do">영화</a></li>
 					<li>|</li>
 
 					<li><a class="menuLink" href="#">test</a></li>
