@@ -1,4 +1,4 @@
-package com.cbox.movie.dao;
+package com.cbox.info.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cbox.common.DAO;
-import com.cbox.movie.vo.infoVO;
+import com.cbox.info.vo.infoVO;
 
 public class infoDAO extends DAO {
 	private PreparedStatement psmt; //sql 명령문 실행

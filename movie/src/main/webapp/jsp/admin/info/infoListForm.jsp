@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="/css/info.css">
     <script>
         function writeForm(){
-            location.href="infoWriteForm.do"; //infoWriteForm.do = 글쓰기 버튼을 클릭 시 글 작성 화면으로 이동하는 명령어
+            location.href="infoWriteForm.jsp"; //infoWriteForm.do = 글쓰기 버튼을 클릭 시 글 작성 화면으로 이동하는 명령어
         }
         function deleteForm(){
-        	location.href="infoDeleteForm.do";
+        	location.href="infoDeleteForm.jsp";
         }
     </script>
     
@@ -52,10 +52,8 @@
         </table>
     </div>
     <div align="right" id="topForm">
-        <c:if test="${sessionScope.sessionID!=null}">
             <input type="button" value="글등록" onclick="writeForm()">
              <input type="button" value="글삭제" onclick="deleteForm()">
-        </c:if>    
     </div>
     <br>
     <div align="center">

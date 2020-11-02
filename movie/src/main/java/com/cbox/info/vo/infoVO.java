@@ -1,4 +1,4 @@
-package com.cbox.movie.vo;
+package com.cbox.info.vo;
 
 import java.sql.Date;
 

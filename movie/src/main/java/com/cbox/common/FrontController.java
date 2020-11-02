@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cbox.member.command.memberListAction;
+import com.cbox.info.command.infoListAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInsertAction;
+import com.cbox.member.command.memberListAction;
 import com.cbox.movie.command.movieChartListAction;
 import com.cbox.movie.command.movieDetailAction;
 import com.cbox.movie.command.movieExpectListAction;
