@@ -17,6 +17,7 @@ public class MemberDAO extends DAO{
 
 	private final String SELECT_ALL = "SELECT * FROM MEMBER";
 	private final String LOGIN = "SELECT * FROM MEMBER WHERE mbr_id = ? AND mbr_pw = ?";
+	private final String SELECT_INFO = "SELECT * FROM MEMBER WHERE mbr_id = ?";
 	private final String MEMBER_LIST = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( "
 			+ "SELECT * FROM MEMBER ORDER BY MBR_NO ) A ) B WHERE RN BETWEEN ? AND ?";
 	private final String INSERT = "INSERT INTO MEMBER(MBR_NO, MBR_ID, MBR_PW, MBR_NM, MBR_BIRTH, MBR_EMAIL, MBR_PHONE, MBR_E_YN)"
@@ -53,12 +54,39 @@ public class MemberDAO extends DAO{
 		return list;
 	}
 	
-	public MemberVO select(MemberVO vo) {
+	public MemberVO login(MemberVO vo) {
 		try {
 			pstmt = conn.prepareStatement(LOGIN);
 			pstmt.setString(1, vo.getMbr_id());
 			pstmt.setString(2, vo.getMbr_pw());
 			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo.setMbr_no(rs.getInt("mbr_no"));
+				vo.setMbr_id(rs.getString("mbr_id"));
+				vo.setMbr_pw(rs.getString("mbr_pw"));
+				vo.setMbr_nm(rs.getString("mbr_nm")); 
+				vo.setMbr_birth(rs.getDate("mbr_birth"));
+				vo.setMbr_email(rs.getString("mbr_email"));
+				vo.setMbr_phone(rs.getString("mbr_phone"));
+				vo.setMbr_regi_date(rs.getDate("mbr_regi_date"));
+				vo.setMbr_point(rs.getInt("mbr_point"));
+				vo.setMbr_e_yn(rs.getString("mbr_e_yn"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return vo;
+	}
+	// 로그인된 세션 아이디(sid)에 맞는 값들을 가져오는 메소드
+	public MemberVO selectInfo(String sid) {
+		try {
+			System.out.println("sid: " + sid);
+			pstmt = conn.prepareStatement(SELECT_INFO);
+			pstmt.setString(1, sid);
+			rs = pstmt.executeQuery();
+			MemberVO vo = new MemberVO();
 			if(rs.next()) {
 				vo.setMbr_no(rs.getInt("mbr_no"));
 				vo.setMbr_id(rs.getString("mbr_id"));

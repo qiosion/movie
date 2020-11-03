@@ -20,7 +20,7 @@ public class loginAction implements Action {
 		
 		vo.setMbr_id(request.getParameter("mbr_id"));
 		vo.setMbr_pw(request.getParameter("mbr_pw"));
-		vo = dao.select(vo);
+		vo = dao.login(vo);
 		
 		session.setAttribute("mbr_id", vo.getMbr_id());
 		session.setAttribute("mbr_pw", vo.getMbr_pw());

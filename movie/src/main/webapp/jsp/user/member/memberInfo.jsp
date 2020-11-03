@@ -25,7 +25,7 @@
 	<form class="frm" id="frm" name="frm" action="memberInfo.do" method="post">
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
-    		<input type="text" value="${ selectedMember.mbr_id }" readonly>
+    		<input type="text" value="${ myPage.mbr_id }" readonly>
   		</div>
 		<div class="form-group">
     		<label for="mbr_pw">비밀번호</label>
@@ -58,15 +58,15 @@
 		</script>
   		<div class="form-group">
     		<label for="mbr_nm">이름</label>
-    		<input type="text" value="${ selectedMember.mbr_nm }" readonly>
+    		<input type="text" value="${ myPage.mbr_nm }" readonly>
 		</div>
 		<div class="form-group">
     		<label for="mbr_birth">생년월일</label>
-    		<input type="text" value="${ selectedMember.mbr_birth }" readonly>
+    		<input type="text" value="${ myPage.mbr_birth }" readonly>
 		</div>
 		<div class="form-group">
     		<label for="mbr_phone">전화번호</label>
-    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
+    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="'${ myPage.mbr_nm }'">
 		</div>
 		<div class="form-group">
     		<label for="mbr_email">이메일</label>
@@ -74,11 +74,11 @@
 		</div>
 		<div class="form-group">
     		<label for="mbr_regi_date">회원가입일</label>
-    		<input type="text" value="${ selectedMember.mbr_regi_date }" readonly>
+    		<input type="text" value="${ myPage.mbr_regi_date }" readonly>
 		</div>
 		<div class="form-group">
     		<label for="mbr_point">포인트</label>
-    		<input type="text" value="${ selectedMember.mbr_point }" readonly>
+    		<input type="text" value="${ myPage.mbr_point }" readonly>
 		</div>
 		<div class="form-group form-check">
     		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="y">
