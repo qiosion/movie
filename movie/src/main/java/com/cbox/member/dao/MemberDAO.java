@@ -16,8 +16,9 @@ public class MemberDAO extends DAO{
 	private MemberVO vo;
 
 	private final String SELECT_ALL = "SELECT * FROM MEMBER";
-	private final String LOGIN = "SELECT * FROM MEMBER WHERE mbr_id = ? AND mbr_pw = ?";
-	private final String SELECT_INFO = "SELECT * FROM MEMBER WHERE mbr_id = ?";
+	private final String LOGIN = "SELECT * FROM MEMBER WHERE MBR_ID = ? AND MBR_PW = ?";
+	private final String LOGIN_CHK = "SELECT MBR_PW FROM MEMBER WHERE MBR_ID = ?";
+	private final String SELECT_INFO = "SELECT * FROM MEMBER WHERE MBR_ID = ?";
 	private final String MEMBER_LIST = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( "
 			+ "SELECT * FROM MEMBER ORDER BY MBR_NO ) A ) B WHERE RN BETWEEN ? AND ?";
 	private final String INSERT = "INSERT INTO MEMBER(MBR_NO, MBR_ID, MBR_PW, MBR_NM, MBR_BIRTH, MBR_EMAIL, MBR_PHONE, MBR_E_YN)"
@@ -79,16 +80,46 @@ public class MemberDAO extends DAO{
 		}
 		return vo;
 	}
+	// 로그인시 아이디, 비밀번호 체크 메소드
+	public int loginCheck(MemberVO vo) {
+        String dbPW = ""; // db에서 꺼낸 비밀번호를 담을 변수
+        int x = -1;
+ 
+        try {
+        	pstmt = conn.prepareStatement(LOGIN_CHK);
+        	pstmt.setString(1, vo.getMbr_id());
+            rs = pstmt.executeQuery();
+ 
+            if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+            {
+                dbPW = rs.getString("mbr_pw"); // 비번을 변수에 넣는다.
+                if (dbPW.equals(vo.getMbr_pw())) 
+                    x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공
+                else                  
+                    x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
+            } else {
+                x = -1; // 해당 아이디가 없을 경우
+            }
+            return x;
+        } catch (Exception sqle) {
+            throw new RuntimeException(sqle.getMessage());
+        } finally {
+            try{
+                if ( pstmt != null ){ pstmt.close(); pstmt=null; }
+                if ( conn != null ){ conn.close(); conn=null;    }
+            }catch(Exception e){
+                throw new RuntimeException(e.getMessage());
+            }
+        }
+    }
 	// 로그인된 세션 아이디(sid)에 맞는 값들을 가져오는 메소드
 	public MemberVO selectInfo(String sid) {
 		try {
-			System.out.println("sid: " + sid);
 			pstmt = conn.prepareStatement(SELECT_INFO);
 			pstmt.setString(1, sid);
 			rs = pstmt.executeQuery();
 			vo = new MemberVO();
 			if(rs.next()) {
-				System.out.println(rs.getString("mbr_id"));
 				vo.setMbr_no(rs.getInt("mbr_no"));
 				vo.setMbr_id(rs.getString("mbr_id"));
 				vo.setMbr_pw(rs.getString("mbr_pw"));

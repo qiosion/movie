@@ -15,7 +15,7 @@ public class memberInfoAction implements Action {
 		// 1. 여기에 세션 아이디 가져와서 찍히는지 확인
 		HttpSession session = request.getSession();
 		String sid = (String) session.getAttribute("mbr_id");
-		// 2. dao.뭐뭐메소드(매개값으로 세션아이디를 String으로 넣어줌)
+		// 2. dao.selectInfo(매개값으로 세션아이디를 String으로 넣어줌)
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = new MemberVO();
 		vo = dao.selectInfo(sid);

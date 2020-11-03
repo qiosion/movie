@@ -11,7 +11,6 @@
 	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post">
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
-   	 		<p>${ myPage.mbr_id }</p>
     		<input type="text" value="${ myPage.mbr_id }" readonly>
   		</div>
 		<div class="form-group">
@@ -68,13 +67,8 @@
     		<label for="mbr_point">포인트</label>
     		<input type="text" value="${ myPage.mbr_point }" readonly>
 		</div>
-
-		<div class="form-group form-check">
-    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }">
-    		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
-		</div>
 		<script type="text/javascript">
-// 체크박스 체크여부
+// 회원의 기존 체크박스 체크여부
 			var chk = $("#mbr_e_yn").val();
 			console.log("chk: " + chk);
 			if (chk == 'y'){
@@ -82,7 +76,17 @@
 			} else {
 				$("#mbr_e_yn").prop("checked", false);
 			}
+// 현재 체크박스 체크 여부		
+			if ($("#mbr_e_yn").prop("checked", true)){
+				$("#mbr_e_yn").attr("value", "y");
+			} else {
+				$("#mbr_e_yn").attr("value", "n");
+			}
 		</script>
+		<div class="form-group form-check">
+    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }">
+    		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
+		</div>
     	<button type="submit" class="btn btn-primary">수정</button>
 		<button type="button" class="btn btn-primary">탈퇴</button>		
 	</form>

@@ -25,9 +25,7 @@ public class memberInsertAction implements Action {
 		vo.setMbr_phone(request.getParameter("mbr_phone"));
 		vo.setMbr_email(request.getParameter("mbr_email"));
 		vo.setMbr_e_yn(request.getParameter("mbr_e_yn"));
-		System.out.println(request.getParameter("mbr_e_yn"));
 		int n = dao.insert(vo);
-		System.out.println("n:" + n);
 		
 		String page = null;
 		//request.setAttribute("check", n);

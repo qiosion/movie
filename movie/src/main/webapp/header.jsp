@@ -14,7 +14,9 @@
 		<tr>
 			<td>
 				<!-- Mypage 링크 메뉴  -->
-				<a href="<%=cp%>/memberInfo.do"><font size="2.5px" face="BareunDotum1"> MyPage &nbsp;</a>
+				<c:if test='${!empty mbr_id}'>
+					<a href="<%=cp%>/memberInfo.do"><font size="2.5px" face="BareunDotum1"> MyPage &nbsp;</a>
+				</c:if>
 				<!-- 회원가입 링크 메뉴  -->
 				<c:if test='${empty mbr_id}'>
 					<a href="<%=cp%>/memberForm.do"><font size="2.5px" face="BareunDotum1"> 회원가입&nbsp;</a>
