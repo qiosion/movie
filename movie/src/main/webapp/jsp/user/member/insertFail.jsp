@@ -7,6 +7,6 @@
 <title>회원가입 실패</title>
 </head>
 <body>
-
+<p>실패</p>
 </body>
 </html>

@@ -108,6 +108,7 @@ public class FrontController extends HttpServlet {
 			throws ServletException, IOException {
 		// 실제 수행할 명령 정리
 		request.setCharacterEncoding("utf-8"); // 한글 처리
+		response.setContentType("text/html; charset=UTF-8");
 		// 실제 요청하는 Path를 구하기 위한 것
 		String uri = request.getRequestURI();
 		String contextPath = request.getContextPath();
