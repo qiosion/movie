@@ -9,6 +9,10 @@
 	<decorator name="basic-theme" page="user-theme.jsp">
 		<pattern>/user/*</pattern>
 	</decorator>
+	
+	<decorator name="reservation-theme" page="reservation-theme.jsp">
+		<pattern>/reservation/*</pattern>
+	</decorator>
 	<!-- Excludes will never be decorated by Sitemesh. -->
 	<excludes>
 		<pattern>*/exclude/*</pattern>

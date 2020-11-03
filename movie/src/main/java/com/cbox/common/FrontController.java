@@ -81,7 +81,7 @@ public class FrontController extends HttpServlet {
 		
 		
 		// 광희
-		map.put("/reservationForm.do", new ReservationForm()); //예매하기 Form
+		map.put("/reservation/reservationForm.do", new ReservationForm()); //예매하기 Form
 		
 		
 		

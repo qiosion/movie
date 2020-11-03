@@ -20,7 +20,7 @@ public class ReservationForm implements Action {
 		
 		list = dao.selectAll(); //moive 전체 조회 리스트
 		request.setAttribute("movies", list); //list값들을 request속성값 movies로 지정
-		return "jsp/user/reservation/reservationForm.jsp";
+		return "/jsp/user/reservation/reservationForm.jsp";
 	}
 
 }
