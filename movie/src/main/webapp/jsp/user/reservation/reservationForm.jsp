@@ -10,14 +10,14 @@
 
 
 <%
-	Calendar cal = Calendar.getInstance();
-int nowYear = cal.get(Calendar.YEAR); //년도
-int nowMonth = (cal.get(Calendar.MONTH) + 1); //달
-int nowDay = cal.get(Calendar.DAY_OF_MONTH); // 일
-int nowLastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //마지막날
-String[] weekDay = { "일", "월", "화", "수", "목", "금", "토" };
-int num = cal.get(Calendar.DAY_OF_WEEK) - 1;
-String today = weekDay[num]; //요일
+		Calendar cal = Calendar.getInstance();
+		int nowYear = cal.get(Calendar.YEAR); //년도
+		int nowMonth = (cal.get(Calendar.MONTH) + 1); //달
+		int nowDay = cal.get(Calendar.DAY_OF_MONTH); // 일
+		int nowLastDay = cal.getActualMaximum(Calendar.DAY_OF_MONTH); //마지막날
+		String[] weekDay = { "일", "월", "화", "수", "목", "금", "토" };
+		int num = cal.get(Calendar.DAY_OF_WEEK) - 1;
+		String today = weekDay[num]; //요일
 %>
 </head>
 <body>
@@ -66,21 +66,15 @@ String today = weekDay[num]; //요일
 										<ul class="content scroll-y"
 											onscroll="movieSectionScrollEvent();" tabindex="-1"
 											style="right: -17px;">
-											<li class="rating-12" data-index="0"
+											
+											<c:forEach var="movie" items="${movies }">
+												<li class="rating-18" data-index="0"
 												movie_cd_group="20024753" movie_idx="83784"><a href="#"
-												onclick="return false;" title="삼진그룹영어토익반" alt="삼진그룹영어토익반"><span
-													class="icon">&nbsp;</span><span class="text">삼진그룹영어토익반</span><span
+												onclick="return false;" title="${movie.mvTitle }" alt="${movie.mvTitle }"><span
+													class="icon">&nbsp;</span><span class="text">${movie.mvTitle }</span><span
 													class="sreader"></span></a></li>
-											<li class="rating-12" data-index="1"
-												movie_cd_group="20024853" movie_idx="83815"><a href="#"
-												onclick="return false;" title="도굴" alt="도굴"><span
-													class="icon">&nbsp;</span><span class="text">도굴</span><span
-													class="sreader"></span></a></li>
-											<li class="rating-12" data-index="2"
-												movie_cd_group="20023836" movie_idx="83381"><a href="#"
-												onclick="return false;" title="테넷" alt="테넷"><span
-													class="icon">&nbsp;</span><span class="text">테넷</span><span
-													class="sreader"></span></a></li>
+												
+											</c:forEach>
 										</ul>
 										<div class="pane pane-y"
 											style="display: block; opacity: 1; visibility: visible;">
@@ -167,111 +161,25 @@ String today = weekDay[num]; //요일
 								<div class="time-list nano has-scrollbar">
 									<div class="content scroll-y" tabindex="-1"
 										style="right: -17px;">
+								
+										<c:forEach var="time" items="${times }">
 										<div class="theater" screen_cd="001" movie_cd="20024753">
 											<span class="title"><span class="name">2D</span><span
-												class="floor">1관</span><span class="seatcount">(총211석)</span></span>
+												class="floor">${time.mv_title }</span><span class="seatcount">(총${time.th_max }석)</span></span>
 											<ul>
 												<li data-index="0" data-remain_seat="211"
 													play_start_tm="1800" screen_cd="001" movie_cd="20024753"
 													play_num="4"><a class="button" href="#"
 													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>18:00</span></span><span class="count">96석</span>
-													<div class="sreader">종료시간 20:00</div>
+														class="time"><span>${time.tt_start }</span></span><span class="count">${time.tt_empty }석</span>
+													<div class="sreader"><!--  종료시간 20:00--></div>
 														<span class="sreader mod"></span></a></li>
-												<li data-index="1" data-remain_seat="211"
-													play_start_tm="2020" screen_cd="001" movie_cd="20024753"
-													play_num="5"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>20:20</span></span><span class="count">94석</span>
-													<div class="sreader">종료시간 22:20</div>
-														<span class="sreader mod"></span></a></li>
+												
 											</ul>
 										</div>
-										<div class="theater" screen_cd="002" movie_cd="20024753">
-											<span class="title"><span class="name">2D</span><span
-												class="floor">2관</span><span class="seatcount">(총178석)</span></span>
-											<ul>
-												<li data-index="2" data-remain_seat="178"
-													play_start_tm="1730" screen_cd="002" movie_cd="20024753"
-													play_num="4"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"
-													title=""><span class="time"><span>17:30</span></span><span
-														class="count">87석</span>
-													<div class="sreader">종료시간 19:30</div>
-														<span class="sreader mod"></span></a></li>
-												<li data-index="3" data-remain_seat="178"
-													play_start_tm="1950" screen_cd="002" movie_cd="20024753"
-													play_num="5"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"
-													title=""><span class="time"><span>19:50</span></span><span
-														class="count">87석</span>
-													<div class="sreader">종료시간 21:50</div>
-														<span class="sreader mod"></span></a></li>
-											</ul>
-										</div>
-										<div class="theater" screen_cd="005" movie_cd="20024753">
-											<span class="title"><span class="name">2D</span><span
-												class="floor">5관(Laser)</span><span class="seatcount">(총153석)</span></span>
-											<ul>
-												<li data-index="4" data-remain_seat="153"
-													play_start_tm="1930" screen_cd="005" movie_cd="20024753"
-													play_num="5"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>19:30</span></span><span class="count">66석</span>
-													<div class="sreader">종료시간 21:30</div>
-														<span class="sreader mod"></span></a></li>
-											</ul>
-										</div>
-										<div class="theater" screen_cd="006" movie_cd="20024753">
-											<span class="title"><span class="name">2D</span><span
-												class="floor">6관(Laser)</span><span class="seatcount">(총133석)</span></span>
-											<ul>
-												<li data-index="5" data-remain_seat="133"
-													play_start_tm="1830" screen_cd="006" movie_cd="20024753"
-													play_num="4"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>18:30</span></span><span class="count">66석</span>
-													<div class="sreader">종료시간 20:30</div>
-														<span class="sreader mod"></span></a></li>
-												<li data-index="6" data-remain_seat="133"
-													play_start_tm="2050" screen_cd="006" movie_cd="20024753"
-													play_num="5"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"
-													title=""><span class="time"><span>20:50</span></span><span
-														class="count">68석</span>
-													<div class="sreader">종료시간 22:50</div>
-														<span class="sreader mod"></span></a></li>
-											</ul>
-										</div>
-										<div class="theater" screen_cd="007" movie_cd="20024753"
-											style="border: none;">
-											<span class="title"><span class="name">2D</span><span
-												class="floor">7관(Laser)</span><span class="seatcount">(총248석)</span></span>
-											<ul>
-												<li data-index="7" data-remain_seat="248"
-													play_start_tm="1645" screen_cd="007" movie_cd="20024753"
-													play_num="4" class="disabled"><a class="button"
-													href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>16:45</span></span><span class="count">예매종료</span>
-													<div class="sreader">종료시간 18:45</div>
-														<span class="sreader mod"> 선택불가</span></a></li>
-												<li data-index="8" data-remain_seat="248"
-													play_start_tm="1905" screen_cd="007" movie_cd="20024753"
-													play_num="5"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>19:05</span></span><span class="count">118석</span>
-													<div class="sreader">종료시간 21:05</div>
-														<span class="sreader mod"></span></a></li>
-												<li data-index="9" data-remain_seat="248"
-													play_start_tm="2120" screen_cd="007" movie_cd="20024753"
-													play_num="6"><a class="button" href="#"
-													onclick="screenTimeClickListener(event);return false;"><span
-														class="time"><span>21:20</span></span><span class="count">111석</span>
-													<div class="sreader">종료시간 23:20</div>
-														<span class="sreader mod"></span></a></li>
-											</ul>
-										</div>
+										</c:forEach>
+										
+										
 									</div>
 									<div class="pane pane-y"
 										style="display: none; opacity: 1; visibility: visible;">
@@ -973,11 +881,11 @@ String today = weekDay[num]; //요일
 				style="width: 996px; height: 140px"></a>
 		</div>
 
-		<!-- wing banner -->
+		<!-- wing banner 
 		<div id="ticket_banner" class="ticket_banner">
 			<div>
 				<div class="AdvertiseCon" id="RIA_Skin_Ticketing_L"
-					style="width: 160px; height: 300px; background: none; position: absolute; top: 75px; left: -164px; overflow: hidden;">
+					style="width: 160px; height: 300px; background: none; top: 75px; left: -164px; overflow: hidden;">
 					<a
 						href="http://ad.cgv.co.kr/click/CGV/CGV_201608/RIA@RIA_Skin_Ticketing?ads_id=28597&amp;creative_id=59828&amp;click_id=78994&amp;event="
 						target="_blank" style="top: 0px;"><img
@@ -996,7 +904,7 @@ String today = weekDay[num]; //요일
 				</div>
 			</div>
 		</div>
-
+		-->
 	</div>
 
 
