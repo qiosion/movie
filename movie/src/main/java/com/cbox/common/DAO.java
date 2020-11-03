@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class DAO {
 	private String driver = "oracle.jdbc.driver.OracleDriver";
-	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String user = "hun";
-	private String password = "1231";
+	private String url = "jdbc:oracle:thin:@192.168.0.73:1521:xe";
+	private String user = "jamong";
+	private String password = "1234";
 	
 	// private는 상속이 안되니까 connection 객체를 상속해야한다.
 	public Connection conn;	// db 연결 객체

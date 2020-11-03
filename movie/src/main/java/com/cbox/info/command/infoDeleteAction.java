@@ -19,6 +19,9 @@ public class infoDeleteAction implements Action {
 		
 		
 		
+		request.setAttribute("vo", vo);
+		
+		
 		
 		return null;
 	}

@@ -99,6 +99,7 @@ public class FrontController extends HttpServlet {
 		map.put("/DetailView.do", new DetailViewAction());//제목 클릭시 상세페이지
 		map.put("/infoInsert.do", new infoInsertAction());//db에값추가
 		map.put("/infoWriteForm.do", new infoWriteFormAction());//글작성페이지 보기
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

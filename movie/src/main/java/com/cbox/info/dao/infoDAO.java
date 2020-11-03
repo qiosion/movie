@@ -18,6 +18,7 @@ public class infoDAO extends DAO {
 	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_CATEGORY,INFO_CONT,INFO_DATE)VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
+	private final String update = "update info set info_";
 	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
@@ -75,6 +76,8 @@ public class infoDAO extends DAO {
 		}
 		return vo;
 	}
+	
+	
 	
 	public int delete(infoVO vo) {
 		int n = 0;

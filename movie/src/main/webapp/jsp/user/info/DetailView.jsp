@@ -15,6 +15,10 @@ function listFrm(){
 <body>
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
+				<td id="title">공지번호</td>
+				<td>${vo.info_Num}</td>
+			</tr>
+			<tr>
 				<td id="title">제목</td>
 				<td>${vo.info_Title}</td>
 			</tr>

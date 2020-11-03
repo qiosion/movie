@@ -16,6 +16,9 @@
 		enctype="multipart/form-data">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
+				<td id="title">공지번호</td>
+			</tr>
+			<tr>
 				<td id="title">제목</td>
 				<td><input name="info_name" type="text" size="70"
 					maxlength="100" value="" /></td>
