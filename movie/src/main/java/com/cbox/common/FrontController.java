@@ -23,6 +23,7 @@ import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInfoAction;
 import com.cbox.member.command.memberInsertAction;
 import com.cbox.member.command.memberListAction;
+import com.cbox.member.command.memberUpdateAction;
 import com.cbox.movie.command.movieChartListAction;
 import com.cbox.movie.command.movieDetailAction;
 import com.cbox.movie.command.movieExpectListAction;
@@ -75,6 +76,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
 		map.put("/memberInsert.do", new memberInsertAction()); // DB에 회원 추가
 		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
+		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 
