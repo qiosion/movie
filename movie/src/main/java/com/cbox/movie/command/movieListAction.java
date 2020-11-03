@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.common.Action;
 import com.cbox.movie.dao.MovieDAO;
+import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
 
 public class movieListAction implements Action {
@@ -17,7 +18,12 @@ public class movieListAction implements Action {
 
 		MovieDAO dao = new MovieDAO();
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		list = dao.selectAll(new MovieVO());
+		
+		MovieSearchVO searchVO = new MovieSearchVO();
+		searchVO.setType(request.getParameter("searchType"));
+		searchVO.setKeyword(request.getParameter("keyword"));
+		
+		list = dao.selectAll(searchVO);
 		request.setAttribute("movies", list);
 
 		return "jsp/user/movie/movieList.jsp";

@@ -16,18 +16,35 @@ public class MovieDAO extends DAO {
 	private ResultSet rs;
 	private MovieVO vo;
 
-	private final String SELECT_ALL = "select * from movie order by 1";
-	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
-			+ ") a  ) b where rn between ? and ?";
+	private String SELECT_ALL = "select * from movie";
+//	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
+//			+ ") a  ) b where rn between ? and ?";
 	private String SELECT_SEARCH = "";
-	private final String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
+	private String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
 	private final String DETAIL = "select * from movie where mv_num = ?";
 
-	public List<MovieVO> selectAll(MovieVO vo) {
+	public List<MovieVO> selectAll(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
+		String whereCondition = " where 1=1";
 
+		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+				&& !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType().equals("title")) {
+				System.out.println("title?");
+				whereCondition += " and mv_title like '%'||?||'%'";
+			}
+		}
 		try {
+			SELECT_ALL = SELECT_ALL + whereCondition;
 			psmt = conn.prepareStatement(SELECT_ALL);
+
+			int pos = 1;
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					psmt.setString(pos++, searchVO.getKeyword());
+				}
+			}
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -64,13 +81,14 @@ public class MovieDAO extends DAO {
 	public List<MovieVO> selectPage(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		String whereCondition = " where 1=1";
-		if (searchVO.getType() != null && !searchVO.getType().equals("") && 
-				searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
 				System.out.println("title?");
 				whereCondition += " and mv_title like '%'||?||'%'";
 			}
 		}
+
 		try {
 			System.out.println(">>where : " + whereCondition);
 			SELECT_SEARCH = "select * from ( select a.*, rownum rn from ( " + "select * from movie" + whereCondition
@@ -81,8 +99,8 @@ public class MovieDAO extends DAO {
 //			psmt.setInt(1, searchVO.getFirst());
 //			psmt.setInt(2, searchVO.getLast());
 			int pos = 1;
-			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
-					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
 				if (searchVO.getType().equals("title")) {
 					psmt.setString(pos++, searchVO.getKeyword());
 				}
@@ -126,8 +144,8 @@ public class MovieDAO extends DAO {
 		int cnt = 0;
 		try {
 			String whereCondition = " where 1=1";
-			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
-					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
 				if (searchVO.getType().equals("title")) {
 					whereCondition += " and mv_title and '%'||?||'%'";
 				}
@@ -136,8 +154,8 @@ public class MovieDAO extends DAO {
 			psmt = conn.prepareStatement(sql);
 
 			int pos = 1;
-			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
-					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
 				if (searchVO.getType().equals("title")) {
 					psmt.setString(pos++, searchVO.getKeyword());
 				}
@@ -155,11 +173,30 @@ public class MovieDAO extends DAO {
 		return cnt;
 	}
 
-	public List<MovieVO> selectExpect(MovieVO vo) {
+	public List<MovieVO> selectExpect(MovieSearchVO searchVO) {
 		System.out.println("selectExpect");
 		List<MovieVO> list = new ArrayList<MovieVO>();
+		String whereCondition = "";
+
+		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+				&& !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType().equals("title")) {
+				System.out.println("title?");
+				whereCondition += " and mv_title like '%'||?||'%'";
+			}
+		}
+
 		try {
+			SELECT_EXPECTED = SELECT_EXPECTED + whereCondition;
 			psmt = conn.prepareStatement(SELECT_EXPECTED);
+
+			int pos = 1;
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					psmt.setString(pos++, searchVO.getKeyword());
+				}
+			}
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {

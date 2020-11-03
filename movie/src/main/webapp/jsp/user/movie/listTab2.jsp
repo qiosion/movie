@@ -27,7 +27,7 @@
 	</div>
 	<div id="tab-2" class="tab-content current">
 		<div align="right">
-			<mv:searchMv returnPage="movieList.do" />
+			<mv:searchMv returnPage="movieExpectList.do" />
 		</div>
 		<ol>
 			<c:forEach var="movie" items="${exMovies}">

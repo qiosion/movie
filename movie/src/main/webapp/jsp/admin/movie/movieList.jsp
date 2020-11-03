@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mv"%>
 
 <!-- <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
@@ -42,7 +42,7 @@
 	<h2>영화 리스트 관리</h2>
 	<div id="topMvMenu">
 		<a href="mvRegistForm.do" class="registBtn">등록</a>
-		<my:searchMv returnPage="mvList.do" />
+		<mv:searchMv returnPage="mvList.do" />
 	</div>
 	<div id="mvList">
 		<table border="1">
@@ -75,7 +75,7 @@
 				//	searchFrm.submit(); // 폼 전송
 			}
 		</script>
-		<my:paging paging="${paging}" jsfunc="goPage" />
+		<mv:paging paging="${paging}" jsfunc="goPage" />
 	</div>
 </body>
 </html>
