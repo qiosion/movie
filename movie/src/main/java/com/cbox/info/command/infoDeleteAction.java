@@ -14,9 +14,10 @@ public class infoDeleteAction implements Action {
 		// 
 		infoDAO dao = new infoDAO();
 		infoVO vo = new infoVO();
+		
 		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
 		
-		dao.delete(vo);
+		 dao.delete(vo);
 		
 	
 		
