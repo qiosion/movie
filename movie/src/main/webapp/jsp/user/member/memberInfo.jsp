@@ -71,7 +71,15 @@
 		<div class="form-group">
     		<label for="mbr_email">이메일</label>
     		<input type="email" class="form-control" id="mbr_email" name="mbr_email" placeholder="abc@example.com">
-		</div>  
+		</div>
+		<div class="form-group">
+    		<label for="mbr_regi_date">회원가입일</label>
+    		<input type="text" value="${ selectedMember.mbr_regi_date }" readonly>
+		</div>
+		<div class="form-group">
+    		<label for="mbr_point">포인트</label>
+    		<input type="text" value="${ selectedMember.mbr_point }" readonly>
+		</div>
 		<div class="form-group form-check">
     		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="y">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
