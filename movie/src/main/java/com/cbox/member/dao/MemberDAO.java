@@ -86,8 +86,9 @@ public class MemberDAO extends DAO{
 			pstmt = conn.prepareStatement(SELECT_INFO);
 			pstmt.setString(1, sid);
 			rs = pstmt.executeQuery();
-			MemberVO vo = new MemberVO();
+			vo = new MemberVO();
 			if(rs.next()) {
+				System.out.println(rs.getString("mbr_id"));
 				vo.setMbr_no(rs.getInt("mbr_no"));
 				vo.setMbr_id(rs.getString("mbr_id"));
 				vo.setMbr_pw(rs.getString("mbr_pw"));

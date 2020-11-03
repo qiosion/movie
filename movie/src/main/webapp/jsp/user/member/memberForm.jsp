@@ -59,7 +59,7 @@
     		<input type="email" class="form-control" id="mbr_email" name="mbr_email" placeholder="abc@example.com">
 		</div>  
 		<div class="form-group form-check">
-    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="y">
+    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
     	<button type="submit" class="btn btn-primary">회원가입</button>
