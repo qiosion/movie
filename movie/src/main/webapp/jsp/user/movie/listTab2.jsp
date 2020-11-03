@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="mv" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="mv" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +13,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	
+
 
 	<div class="movietop">
 		<ul class="tabs">
@@ -26,7 +26,9 @@
 		</ul>
 	</div>
 	<div id="tab-2" class="tab-content current">
-	<mv:searchMv />
+		<div align="right">
+			<mv:searchMv returnPage="movieList.do" />
+		</div>
 		<ol>
 			<c:forEach var="movie" items="${exMovies}">
 				<li>

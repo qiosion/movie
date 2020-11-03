@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cbox.common.Action;
 import com.cbox.common.Paging;
 import com.cbox.movie.dao.MovieDAO;
+import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
 
 public class mvListAction implements Action {
@@ -30,19 +31,23 @@ public class mvListAction implements Action {
 
 		// 전체 레코드 건수 조회
 		Paging paging = new Paging();
+		paging.setPage(p); // 현재 페이지
 		paging.setPageUnit(3); // 한 페이지에 출력할 레코드 건수. default:10
 		paging.setPageSize(3); // 페이지 번호 수. default:10
-		paging.setPage(p); // 현재 페이지
-		
-		MovieDAO cntdao = new MovieDAO();
-		MovieVO vo = new MovieVO();
-		vo.setFirst(paging.getFirst());
-		vo.setLast(paging.getLast());
-		paging.setTotalRecord(cntdao.count(vo));
-		
+		MovieSearchVO searchVO = new MovieSearchVO();
+
 		request.setAttribute("paging", paging);
 
-		list = dao.selectPage(vo);
+		// searchVO에 담기
+		searchVO.setStart(paging.getFirst());
+		searchVO.setEnd(paging.getLast());
+		searchVO.setType(request.getParameter("searchType"));
+		searchVO.setKeyword(request.getParameter("keyword"));
+
+		MovieDAO cntdao = new MovieDAO();
+		paging.setTotalRecord(cntdao.count(searchVO));
+		list = dao.selectPage(searchVO);
+
 		request.setAttribute("movies", list);
 
 		return "jsp/admin/movie/movieList.jsp";

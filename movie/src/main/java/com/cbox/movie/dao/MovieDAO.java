@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cbox.common.DAO;
+import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
 
 public class MovieDAO extends DAO {
@@ -18,6 +19,7 @@ public class MovieDAO extends DAO {
 	private final String SELECT_ALL = "select * from movie order by 1";
 	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
 			+ ") a  ) b where rn between ? and ?";
+	private String SELECT_SEARCH = "";
 	private final String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
 	private final String DETAIL = "select * from movie where mv_num = ?";
 
@@ -59,12 +61,34 @@ public class MovieDAO extends DAO {
 		return list;
 	}
 
-	public List<MovieVO> selectPage(MovieVO mbrVO) {
+	public List<MovieVO> selectPage(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
+		String whereCondition = " where 1=1";
+		if (searchVO.getType() != null && !searchVO.getType().equals("") && 
+				searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+			if (searchVO.getType().equals("title")) {
+				System.out.println("title?");
+				whereCondition += " and mv_title like '%'||?||'%'";
+			}
+		}
 		try {
-			psmt = conn.prepareStatement(SELECT_PAGE);
-			psmt.setInt(1, mbrVO.getFirst());
-			psmt.setInt(2, mbrVO.getLast());
+			System.out.println(">>where : " + whereCondition);
+			SELECT_SEARCH = "select * from ( select a.*, rownum rn from ( " + "select * from movie" + whereCondition
+					+ " order by 1 ) a  ) b where rn between ? and ?";
+			System.out.println(">>search : " + SELECT_SEARCH);
+			psmt = conn.prepareStatement(SELECT_SEARCH);
+//			psmt = conn.prepareStatement(SELECT_PAGE);
+//			psmt.setInt(1, searchVO.getFirst());
+//			psmt.setInt(2, searchVO.getLast());
+			int pos = 1;
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
+					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					psmt.setString(pos++, searchVO.getKeyword());
+				}
+			}
+			psmt.setInt(pos++, searchVO.getStart());
+			psmt.setInt(pos++, searchVO.getEnd());
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
@@ -86,6 +110,7 @@ public class MovieDAO extends DAO {
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 				vo.setMvRank(rs.getInt("mv_rank"));
 
+				System.out.println(">>>>>>>>> " + rs.getNString("mv_title"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -97,13 +122,28 @@ public class MovieDAO extends DAO {
 		return list;
 	}
 
-	public int count(MovieVO vo) { // 전체 건수 조회
+	public int count(MovieSearchVO searchVO) { // 전체 건수 조회
 		int cnt = 0;
 		try {
-			String sql = "select count(*) from movie";
+			String whereCondition = " where 1=1";
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
+					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					whereCondition += " and mv_title and '%'||?||'%'";
+				}
+			}
+			String sql = "select count(*) from movie" + whereCondition;
 			psmt = conn.prepareStatement(sql);
-			rs = psmt.executeQuery();
 
+			int pos = 1;
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && 
+					searchVO.getKeyword() != null && !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					psmt.setString(pos++, searchVO.getKeyword());
+				}
+			}
+
+			rs = psmt.executeQuery();
 			rs.next();
 			cnt = rs.getInt(1); // 첫번쨰열. 카운트 결과
 		} catch (SQLException e) {

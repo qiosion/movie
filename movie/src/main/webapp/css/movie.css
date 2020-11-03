@@ -17,7 +17,7 @@ ol li {
 	margin: 20px;
 }
 
-/* ÅÇ ¸Þ´º S */
+/* ï¿½ï¿½ ï¿½Þ´ï¿½ S */
 ul.tabs {
 	margin: 0px;
 	padding: 0px;
@@ -47,9 +47,9 @@ ul.tabs li.current {
 	display: inherit;
 }
 
-/* ÅÇ ¸Þ´º E */
+/* ï¿½ï¿½ ï¿½Þ´ï¿½ E */
 
-/* Åä±Û ¹öÆ° S*/
+/* ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° S*/
 .sort {
 	padding-top: 10px;
 	height: 20px;
@@ -81,22 +81,22 @@ ul.tabs li.current {
 	left: 0px;
 }
 
-/* Åä±Û ¹öÆ° E */
-#moviePoster { /* ¸ñ·Ï -> Æ÷½ºÅÍ */
+/* ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° E */
+#moviePoster { /* ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	width: 280px;
 	height: 370px;
 }
 
-#search { /* °Ë»öÆû */
+#search { /* ï¿½Ë»ï¿½ï¿½ï¿½ */
 	margin: 10px;
 	width: 100%;
 }
 
 #search #keyword {
-	margin-left: 230px;
+	margin-left: 10px;
 }
 
-#searchType { /* °Ë»öÅ¸ÀÔ : ex) Á¦¸ñ */
+#searchType { /* ï¿½Ë»ï¿½Å¸ï¿½ï¿½ : ex) ï¿½ï¿½ï¿½ï¿½ */
 	height: 29px;
 }
 /* movieList E */
@@ -104,7 +104,7 @@ ul.tabs li.current {
 /* ---------------------------------------------- */
 
 /* movieDetail S */
-.info { /* »ó¼¼È­¸é »ó´Ü */
+.info { /* ï¿½ï¿½È­ï¿½ï¿½ ï¿½ï¿½ï¿½ */
 	overflow: auto;
 	height: 500px;
 	width: 100%;

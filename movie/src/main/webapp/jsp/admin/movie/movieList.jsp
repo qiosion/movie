@@ -2,22 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- <link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript">
-	function formCheck() {
-		var frm = document.search;
-		if (frm.keyword.value == "") {
-			alert("검색어를 입력해주세요.");
-			return;
-		}
-		/* form.submit(); */
-	}
-</script>
 
 <style>
 .pagination li {
@@ -51,12 +42,7 @@
 	<h2>영화 리스트 관리</h2>
 	<div id="topMvMenu">
 		<a href="mvRegistForm.do" class="registBtn">등록</a>
-		<form name="search" id="search" method="get" action="mvList.do">
-			<select id="searchType" name="searchType">
-				<option value="title">제목</option>
-			</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
-			<button type="submit" onclick="return formCheck()">검색</button>
-		</form>
+		<my:searchMv returnPage="mvList.do" />
 	</div>
 	<div id="mvList">
 		<table border="1">
@@ -86,7 +72,7 @@
 			function goPage(p) {
 				location.href = "mvList.do?p=" + p;
 				//searchFrm.p.value = p; // 폼에 페이지 번호 넘긴다.
-			//	searchFrm.submit(); // 폼 전송
+				//	searchFrm.submit(); // 폼 전송
 			}
 		</script>
 		<my:paging paging="${paging}" jsfunc="goPage" />

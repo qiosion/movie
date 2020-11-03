@@ -1,3 +1,4 @@
+<%@page import="com.cbox.movie.vo.MovieSearchVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.cbox.movie.dao.MovieDAO"%>
@@ -5,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@ taglib prefix="mv" tagdir="/WEB-INF/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,14 +20,13 @@
 				var toggleBG = $(this);
 				var toggleFG = $(this).find('.toggleFG');
 				var left = toggleFG.css('left');
-				if (left == '30px') {
+				if (left == '15px') {
 					toggleBG.css('background', '#CCCCCC');
 					type = toggleActionStart(toggleFG, 'TO_LEFT');
 				} else if (left == '0px') {
 					toggleBG.css('background', '#ABD0BC');
 					type = toggleActionStart(toggleFG, 'TO_RIGHT');
 				}
-				console.log("type : " + type);
 			});
 		});
 
@@ -37,7 +37,7 @@
 				// 버튼 이동
 				var left = parseInt(toggleBtn.css('left'));
 				left += (LR == 'TO_RIGHT') ? 5 : -5;
-				if (left >= 0 && left <= 30) {
+				if (left >= 0 && left <= 15) {
 					left += 'px';
 					toggleBtn.css('left', left);
 				}
@@ -61,8 +61,10 @@
 		</ul>
 	</div>
 	<div id="tab-1" class="tab-content current">
-	<mv:searchMv />
-		
+		<div align="right">
+			<mv:searchMv returnPage="movieList.do" />
+		</div>
+
 		<div class="sort">
 			<span>전체</span>
 			<div class="toggleBG">
