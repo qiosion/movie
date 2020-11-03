@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.cbox.info.command.DetailViewAction;
 import com.cbox.info.command.infoInsertAction;
 import com.cbox.info.command.infoListAction;
+import com.cbox.info.command.infoWriteFormAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
@@ -95,8 +96,9 @@ public class FrontController extends HttpServlet {
 		// 재훈
 		
 		map.put("/infoList.do", new infoListAction()); //게시판 전체목록 불러오기
-		map.put("/DetailView.do", new DetailViewAction());
-		map.put("/infoInsert.do", new infoInsertAction());
+		map.put("/DetailView.do", new DetailViewAction());//제목 클릭시 상세페이지
+		map.put("/infoInsert.do", new infoInsertAction());//db에값추가
+		map.put("/infoWriteForm.do", new infoWriteFormAction());//글작성페이지 보기
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

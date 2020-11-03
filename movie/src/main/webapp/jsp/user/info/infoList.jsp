@@ -5,7 +5,11 @@
 <head>
     <title>전체 게시글</title>
     <link rel="stylesheet" href="/css/info.css">
-    
+    <script>
+    function writeForm(){
+        location.href="infoWriteForm.do"; //글쓰기 버튼 클릭시 작성화면으로 이동
+    }
+    </script>
 </head>
 <body>    
  
@@ -35,7 +39,7 @@
             <c:forEach var="info" items="${infoList}"> 
             <tr>
                 <td>${info.info_Num}</td>
-                <td><a href="DetailView.do">${info.info_Title}</a></td>
+                <td><a href="DetailView.do?info_Num=${info.info_Num}">${info.info_Title}</a></td>
                 <td>${info.info_Category}</td>
                 <td>${info.info_Date}</td>
                 <td>${info.info_Chk}</td>
@@ -44,12 +48,11 @@
         </table>
     </div>
     
-    <br>
-    <div align="center">
-        	<a href="#" type="submit">1</a>
-        	<a href="#" type="submit">2</a>
-     </div>
-    <br>
+	 <div align="right" id="topForm">
+            <input type="button" value="글등록" onclick="writeForm()">
+             <input type="button" value="글삭제" onclick="deleteForm()">
+    </div>
+    
 </div>    
  
 </body>

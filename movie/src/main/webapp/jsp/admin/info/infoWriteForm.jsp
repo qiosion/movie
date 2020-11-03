@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="/css/info.css">
 <script>
 	function listFrm(){
-		location.href="infoListForm.jsp";
+		location.href="infoList.do";
 	}
 </script>
 </head>

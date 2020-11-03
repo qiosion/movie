@@ -10,13 +10,13 @@
             width: 800px;
             margin: 0 auto 0 auto;
         }
-        #topForm{
+#topForm{
             text-align :right;
         }
-        #board, #pageForm, #searchForm{
+#board, #pageForm, #searchForm{
             text-align :center;
         }
         
-        #bList{
+#bList{
             text-align :center;
         }

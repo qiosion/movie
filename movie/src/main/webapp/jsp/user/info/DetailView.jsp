@@ -14,26 +14,24 @@ function listFrm(){
 </head>
 <body>
 		<table width="700" border="3" bordercolor="lightgray" align="center">
-		<c:forEach var="detail" items="${detail}">
 			<tr>
 				<td id="title">제목</td>
-				<td>${detail.info_Title}</td>
+				<td>${vo.info_Title}</td>
 			</tr>
 			<tr>
 				<td id="title">날짜</td>
-				<td>${detail.info_Date}</td>
+				<td>${vo.info_Date}</td>
 			</tr>
 			<tr>
 				<td id="title">카테고리</td>
-				<td>${detail.info_Category}</td>
+				<td>${vo.info_Category}</td>
 				
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
-				<td>${detail.info_Cont}
+				<td>${vo.info_Cont}
 				</td>
 			</tr>
-			</c:forEach>
 
 			<tr align="center" valign="middle">
 				<td colspan="5">
