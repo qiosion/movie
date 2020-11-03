@@ -15,10 +15,10 @@ public class infoDAO extends DAO {
 	private infoVO vo;
 
 	private final String SELECT_ALL = "SELECT * FROM INFO";
-	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_CATEGORY,INFO_CONT,INFO_DATE)VALUES(?,?,?,?,?)";
+	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
-	private final String update = "update info set info_";
+	private final String UPDATE = "UPDATE INFO SET INFO_NUM=?, INFO_TITLE=?, INFO_DATE=?, INFO_CATEGORY=?, INFO_CONT=?";
 	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
@@ -47,9 +47,9 @@ public class infoDAO extends DAO {
 			psmt = conn.prepareStatement(INSERT);
 			psmt.setInt(1, vo.getInfo_Num());
 			psmt.setString(2, vo.getInfo_Title());
-			psmt.setString(3, vo.getInfo_Category());
-			psmt.setString(4, vo.getInfo_Cont());
-			psmt.setDate(5, vo.getInfo_Date());
+			psmt.setDate(3, vo.getInfo_Date());
+			psmt.setString(4, vo.getInfo_Category());
+			psmt.setString(5, vo.getInfo_Cont());
 			n = psmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -75,6 +75,23 @@ public class infoDAO extends DAO {
 			e.printStackTrace();
 		}
 		return vo;
+	}
+	
+	public int update(infoVO vo) {
+		int n = 0;
+		try {
+			psmt = conn.prepareStatement(UPDATE);
+			psmt.setInt(1, vo.getInfo_Num());
+			psmt.setString(2, vo.getInfo_Title());
+			psmt.setDate(3, vo.getInfo_Date());
+			psmt.setString(4,vo.getInfo_Category());
+			psmt.setString(5,vo.getInfo_Cont());
+			n=psmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
 	}
 	
 	

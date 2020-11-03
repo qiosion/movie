@@ -9,6 +9,9 @@
 function listFrm(){
 	location.href="infoList.do";
 }
+function deleteFrm(){
+	location.href="infoDelete.do";
+}
 	
 </script>
 </head>
@@ -39,10 +42,8 @@ function listFrm(){
 
 			<tr align="center" valign="middle">
 				<td colspan="5">
-				<c:if test="admin"><!-- admin이면 수정버튼 보이게 -->
-					<input type ="button" value="수정">
-				</c:if>
-				<input type="reset" value="답글"> 
+				<input type ="button" value="수정">
+	 			<input type ="button" value="삭제" onclick ="deleteFrm()">
 				<input type="button" value="목록" onclick="listFrm()">
 				</td>
 			</tr>

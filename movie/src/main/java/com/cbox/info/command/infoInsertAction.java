@@ -18,14 +18,14 @@ public class infoInsertAction implements Action {
 		
 		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
 		vo.setInfo_Title(request.getParameter("info_Title"));
+		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
 		vo.setInfo_Category(request.getParameter("info_Category"));
 		vo.setInfo_Cont(request.getParameter("info_Cont"));
-		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
 		
+
+		dao.insert(vo);
 		
-		int n = dao.insert(vo);
-		
-		return null;
+		return "jsp/user/info/infoList.jsp";
 	}
 
 }

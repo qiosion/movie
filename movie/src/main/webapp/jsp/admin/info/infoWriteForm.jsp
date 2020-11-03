@@ -12,23 +12,24 @@
 </script>
 </head>
 <body>
-	<form method="post" action="infoInsert.do" name="infoForm"
-		enctype="multipart/form-data">
+	<form method="post" action="infoInsert.do" name="infoForm" enctype="multipart/form-data">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
 				<td id="title">공지번호</td>
+				<td><input name="info_Num" type="text" value=""></td>
 			</tr>
 			<tr>
 				<td id="title">제목</td>
-				<td><input name="info_name" type="text" size="70"
+				<td><input name="info_Title" type="text" size="70"
 					maxlength="100" value="" /></td>
 			</tr>
 			<tr>
 				<td id="title">날짜</td>
+				<td><input name="info_Date" type="date" value=""></td>
 			</tr>
 			<tr>
 				<td id="title">카테고리</td>
-				<td><select name="opt">
+				<td><select name="info_Category">
 						<option value="0">1</option>
 						<option value="1">2</option>
 						<option value="2">3</option>
@@ -38,7 +39,7 @@
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
-				<td><textarea name="info_content" cols="70" rows="10"></textarea>
+				<td><textarea name="info_Cont" cols="70" rows="10"></textarea>
 				</td>
 			</tr>
 			

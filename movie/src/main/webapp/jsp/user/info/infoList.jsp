@@ -50,7 +50,6 @@
     
 	 <div align="right" id="topForm">
             <input type="button" value="글등록" onclick="writeForm()">
-             <input type="button" value="글삭제" onclick="deleteForm()">
     </div>
     
 </div>    

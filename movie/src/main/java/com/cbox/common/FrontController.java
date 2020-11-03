@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.info.command.DetailViewAction;
+import com.cbox.info.command.infoDeleteAction;
 import com.cbox.info.command.infoInsertAction;
 import com.cbox.info.command.infoListAction;
+import com.cbox.info.command.infoUpdateAction;
 import com.cbox.info.command.infoWriteFormAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
@@ -101,7 +103,8 @@ public class FrontController extends HttpServlet {
 		map.put("/DetailView.do", new DetailViewAction());//제목 클릭시 상세페이지
 		map.put("/infoInsert.do", new infoInsertAction());//db에값추가
 		map.put("/infoWriteForm.do", new infoWriteFormAction());//글작성페이지 보기
-		
+		map.put("/infoDelete.do", new infoDeleteAction());//글삭제
+		map.put("/infoUpdate.do", new infoUpdateAction());//글수정
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
