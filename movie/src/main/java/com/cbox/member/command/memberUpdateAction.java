@@ -13,7 +13,6 @@ public class memberUpdateAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		request.setCharacterEncoding("utf-8");
 		
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = new MemberVO();

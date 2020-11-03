@@ -7,7 +7,6 @@ public class MovieVO {
 	private int mvNum; // 영화번호
 	private String mvTitle; // 제목
 	private String mvDir; // 감독
-	private String mvCom; // 배급사
 	private String mvCha; // 등장인물
 	private Date strdate; // 개봉일
 	private Date findate; // 종료일
@@ -18,6 +17,7 @@ public class MovieVO {
 	private String mvImg; // 이미지
 	private String mvTeaser; // 티저영상
 	private int mvRank; // 평균 평점
+	private String mvAge;	// 관람연령
 
 	private Integer first;
 	private Integer last;
@@ -26,13 +26,12 @@ public class MovieVO {
 
 	}
 
-	public MovieVO(int mvNum, String mvTitle, String mvDir, String mvCom, String mvCha, Date strdate, Date findate,
-			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank) {
+	public MovieVO(int mvNum, String mvTitle, String mvDir, String mvCha, Date strdate, Date findate,
+			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank, String mvAge) {
 		super();
 		this.mvNum = mvNum;
 		this.mvTitle = mvTitle;
 		this.mvDir = mvDir;
-		this.mvCom = mvCom;
 		this.mvCha = mvCha;
 		this.strdate = strdate;
 		this.findate = findate;
@@ -42,6 +41,7 @@ public class MovieVO {
 		this.mvImg = mvImg;
 		this.mvTeaser = mvTeaser;
 		this.mvRank = mvRank;
+		this.mvAge = mvAge;
 	}
 
 	public int getMvNum() {
@@ -66,14 +66,6 @@ public class MovieVO {
 
 	public void setMvDir(String mvDir) {
 		this.mvDir = mvDir;
-	}
-
-	public String getMvCom() {
-		return mvCom;
-	}
-
-	public void setMvCom(String mvCom) {
-		this.mvCom = mvCom;
 	}
 
 	public String getMvCha() {
@@ -170,5 +162,13 @@ public class MovieVO {
 
 	public void setLast(Integer last) {
 		this.last = last;
+	}
+
+	public String getMvAge() {
+		return mvAge;
+	}
+
+	public void setMvAge(String mvAge) {
+		this.mvAge = mvAge;
 	}
 }

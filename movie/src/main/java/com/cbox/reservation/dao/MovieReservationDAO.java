@@ -31,7 +31,6 @@ private final String SELECT_ALL = "SELECT * FROM MOVIE";
 						rs.getInt("mv_num"),
 						rs.getString("mv_title"),
 						rs.getString("mv_dir"),
-						rs.getString("mv_com"),
 						rs.getString("mv_cha"),
 						rs.getDate("mv_strdate"),
 						rs.getDate("mv_findate"),
@@ -40,7 +39,8 @@ private final String SELECT_ALL = "SELECT * FROM MOVIE";
 						rs.getString("mv_cont"),
 						rs.getString("mv_img"),
 						rs.getString("mv_teaser"),
-						rs.getInt("mv_rank"));
+						rs.getInt("mv_rank"),
+						rs.getString("mv_age"));
 				list.add(vo);
 				
 			}

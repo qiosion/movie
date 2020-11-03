@@ -36,7 +36,6 @@ public class MovieDAO extends DAO {
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
-				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
 				vo.setStrdate(rs.getDate("mv_strdate"));
 				vo.setFindate(rs.getDate("mv_findate"));
@@ -46,6 +45,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
+				vo.setMvAge(rs.getString("mv_age"));
 
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 				vo.setMvRank(rs.getInt("mv_rank"));
@@ -96,7 +96,6 @@ public class MovieDAO extends DAO {
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
-				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
 				vo.setStrdate(rs.getDate("mv_strdate"));
 				vo.setFindate(rs.getDate("mv_findate"));
@@ -106,6 +105,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
+				vo.setMvAge(rs.getString("mv_age"));
 
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 				vo.setMvRank(rs.getInt("mv_rank"));
@@ -167,7 +167,6 @@ public class MovieDAO extends DAO {
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
-				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
 				vo.setStrdate(rs.getDate("mv_strdate"));
 				vo.setFindate(rs.getDate("mv_findate"));
@@ -177,6 +176,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
+				vo.setMvAge(rs.getString("mv_age"));
 
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 //				vo.setMvRank(rs.getInt("mv_rank"));
@@ -205,7 +205,6 @@ public class MovieDAO extends DAO {
 				System.out.println("detail dao : " + rs.getString("mv_title"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
-				vo.setMvCom(rs.getString("mv_com"));
 				vo.setMvCha(rs.getString("mv_cha"));
 				vo.setStrdate(rs.getDate("mv_strdate"));
 				vo.setFindate(rs.getDate("mv_findate"));
@@ -216,6 +215,7 @@ public class MovieDAO extends DAO {
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
 				vo.setMvRank(rs.getInt("mv_rank"));
+				vo.setMvAge(rs.getString("mv_age"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
