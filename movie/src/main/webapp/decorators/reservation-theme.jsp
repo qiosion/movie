@@ -92,7 +92,7 @@
 	<hr>
 		<decorator:body />
 	<hr>
-	<footer>footer</footer>
+	<footer>바보들의 행진이다</footer>
 </body>
 </html>
 
