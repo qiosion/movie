@@ -6,12 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>예매 페이지</title>
 <script>
 	$(function(){
 		
 		$("#test00 a").on("click",function(){
-			console.log("바보")
+			$("#test00 a").css("background-color","");
+			$("#test00 .text").css("color","");			
+			$(this).css("background-color", "black");
+			$(this).children(".text").css("color","white");
+			
+			$(".info.movie .placeholder").css("display","none");
+			
+			//ajax사용
+			//해당 영화에 맞는 이미지 불러오기
+			//var param = {userid: userid.value};
+			var param = {m_title: $(this).children(".text").text()};
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/movieImage.do",
+				type:"get",
+				data:param,
+				dataType: "text",
+				success : function(data){ //data에 결과값받아옴
+					//전송에 성공하면 실행될 코드
+					$(".info.movie img").attr("src",data.mv_title);
+				},
+				error : function(xhr, status){
+					alert("오류");ㅣ
+				}
+			})
+				
+			
+			
+			
+				   
 		});
 	});
 </script>
@@ -220,7 +250,8 @@
 				<a class="btn-left" href="#"
 					onclick="OnTnbLeftClick(); return false;" title="영화선택">이전단계로 이동</a>
 				<!-- 영화선택 -->
-				<div class="info movie">	
+				<div class="info movie">
+					<span><img src =""></span>
 					<div class="placeholder" title="영화선택"></div>
 				</div>
 				<!-- 극장선택 -->

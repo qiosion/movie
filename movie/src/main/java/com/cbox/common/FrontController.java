@@ -37,6 +37,7 @@ import com.cbox.movie.command.mvDetailAction;
 import com.cbox.movie.command.mvListAction;
 import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
+import com.cbox.reservation.command.MovieImage;
 import com.cbox.reservation.command.ReservationForm;
 
 @MultipartConfig
@@ -93,6 +94,8 @@ public class FrontController extends HttpServlet {
 		
 		// 광희
 		map.put("/reservation/reservationForm.do", new ReservationForm()); //예매하기 Form
+		//ajax mv image 갖고오기
+		map.put("/ajax/movieImage.do", new MovieImage());
 		
 		
 		
