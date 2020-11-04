@@ -28,8 +28,6 @@ public class memberDeleteAction implements Action {
 		String spw = (String)session.getAttribute("mbr_pw"); // 세션 비밀번호
 		String pwchk = request.getParameter("pwchk"); // 입력 비밀번호
 		//String pwchk = (String) request.getAttribute("pwchk");
-		System.out.println("세션비번: " + spw);
-		System.out.println("비번:" + pwchk);
 		String page = null;
 		if (pwchk == null || pwchk == "" ) {
 			request.setAttribute("pwnull", "pw is null");

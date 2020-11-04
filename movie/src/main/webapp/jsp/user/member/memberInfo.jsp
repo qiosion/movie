@@ -8,8 +8,6 @@
 <title>회원정보</title>
 </head>
 <body>
-<p>pwnull +  ${pwnull}</p>
-<p>pwwrong +  ${pwwrong}</p>
 <c:if test="${pwnull ne null}">
 	<script> alert("비밀번호를 입력하세요");</script>
 </c:if>
