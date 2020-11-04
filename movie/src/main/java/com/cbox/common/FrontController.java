@@ -83,7 +83,6 @@ public class FrontController extends HttpServlet {
 		map.put("/idChk.do", new idChkAction()); // 중복 id 체크
 		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
 		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보수정
-		map.put("/memberDelete.do", new memberDeleteAction()); // 회원탈퇴
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 

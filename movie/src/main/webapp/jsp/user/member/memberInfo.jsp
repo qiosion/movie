@@ -1,10 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.cbox.member.dao.MemberDAO" contentType="text/html;charset=UTF-8" %>
+<jsp:useBean id="MemberDAO" class="com.cbox.member.dao.MemberDAO" scope="page" />
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원정보</title>
+<script type="text/javascript">
+$(function(){
+	$("#confirmDel").click(function() {
+		if ($("#pwchk").val() == null || $("#pwchk").val() == ""){
+			alert("비밀번호가 입력되지 않았습니다");
+	    	} else {
+// 세션의 pw를 따로 찾아서 변수로 저장
+			<%
+				String sid = (String)session.getAttribute("mbr_id");
+				String spw = (String)session.getAttribute("mbr_pw");
+				String pwchk = request.getParameter("pwchk");
+				if ( spw == pwchk) {
+					MemberDAO.delete(sid);
+				}
+			%>
+		    	} 	
+	    	}
+		});
+	});
+</script>
 </head>
 <body>
 <div class="divform">
@@ -88,9 +110,36 @@
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
 		<button type="button" class="btn btn-primary" onclick="location.href='main.do'">메인으로</button>
-    	<button type="submit" class="btn btn-primary">수정</button>
-		<button type="button" class="btn btn-primary">탈퇴</button>		
+    	<button type="submit" class="btn btn-primary" onclick="location.href='memberUpdate.do'">수정</button>
+		<button type="button" class="btn btn-primary" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
 	</form>
 </div>
+<!-- 팝업창 -->
+	<div class="modal" id="memDelPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">비밀번호 확인</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<div id="delete">
+						<input type="text" name="pwchk" id="pwchk"
+							placeholder="비밀번호를 입력하세요">
+					</div>
+				</div>
+				<!-- Modal footer -->
+				<div class="modal-footer">
+					<button type="button" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </body>
 </html>
