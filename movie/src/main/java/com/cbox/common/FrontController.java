@@ -127,7 +127,9 @@ public class FrontController extends HttpServlet {
 
 		// 내가 요청(request)하는 객체 그대로 전달
 		// viewPage : 내 요청 객체를 전달해줄 페이지
-		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); // 선택된 페이지로 가기
-		dispatcher.forward(request, response); // 페이지 return 시켜줌(forward)
+		if(viewPage != null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); // 선택된 페이지로 가기
+			dispatcher.forward(request, response); // 페이지 return 시켜줌(forward)
+		}
 	}
 }

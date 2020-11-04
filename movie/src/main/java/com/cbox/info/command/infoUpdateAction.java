@@ -1,5 +1,6 @@
 package com.cbox.info.command;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ public class infoUpdateAction implements Action {
 		infoDAO dao = new infoDAO();
 	
 
-		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
+		vo.setInfo_Num(Integer.parseInt(request.getParameter("info_Num")));
 		vo.setInfo_Title(request.getParameter("info_Title"));
 		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
 		vo.setInfo_Category(request.getParameter("info_Category"));
@@ -26,8 +27,12 @@ public class infoUpdateAction implements Action {
 		
 		dao.update(vo);
 		
-		
-		return "jsp/user/info/infoList.jsp";
+		try {
+			response.sendRedirect(request.getContextPath()+"/infoList.do");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

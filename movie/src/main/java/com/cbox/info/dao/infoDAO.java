@@ -18,7 +18,8 @@ public class infoDAO extends DAO {
 	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
-	private final String UPDATE = "UPDATE INFO SET INFO_NUM=?, INFO_TITLE=?, INFO_DATE=?, INFO_CATEGORY=?, INFO_CONT=?";
+	private final String UPDATE = "UPDATE INFO SET INFO_TITLE=?, INFO_DATE=SYSDATE, INFO_CATEGORY=?, INFO_CONT=? WHERE INFO_NUM=?";
+	
 	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
@@ -81,13 +82,12 @@ public class infoDAO extends DAO {
 		int n = 0;
 		try {
 			psmt = conn.prepareStatement(UPDATE);
-			psmt.setInt(1, vo.getInfo_Num());
-			psmt.setString(2, vo.getInfo_Title());
-			psmt.setDate(3, vo.getInfo_Date());
-			psmt.setString(4,vo.getInfo_Category());
-			psmt.setString(5,vo.getInfo_Cont());
-			n=psmt.executeUpdate();
-			
+			psmt.setString(1, vo.getInfo_Title());
+			psmt.setString(2,vo.getInfo_Category());
+			psmt.setString(3,vo.getInfo_Cont());
+			psmt.setInt(4, vo.getInfo_Num());
+			n = psmt.executeUpdate();
+			System.out.println(n);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}

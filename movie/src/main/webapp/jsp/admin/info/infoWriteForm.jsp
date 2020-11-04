@@ -12,7 +12,7 @@
 </script>
 </head>
 <body>
-	<form method="post" action="infoInsert.do" name="infoForm" enctype="multipart/form-data">
+	<form method="post" action="infoInsert.do" name="infoForm" >
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
 				<td id="title">공지번호</td>

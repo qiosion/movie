@@ -17,11 +17,11 @@ function listFrm(){
    		<form method="post" action="infoUpdate.do">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
-				<td id="title" name="info_Num">공지번호</td>
-				<td>${vo.info_Num}</td>
+				<td id="title">공지번호</td>
+				<td><input type="text" name="info_Num" value="${vo.info_Num}"></td>
 			</tr>
 			<tr>
-				<td id="title">제목</td>
+				<td id="title" >제목</td>
 				<td><input name="info_Title" type="text" size="70" maxlength="100" 
                     value="${vo.info_Title}"/>
                 </td>
