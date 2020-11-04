@@ -23,6 +23,7 @@ import com.cbox.member.command.idChkAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
+import com.cbox.member.command.memberDeleteAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInfoAction;
 import com.cbox.member.command.memberInsertAction;
@@ -82,6 +83,7 @@ public class FrontController extends HttpServlet {
 		map.put("/idChk.do", new idChkAction()); // 중복 id 체크
 		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
 		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보수정
+		map.put("/memberDelete.do", new memberDeleteAction()); // 회원탈퇴
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 
@@ -127,9 +129,7 @@ public class FrontController extends HttpServlet {
 
 		// 내가 요청(request)하는 객체 그대로 전달
 		// viewPage : 내 요청 객체를 전달해줄 페이지
-		if(viewPage != null) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); // 선택된 페이지로 가기
-			dispatcher.forward(request, response); // 페이지 return 시켜줌(forward)
-		}
+		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); // 선택된 페이지로 가기
+		dispatcher.forward(request, response); // 페이지 return 시켜줌(forward)
 	}
 }

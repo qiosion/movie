@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.cbox.member.dao.MemberDAO" contentType="text/html;charset=UTF-8" %>
+<%@ page import="com.cbox.member.dao.MemberDAO" %>
 <jsp:useBean id="MemberDAO" class="com.cbox.member.dao.MemberDAO" scope="page" />
+<%@ page import="com.cbox.member.vo.MemberVO" %>
+<jsp:useBean id="MemberVO" class="com.cbox.member.vo.MemberVO" scope="page" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,22 +12,22 @@
 <script type="text/javascript">
 $(function(){
 	$("#confirmDel").click(function() {
+		<%
+			MemberDAO dao = new MemberDAO();
+			MemberVO vo = new MemberVO();
+			vo.setMbr_id((String)session.getAttribute("mbr_id")); // 세션아이디를 vo에 담는다
+			String spw = (String)session.getAttribute("mbr_pw"); // 세션 비밀번호
+			String pwchk = request.getParameter("pwchk"); // 입력 비밀번호
+		%>
 		if ($("#pwchk").val() == null || $("#pwchk").val() == ""){
-			alert("비밀번호가 입력되지 않았습니다");
-	    	} else {
-// 세션의 pw를 따로 찾아서 변수로 저장
-			<%
-				String sid = (String)session.getAttribute("mbr_id");
-				String spw = (String)session.getAttribute("mbr_pw");
-				String pwchk = request.getParameter("pwchk");
-				if ( spw == pwchk) {
-					MemberDAO.delete(sid);
-				}
-			%>
-		    	} 	
-	    	}
-		});
+			alert('비밀번호가 입력되지 않았습니다');
+	    } else if (<%=spw%> != <%=pwchk%>) {
+	    	alert('비밀번호가 틀렸습니다');
+	    } else {
+			<% int n = dao.delete(vo); %>
+		}
 	});
+});
 </script>
 </head>
 <body>
