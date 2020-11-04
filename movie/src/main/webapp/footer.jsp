@@ -11,18 +11,18 @@
 <meta http-equiv="imagetoolbar" content="no">
 <meta name="viewport" content="width=1024">
 <meta name="keywords"
-	content="CGV, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cgv, cgv, 예매, 상영작">
+	content="CBOX, 시지브이, 영화관, 극장, 영화, 티켓, 박스오피스, 극장, Movie, Theater, Cinema, Cbox, cbox, 예매, 상영작">
 <meta name="description"
-	content="CGV는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CGV홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
-<meta property="og:site_name" content="영화 그 이상의 감동. CGV">
-<meta id="og_title" property="og:title" content="영화 그 이상의 감동. CGV">
+	content="CBOX는 선진화된 관람문화와 최고의 서비스로 고객에게 잊을 수 없는 감동을 선사합니다. CBOX홈페이지를 통해 영화 예매뿐만 아니라 그 이상의 서비스와 감동을 전달하고, 다양한 즐거움과 특별한 경험을 제공하고자 합니다.">
+<meta property="og:site_name" content="영화 그 이상의 감동. CBOX">
+<meta id="og_title" property="og:title" content="영화 그 이상의 감동. CBOX">
 
 <meta id="og_image" property="og:image"
 	content="http://img.cgv.co.kr/WebApp/images/common/logo_new_kakao_prevw.png">
 <link rel="alternate" href="http://m.cgv.co.kr">
 <link rel="shortcut icon"
 	href="http://img.cgv.co.kr/theater_img/favicon.ico" type="image/x-icon">
-<title id="headerTitle">영화 그 이상의 감동. CGV</title>
+<title id="headerTitle">영화 그 이상의 감동. CBOX</title>
 <link rel="shortcut icon" type="image/x-icon"
 	href="http://img.cgv.co.kr/R2014/images/favicon.ico">
 <link rel="stylesheet" media="all" type="text/css"
@@ -198,7 +198,7 @@
         }
     </script>
 <script type="text/javascript"
-	src="https://nsso.cjone.com/findCookieSecured.jsp?cjssoq=CO3JmqSNvH8Pan7rVYgTd7MzxAOOKli9rJsaQQgtxdXo5B7lwuOT2slgkdnFVPhQyjz5LZog7lkGCHwk7M4YsTZYcDdaUzIwMUg2SVJMSkF5eEVNaEI3RG5qcVlLenlvRjZCYlc4bng5WnJuVW1OOTFBQkx3d29pc0JTTndRQnE%3d"></script>
+	src="https://nsso.YEDAMone.com/findCookieSecured.jsp?YEDAMssoq=CO3JmqSNvH8Pan7rVYgTd7MzxAOOKli9rJsaQQgtxdXo5B7lwuOT2slgkdnFVPhQyjz5LZog7lkGCHwk7M4YsTZYcDdaUzIwMUg2SVJMSkF5eEVNaEI3RG5qcVlLenlvRjZCYlc4bng5WnJuVW1OOTFBQkx3d29pc0JTTndRQnE%3d"></script>
 <script type="text/javascript"
 	src="http://img.cgv.co.kr/R2014//js/system/system.packed.js"></script>
 </head>
@@ -212,7 +212,7 @@
 			<div id="BottomWrapper" class="sect-ad">
 				<iframe
 					src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/sub@Bottom"
-					width="100%" height="240" title="광고-CGV 기프트 카드" frameborder="0"
+					width="100%" height="240" title="광고-CBOX 기프트 카드" frameborder="0"
 					scrolling="no" marginwidth="0" marginheight="0" name="Bottom"
 					id="Bottom"></iframe>
 			</div>
@@ -221,124 +221,125 @@
 					<h2>특별관 리스트</h2>
 					<ul>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=4D14"
+							href="#"
 							class="dx">4DX</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=07"
+							href="#"
 							class="imax">IMAX</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=SCX"
+							href="#"
 							class="screenx">SCREENX</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=SPX"
+							href="#"
 							class="spherex">SphereX</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=TEM"
+							href="#"
 							class="tempur">Tempur</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=99"
+							href="#"
 							class="gold">GOLDCLASS</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=103"
+							href="#"
 							class="cine">CINE de CHEF</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=pc"
+							href="#"
 							class="cinema">THE PRIVATE CINEMA</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=CK"
+							href="#"
 							class="kids">Cine kids</a></li>
 						<li><a
-							href="http://www.cgv.co.kr/theaters/special/?regioncode=CF"
+							href="#"
 							class="cinenforet">CINE&amp;FORET</a></li>
 					</ul>
 				</div>
 				<div class="sect-cinfo">
-					<p class="logo">CJ CGV 로고</p>
-					<h2>CJ CGV 회사소개 및 정책</h2>
+					<h2>YEDAM CBOX 회사소개 및 정책</h2>
 					<div class="policy">
 						<ul>
-							<li><a href="http://corp.cgv.co.kr/company/" target="_blank">회사소개</a></li>
+							<li><a href="#" target="_blank">회사소개</a></li>
 							<li><a
-								href="http://corp.cgv.co.kr/company/ir/financial/financial_list.aspx"
+								href="#"
 								target="_blank">IR</a></li>
 							<li><a
-								href="http://corp.cgv.co.kr/company/recruit/step/default.aspx"
+								href="#"
 								target="_blank">채용정보</a></li>
 							<li><a
-								href="http://corp.cgv.co.kr/company/advertize/ad_Default.aspx"
+								href="#"
 								target="_blank">광고/프로모션문의</a></li>
 							<li><a
-								href="http://corp.cgv.co.kr/company/advertize/af_default.aspx"
+								href="#"
 								target="_blank">제휴문의</a></li>
 							<li><a
-								href="http://corp.cgv.co.kr/company/advertize/bp_insert.aspx"
+								href="#"
 								target="_blank">출점문의</a></li>
-							<li><a href="http://www.cgv.co.kr/rules/service.aspx">이용약관</a></li>
-							<li><a href="http://www.cgv.co.kr/rules/organized.aspx">편성기준</a></li>
-							<li><a href="http://www.cgv.co.kr/rules/privacy.aspx"
+							<li><a href="#">이용약관</a></li>
+							<li><a href="#">편성기준</a></li>
+							<li><a href="#"
 								class="empha-red">개인정보처리방침</a></li>
-							<li><a href="http://www.cgv.co.kr/rules/disclaimer.aspx">법적고지</a></li>
-							<li><a href="http://www.cgv.co.kr/rules/emreject.aspx">이메일주소무단수집거부</a></li>
-							<li><a href="http://www.cgv.co.kr/company/coexist.aspx">상생경영</a></li>
-							<li><a href="http://www.cgv.co.kr/guide/sitemap.aspx">사이트맵</a></li>
+							<li><a href="#">법적고지</a></li>
+							<li><a href="#">이메일주소무단수집거부</a></li>
+							<li><a href="#">상생경영</a></li>
+							<li><a href="#">사이트맵</a></li>
 						</ul>
 					</div>
 					<div class="share">
-						<a href="https://www.facebook.com/CJCGV" target="_blank"
+						<a href="#" target="_blank"
 							class="facebook" title="새창">페이스북</a><a
-							href="https://twitter.com/cj_cgv" target="_blank" class="twitter"
-							title="새창">트위터</a><a href="https://www.instagram.com/cgv_korea/"
+							href="#" target="_blank" class="twitter"
+							title="새창">트위터</a><a href="#"
 							target="_blank" class="instagram" title="새창">인스타그램</a>
 					</div>
 					<div class="address">
-						<address>(04377)서울특별시 용산구 한강대로 23길 55, 아이파크몰 6층(한강로동)</address>
+						<img alt="test" src="images/cboxlog_noTitle.png" style="height: 60px; width:80px; float: left; margin-right: 5px;">
+						<div style="text-align: left;">
+						<address>대구광역시 중구 국채보상로 537 (수동, 5층)</address>
 						<p class="vl">
-							<span>대표이사 : 최병환</span><span>사업자등록번호 : 104-81-45690</span><span>통신판매업신고번호
-								: 2017-서울용산-0662</span> <a href="javascript:void(0);" onclick="goFtc()"
+							<span>대표이사 : 이화진</span><span>사업자등록번호 : 123-81-45690</span><span>통신판매업신고번호
+								: 2017-대구중구-0662</span> <a href="javascript:void(0);" onclick="goFtc()"
 								class="btn_goFtc"><img
 								src="http://img.cgv.co.kr/r2014/images/common/btn_reg.png"
 								alt="사업자정보확인"></a><a> </a>
 						</p>
 						<a>
 							<p class="vl">
-								<span>호스팅사업자 : CJ올리브네트웍스</span><span>개인정보보호 책임자 : 이동현</span><span>대표이메일
-									: cjcgvmaster@cj.net</span><span>CGV고객센터 : 1544-1122</span>
+								<span>호스팅사업자 : YEDAM올리브네트웍스</span><span>개인정보보호 책임자 : 강은선</span><span>대표이메일
+									: yedamcboxmaster@yedam.net</span><span>CBOX고객센터 : 1234-5678</span>
 							</p>
-							<p class="copyright">© CJ CGV. All Rights Reserved</p>
-						</a>
+							<p class="copyright">© YEDAM CBOX. All Rights Reserved</p>
+						</a></div>
 					</div>
 					<a>
 						<div class="familysite">
-							<label for="familysite" class="hidden">CJ그룹 계열사 바로가기</label> <select
+							<label for="familysite" class="hidden">YEDAM그룹 계열사 바로가기</label> <select
 								id="familysite">
 								<option value="">계열사 바로가기</option>
-								<optgroup label="CJ그룹">
-									<option value="http://www.cj.net/">CJ주식회사</option>
+								<optgroup label="YEDAM그룹">
+									<option value="http://www.YEDAM.net/">YEDAM주식회사</option>
 								</optgroup>
 								<optgroup label="엔터테인먼트 &amp; 미디어">
-									<option value="http://www.cjenm.com/">CJ ENM (E&amp;M)</option>
-									<option value="http://www.cgv.co.kr/">CJ CGV</option>
-									<option value="http://www.cjpowercast.com/">CJ파워캐스트</option>
+									<option value="http://www.YEDAMenm.com/">YEDAM ENM (E&amp;M)</option>
+									<option value="http://www.cgv.co.kr/">YEDAM CBOX</option>
+									<option value="http://www.YEDAMpowercast.com/">YEDAM파워캐스트</option>
 								</optgroup>
 								<optgroup label="식품 &amp; 식품서비스">
-									<option value="https://www.cj.co.kr">CJ제일제당 (식품)</option>
-									<option value="http://www.cjfreshway.com/">CJ프레시웨이</option>
-									<option value="http://www.cjfoodville.co.kr/">CJ푸드빌</option>
-									<option value="http://www.md1.co.kr/">CJ엠디원</option>
+									<option value="https://www.YEDAM.co.kr">YEDAM제일제당 (식품)</option>
+									<option value="http://www.YEDAMfreshway.com/">YEDAM프레시웨이</option>
+									<option value="http://www.YEDAMfoodville.co.kr/">YEDAM푸드빌</option>
+									<option value="http://www.md1.co.kr/">YEDAM엠디원</option>
 								</optgroup>
 								<optgroup label="생명공학">
-									<option value="https://www.cj.co.kr/kr/about/business/bio">CJ제일제당
+									<option value="https://www.YEDAM.co.kr/kr/about/business/bio">YEDAM제일제당
 										(바이오)</option>
 								</optgroup>
 								<optgroup label="신유통">
-									<option value="http://display.cjmall.com">CJ ENM (오쇼핑)</option>
-									<option value="http://www.cjlogistics.com">CJ대한통운</option>
-									<option value="http://www.cjtelenix.com/">CJ텔레닉스</option>
-									<option value="http://www.oliveyoung.co.kr/store/main/main.do">CJ올리브영</option>
+									<option value="http://display.YEDAMmall.com">YEDAM ENM (오쇼핑)</option>
+									<option value="http://www.YEDAMlogistics.com">YEDAM대한통운</option>
+									<option value="http://www.YEDAMtelenix.com/">YEDAM텔레닉스</option>
+									<option value="http://www.oliveyoung.co.kr/store/main/main.do">YEDAM올리브영</option>
 								</optgroup>
 								<optgroup label="인프라">
-									<option value="http://www.cjenc.co.kr/">CJ대한통운 (건설)</option>
-									<option value="http://www.cjolivenetworks.co.kr/itbusiness/">CJ올리브네트웍스</option>
+									<option value="http://www.YEDAMenc.co.kr/">YEDAM대한통운 (건설)</option>
+									<option value="http://www.YEDAMolivenetworks.co.kr/itbusiness/">YEDAM올리브네트웍스</option>
 								</optgroup>
 							</select>
 							<button type="button" title="새창" onclick="goFamilySite()">GO</button>

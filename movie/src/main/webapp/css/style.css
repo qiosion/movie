@@ -1,22 +1,51 @@
 /* header.jsp S */
-.top {
+.topRmenu {
 	float: right;
+	margin: 20px 20px 0px 0px;
+	min-height: 30px;
 }
 
-.top a {
+.topRmenu td {
+	text-align: right;
+}
+
+.topRmenu a {
 	text-decoration: none;
 	/* color:black; */
 }
 /* header E */
-
 table {
 	border-collapse: collapse;
 	text-align: center;
 }
+
 .header {
-	min-height: 70px;
+	min-height: 80px;
+	margin-bottom: 10px;
+}
+
+.container {
+	min-height: 300px;
 }
 
 .footer {
 	max-height: 500px;
+}
+
+#menuSearchBtn {
+	text-align: center;
+	background-color: #1F6096;
+	font-size: 15px;
+	color: white;
+	padding: 7px;
+	border-radius: 10px;
+	text-decoration: none;
+}
+
+.address {
+	margin-top: 20px;
+}
+
+.foot .sect-cinfo .address {
+	padding: 0 !important;
 }
