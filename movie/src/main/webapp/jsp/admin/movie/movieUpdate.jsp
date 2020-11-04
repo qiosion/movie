@@ -6,17 +6,17 @@
 <meta charset="UTF-8">
 <script type="text/javascript">
 	$(function() {
-		$("#export").click(function() {
+		$("#uptBtn").click(function() {
 			movieUpdate();
-		}
+		});
 	});
 
 	function movieUpdate() {
-		$("#regiBtn").on("click", function() {
+		$("#uptBtn").on("click", function() {
 			console.log("movieUpdate");
 			
 			$.ajax({
-				url : "mvRegist.do",
+				url : "mvUpdate.do",
 				dataType : "json",
 				method : "POST",
 				data : $("#frm").serialize(),
@@ -38,7 +38,7 @@
 			<div class="card">
 				<div class="card-header card-header-primary">
 					<span class="card-title" id="movieTitle"> <i
-						class="fas fa-square"></i>영화 수정
+						class="fas fa-square"></i>"${vo.mvTitle}" 수정
 					</span>
 				</div>
 				<div class="card-body">
@@ -48,39 +48,41 @@
 								<tr style="line-height: 32px;">
 									<td>제목</td>
 									<td><input type="text" name="mvTitle" class="form-control"
-										value="" readonly="readonly"></td>
+										value="${vo.mvTitle}" readonly></td>
 									<td>감독</td>
 									<td><input type="text" name="mvDir" class="form-control"
-										value=""></td>
+										value="${vo.mvDir}"></td>
 								</tr>
 								<tr>
 									<td>개봉일</td>
-									<td><input type="date" name="strdate" class="form-control"
-										value=""></td>
+									<td><input type="text" name="strdate" class="form-control"
+										value="${vo.strdate}"></td>
 									<td>상영 종료일</td>
-									<td><input type="date" name="findate" class="form-control"
-										value=""></td>
+									<td><input type="text" name="findate" class="form-control"
+										value="${vo.findate}"></td>
 								</tr>
 								<tr>
 									<td>장르</td>
 									<td><input type="text" name="mvType" class="form-control"
-										value=""></td>
+										value="${vo.mvType}"></td>
 									<td>관람 연령</td>
 									<td><input type="text" name="mvAge" class="form-control"
-										value=""></td>
+										value="${vo.mvAge}"></td>
 								</tr>
 								<tr>
 									<td style="width: 70px;">등장인물</td>
 									<td colspan="3"><input type="text" name="mvCha"
-										class="form-control mb-3" value=""></td>
+										class="form-control mb-3" value="${vo.mvCha}"></td>
 								</tr>
 								<tr>
 									<td>줄거리</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvSum"></textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvSum"
+											readonly>${vo.mvSum}</textarea></td>
 								</tr>
 								<tr>
 									<td>설명</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvCont"></textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvCont"
+											readonly>${vo.mvCont}</textarea></td>
 								</tr>
 							</tbody>
 						</table>
@@ -118,7 +120,7 @@
 		</div>
 	</form>
 	<div class="text-center mt-3">
-		<button type="button" id="regiBtn" style="margin-right: 30px;"
+		<button type="button" id="uptBtn" style="margin-right: 30px;"
 			class="btn btn-success">수정</button>
 		<button type="button" class="btn btn-danger">취소</button>
 	</div>
@@ -148,7 +150,7 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" name="export" id="export"
+					<button type="button" name="uptBtn" id="uptBtn"
 						class="btn btn-success">확인</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="clearSearch()">취소</button>

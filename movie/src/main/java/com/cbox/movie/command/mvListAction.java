@@ -32,8 +32,8 @@ public class mvListAction implements Action {
 		// 전체 레코드 건수 조회
 		Paging paging = new Paging();
 		paging.setPage(p); // 현재 페이지
-		paging.setPageUnit(3); // 한 페이지에 출력할 레코드 건수. default:10
-		paging.setPageSize(3); // 페이지 번호 수. default:10
+		paging.setPageUnit(5); // 한 페이지에 출력할 레코드 건수. default:10
+		paging.setPageSize(5); // 페이지 번호 수. default:10
 
 		MovieSearchVO searchVO = new MovieSearchVO();
 

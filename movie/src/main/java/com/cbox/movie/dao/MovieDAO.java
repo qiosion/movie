@@ -266,7 +266,9 @@ public class MovieDAO extends DAO {
 		try {
 			System.out.println("mvTitle : " + vo.getMvTitle());
 			System.out.println("mvPost : " + vo.getMvPost());
+			System.out.println("Strdate : " + vo.getStrdate());
 			psmt = conn.prepareStatement(INSERT);
+			
 			psmt.setString(1, vo.getMvTitle());
 			psmt.setString(2, vo.getMvDir());
 			psmt.setString(3, vo.getMvCha());

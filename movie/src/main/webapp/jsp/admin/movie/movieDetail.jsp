@@ -50,11 +50,13 @@
 								</tr>
 								<tr>
 									<td>줄거리</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvSum" readonly>${vo.mvSum}</textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvSum"
+											readonly>${vo.mvSum}</textarea></td>
 								</tr>
 								<tr>
 									<td>설명</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvCont" readonly>${vo.mvCont}</textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvCont"
+											readonly>${vo.mvCont}</textarea></td>
 								</tr>
 							</tbody>
 						</table>
@@ -70,12 +72,19 @@
 				<div class="card-body">
 					<table class="table">
 						<tbody>
-							<tr style="line-height: 32px; float:center; text-align: center;">
-								<td colspan="2"><p>포스터 이미지</p><img style="height: 300px;" src="${pageContext.request.contextPath}/images/${vo.mvPost}"></td>
-								<td colspan="2"><p>스틸컷</p><img style="height: 300px; width: 100%" src="${pageContext.request.contextPath}/images/${vo.mvImg}"></td>
+							<tr style="line-height: 32px; float: center; text-align: center;">
+								<td colspan="2" style="width: 50%;"><p
+										style="width: 220px; size: 20px;">포스터 이미지</p>
+									<img style="height: 300px;"
+									src="${pageContext.request.contextPath}/images/${vo.mvPost}"></td>
+								<td colspan="2" style="width: 50%;"><p>스틸컷</p>
+									<img style="height: 300px; width: 100%"
+									src="${pageContext.request.contextPath}/images/${vo.mvImg}"></td>
 							</tr>
 							<tr style="float: center; text-align: center;">
-								<td colspan="2"><p>티저 영상</p><video autoplay="autoplay" src="${pageContext.request.contextPath}/images/${vo.mvTeaser}" ></video></td>
+								<td colspan="2"><p>티저 영상</p>
+									<video autoplay="autoplay"
+										src="${pageContext.request.contextPath}/images/${vo.mvTeaser}"></video></td>
 								<td colspan="2"></td>
 							</tr>
 						</tbody>
@@ -87,9 +96,11 @@
 	</form>
 	<div class="text-center mt-3">
 		<button type="button" id="regiBtn" style="margin-right: 30px;"
-			class="btn btn-success">등록</button>
+			class="btn btn-primary" onclick="location.href='mvUpdateForm.do?seq=${vo.mvNum}'">수정</button>
 		<button type="button" class="btn btn-danger"
-			onclick="location.href='mvList.do'">취소</button>
+			style="margin-right: 30px;" onclick="location.href='#'">삭제</button>
+		<button type="button" class="btn btn-dark"
+			onclick="location.href='mvList.do'">목록</button>
 	</div>
 </body>
 </html>
