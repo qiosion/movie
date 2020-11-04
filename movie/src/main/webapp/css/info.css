@@ -39,3 +39,16 @@
     margin-top: 30px;
     border-bottom: 3px solid #241d1e;
 }
+
+.tb-style{
+	width: 1000; 
+	border-style:solid; 
+	border-color:black;
+	
+}
+.dvtable-style{
+	width:700; 
+	border:3;
+	bordercolor:lightgray;
+	align:center;
+}

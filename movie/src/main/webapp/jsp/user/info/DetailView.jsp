@@ -19,7 +19,11 @@ function updateFrm(){
 </script>
 </head>
 <body>
-		<table width="700" border="3" bordercolor="lightgray" align="center">
+<div class="tit-heading-wrap tit-evt">
+<h3>글수정</h3>
+</div> 
+<br>
+		<table border="1" width="1000" border="3" bordercolor="black" align="center">
 			<tr>
 				<td id="title" name=" info_Num">공지번호</td>
 				<td>${vo.info_Num}</td>

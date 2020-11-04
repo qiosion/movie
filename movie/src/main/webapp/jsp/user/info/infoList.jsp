@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>전체 게시글</title>
-    <link rel="stylesheet" href="css/info.css">
+    <link rel="stylesheet" href="../css/info.css">
     <script>
     function writeForm(){
         location.href="infoWriteForm.do"; //글쓰기 버튼 클릭시 작성화면으로 이동
@@ -31,7 +31,7 @@
     </div>
     <br/>
     <div  align="center">
-        <table  width="800" border="3" bordercolor="black">
+        <table class="tb-style">
             <tr height="30">
                 <td>공지번호</td>
                 <td>제목</td>

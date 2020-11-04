@@ -19,7 +19,6 @@ public class DetailViewAction implements Action {
 		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
 		
 		vo = dao.select(vo);
-		
 
 		request.setAttribute("vo", vo);
 		return "jsp/user/info/DetailView.jsp";

@@ -19,7 +19,7 @@ public class infoDAO extends DAO {
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
 	private final String UPDATE = "UPDATE INFO SET INFO_TITLE=?, INFO_DATE=SYSDATE, INFO_CATEGORY=?, INFO_CONT=? WHERE INFO_NUM=?";
-	
+	private final String UPDATECHK = "UPDATE INFO SET INFO_CHK=INFO_CHK+1 WHERE INFO_NUM=?";
 	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
@@ -87,11 +87,25 @@ public class infoDAO extends DAO {
 			psmt.setString(3,vo.getInfo_Cont());
 			psmt.setInt(4, vo.getInfo_Num());
 			n = psmt.executeUpdate();
-			System.out.println(n);
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return n;
+	}
+	
+	public void updateChk(infoVO vo) {
+		
+		try {
+			psmt = conn.prepareStatement(UPDATECHK);
+			psmt.setInt(1, vo.getInfo_Chk());
+			psmt.executeUpdate();
+			System.out.println("조회수1증가");
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	
