@@ -11,16 +11,16 @@ request.setCharacterEncoding("UTF-8");
 			<tr>
 				<td>
 					<!-- Mypage 링크 메뉴  --> <c:if test='${!empty mbr_id}'>
-						<a href="<%=cp%>/memberInfo.do"><font size="2.5px"
+						<a href="<%=cp%>/memberInfo.do" onfocus="blur()"><font size="2.5px"
 							face="BareunDotum1"> MyPage &nbsp;</a>
 					</c:if> <!-- 회원가입 링크 메뉴  --> <c:if test='${empty mbr_id}'>
-						<a href="<%=cp%>/memberForm.do"><font size="2.5px"
+						<a href="<%=cp%>/memberForm.do" onfocus="blur()"><font size="2.5px"
 							face="BareunDotum1"> 회원가입&nbsp;</a>
 					</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty mbr_id}'>
-						<a href="<%=cp%>/loginForm.do"><font size="2.5px"
+						<a href="<%=cp%>/loginForm.do" onfocus="blur()"><font size="2.5px"
 							face="BareunDotum1"> 로그인&nbsp;</font></a>
 					</c:if> <!-- 로그아웃 링크 메뉴  --> <c:if test='${!empty mbr_id}'>
-						<a href="<%=cp%>/logout.do"><font size="2.5px"
+						<a href="<%=cp%>/logout.do" onfocus="blur()"><font size="2.5px"
 							face="BareunDotum1"> 로그아웃&nbsp;</font></a>
 					</c:if> <!-- <a href="customer_main.do?mode=customerMain"><font
 						size="2.5px" face="BareunDotum1"> 고객센터 &nbsp;</font></a> &nbsp;&nbsp; -->

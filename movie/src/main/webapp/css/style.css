@@ -11,8 +11,18 @@
 
 .topRmenu a {
 	text-decoration: none;
-	/* color:black; */
+	padding: 5px 10px 5px 10px;
+	height: 70px;
+	font-size: 15px;
+	margin-left: 20px;
+	color: #689E8E !important;
 }
+
+.topRmenu a:hover {
+	background-color: #E8E7EB;
+	border-radius: 15px;
+}
+
 /* header E */
 table {
 	border-collapse: collapse;

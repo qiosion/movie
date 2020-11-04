@@ -1,16 +1,36 @@
 .navbar {
 	width: 100%;
+	background-color: #7A8DA0 !important;
 }
 
 .navbar-brand {
-   font-size: 25px;
+	font-size: 25px;
+	color: #F8F9FA !important;
+	font-weight: bold;
 }
 
 #navbarSupportedContent ul {
-   margin: auto;
+	margin: auto;
 }
 
 #navbarSupportedContent li {
-   margin: 0px 50px 0px 50px;
-   font-size: 20px;
+	margin: 0px 50px 0px 50px;
+	font-size: 20px;
+}
+
+.nav-link {
+	color: #C2CBD3 !important;
+}
+
+a:focus {
+	outline: none;
+}
+
+.dropdown-menu {
+	background-color: #7A8DA0;
+	margin-top: 9px;
+}
+
+.dropdown-item {
+	color: #C2CBD3 !important;
 }
