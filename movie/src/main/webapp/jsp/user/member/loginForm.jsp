@@ -42,7 +42,7 @@
 		String msg = request.getParameter("msg");
 		if(msg!=null && msg.equals("0")) {
 			out.println("<br>");
-			out.println("<font color='red' size='5'>비밀번호를 확인해 주세요.</font>");
+			out.println("<font color='red' size='5' align='center'>비밀번호를 확인해 주세요.</font>");
 		} else if(msg!=null && msg.equals("-1")) {    
 			out.println("<br>");
 			out.println("<font color='red' size='5'>아이디를 확인해 주세요.</font>");
