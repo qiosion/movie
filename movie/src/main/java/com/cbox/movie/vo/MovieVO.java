@@ -13,10 +13,10 @@ public class MovieVO {
 	private String mvSum; // 줄거리
 	private String mvType; // 장르
 	private String mvCont; // 설명
-	private String mvPost; // 포스터 이미지
 	private String mvImg; // 이미지
 	private String mvTeaser; // 티저영상
 	private int mvRank; // 평균 평점
+	private String mvPost; // 포스터 이미지
 	private String mvAge;	// 관람연령
 
 	private Integer first;

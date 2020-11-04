@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cbox.common.DAO;
+import com.cbox.member.vo.MemberVO;
 import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
 
@@ -22,6 +23,9 @@ public class MovieDAO extends DAO {
 	private String SELECT_SEARCH = "";
 	private String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
 	private final String DETAIL = "select * from movie where mv_num = ?";
+
+	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_RANK, MV_POST, MV_AGE)"
+			+ "VALUES (MV_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	public List<MovieVO> selectAll(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
@@ -48,7 +52,6 @@ public class MovieDAO extends DAO {
 			rs = psmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println(">>> " + rs.getInt("mv_num"));
 				vo = new MovieVO();
 				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
@@ -90,10 +93,8 @@ public class MovieDAO extends DAO {
 		}
 
 		try {
-			System.out.println(">>where : " + whereCondition);
 			SELECT_SEARCH = "select * from ( select a.*, rownum rn from ( " + "select * from movie" + whereCondition
 					+ " order by 1 ) a  ) b where rn between ? and ?";
-			System.out.println(">>search : " + SELECT_SEARCH);
 			psmt = conn.prepareStatement(SELECT_SEARCH);
 //			psmt = conn.prepareStatement(SELECT_PAGE);
 //			psmt.setInt(1, searchVO.getFirst());
@@ -128,7 +129,6 @@ public class MovieDAO extends DAO {
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
 				vo.setMvRank(rs.getInt("mv_rank"));
 
-				System.out.println(">>>>>>>>> " + rs.getNString("mv_title"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
@@ -239,7 +239,6 @@ public class MovieDAO extends DAO {
 
 			if (rs.next()) {
 //				vo.setMvNum(rs.getInt("mv_num"));
-				System.out.println("detail dao : " + rs.getString("mv_title"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
 				vo.setMvCha(rs.getString("mv_cha"));
@@ -260,6 +259,34 @@ public class MovieDAO extends DAO {
 			close();
 		}
 		return vo;
+	}
+
+	public void movieInsert(MovieVO vo) {
+		System.out.println("movieInsert");
+		try {
+			System.out.println("mvTitle : " + vo.getMvTitle());
+			System.out.println("mvPost : " + vo.getMvPost());
+			psmt = conn.prepareStatement(INSERT);
+			psmt.setString(1, vo.getMvTitle());
+			psmt.setString(2, vo.getMvDir());
+			psmt.setString(3, vo.getMvCha());
+			psmt.setDate(4, vo.getStrdate());
+			psmt.setDate(5, vo.getFindate());
+			psmt.setString(6, vo.getMvSum());
+			psmt.setString(7, vo.getMvType());
+			psmt.setString(8, vo.getMvCont());
+			psmt.setString(9, vo.getMvImg());
+			psmt.setString(10, vo.getMvTeaser());
+			psmt.setInt(11, vo.getMvRank());
+			psmt.setString(12, vo.getMvPost());
+			psmt.setString(13, vo.getMvAge());
+
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
 	}
 
 	// 모든 동작 후 연결 끊어주기

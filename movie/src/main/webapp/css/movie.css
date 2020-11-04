@@ -130,7 +130,7 @@ ul.tabs li.current {
 }
 
 #info .title {
-	font-size: 50px;
+	font-size: 30px;
 }
 
 .btnDiv {
@@ -210,6 +210,7 @@ a.registBtn {
 }
 
 #searchBtn {
+	float: right;
 	text-align: center;
 	background-color: #1F6096;
 	font-size: 15px;
@@ -220,7 +221,11 @@ a.registBtn {
 	margin-bottom: 10px;
 }
 
-#mvReg input {
-	width: 95%;
-	border: 0;
+#movieTitle {
+	font-size: 30px;
+	font-weight: bold;
+}
+
+textarea{
+	width: 100%!important;
 }

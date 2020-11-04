@@ -2,6 +2,7 @@
 <%@ attribute name="paging" type="com.cbox.common.Paging" %>
 <%@ attribute name="jsfunc" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="${pageContext.request.contextPath}/css/pagination.css" rel="stylesheet">
 <div class="pagination">
 <ul>
 <c:if test="${paging.startPage>1}">
