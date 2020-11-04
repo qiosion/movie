@@ -21,7 +21,7 @@ public class loginAction implements Action {
 		vo.setMbr_id(request.getParameter("mbr_id"));
 		vo.setMbr_pw(request.getParameter("mbr_pw"));
 		int check = dao.loginCheck(vo);
-		String page;
+		String msg;
 		
 		if(check == 1) { // 로그인 성공
 			// 세션에 현재 아이디 세팅
@@ -32,12 +32,12 @@ public class loginAction implements Action {
             session.setAttribute("mbr_pw", vo.getMbr_pw());
             session.setAttribute("mbr_author", vo.getMbr_author());
             request.setAttribute("vo", vo);
-            page = "main.jsp";
+            msg = "main.jsp";
         } else if(check == 0) { // 비밀번호가 틀릴경우
-            page = "jsp/user/member/loginForm.jsp";
+        	msg = "loginForm.do?msg=0";
         } else { // 아이디가 틀릴경우
-            page = "jsp/user/member/loginForm.jsp";
+        	msg = "loginForm.do?msg=-1";
         }
-		return page;
+		return msg;
 	}
 }

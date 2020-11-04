@@ -101,8 +101,8 @@ public class MemberDAO extends DAO{
                 x = -1; // 해당 아이디가 없을 경우
             }
             return x;
-        } catch (Exception sqle) {
-            throw new RuntimeException(sqle.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
         } finally {
             try{
                 if ( pstmt != null ){ pstmt.close(); pstmt=null; }

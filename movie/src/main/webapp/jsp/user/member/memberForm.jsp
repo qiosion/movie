@@ -5,6 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script type="text/javascript">
+	function formCheck(){
+		var f = document.frm;
+		if(f.mbr_id.value == "") {
+			alert ("아이디를 입력하세요");
+			f.mbr_id.focus();
+			return false;
+		}
+		if(f.mbr_pw.value == "") {
+			alert ("비밀번호를 입력하세요");
+			f.mbr_pw.focus();
+			return false;
+		}
+		if(f.mbr_nm.value == "") {
+			alert ("이름 입력하세요");
+			f.mbr_nm.focus();
+			return false;
+		}
+		if(f.mbr_birth.value == "") {
+			alert ("생년월일을 선택하세요");
+			f.mbr_birth.focus();
+			return false;
+		}
+		if(f.mbr_phone.value == "") {
+			alert ("전화번호를 입력하세요");
+			f.mbr_phone.focus();
+			return false;
+		}
+	return true;
+	}
+</script>
 </head>
 <body>
 <div class="divform">
@@ -12,6 +43,7 @@
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
     		<input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디">
+    		<input type="button" id="idchk" value="중복확인">
   		</div>
 		<div class="form-group">
     		<label for="mbr_pw">비밀번호</label>
@@ -52,7 +84,7 @@
 		</div>
 		<div class="form-group">
     		<label for="mbr_phone">전화번호</label>
-    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="000-0000-0000">
+    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="-없이 입력">
 		</div>
 		<div class="form-group">
     		<label for="mbr_email">이메일</label>
@@ -71,7 +103,7 @@
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
 		
-    	<button type="submit" class="btn btn-primary">회원가입</button>
+    	<button type="submit" class="btn btn-primary" onclick="return formCheck()">회원가입</button>
 		<button type="reset" class="btn btn-primary">취소</button>		
 	</form>
 </div>

@@ -5,10 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.common.Action;
 
-public class loginForm implements Action {
+public class memberDeleteAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		return "jsp/user/member/loginForm.jsp";
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 }

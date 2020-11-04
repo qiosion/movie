@@ -87,6 +87,7 @@
     		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
+		<button type="button" class="btn btn-primary" onclick="location.href='main.do'">메인으로</button>
     	<button type="submit" class="btn btn-primary">수정</button>
 		<button type="button" class="btn btn-primary">탈퇴</button>		
 	</form>

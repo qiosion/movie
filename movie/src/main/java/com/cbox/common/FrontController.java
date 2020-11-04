@@ -19,9 +19,11 @@ import com.cbox.info.command.infoListAction;
 import com.cbox.info.command.infoUpdateAction;
 import com.cbox.info.command.infoUpdateFormAction;
 import com.cbox.info.command.infoWriteFormAction;
+import com.cbox.member.command.idChkAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
+import com.cbox.member.command.memberDeleteAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInfoAction;
 import com.cbox.member.command.memberInsertAction;
@@ -77,9 +79,11 @@ public class FrontController extends HttpServlet {
 		map.put("/login.do", new loginAction()); // 로그인 결과
 		map.put("/loginForm.do", new loginForm()); // 로그인 화면
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
-		map.put("/memberInsert.do", new memberInsertAction()); // DB에 회원 추가
+		map.put("/memberInsert.do", new memberInsertAction()); // user 회원등록
+		map.put("/idChk.do", new idChkAction()); // 중복 id 체크
 		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
-		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보
+		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보수정
+		map.put("/memberDelete.do", new memberDeleteAction()); // 회원탈퇴
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 
