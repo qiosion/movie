@@ -93,18 +93,18 @@ public class infoDAO extends DAO {
 		return n;
 	}
 	
-	public void updateChk(infoVO vo) {
-		
+	public int updateChk(infoVO vo) {
+		int n= 0;
 		try {
 			psmt = conn.prepareStatement(UPDATECHK);
-			psmt.setInt(1, vo.getInfo_Chk());
-			psmt.executeUpdate();
-			System.out.println("조회수1증가");
+			psmt.setInt(1, vo.getInfo_Num());
+			n = psmt.executeUpdate();
 			
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return n;
 		
 	}
 	

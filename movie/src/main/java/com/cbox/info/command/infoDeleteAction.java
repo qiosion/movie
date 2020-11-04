@@ -1,5 +1,7 @@
 package com.cbox.info.command;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +25,12 @@ public class infoDeleteAction implements Action {
 		
 		
 		
-		return "jsp/user/info/infoList.jsp";
+		 try {
+				response.sendRedirect(request.getContextPath()+"/infoList.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
 	}
 
 }

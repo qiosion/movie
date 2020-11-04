@@ -50,11 +50,11 @@
             </c:forEach>   
         </table>
     </div>
-    
+    <c:if test="${mbr_author == 'admin'}">
 	 <div align="right" id="topForm">
             <input type="button" value="±Ûµî·Ï" onclick="writeForm()">
     </div>
-    
+    </c:if>
 </div>    
  
 </body>

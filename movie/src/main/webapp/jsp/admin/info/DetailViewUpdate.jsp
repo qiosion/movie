@@ -4,7 +4,6 @@
 <html>
 <head>
 <title>게시판 - 글쓰기</title>
-<link rel="stylesheet" href="css/info.css">
 <script>
 function listFrm(){
 	location.href="infoList.do";
@@ -14,6 +13,10 @@ function listFrm(){
 </script>
 </head>
 <body>
+<div class="tit-heading-wrap tit-evt">
+<h3>글수정</h3>
+</div> 
+<br>
    		<form method="post" action="infoUpdate.do">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
@@ -35,8 +38,8 @@ function listFrm(){
 			<tr>
 				<td id="title">카테고리</td>
 				<td><select name="info_Category">
-						<option value="0">공지사항</option>
-						<option value="1">이벤트</option>
+						<option value="공지사항">공지사항</option>
+						<option value="이벤트">이벤트</option>
 				</select></td>
 				
 			</tr>

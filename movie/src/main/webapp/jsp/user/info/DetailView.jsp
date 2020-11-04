@@ -20,7 +20,7 @@ function updateFrm(){
 </head>
 <body>
 <div class="tit-heading-wrap tit-evt">
-<h3>글수정</h3>
+<h3>내용</h3>
 </div> 
 <br>
 		<table border="1" width="1000" border="3" bordercolor="black" align="center">

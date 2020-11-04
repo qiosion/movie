@@ -1,5 +1,6 @@
 package com.cbox.info.command;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +27,12 @@ public class infoInsertAction implements Action {
 
 		dao.insert(vo);
 		
-		return "jsp/user/info/infoList.jsp";
+		try {
+			response.sendRedirect(request.getContextPath()+"/infoList.do");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

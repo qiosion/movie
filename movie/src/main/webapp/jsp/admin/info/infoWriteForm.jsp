@@ -30,8 +30,8 @@
 			<tr>
 				<td id="title">카테고리</td>
 				<td><select name="info_Category">
-						<option value="0">공지사항</option>
-						<option value="1">이벤트</option>
+						<option value="공지사항">공지사항</option>
+						<option value="이벤트">이벤트</option>
 				</select></td>
 				
 			</tr>
