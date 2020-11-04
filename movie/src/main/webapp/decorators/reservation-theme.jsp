@@ -5,12 +5,12 @@
 <%@ taglib prefix="decorator"
    uri="http://www.opensymphony.com/sitemesh/decorator"%>
 <!DOCTYPE html>
-<link rel="stylesheet"
-	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/common.css">
 
-<html lang="ko" xml:lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head id="ctl00_Head1">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/common.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
@@ -45,8 +45,7 @@
 	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/reservation_step3_step1.css">
 <link rel="stylesheet"
 	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/reservation_step3_step2.css">
-<script type="text/javascript"
-	src="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/js/jquery-1.10.2.min.js"></script>
+
 <script type="text/javascript"
 	src="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/js/cgvpackage.min.js"></script>
 <script type="text/javascript"
@@ -81,13 +80,14 @@
 	// 초기 선택값 설정
 	preselectSetting('', '', '', '', '', '', '', '', '');
 </script>
+		<decorator:head />
+
 </head>
 <body>
 	<header>
 		header
 		<jsp:include page="/header.jsp" />
 		<jsp:include page="/jsp/user/menu/mainMenu.jsp" />
-		<decorator:head />
 	</header>
 	<hr>
 		<decorator:body />

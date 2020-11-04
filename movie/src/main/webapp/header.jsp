@@ -5,12 +5,7 @@
 	String cp = request.getContextPath();
 request.setCharacterEncoding("UTF-8");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-</head>
-<body>
+
 	<div class="topRmenu">
 		<table>
 			<tr>
@@ -34,5 +29,3 @@ request.setCharacterEncoding("UTF-8");
 			</tr>
 		</table>
 	</div>
-</body>
-</html>
