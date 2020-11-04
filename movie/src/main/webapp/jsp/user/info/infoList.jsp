@@ -4,14 +4,18 @@
 <html>
 <head>
     <title>전체 게시글</title>
-    <link rel="stylesheet" href="/css/info.css">
+    <link rel="stylesheet" href="css/info.css">
     <script>
     function writeForm(){
         location.href="infoWriteForm.do"; //글쓰기 버튼 클릭시 작성화면으로 이동
     }
     </script>
 </head>
-<body>    
+<body> 
+<div class="tit-heading-wrap tit-evt">
+<h3>공지사항/이벤트</h3>
+</div>   
+<br>
  
 <div id="wrap">
 <div align="right" id="searchForm">
@@ -20,14 +24,13 @@
                 <option value="0">제목</option>
                 <option value="1">내용</option>
                 <option value="2">제목+내용</option>
-                <option value="3">글쓴이</option>
             </select>
             <input type="text" size="20" name="condition"/>&nbsp;
             <input type="submit" value="검색"/>
         </form>    
     </div>
     <br/>
-    <div align="center">
+    <div  align="center">
         <table  width="800" border="3" bordercolor="black">
             <tr height="30">
                 <td>공지번호</td>

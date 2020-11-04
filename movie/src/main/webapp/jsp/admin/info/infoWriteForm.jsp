@@ -30,10 +30,8 @@
 			<tr>
 				<td id="title">카테고리</td>
 				<td><select name="info_Category">
-						<option value="0">1</option>
-						<option value="1">2</option>
-						<option value="2">3</option>
-						<option value="3">4</option>
+						<option value="0">공지사항</option>
+						<option value="1">이벤트</option>
 				</select></td>
 				
 			</tr>
@@ -43,14 +41,15 @@
 				</td>
 			</tr>
 			
-
-			<tr align="center" valign="middle">
+			<div align="center">
+			<tr>
 				<td colspan="5">
 				<input type="reset" value="내용지우기"> 
 				<input type="submit" value="등록">
 				<input type="button" value="작성취소" onclick="listFrm()">
 				</td>
 			</tr>
+			</div>
 		</table>
 	</form>
 

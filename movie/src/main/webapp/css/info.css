@@ -1,22 +1,41 @@
 @charset "UTF-8";
+
  #title{
             height : 16;
             font-family :'돋움';
-            font-size : 12;
+            font-size : 20;
             text-align :center;
         }
         
 #wrap {
-            width: 800px;
+            width: 1000px;
             margin: 0 auto 0 auto;
         }
+     
+
 #topForm{
             text-align :right;
+            font-style :normal;
         }
-#board, #pageForm, #searchForm{
+<!-- 
+#board, #pageForm{
             text-align :center;
         }
+#searchForm{
+	text-align : right;
+}
         
 #bList{
             text-align :center;
         }
+<!--공지사항/이벤트 !-->
+.tit-evt{
+	position: relative;
+}
+
+.tit-heading-wrap{
+	position: relative;
+    height: 51px;
+    margin-top: 30px;
+    border-bottom: 3px solid #241d1e;
+}

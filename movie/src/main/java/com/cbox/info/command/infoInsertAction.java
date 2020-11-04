@@ -13,6 +13,7 @@ public class infoInsertAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		//글추가
 		infoDAO dao = new infoDAO();
 		infoVO vo = new infoVO();
 		

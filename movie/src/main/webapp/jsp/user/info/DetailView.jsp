@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>게시판 - 글쓰기</title>
-<link rel="stylesheet" href="/css/info.css">
+<link rel="stylesheet" href="css/info.css">
 <script>
 function listFrm(){
 	location.href="infoList.do";
@@ -13,7 +13,7 @@ function deleteFrm(){
 	location.href="infoDelete.do?info_Num=${vo.info_Num}";
 }
 function updateFrm(){
-	location.href="infoUpdate.do";
+	location.href="infoUpdateForm.do?info_Num=${vo.info_Num}";
 }
 	
 </script>

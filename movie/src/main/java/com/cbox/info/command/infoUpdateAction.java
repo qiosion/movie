@@ -16,7 +16,8 @@ public class infoUpdateAction implements Action {
 		// 수정
 		infoVO vo = new infoVO();
 		infoDAO dao = new infoDAO();
-		
+	
+
 		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
 		vo.setInfo_Title(request.getParameter("info_Title"));
 		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
@@ -26,7 +27,7 @@ public class infoUpdateAction implements Action {
 		dao.update(vo);
 		
 		
-		return null;
+		return "jsp/user/info/infoList.jsp";
 	}
 
 }

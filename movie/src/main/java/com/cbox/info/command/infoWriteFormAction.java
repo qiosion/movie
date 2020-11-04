@@ -9,7 +9,7 @@ public class infoWriteFormAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		// 글작성페이지 보기
+		// 글작성페이지로 이동
 		return "jsp/admin/info/infoWriteForm.jsp";
 	}
 

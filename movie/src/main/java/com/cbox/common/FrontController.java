@@ -17,6 +17,7 @@ import com.cbox.info.command.infoDeleteAction;
 import com.cbox.info.command.infoInsertAction;
 import com.cbox.info.command.infoListAction;
 import com.cbox.info.command.infoUpdateAction;
+import com.cbox.info.command.infoUpdateFormAction;
 import com.cbox.info.command.infoWriteFormAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
@@ -105,6 +106,7 @@ public class FrontController extends HttpServlet {
 		map.put("/infoWriteForm.do", new infoWriteFormAction());//글작성페이지 보기
 		map.put("/infoDelete.do", new infoDeleteAction());//글삭제
 		map.put("/infoUpdate.do", new infoUpdateAction());//글수정
+		map.put("/infoUpdateForm.do", new infoUpdateFormAction());//글수정페이지로 이동
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
