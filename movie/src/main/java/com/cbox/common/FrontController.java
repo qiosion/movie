@@ -23,7 +23,6 @@ import com.cbox.member.command.idChkAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
 import com.cbox.member.command.logoutAction;
-import com.cbox.member.command.memberDeleteAction;
 import com.cbox.member.command.memberFormAction;
 import com.cbox.member.command.memberInfoAction;
 import com.cbox.member.command.memberInsertAction;
