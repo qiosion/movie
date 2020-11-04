@@ -75,7 +75,7 @@
 								<td colspan="2"><p>스틸컷</p><img style="height: 300px; width: 100%" src="${pageContext.request.contextPath}/images/${vo.mvImg}"></td>
 							</tr>
 							<tr style="float: center; text-align: center;">
-								<td colspan="2"><p>티저 영상</p><video src="${pageContext.request.contextPath}/images/${vo.mvTeaser}" ></video></td>
+								<td colspan="2"><p>티저 영상</p><video autoplay="autoplay" src="${pageContext.request.contextPath}/images/${vo.mvTeaser}" ></video></td>
 								<td colspan="2"></td>
 							</tr>
 						</tbody>
