@@ -19,8 +19,7 @@ public class MovieReservationDAO extends DAO {
 	private MovieVO vo;
 	private MovieReservationVO rvo;
 
-	private final String SELECT = "SELECT * FROM MOVIE WHERE MV_TITLE=?"; //한건조회
-private final String SELECT_ALL = "SELECT * FROM MOVIE"; // 전체조회
+private final String SELECT_ALL = "SELECT * FROM MOVIE";
 private final String SELECT_ALL_TIME_DATE_MOVIE = 
 		"select m.mv_title \"영화명\", tt.tt_scr_date \"상영일\", tt.tt_start \"상영시작시간\", th.th_name \"상영관\", th.th_max \"총좌석\" ,(th.th_max-count(*)) \"잔여좌석\"\r\n" + 
 		"from movie m, timetable tt, theater th, ticketing tk\r\n" + 
@@ -28,22 +27,6 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tt.th_num = th.th_num\r\n" + 
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
-	public MovieVO select(MovieVO vo){//한건조회
-		
-		
-		try {
-			psmt = conn.prepareStatement(SELECT);
-			psmt.setString(1, vo.getMvTitle());
-			rs = psmt.executeQuery();
-			if(rs.next()) {
-				vo.setMvImg(rs.getString("mv_img"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return vo;
-	}
 	
 	public List<MovieVO> selectAll(){ //Moive 전체 조회
 		List<MovieVO> list = new ArrayList<>();
