@@ -7,8 +7,19 @@
 <head>
 <meta charset="UTF-8">
 <title>회원관리</title>
+<style type="text/css">
+td {
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+th {
+	text-align: center !important;
+	vertical-align: middle !important;
+}
+</style>
 <script type="text/javascript">
 $(function() {
+// 이메일전송버튼	
 	$("#mailing").bind("click", function() {
 	var chk = $("input[type='checkbox']:checked");
 		console.log("----" + chk.length);
@@ -23,7 +34,7 @@ $(function() {
 <body>
 <div class="table-responsive" align="center">
 	<form>
-		<table class="table table-bordered" border="1" style="text-align: center;">
+		<table class="table table-bordered" id="tbl" border="1" style="text-align: center;">
 			<thead>
 			<tr>
 				<th scope="col">선택</th>
@@ -57,12 +68,28 @@ $(function() {
 					<td><button type="button" class="btn btn-outline-secondary btn-sm" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button></td>
 				</tr>			
 			</c:forEach>
+			</tbody>
+			<tfoot>
 			<tr>
-				<td colspan="11" align="center">
-					<button type="button" id="mailing">이메일 전송</button>
+				<th scope="col">선택</th>
+				<th scope="col">회원번호</th>
+				<th scope="col">아이디</th>
+				<th scope="col">이름</th>
+				<th scope="col">생년월일</th>
+				<th scope="col">전화번호</th>
+				<th scope="col">이메일</th>
+				<th scope="col">메일수신</th>
+				<th scope="col">가입일</th>
+				<th scope="col">포인트</th>
+				<th scope="col">권한</th>
+				<th scope="col">회원탈퇴</th>
+			</tr>
+			<tr>
+				<td colspan="12" align="center">
+					<button type="button" class="btn btn-light" id="mailing">이메일 전송</button>
 				</td>
 			</tr>
-			</tbody>
+			</tfoot>
 		</table>
 	</form>
 	<script type="text/javascript">
@@ -74,5 +101,27 @@ $(function() {
 	</script>
 	<my:paging paging="${paging}" jsfunc="goPage" ></my:paging>
 </div>
+<!-- 팝업창 -->
+	<div class="modal" id="memDelPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">회원 탈퇴</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form id="frm" name="frm" action="memDel.do" method="post">
+						<p>해당 회원을 탈퇴시키겠습니까?</p>
+						<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
+						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

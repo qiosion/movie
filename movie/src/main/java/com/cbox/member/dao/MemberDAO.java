@@ -16,6 +16,7 @@ public class MemberDAO extends DAO{
 	private MemberVO vo;
 
 	private final String SELECT_ALL = "SELECT * FROM MEMBER";
+	private final String SELECT_ONE = "SELECT * FROM MEMBER WHERE MBR_ID = ?";
 	private final String LOGIN = "SELECT * FROM MEMBER WHERE MBR_ID = ? AND MBR_PW = ?";
 	private final String LOGIN_CHK = "SELECT MBR_PW FROM MEMBER WHERE MBR_ID = ?";
 	private final String SELECT_INFO = "SELECT * FROM MEMBER WHERE MBR_ID = ?";
@@ -54,6 +55,31 @@ public class MemberDAO extends DAO{
 		}
 		return list;
 	}
+	public MemberVO selectOne(MemberVO vo) {
+		try {
+			pstmt = conn.prepareStatement(SELECT_ONE);
+			pstmt.setString(1, vo.getMbr_id());
+			rs = pstmt.executeQuery();
+			if(rs.next()){
+				vo.setMbr_no(rs.getInt("mbr_no"));
+				vo.setMbr_id(rs.getString("mbr_id"));
+				vo.setMbr_pw(rs.getString("mbr_pw"));
+				vo.setMbr_nm(rs.getString("mbr_nm")); 
+				vo.setMbr_birth(rs.getDate("mbr_birth"));
+				vo.setMbr_email(rs.getString("mbr_email"));
+				vo.setMbr_phone(rs.getString("mbr_phone"));
+				vo.setMbr_regi_date(rs.getDate("mbr_regi_date"));
+				vo.setMbr_point(rs.getInt("mbr_point"));
+				vo.setMbr_e_yn(rs.getString("mbr_e_yn"));
+				vo.setMbr_author(rs.getString("mbr_author"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        	close();
+        }
+        return vo;
+    }
 	
 	public MemberVO login(MemberVO vo) {
 		try {

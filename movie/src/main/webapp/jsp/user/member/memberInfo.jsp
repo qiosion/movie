@@ -106,7 +106,7 @@
 
 				<!-- Modal Header -->
 				<div class="modal-header">
-					<h1 class="modal-title">비밀번호 확인</h1>
+					<h1 class="modal-title">회원 탈퇴</h1>
 					<button type="button" class="close" data-dismiss="modal">×</button>
 				</div>
 
