@@ -34,10 +34,13 @@ import com.cbox.movie.command.movieChartListAction;
 import com.cbox.movie.command.movieDetailAction;
 import com.cbox.movie.command.movieExpectListAction;
 import com.cbox.movie.command.movieListAction;
+import com.cbox.movie.command.mvDeleteAction;
 import com.cbox.movie.command.mvDetailAction;
 import com.cbox.movie.command.mvListAction;
 import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
+import com.cbox.movie.command.mvUpdateAction;
+import com.cbox.movie.command.mvUpdateFormAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.mvFindDateAction;
 

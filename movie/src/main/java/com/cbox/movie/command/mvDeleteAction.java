@@ -1,4 +1,4 @@
-package com.cbox.common;
+package com.cbox.movie.command;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.movie.vo.MovieVO;
-
+import com.cbox.common.Action;
 import com.cbox.movie.dao.MovieDAO;
 
 public class mvDeleteAction implements Action {

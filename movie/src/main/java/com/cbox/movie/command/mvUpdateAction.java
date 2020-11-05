@@ -1,4 +1,4 @@
-package com.cbox.common;
+package com.cbox.movie.command;
 
 import java.io.File;
 import java.io.IOException;
@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import com.cbox.common.Action;
+import com.cbox.common.FileRenamePolicy;
+import com.cbox.common.FileUtil;
 import com.cbox.movie.dao.MovieDAO;
 import com.cbox.movie.vo.MovieVO;
 
