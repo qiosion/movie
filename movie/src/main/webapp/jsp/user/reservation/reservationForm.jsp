@@ -8,23 +8,57 @@
 <meta charset="UTF-8">
 
 <title>예매 페이지</title>
+<style>
+	.theater{
+		display: none;
+	}
+</style>
 <script>
 	$(function(){
 		
-		$("#test00 a").on("click",function(){
+		$("#test00 a").on("click",function(){ //예매에서 영화를 선택했을경우
 			$("#test00 a").css("background-color","");
 			$("#test00 .text").css("color","");			
 			$(this).css("background-color", "black");
 			$(this).children(".text").css("color","white");
 			
-			$(".info.movie .placeholder").css("display","none");
+			console.log($(this).attr("title"));
+			$(this).attr("title"); //영화 id
+			var param_id = {m_id: $(this).attr("title")};
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/mvFindDate.do", //data보낼 주소
+				type:"get", //전송방식
+				data:param_id, //보낼 data
+				dataType: "json", //요청한 데이터를 받을 형식
+				success : function(data){ //data에 결과값받아옴
+					//전송에 성공하면 실행될 코드
+					alert("성공");
+				},
+				error : function(xhr, status){
+					alert("오류");ㅣ
+				}
+			})
+			
+			
+			$("#test01 a").on("click", function(){
+				$("#test01 a").css("background-color","");
+				$("#test01 span").css("color","");
+				$(this).css("background-color", "black");
+				$(this).children().css("color","white");
+				
+				
+				$("#test02 .theater").css("display","block");
+			});
+			
+			//$(".info.movie .placeholder").css("display","none");
 			
 			//ajax사용
 			//해당 영화에 맞는 이미지 불러오기
 			//var param = {userid: userid.value};
 			var param = {m_title: $(this).children(".text").text()};
 			
-			$.ajax({
+			/*$.ajax({
 				url:"${pageContext.request.contextPath}/ajax/movieImage.do",
 				type:"get",
 				data:param,
@@ -36,7 +70,7 @@
 				error : function(xhr, status){
 					alert("오류");ㅣ
 				}
-			})
+			})*/
 				
 			
 			
@@ -55,6 +89,7 @@
 		String[] weekDay = { "일", "월", "화", "수", "목", "금", "토" };
 		int num = cal.get(Calendar.DAY_OF_WEEK) - 1;
 		String today = weekDay[num]; //요일
+		String cDate = String.valueOf(nowYear)+String.valueOf(nowMonth);
 %>
 </head>
 <body>
@@ -106,7 +141,7 @@
 											
 											<c:forEach var="movie" items="${movies }">
 												<li class="rating-18" ><a href="#"
-												 title="${movie.mvTitle }" alt="${movie.mvTitle }"><span
+												 title="${movie.mvNum }" alt="${movie.mvTitle }"><span
 													class="icon">&nbsp;</span><span class="text">${movie.mvTitle }</span><span
 													class="sreader"></span></a></li>
 												
@@ -141,13 +176,14 @@
 								<!-- 날짜선택 -->
 								<div class="date-list nano has-scrollbar has-scrollbar-y"
 									id="date_list">
-									<ul class="content scroll-y" tabindex="-1"
+									<ul id="test01" class="content scroll-y" tabindex="-1"
 										style="right: -17px;">
 
 										<div>
 											<li class="month dimmed"><div>
 													<span class="year">
-														<!-- 현재년도 --><%=nowYear%></span> <span class="month">
+														<!-- 현재년도 --><%=nowYear%></span> 
+													<span class="month">
 														<!-- 현재월 --><%=nowMonth%></span>
 													<div></div>
 												</div></li>
@@ -157,7 +193,7 @@
 											-->
 											<c:forEach var="item" begin="<%=nowDay%>"
 												end="<%=nowLastDay%>" step="1">
-												<li data-index="1" date="20201103" class="day"><a
+												<li data-index="1" date=<%=cDate %>${item } class="day"><a
 													href="#" onclick="return false;"><span class="dayweek"><%=weekDay[num++ % 7]%></span><span
 														class="day">${item }</span><span class="sreader"></span></a></li>
 
@@ -195,13 +231,13 @@
 								<!--  <div class="placeholder">영화, 날짜를 선택해주세요.</div>-->
 								<!-- 관 , 시간출력 -->
 								<div class="time-list nano has-scrollbar">
-									<div class="content scroll-y" tabindex="-1"
-										style="right: -17px;">
+									<div id="test02" class="content scroll-y" tabindex="-1"
+										style="right: -17px; ">
 								
 										<c:forEach var="time" items="${times }">
 										<div class="theater" screen_cd="001" movie_cd="20024753">
 											<span class="title"><span class="name">2D</span><span
-												class="floor">${time.mv_title }</span><span class="seatcount">(총${time.th_max }석)</span></span>
+												class="floor">${time.th_name }</span><span class="seatcount">(총${time.th_max }석)</span></span>
 											<ul>
 												<li data-index="0" data-remain_seat="211"
 													play_start_tm="1800" screen_cd="001" movie_cd="20024753"

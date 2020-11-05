@@ -3,6 +3,7 @@ package com.cbox.reservation.vo;
 public class MovieReservationVO {
 	String mv_title;        //영화제목
 	String tt_scr_date;     //상영일자
+	
 	String tt_start;        //상영 시작시간
 	String th_name;         //상영관
 	int th_max;             //상영관 총좌석수
