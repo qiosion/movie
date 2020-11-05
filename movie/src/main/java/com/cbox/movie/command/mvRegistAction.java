@@ -81,7 +81,7 @@ public class mvRegistAction implements Action {
 		System.out.println("insert 끝");
 
 		try {
-			response.getWriter().print(new JSONObject(vo));
+			response.getWriter().print("{\"result\":true}");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

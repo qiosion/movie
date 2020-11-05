@@ -125,16 +125,16 @@
 			console.log("movieInsert");
 			
 			$.ajax({
-				url : "mvRegist.do",
+				url : "ajax/mvRegist.do",
 				dataType : "json",
 				//processData: false,
 				//contentType: false,
-				method : "POST",
 				data : $("#frm").serialize(),
 				//data: formData,
 				success : function(response) {
 					// 목록으로 이동
 					alert("등록 성공");
+					location.href="mvList.do";
 				},
 				error : function(xhr, status, message) {
 					alert("status : " + status + " error : " + message);
@@ -184,7 +184,7 @@
 										value=""></td>
 								</tr>
 								<tr>
-									<td style="width: 70px;">등장인물</td>
+									<td>등장인물</td>
 									<td colspan="3"><input type="text" name="mvCha"
 										class="form-control mb-3" value=""></td>
 								</tr>
