@@ -72,6 +72,7 @@ public class MemberDAO extends DAO{
 				vo.setMbr_regi_date(rs.getDate("mbr_regi_date"));
 				vo.setMbr_point(rs.getInt("mbr_point"));
 				vo.setMbr_e_yn(rs.getString("mbr_e_yn"));
+				vo.setMbr_author(rs.getString("mbr_author"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
