@@ -70,7 +70,7 @@
 										value="${vo.mvAge}"></td>
 								</tr>
 								<tr>
-									<td style="width: 70px;">등장인물</td>
+									<td>등장인물</td>
 									<td colspan="3"><input type="text" name="mvCha"
 										class="form-control mb-3" value="${vo.mvCha}"></td>
 								</tr>
