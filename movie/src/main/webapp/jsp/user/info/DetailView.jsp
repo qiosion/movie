@@ -49,8 +49,10 @@ function updateFrm(){
 
 			<tr align="center" valign="middle">
 				<td colspan="5">
+				<c:if test="${mbr_author eq 'admin'}">
 				<input type ="button" value="수정" onclick = "updateFrm()">
 	 			<input type ="button" value="삭제" onclick ="deleteFrm()">
+	 			</c:if>
 				<input type="button" value="목록" onclick="listFrm()">
 				</td>
 			</tr>

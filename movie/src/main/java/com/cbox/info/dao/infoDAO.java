@@ -14,12 +14,15 @@ public class infoDAO extends DAO {
 	private ResultSet rs; // select 후 결과셋 받기
 	private infoVO vo;
 
-	private final String SELECT_ALL = "SELECT * FROM INFO";
+	private final String SELECT_ALL = "SELECT * FROM INFO ORDER BY INFO_NUM ASC";
 	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
 	private final String UPDATE = "UPDATE INFO SET INFO_TITLE=?, INFO_DATE=SYSDATE, INFO_CATEGORY=?, INFO_CONT=? WHERE INFO_NUM=?";
 	private final String UPDATECHK = "UPDATE INFO SET INFO_CHK=INFO_CHK+1 WHERE INFO_NUM=?";
+	
+	
+	//전체조회
 	public List<infoVO> selectAll() {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
@@ -41,7 +44,7 @@ public class infoDAO extends DAO {
 		}
 		return list;
 	}
-
+	//삽입
 	public int insert(infoVO vo) {
 		int n = 0;
 		try {
@@ -58,7 +61,7 @@ public class infoDAO extends DAO {
 		}
 		return n;
 	}
-	
+	//한행 조회
 	public infoVO select(infoVO vo) {
 		try {
 			psmt = conn.prepareStatement(SELECT);
@@ -77,7 +80,7 @@ public class infoDAO extends DAO {
 		}
 		return vo;
 	}
-	
+	//수정
 	public int update(infoVO vo) {
 		int n = 0;
 		try {
@@ -92,7 +95,7 @@ public class infoDAO extends DAO {
 		}
 		return n;
 	}
-	
+	//조회수 증가
 	public int updateChk(infoVO vo) {
 		int n= 0;
 		try {
@@ -109,7 +112,7 @@ public class infoDAO extends DAO {
 	}
 	
 	
-	
+	//삭제
 	public int delete(infoVO vo) {
 		int n = 0;
 		try {

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>°Ô½ÃÆÇ - ±Û¾²±â</title>
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
 <script>
 function listFrm(){
 	location.href="infoList.do";
@@ -14,37 +14,37 @@ function listFrm(){
 </head>
 <body>
 <div class="tit-heading-wrap tit-evt">
-<h3>±Û¼öÁ¤</h3>
+<h3>ê¸€ìˆ˜ì •</h3>
 </div> 
 <br>
    		<form method="post" action="infoUpdate.do">
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
-				<td id="title">°øÁö¹øÈ£</td>
+				<td id="title">ê³µì§€ë²ˆí˜¸</td>
 				<td><input type="text" name="info_Num" value="${vo.info_Num}"></td>
 			</tr>
 			<tr>
-				<td id="title" >Á¦¸ñ</td>
+				<td id="title" >ì œëª©</td>
 				<td><input name="info_Title" type="text" size="70" maxlength="100" 
                     value="${vo.info_Title}"/>
                 </td>
 			</tr>
 			<tr>
-				<td id="title">³¯Â¥</td>
+				<td id="title">ë‚ ì§œ</td>
 				<td><input name="info_Date" type="text" size="70" maxlength="100" 
                     value="${vo.info_Date}">
                 </td>
 			</tr>
 			<tr>
-				<td id="title">Ä«Å×°í¸®</td>
+				<td id="title">ì¹´í…Œê³ ë¦¬</td>
 				<td><select name="info_Category">
-						<option value="°øÁö»çÇ×">°øÁö»çÇ×</option>
-						<option value="ÀÌº¥Æ®">ÀÌº¥Æ®</option>
+						<option value="ê³µì§€ì‚¬í•­">ê³µì§€ì‚¬í•­</option>
+						<option value="ì´ë²¤íŠ¸">ì´ë²¤íŠ¸</option>
 				</select></td>
 				
 			</tr>
 			<tr>
-				<td id="title">³» ¿ë</td>
+				<td id="title">ë‚´ ìš©</td>
 				<td><textarea name="info_Cont" cols="68" rows="20">
                    ${vo.info_Cont}
                 </textarea> 
@@ -56,8 +56,8 @@ function listFrm(){
 
 			<tr align="center" valign="middle">
 				<td colspan="5">
-				<input type ="submit" value="¼öÁ¤">
-				<input type="button" value="¸ñ·Ï" onclick="listFrm()">
+				<input type ="submit" value="ìˆ˜ì •">
+				<input type="button" value="ëª©ë¡" onclick="listFrm()">
 				</td>
 			</tr>
 		</table>

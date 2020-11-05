@@ -1,55 +1,84 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-<title>°Ô½ÃÆÇ - ±Û¾²±â</title>
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
 <link rel="stylesheet" href="/css/info.css">
 <script>
 	function listFrm(){
 		location.href="infoList.do";
 	}
+	function addFrm(){
+		var ad = document.frm;
+		if(ad.info_Num.value == ""){
+			alert("ê³µì§€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+			ad.info_Num.focus();
+			return false;
+		}
+		if(ad.info_Title.value == ""){
+			alert("ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”");
+			ad.info_Title.focus();
+			return false;
+		}
+		if(ad.info_Date.value == ""){
+			alert("ë‚ ì§œë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+			ad.info_Date.focus();
+			return false;
+		}
+		if(ad.info_Category.value == ""){
+			alert("ì¹´í…Œê³ ë¦¬ë¥¼ ì„ íƒí•˜ì„¸ìš”");
+			ad.info_Category.focus();
+			return false;
+		}
+		if(ad.info_Cont.value == ""){
+			alert("ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”");
+			ad.info_Cont.focus();
+			return false;
+		}
+		return true;
+	}
 </script>
 </head>
 <body>
-	<form method="post" action="infoInsert.do" name="infoForm" >
+	<form name="frm" id="frm" method="post" action="infoInsert.do"  >
 		<table width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
-				<td id="title">°øÁö¹øÈ£</td>
+				<td id="title">ê³µì§€ë²ˆí˜¸</td>
 				<td><input name="info_Num" type="text" value=""></td>
 			</tr>
 			<tr>
-				<td id="title">Á¦¸ñ</td>
+				<td id="title">ì œëª©</td>
 				<td><input name="info_Title" type="text" size="70"
 					maxlength="100" value="" /></td>
 			</tr>
 			<tr>
-				<td id="title">³¯Â¥</td>
+				<td id="title">ë‚ ì§œ</td>
 				<td><input name="info_Date" type="date" value=""></td>
 			</tr>
 			<tr>
-				<td id="title">Ä«Å×°í¸®</td>
+				<td id="title">ì¹´í…Œê³ ë¦¬</td>
 				<td><select name="info_Category">
-						<option value="°øÁö»çÇ×">°øÁö»çÇ×</option>
-						<option value="ÀÌº¥Æ®">ÀÌº¥Æ®</option>
+						<option value="ê³µì§€ì‚¬í•­">ê³µì§€ì‚¬í•­</option>
+						<option value="ì´ë²¤íŠ¸">ì´ë²¤íŠ¸</option>
 				</select></td>
 				
 			</tr>
 			<tr>
-				<td id="title">³» ¿ë</td>
+				<td id="title">ë‚´ ìš©</td>
 				<td><textarea name="info_Cont" cols="70" rows="10"></textarea>
 				</td>
 			</tr>
-			
-			<div align="center">
+
 			<tr>
-				<td colspan="5">
-				<input type="reset" value="³»¿ëÁö¿ì±â"> 
-				<input type="submit" value="µî·Ï">
-				<input type="button" value="ÀÛ¼ºÃë¼Ò" onclick="listFrm()">
+				<td align="center" colspan="3">
+				<input type="reset" value="ë‚´ìš©ì§€ìš°ê¸°"> 
+				<button type="submit" onclick="return addFrm()">ë“±ë¡</button>
+				<input type="button" value="ì‘ì„±ì·¨ì†Œ" onclick="listFrm()">
 				</td>
 			</tr>
-			</div>
+			
 		</table>
 	</form>
 
