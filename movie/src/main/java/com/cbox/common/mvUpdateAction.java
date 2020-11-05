@@ -1,6 +1,7 @@
 package com.cbox.common;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ public class mvUpdateAction implements Action {
 		MovieDAO dao = new MovieDAO();
 		MovieVO vo = new MovieVO();
 
+		vo.setMvNum(Integer.parseInt(request.getParameter("mvNum")));
 		vo.setMvTitle(request.getParameter("mvTitle"));
 		vo.setMvDir(request.getParameter("mvDir"));
 		vo.setStrdate(Date.valueOf(request.getParameter("strdate")));
@@ -75,8 +77,15 @@ public class mvUpdateAction implements Action {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
+
+		dao.movieUpdate(vo);
+		System.out.println("update 끝");
+
+		try {
+			response.getWriter().print("{\"result\":true}");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		return null;
 	}

@@ -23,7 +23,8 @@ public class MovieDAO extends DAO {
 	private String SELECT_SEARCH = "";
 	private String SELECT_EXPECTED = "SELECT * FROM MOVIE WHERE MV_STRDATE > SYSDATE"; // 상영 예정작
 	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
-	private String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_RANK=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
+	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
+	private final String DELETE = "DELETE FROM MOVIE WHERE MV_NUM=?";
 
 	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_RANK, MV_POST, MV_AGE)"
 			+ "VALUES (MV_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -249,6 +250,7 @@ public class MovieDAO extends DAO {
 				vo.setMvType(rs.getString("mv_type"));
 				vo.setMvCont(rs.getString("mv_cont"));
 				vo.setMvPost(rs.getString("mv_post"));
+				System.out.println("post : " + rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
 				vo.setMvRank(rs.getInt("mv_rank"));
@@ -269,7 +271,7 @@ public class MovieDAO extends DAO {
 			System.out.println("mvPost : " + vo.getMvPost());
 			System.out.println("Strdate : " + vo.getStrdate());
 			psmt = conn.prepareStatement(INSERT);
-			
+
 			psmt.setString(1, vo.getMvTitle());
 			psmt.setString(2, vo.getMvDir());
 			psmt.setString(3, vo.getMvCha());
@@ -283,6 +285,50 @@ public class MovieDAO extends DAO {
 			psmt.setInt(11, vo.getMvRank());
 			psmt.setString(12, vo.getMvPost());
 			psmt.setString(13, vo.getMvAge());
+
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	public void movieUpdate(MovieVO vo) {
+		// UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?,
+		// MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM
+		// = ?
+		System.out.println("movieUpdate");
+		try {
+			psmt = conn.prepareStatement(UPDATE);
+
+			psmt.setString(1, vo.getMvDir());
+			psmt.setString(2, vo.getMvCha());
+			psmt.setDate(3, vo.getStrdate());
+			psmt.setDate(4, vo.getFindate());
+			psmt.setString(5, vo.getMvSum());
+			psmt.setString(6, vo.getMvType());
+			psmt.setString(7, vo.getMvCont());
+			psmt.setString(8, vo.getMvImg());
+			psmt.setString(9, vo.getMvTeaser());
+			psmt.setString(10, vo.getMvPost());
+			psmt.setString(11, vo.getMvAge());
+			psmt.setInt(12, vo.getMvNum());
+
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	public void movieDelete(MovieVO vo) {
+		try {
+
+			System.out.println("movieDelete : " + vo.getMvNum());
+			psmt = conn.prepareStatement(DELETE);
+			psmt.setInt(1, vo.getMvNum());
 
 			psmt.executeUpdate();
 		} catch (SQLException e) {

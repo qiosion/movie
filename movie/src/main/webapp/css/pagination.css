@@ -2,7 +2,7 @@
 
 
 /* pagination */
-.pagination {
+/* .pagination {
 	display: inline-block;
 	float: center;
 }
@@ -25,4 +25,27 @@
 .pagination li:hover:not(.active) {
 	background-color: #ddd;
 	border-radius: 5px;
+} */
+
+.pagination, li.active, .pagination li {
+  display: inline-block;
+}
+
+.pagination a, li.active {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #4CAF50;
+}
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.pagination a, li.active {
+  border-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
