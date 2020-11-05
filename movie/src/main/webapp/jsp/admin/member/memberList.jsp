@@ -28,6 +28,16 @@ $(function() {
 			console.log('em' + em);
 		}
 	});
+// 행 클릭하면 거기서 id 받아와서 그거의 예매현황보는 페이지로 넘기도록 하자
+	$('#tbl tbody').on('click', 'tr', function () {
+		var userId = $(this).find("td").eq(2).text();
+		
+
+	});	
+	$('#tbl tbody').on('click','#memDelBtn',function() {
+		var userId = $(this).closest('tr').find("td").eq(2).text();
+		$("#hdn").val(userId);
+	});
 });
 </script>
 </head>
@@ -70,7 +80,7 @@ $(function() {
 			</c:forEach>
 			</tbody>
 			<tfoot>
-			<tr>
+<!-- 			<tr>
 				<th scope="col">선택</th>
 				<th scope="col">회원번호</th>
 				<th scope="col">아이디</th>
@@ -83,7 +93,7 @@ $(function() {
 				<th scope="col">포인트</th>
 				<th scope="col">권한</th>
 				<th scope="col">회원탈퇴</th>
-			</tr>
+			</tr> -->
 			<tr>
 				<td colspan="12" align="center">
 					<button type="button" class="btn btn-light" id="mailing">이메일 전송</button>
@@ -94,7 +104,6 @@ $(function() {
 	</form>
 	<script type="text/javascript">
 		function goPage(p) {
-			// location.href="memberList.do?p="+p; 이거 번거롭다. 폼 이용하면 간단
 			searchForm.p.value = p;
 			searchForm.submit();
 		}
@@ -115,7 +124,8 @@ $(function() {
 				<!-- Modal body -->
 				<div class="modal-body">
 					<form id="frm" name="frm" action="memDel.do" method="post">
-						<p>해당 회원을 탈퇴시키겠습니까?</p>
+						<div>회원을 탈퇴시키겠습니까?</div>
+						<input type="hidden" id="hdn" name="hdn">
 						<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 					</form>

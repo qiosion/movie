@@ -28,20 +28,29 @@ public class memberDeleteAction implements Action {
 		String spw = (String)session.getAttribute("mbr_pw"); // 세션 비밀번호
 		String pwchk = request.getParameter("pwchk"); // 입력 비밀번호
 		//String pwchk = (String) request.getAttribute("pwchk");
-		String page = null;
 		if (pwchk == null || pwchk == "" ) {
 			request.setAttribute("pwnull", "pw is null");
-			page = "memberInfo.do";
+			try {
+				response.sendRedirect("memberInfo.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else if (!spw.equals(pwchk)) {
 			request.setAttribute("pwwrong", "pw is wrong");
-			page = "memberInfo.do";
+			try {
+				response.sendRedirect("memberInfo.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
 			int n = dao.delete(vo);
-			page = "main.do";
+			try {
+				session.invalidate();
+				response.sendRedirect("main.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		return page;
-	}
-	public static void main(String[] args) {
-		
+		return null;
 	}
 }
