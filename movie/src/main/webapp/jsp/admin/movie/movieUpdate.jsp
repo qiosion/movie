@@ -14,9 +14,9 @@
 	function movieUpdate() {
 		$("#uptBtn").on("click", function() {
 			console.log("movieUpdate");
-			
+
 			$.ajax({
-				url : "mvUpdate.do",
+				url : "/ajax/mvUpdate.do",
 				dataType : "json",
 				method : "POST",
 				data : $("#frm").serialize(),
@@ -38,13 +38,14 @@
 			<div class="card">
 				<div class="card-header card-header-primary">
 					<span class="card-title" id="movieTitle"> <i
-						class="fas fa-square"></i>"${vo.mvTitle}" 수정
+						class="fas fa-square"></i>${vo.mvTitle}
 					</span>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table">
 							<tbody>
+								<input type="hidden" name="mvNum" value="${vo.mvNum}">
 								<tr style="line-height: 32px;">
 									<td>제목</td>
 									<td><input type="text" name="mvTitle" class="form-control"
@@ -118,12 +119,16 @@
 			</div>
 
 		</div>
+		<div class="text-center mt-3">
+			<button type="button" id="uptBtn" style="margin-right: 30px;"
+				class="btn btn-success">수정</button>
+			<button type="button" class="btn btn-danger"
+				style="margin-right: 30px;"
+				onclick="location.href='/ajax/mvDelete.do'">삭제</button>
+			<button type="button" class="btn btn-dark"
+				onclick="location.href='mvList.do'">목록</button>
+		</div>
 	</form>
-	<div class="text-center mt-3">
-		<button type="button" id="uptBtn" style="margin-right: 30px;"
-			class="btn btn-success">수정</button>
-		<button type="button" class="btn btn-danger">취소</button>
-	</div>
 
 	<!-- 팝업창 -->
 	<div class="modal" id="searchPopup">
@@ -150,7 +155,8 @@
 
 				<!-- Modal footer -->
 				<div class="modal-footer">
-					<button type="button" name="uptBtn" id="uptBtn"
+					<button type="button" name="okBtn" id=""
+						okBtn""
 						class="btn btn-success">확인</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="clearSearch()">취소</button>

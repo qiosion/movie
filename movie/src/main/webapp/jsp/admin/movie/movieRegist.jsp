@@ -4,21 +4,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";
 
 	$(function() {
-		$("#export").click(
-				function() {
-					console.log("export");
-					// todo : 키워드 null 체크 안됨
-					var chk = $("input[type='checkbox']:checked");
-					if (chk) {
-						$("#result").html(
-								chk.parent().children().nextUntil(
-										"input[type='checkbox']"));
-					}
-				});
+		$("#export").click(function() {
+			console.log("export");
+			var chk = $("input[type='checkbox']:checked");
+			if (chk) {
+				$("#mvTitle").val(chk.parent().children('#mvTitle').text());
+				$("#mvDir").val(chk.parent().children('#mvDir').text());
+				$("#mvCont").val(chk.parent().children('#mvCont').text());
+				$("#mvAge").val(chk.parent().children('#mvAge').text());
+				$("#mvType").val(chk.parent().children('#mvType').text());
+				$("#mvCha").val(chk.parent().children('#mvCha').text());
+				
+				var strdate = chk.parent().children('#strdate').text();
+				console.log("?? " + strdate);
+				var yyyy = strdate.substring(0, 4);
+				var mm = strdate.substring(4, 6);
+				var dd = strdate.substring(6, 8);
+				console.log(">>> " + yyyy + "-" + mm + "-" + dd);
+				$("#strdate").val(yyyy + "-" + mm + "-" + dd);
+				$("#searchPopup").modal("hide"); //닫기 
+				//$("#strdate").val(chk.parent().children('#strdate').text());
+			}
+		});
 
 		movieInsert();
 	});
@@ -89,27 +101,44 @@
 						var str = "";
 						//      str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
 						str = str
-								+ "<div id='mvDir' name='mvDir'><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'><h2 name='mvTitle' id='mvTitle'>"
+								+ "<div><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'><h2 name='mvTitle' id='mvTitle'>"
 								+ $(movie_data).find("movieNm").text() + "(";
 						str = str + $(movie_data).find("movieNmEn").text()
 								+ ")</h2>";
 						str = str + "<p name='mvCont' id='mvCont'>"
 								+ $(movie_data).find("nationNm").text()
-								+ ", 개봉일 : "
-								+ $(movie_data).find("openDt").text()
 								+ ", 상영 시간 : "
 								+ $(movie_data).find("showTm").text() + "분</p>";
+						str = str + "<p name='strdate' id='strdate'>"
+								+ $(movie_data).find("openDt").text() + "</p>";
 
 						//str = str + "<ul>";
 						/* $(movie_data).find("actor").each(function () {
 						    str = str + "<li>" + $(this).find("peopleNm").text() + "</li>";
 						}); */
-						$(movie_data).find("audit").each(
+						$(movie_data).find("director").each(
 								function() {
-									str = str
-											+ "<p name='mvAge' id='mvAge'>"
-											+ $(this).find("watchGradeNm")
-													.text() + "</p>";
+									str = str + "<p name='mvDir' id='mvDir'>"
+											+ $(this).find("peopleNm").text()
+											+ "</p>";
+								});
+						var audit = $(movie_data).find("audit");
+						for (var i = 0; i < 1; i++) {
+							str = str + "<p name='mvAge' id='mvAge'>"
+									+ audit.find("watchGradeNm").text() + "</p>";
+						}
+						
+						var actor = $(movie_data).find("actor");
+						for(var i = 0;i<5; i++) {
+							str = str + "<p name='mvCha' id='mvCha'>"
+							+ audit.find("peopleNm").text() + "</p>";
+						}
+
+						$(movie_data).find("genre").each(
+								function() {
+									str = str + "<p name='mvType' id='mvType'>"
+											+ $(this).find("genreNm").text()
+											+ "</p>";
 								});
 						str = str + "</div>";
 						$("#result").append(str);
@@ -122,19 +151,26 @@
 
 	function movieInsert() {
 		$("#regiBtn").on("click", function() {
+			// multipart
+			var form = $("#frm")[0];
+			var data = new FormData(form);
+
+			// 빈칸 체크
+
 			console.log("movieInsert");
-			
+
 			$.ajax({
 				url : "ajax/mvRegist.do",
 				dataType : "json",
-				//processData: false,
-				//contentType: false,
-				data : $("#frm").serialize(),
-				//data: formData,
+				method : "post",
+				processData : false,
+				contentType : false,
+				//data : $("#frm").serialize(),
+				data : data,
 				success : function(response) {
 					// 목록으로 이동
 					alert("등록 성공");
-					location.href="mvList.do";
+					location.href = "mvList.do";
 				},
 				error : function(xhr, status, message) {
 					alert("status : " + status + " error : " + message);
@@ -160,41 +196,43 @@
 						<table class="table">
 							<tbody>
 								<tr style="line-height: 32px;">
-									<td>제목</td>
-									<td><input type="text" name="mvTitle" class="form-control"
-										value=""></td>
-									<td>감독</td>
-									<td><input type="text" name="mvDir" class="form-control"
-										value=""></td>
+									<td>제목&nbsp;<span style="color: red;">*</span></td>
+									<td><input type="text" name="mvTitle" id="mvTitle"
+										class="form-control" value=""></td>
+									<td>감독&nbsp;<span style="color: red;">*</span></td>
+									<td><input type="text" name="mvDir" id="mvDir"
+										class="form-control" value=""></td>
 								</tr>
 								<tr>
-									<td>개봉일</td>
-									<td><input type="date" name="strdate" class="form-control"
-										value=""></td>
-									<td>상영 종료일</td>
-									<td><input type="date" name="findate" class="form-control"
-										value=""></td>
+									<td>개봉일&nbsp;<span style="color: red;">*</span></td>
+									<td><input type="date" name="strdate" id="strdate"
+										class="form-control" value=""></td>
+									<td>상영 종료일&nbsp;<span style="color: red;">*</span></td>
+									<td><input type="date" name="findate" id="findate"
+										class="form-control" value=""></td>
 								</tr>
 								<tr>
 									<td>장르</td>
-									<td><input type="text" name="mvType" class="form-control"
-										value=""></td>
+									<td><input type="text" name="mvType" id="mvType"
+										class="form-control" value=""></td>
 									<td>관람 연령</td>
-									<td><input type="text" name="mvAge" class="form-control"
-										value=""></td>
+									<td><input type="text" name="mvAge" id="mvAge"
+										class="form-control" value=""></td>
 								</tr>
 								<tr>
 									<td>등장인물</td>
-									<td colspan="3"><input type="text" name="mvCha"
+									<td colspan="3"><input type="text" name="mvCha" id="mvCha"
 										class="form-control mb-3" value=""></td>
 								</tr>
 								<tr>
 									<td>줄거리</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvSum"></textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvSum"
+											id="mvSum"></textarea></td>
 								</tr>
 								<tr>
 									<td>설명</td>
-									<td colspan="3"><textarea rows="3" cols="60" name="mvCont"></textarea></td>
+									<td colspan="3"><textarea rows="3" cols="60" name="mvCont"
+											id="mvCont"></textarea></td>
 								</tr>
 							</tbody>
 						</table>
@@ -211,7 +249,8 @@
 					<table class="table">
 						<tbody>
 							<tr style="line-height: 32px; text-align: center;">
-								<td style="width: 50px;">포스터 이미지</td>
+								<td style="width: 50px;">포스터 이미지&nbsp;<span
+									style="color: red;">*</span></td>
 								<td style="margin-right: 5px; width: 50px;"><input
 									type="file" id="mvPost" name="mvPost" style="width: 50px;"></td>
 								<td style="width: 50px;">스틸컷</td>
@@ -220,6 +259,7 @@
 							</tr>
 							<tr style="float: center; text-align: center;">
 								<td>티저 영상</td>
+
 								<td><input type="file" id="mvTeaser" name="mvTeaser"
 									style="width: 50px;"></td>
 								<td colspan="2"></td>
@@ -234,7 +274,8 @@
 	<div class="text-center mt-3">
 		<button type="button" id="regiBtn" style="margin-right: 30px;"
 			class="btn btn-success">등록</button>
-		<button type="button" class="btn btn-danger" onclick="location.href='mvList.do'">취소</button>
+		<button type="button" class="btn btn-danger"
+			onclick="location.href='mvList.do'">취소</button>
 	</div>
 
 	<!-- 팝업창 -->

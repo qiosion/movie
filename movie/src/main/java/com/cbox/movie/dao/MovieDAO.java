@@ -17,12 +17,13 @@ public class MovieDAO extends DAO {
 	private ResultSet rs;
 	private MovieVO vo;
 
-	private String SELECT_ALL = "select * from movie";
+	private String SELECT_ALL = "SELECT * FROM MOVIE";
 //	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
 //			+ ") a  ) b where rn between ? and ?";
 	private String SELECT_SEARCH = "";
-	private String SELECT_EXPECTED = "select * from movie where mv_strdate > sysdate"; // 상영 예정작
-	private final String DETAIL = "select * from movie where mv_num = ?";
+	private String SELECT_EXPECTED = "SELECT * FROM MOVIE WHERE MV_STRDATE > SYSDATE"; // 상영 예정작
+	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
+	private String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_RANK=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
 
 	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_RANK, MV_POST, MV_AGE)"
 			+ "VALUES (MV_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -238,7 +239,7 @@ public class MovieDAO extends DAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
-//				vo.setMvNum(rs.getInt("mv_num"));
+				vo.setMvNum(rs.getInt("mv_num"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
 				vo.setMvCha(rs.getString("mv_cha"));

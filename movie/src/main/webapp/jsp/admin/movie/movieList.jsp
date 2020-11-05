@@ -64,7 +64,7 @@
 					<td>${movie.mvCont }</td>
 					<td>${movie.strdate }</td>
 					<td>${movie.mvRank }</td>
-					<td><a href="mvDetail.do?seq=${movie.mvNum }">&#x2705;</a></td>
+					<td><a href="mvUpdateForm.do?seq=${movie.mvNum }">&#x2705;</a></td>
 				</tr>
 			</c:forEach>
 		</table>

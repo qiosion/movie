@@ -69,8 +69,9 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/mvUpdateForm.do", new mvUpdateFormAction());
 		map.put("/ajax/mvUpdate.do", new mvUpdateAction());
+		map.put("/ajax/mvDelete.do", new mvDeleteAction());
 		
-		map.put("/mvDetail.do", new mvDetailAction());
+//		map.put("/mvDetail.do", new mvDetailAction());
 		
 		
 		

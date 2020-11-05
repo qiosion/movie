@@ -38,44 +38,57 @@ public class mvRegistAction implements Action {
 		vo.setMvCha(request.getParameter("mvCha"));
 		vo.setMvSum(request.getParameter("mvSum"));
 		vo.setMvCont(request.getParameter("mvCont"));
-		
-		vo.setMvPost("testposter.png");
-		vo.setMvImg("testposter.png");
-		vo.setMvTeaser("testTeaser.mp4");
 
-//		String addPath = request.getServletContext().getRealPath("/images");
+//		vo.setMvPost("testposter.png");
+//		vo.setMvImg("testposter.png");
+//		vo.setMvTeaser("testTeaser.mp4");
+
+		String addPath = request.getServletContext().getRealPath("/images");
 
 		// 포스터 : 단일
-//		try {
-//			Part part = request.getPart("mvPost");
-//			String fileName = FileUtil.extractFileName(part);
-//			if (!fileName.equals("")) {
-//				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-//				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-//				part.write(renameFile.getAbsolutePath()); // 절대경로
-//
-//				vo.setMvPost(renameFile.getName());
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Part part = request.getPart("mvPost");
+			String fileName = FileUtil.extractFileName(part);
+			if (!fileName.equals("")) {
+				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
+				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(renameFile.getAbsolutePath()); // 절대경로
+
+				vo.setMvPost(renameFile.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// 스틸컷 : 단일
-//		try {
-//			Part part = request.getPart("mvImg");
-//			String fileName = FileUtil.extractFileName(part);
-//			if (!fileName.equals("")) {
-//				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-//				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-//				part.write(renameFile.getAbsolutePath()); // 절대경로
-//
-//				vo.setMvImg(renameFile.getName());
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		try {
+			Part part = request.getPart("mvImg");
+			String fileName = FileUtil.extractFileName(part);
+			if (!fileName.equals("")) {
+				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
+				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(renameFile.getAbsolutePath()); // 절대경로
+
+				vo.setMvImg(renameFile.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		// 티저 : 단일
+		try {
+			Part part = request.getPart("mvTeaser");
+			String fileName = FileUtil.extractFileName(part);
+			if (!fileName.equals("")) {
+				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
+				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(renameFile.getAbsolutePath()); // 절대경로
+
+				vo.setMvTeaser(renameFile.getName());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		dao.movieInsert(vo);
 		System.out.println("insert 끝");
