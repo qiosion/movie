@@ -31,7 +31,6 @@ public class loginAction implements Action {
             session.setAttribute("mbr_id", vo.getMbr_id());
             session.setAttribute("mbr_pw", vo.getMbr_pw());
             session.setAttribute("mbr_author", vo.getMbr_author());
-            System.out.println("세션 권한:" + session.getAttribute("mbr_author"));
             
             request.setAttribute("vo", vo);
             msg = "main.jsp";
