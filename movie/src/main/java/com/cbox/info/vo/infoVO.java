@@ -9,7 +9,27 @@ public class infoVO {
 	private Date info_Date;
 	private int info_Chk;
 	private String info_Cont;
+	private Integer first;
+	private Integer last;
 	
+	
+	
+	public Integer getLast() {
+		return last;
+	}
+
+	public void setLast(Integer last) {
+		this.last = last;
+	}
+
+	public Integer getFirst() {
+		return first;
+	}
+
+	public void setFirst(Integer first) {
+		this.first = first;
+	}
+
 	public infoVO() {
 		
 	}

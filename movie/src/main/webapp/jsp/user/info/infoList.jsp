@@ -27,6 +27,7 @@
                 <option value="내용">내용</option>
                 <option value="제목+내용">제목+내용</option>
             </select>
+            <input type="hidden" name="p">
             <input type="text" size="20" />&nbsp;
             <input name ="info_Title" type="submit" value="검색"/>
         </form>    
@@ -60,9 +61,9 @@
    
     <script>
 	function goPage(p){
-    		//location.href="infoList.do?="+p;
-		searchFrm.p.value = p;
-		searchFrm.submit();
+    		location.href="infoList.do?p="+p;
+		//searchFrm.p.value = p;
+		//searchFrm.submit();
     	}
     </script>
     

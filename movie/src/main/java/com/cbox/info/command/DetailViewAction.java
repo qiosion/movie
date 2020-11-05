@@ -2,7 +2,6 @@ package com.cbox.info.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.cbox.common.Action;
 import com.cbox.info.dao.infoDAO;

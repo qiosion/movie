@@ -14,7 +14,9 @@ public class infoDAO extends DAO {
 	private ResultSet rs; // select 후 결과셋 받기
 	private infoVO vo;
 
-	private final String SELECT_ALL = "SELECT * FROM INFO ORDER BY INFO_NUM ASC";
+	private final String SELECT_ALL = "select * from( select a.*, rownum rn from("
+			+ "SELECT * FROM info order by info_num asc"
+			+ " ) a ) b where rn between ? and ? ";
 	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(?,?,?,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
@@ -23,10 +25,12 @@ public class infoDAO extends DAO {
 	
 	
 	//전체조회
-	public List<infoVO> selectAll() {
+	public List<infoVO> selectAll(infoVO ivo) {
 		List<infoVO> list = new ArrayList<infoVO>();
 		try {
 			psmt = conn.prepareStatement(SELECT_ALL);
+			psmt.setInt(1, ivo.getFirst());
+			psmt.setInt(2, ivo.getLast());
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new infoVO();
@@ -111,6 +115,20 @@ public class infoDAO extends DAO {
 		
 	}
 	
+	public int count(infoVO vo) {  
+		int cnt=0;
+		try {
+			String sql ="select count(*) from info";
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			rs.next();
+			cnt = rs.getInt(1);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return cnt;
+	}
 	
 	//삭제
 	public int delete(infoVO vo) {
