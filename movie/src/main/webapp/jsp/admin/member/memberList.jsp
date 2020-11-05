@@ -32,8 +32,8 @@ $(function() {
 	$('#tbl tbody').on('click', 'tr', function () {
 		var userId = $(this).find("td").eq(2).text();
 		
-
 	});	
+// 회원탈퇴용
 	$('#tbl tbody').on('click','#memDelBtn',function() {
 		var userId = $(this).closest('tr').find("td").eq(2).text();
 		$("#hdn").val(userId);
@@ -96,7 +96,7 @@ $(function() {
 			</tr> -->
 			<tr>
 				<td colspan="12" align="center">
-					<button type="button" class="btn btn-light" id="mailing">이메일 전송</button>
+					<button type="button" class="btn btn-link" id="mailing">이메일 전송</button>
 				</td>
 			</tr>
 			</tfoot>
@@ -124,7 +124,7 @@ $(function() {
 				<!-- Modal body -->
 				<div class="modal-body">
 					<form id="frm" name="frm" action="memDel.do" method="post">
-						<div>회원을 탈퇴시키겠습니까?</div>
+						<div>해당 회원을 탈퇴시키겠습니까?<br><br></div>
 						<input type="hidden" id="hdn" name="hdn">
 						<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
 						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>

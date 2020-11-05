@@ -27,14 +27,20 @@ public class memberInsertAction implements Action {
 		vo.setMbr_e_yn(request.getParameter("mbr_e_yn"));
 		int n = dao.insert(vo);
 		
-		String page = null;
 		if (n != 0) { // n이 0이 아니면 성공
 			response.setContentType("text/html; charset=UTF-8");
-			System.out.println("성공----");
-			page = "main.do";
+			try {
+				response.sendRedirect("main.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
-			page = "memberForm.do";
+			try {
+				response.sendRedirect("memberForm.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		return page;
+		return null;
 	}
 }

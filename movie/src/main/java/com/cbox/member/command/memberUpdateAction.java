@@ -1,5 +1,6 @@
 package com.cbox.member.command;
 
+import java.io.IOException;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ public class memberUpdateAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html; charset=UTF-8");
+		
 		HttpSession session = request.getSession();
 		String sid = (String) session.getAttribute("mbr_id");
 		
@@ -27,15 +30,20 @@ public class memberUpdateAction implements Action {
 		vo.setMbr_e_yn(request.getParameter("mbr_e_yn"));
 		int n = dao.update(vo);
 
-		String page;
 		if (n != 0) { // n이 0이면 입력실패. 0이 아니면 insert 성공.
-			page = "jsp/user/member/memberInfo.jsp";
+			try {
+				response.sendRedirect("memberInfo.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		} else {
-			page = "jsp/user/member/insertFail.jsp";
+			try {
+				response.sendRedirect("memberInfo.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		// 입력 성공하든 실패하든 페이지로 넘겨준다
-		return page;
-//		return null;
+		return null;
 	}
 
 }
