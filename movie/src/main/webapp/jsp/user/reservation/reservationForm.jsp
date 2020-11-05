@@ -22,9 +22,10 @@
 			$(this).css("background-color", "black");
 			$(this).children(".text").css("color","white");
 			
-			console.log($(this).attr("title"));
-			$(this).attr("title"); //영화 id
+			
+			//$(this).attr("title"); //영화 id
 			var param_id = {m_id: $(this).attr("title")};
+			console.log($("#test01 li").attr("date"));
 			
 			$.ajax({
 				url:"${pageContext.request.contextPath}/ajax/mvFindDate.do", //data보낼 주소
@@ -33,10 +34,11 @@
 				dataType: "json", //요청한 데이터를 받을 형식
 				success : function(data){ //data에 결과값받아옴
 					//전송에 성공하면 실행될 코드
-					alert("성공");
+					//alert(data[0].tt_scr_date);
+					
 				},
 				error : function(xhr, status){
-					alert("오류");ㅣ
+					alert("오류");
 				}
 			})
 			

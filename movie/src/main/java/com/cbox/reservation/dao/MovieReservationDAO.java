@@ -9,6 +9,7 @@ import java.util.List;
 import com.cbox.common.DAO;
 import com.cbox.movie.vo.MovieVO;
 import com.cbox.reservation.vo.MovieReservationVO;
+import com.cbox.reservation.vo.mvFindDateVO;
 
 public class MovieReservationDAO extends DAO {
 
@@ -17,8 +18,11 @@ public class MovieReservationDAO extends DAO {
 	private ResultSet rs;
 
 	private MovieVO vo;
+	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
-
+private final String SELECT_M_DATE = "select distinct(tt_scr_date), mv_num\r\n" + 
+									 "from timetable\r\n" + 
+									 "where mv_num = ?";
 private final String SELECT_ALL = "SELECT * FROM MOVIE";
 private final String SELECT_ALL_TIME_DATE_MOVIE = 
 		"select m.mv_title \"영화명\", tt.tt_scr_date \"상영일\", tt.tt_start \"상영시작시간\", th.th_name \"상영관\", th.th_max \"총좌석\" ,(th.th_max-count(*)) \"잔여좌석\"\r\n" + 
@@ -28,6 +32,25 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
+	public List<mvFindDateVO> selectMvDate(mvFindDateVO vo) { //id에 맞는 영화 상영일 찾아오기
+		List<mvFindDateVO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(SELECT_M_DATE);
+			psmt.setInt(1, vo.getId());
+			rs = psmt.executeQuery();
+			while(rs.next()) {//조회한 결과가 있는건수만큼 돌릴꺼임
+				mfvo = new mvFindDateVO();
+					mfvo.setTt_scr_date(rs.getString("tt_scr_date"));
+					mfvo.setId(rs.getInt("mv_num"));
+					list.add(mfvo);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	} // end selectMvDate
+
 	public List<MovieVO> selectAll(){ //Moive 전체 조회
 		List<MovieVO> list = new ArrayList<>();
 		
@@ -63,7 +86,7 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		
 	}
 	
-	public List<MovieReservationVO> RselectAll(){
+	public List<MovieReservationVO> RselectAll(){ //예매하기 시간 관련 정보 출력
 		List<MovieReservationVO> Rlist = new ArrayList<>();
 		
 		try {
@@ -103,5 +126,7 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 			e.printStackTrace();
 		}
 	}
+
+	
 
 }
