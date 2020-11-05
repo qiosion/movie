@@ -12,11 +12,15 @@
 
 	function movieDelete() {
 		$("#confirmDel").on("click", function() {
+			var delnum = '${vo.mvNum}';
 			console.log("movieDelete");
 			$.ajax({
-				url : "/ajax/mvDelete.do?mvNum="+${vo.mvNum},
+				url : "ajax/mvDelete.do",
+				data : {
+					mvNum : delnum
+				},
 				dataType : 'json',
-				method: 'post',
+				method : 'post',
 				success : function(xhr) {
 					alert("삭제 성공");
 					location.href = "mvList.do";
@@ -43,7 +47,11 @@
 				success : function(response) {
 					// 목록으로 이동
 					alert("수정 성공");
-					location.href = "mvUpdateForm.do?seq=" + ${vo.mvNum};
+					location.href = "mvUpdateForm.do?seq=" + $
+					{
+						vo.mvNum
+					}
+					;
 				},
 				error : function(xhr, status, message) {
 					alert("status : " + status + " error : " + message);

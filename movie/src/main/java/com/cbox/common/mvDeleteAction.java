@@ -19,13 +19,13 @@ public class mvDeleteAction implements Action {
 		System.out.println("삭제할 번호 : " + request.getParameter("mvNum"));
 		vo.setMvNum(Integer.parseInt(request.getParameter("mvNum")));
 		dao.movieDelete(vo);
-		
+
 		try {
-			response.sendRedirect("mvList.do");
+			response.getWriter().print("{\"result\":true}");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
 
