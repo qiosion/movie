@@ -24,6 +24,7 @@
 			//$("#test01 li.day")[0].style="color: red";
 			
 			//$(this).attr("title"); //영화 id
+			var paramid = $(this).attr("title");
 			var param_id = {m_id: $(this).attr("title")};
 			console.log($("#test01 li").attr("date"));
 			
@@ -80,13 +81,24 @@
 				$(this).css("background-color", "black");
 				$(this).children().css("color","white");
 				//console.log($(this).parent().data("date")) -- 클릭한 년월일
-				var param_idDate = {m_id: param_id, m_date:$(this).parent().data("date")}; //영화 id값 받아오는거.
+				var cDate = $(this).parent().data("date")+""; //cDate - 클릭한 년월일., replace할려면 문자열이여야함
+				if(cDate.length != 8){
+					cDate = cDate.replace(/(.{6})/g,"$10");
+				}else{
+					cDate =cDate;
+				}
+				console.log(cDate);
+				var param_idDate = {m_id: paramid, m_date:cDate}; //영화 id값 받아오는거.
+				console.log(param_idDate);
+				
 				$.ajax({
 					url:"${pageContext.request.contextPath}/ajax/mvFindTime.do", //data보낼 주소
 					type:"get", //전송방식
 					data:param_idDate, //보낼 data
 					dataType: "json", //요청한 데이터를 받을 형식
-					success : alert("성공");
+					success : function(data){
+						alert("성공");
+					},
 					error : function(xhr, status){
 						alert("오류");
 					}
