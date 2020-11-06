@@ -40,7 +40,6 @@
 			var data = new FormData(form);
 
 			// 빈칸 체크
-			console.log("mvDir : " + $("#mvDir").val());
 			if (!$("#mvDir").val()) {
 				alert("감독명을 입력해주세요");
 				//$('#mvUptPop').modal('hide');
@@ -53,11 +52,6 @@
 			}
 			if (!$("#findate").val()) {
 				alert("종료일을 선택 해주세요");
-				//$('#mvUptPop').modal('hide');
-				return false;				
-			}
-			if (!$("#mvPost").val()) {
-				alert("포스터 이미지를 첨부 해주세요.");
 				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
@@ -149,22 +143,21 @@
 					<table class="table">
 						<tbody>
 							<tr style="line-height: 32px; text-align: center;">
-								<td style="width: 50px;">포스터 이미지&nbsp;<span
-									style="color: red;">*</span></td>
+								<td style="width: 50px;">포스터 이미지</td>
 								<td style="margin-right: 5px; width: 50px;">
-								<input type="hidden" name="prevPost" value="${vo.mvPost}">
+								<input type="hidden" name="prevPost" id="prevPost" value="${vo.mvPost}">
 								<input
 									type="file" id="mvPost" name="mvPost" style="width: 50px;"></td>
 								<td style="width: 50px;">스틸컷</td>
 								<td style="width: 50px;">
-								<input type="hidden" name="prevImg" value="${vo.mvImg}">
+								<input type="hidden" name="prevImg" id="prevImg" value="${vo.mvImg}">
 								<input type="file" id="mvImg"
 									name="mvImg" style="width: 50px;"></td>
 							</tr>
 							<tr style="float: center; text-align: center;">
 								<td>티저 영상</td>
 								<td>
-								<input type="hidden" name="prevTeaser" value="${vo.mvTeaser}">
+								<input type="hidden" name="prevTeaser" id="prevTeaser" value="${vo.mvTeaser}">
 								<input type="file" id="mvTeaser" name="mvTeaser"
 									style="width: 50px;"></td>
 								<td colspan="2"></td>

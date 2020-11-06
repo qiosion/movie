@@ -232,7 +232,6 @@ public class MovieDAO extends DAO {
 	}
 
 	public MovieVO getMovieDetail(MovieVO vo) {
-		System.out.println("detail : " + vo.getMvNum());
 		try {
 			psmt = conn.prepareStatement(DETAIL);
 			psmt.setInt(1, vo.getMvNum());
@@ -250,7 +249,6 @@ public class MovieDAO extends DAO {
 				vo.setMvType(rs.getString("mv_type"));
 				vo.setMvCont(rs.getString("mv_cont"));
 				vo.setMvPost(rs.getString("mv_post"));
-				System.out.println("post : " + rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
 				vo.setMvRank(rs.getInt("mv_rank"));

@@ -15,10 +15,16 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
-					href="${pageContext.request.contextPath}/mvList.do">영화관리
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" onfocus="blur()">영화 관리</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" onfocus="blur()"
+							href="${pageContext.request.contextPath}/mvList.do">영화관리</a>
+						<a class="dropdown-item" onfocus="blur()"
+							href="${pageContext.request.contextPath}/screenMvForm.do">상영 영화 관리</a>
+					</div></li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
 					href="${pageContext.request.contextPath}/memberList.do">회원관리
 						<span class="sr-only">(current)</span>

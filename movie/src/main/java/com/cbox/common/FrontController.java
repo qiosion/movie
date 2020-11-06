@@ -41,6 +41,7 @@ import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
 import com.cbox.movie.command.mvUpdateAction;
 import com.cbox.movie.command.mvUpdateFormAction;
+import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.mvFindDateAction;
 
@@ -72,6 +73,9 @@ public class FrontController extends HttpServlet {
 		map.put("/mvUpdateForm.do", new mvUpdateFormAction());
 		map.put("/ajax/mvUpdate.do", new mvUpdateAction());
 		map.put("/ajax/mvDelete.do", new mvDeleteAction());
+		
+		// 상영 영화
+		map.put("/screenMvForm.do", new screenMvFormAction());
 		
 //		map.put("/mvDetail.do", new mvDetailAction());
 		
