@@ -28,6 +28,7 @@
 #bList{
             text-align :center;
         }
+        
 <!--공지사항/이벤트 !-->
 .tit-evt{
 	position: relative;
@@ -52,3 +53,4 @@
 	bordercolor:lightgray;
 	align:center;
 }
+

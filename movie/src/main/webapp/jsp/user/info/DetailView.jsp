@@ -5,6 +5,7 @@
 <head>
 <title>게시판 - 글쓰기</title>
 <link rel="stylesheet" href="css/info.css">
+<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script>
 function listFrm(){
 	location.href="infoList.do";
@@ -17,46 +18,72 @@ function updateFrm(){
 }
 	
 </script>
+<style>
+.table > tbody > tr > td{
+ 	font-color: #666666;
+ 	font-size:large;
+ 	font-weight:normal;
+ 	border-bottom: 1px solid black;
+ 	border-left-color: black;
+ 	
+ }
+.table > tbody > tr > #title{
+	width: 150px;
+	font-weight:bold;
+
+}
+.table > tbody > tr > #cont{
+	height:500px;
+}
+.table{
+	border-color: black;
+	
+}
+
+
+</style>
 </head>
 <body>
+
 <div class="tit-heading-wrap tit-evt">
-<h3>내용</h3>
+	<h3>내용</h3>
 </div> 
 <br>
-		<table border="1" width="1000" border="3" bordercolor="black" align="center">
+
+<div id="container">
+		<table class="table table-bordered">
+			<tbody>
 			<tr>
-				<td id="title" name=" info_Num">공지번호</td>
+				<td id="title">공지번호</td>
 				<td>${vo.info_Num}</td>
 			</tr>
 			<tr>
-				<td id="title" name=" info_Title">제목</td>
+				<td id="title">제목</td>
 				<td>${vo.info_Title}</td>
 			</tr>
 			<tr>
-				<td id="title" name=" info_Date">날짜</td>
+				<td id="title">날짜</td>
 				<td>${vo.info_Date}</td>
 			</tr>
 			<tr>
-				<td id="title" name=" info_Category">카테고리</td>
+				<td id="title">카테고리</td>
 				<td>${vo.info_Category}</td>
 				
 			</tr>
 			<tr>
-				<td id="title" name=" info_Cont">내 용</td>
-				<td>${vo.info_Cont}
-				</td>
+				<td id="title">내 용</td>
+				<td id="cont">${vo.info_Cont}</td>
 			</tr>
-
-			<tr align="center" valign="middle">
-				<td colspan="5">
+			</tbody>
+		</table>
+		<div align="center">
 				<c:if test="${mbr_author eq 'admin'}">
 				<input type ="button" value="수정" onclick = "updateFrm()">
 	 			<input type ="button" value="삭제" onclick ="deleteFrm()">
 	 			</c:if>
 				<input type="button" value="목록" onclick="listFrm()">
-				</td>
-			</tr>
-		</table>
+		</div>
+	</div>
 
 </body>
 </html>

@@ -48,19 +48,15 @@ function listFrm(){
 				<td><textarea name="info_Cont" cols="68" rows="20">
                    ${vo.info_Cont}
                 </textarea> 
-				</td>
-				
-
-				
-			</tr>
-
-			<tr align="center" valign="middle">
-				<td colspan="5">
-				<input type ="submit" value="수정">
-				<input type="button" value="목록" onclick="listFrm()">
-				</td>
+				</td>			
 			</tr>
 		</table>
+		<div align="center" valign="middle">
+				<td colspan="5">
+				<button type="submit">수정</button>
+				<input type="button" value="목록" onclick="listFrm()">
+				</td>
+			</div>
 		</form>
 
 </body>

@@ -70,16 +70,12 @@
 				<td><textarea name="info_Cont" cols="70" rows="10"></textarea>
 				</td>
 			</tr>
-
-			<tr>
-				<td align="center" colspan="3">
+			</table>
+		<div align="center" colspan="3">
 				<input type="reset" value="내용지우기"> 
 				<button type="submit" onclick="return addFrm()">등록</button>
 				<input type="button" value="작성취소" onclick="listFrm()">
-				</td>
-			</tr>
-			
-		</table>
+		</div>
 	</form>
 
 </body>
