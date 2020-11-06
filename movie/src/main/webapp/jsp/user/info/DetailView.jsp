@@ -11,7 +11,9 @@ function listFrm(){
 	location.href="infoList.do";
 }
 function deleteFrm(){
+	
 	location.href="infoDelete.do?info_Num=${vo.info_Num}";
+	
 }
 function updateFrm(){
 	location.href="infoUpdateForm.do?info_Num=${vo.info_Num}";
@@ -38,6 +40,19 @@ function updateFrm(){
 .table{
 	border-color: black;
 	
+}
+#btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  width:50px;
+  height:30px;
+  border-radius:10%;
+}
+
+#btn:hover {
+  background-color: #555555;
+  color: white;
 }
 
 
@@ -78,10 +93,10 @@ function updateFrm(){
 		</table>
 		<div align="center">
 				<c:if test="${mbr_author eq 'admin'}">
-				<input type ="button" value="수정" onclick = "updateFrm()">
-	 			<input type ="button" value="삭제" onclick ="deleteFrm()">
+				<button id="btn" type="submit" onclick = "updateFrm()">수정</button>
+	 			<button id="btn" type="submit" onclick ="deleteFrm()">삭제</button>
 	 			</c:if>
-				<input type="button" value="목록" onclick="listFrm()">
+				<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>
 	</div>
 

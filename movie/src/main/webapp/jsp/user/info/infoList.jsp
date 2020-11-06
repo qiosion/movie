@@ -48,6 +48,20 @@
  	text-align: center;
  	
  }
+ 
+ #btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  width:50px;
+  height:30px;
+  border-radius:10%;
+}
+
+#btn:hover {
+  background-color: #555555;
+  color: white;
+}
 
 
  </style>
@@ -59,18 +73,6 @@
 <br>
  
 <div id="container">
-	<div align="right">
-        <form id="searchFrm" name="searchFrm">
-            <select name="opt">
-                <option value="제목">제목</option>
-                <option value="내용">내용</option>
-                <option value="제목+내용">제목+내용</option>
-            </select>
-            <input type="hidden" name="p">
-            <input type="text" size="20" />&nbsp;
-            <input name ="info_Title" type="submit" value="검색"/>
-        </form>    
-    </div>
     <br/>
     <div  align="center">
         <table class="table table-hover">
@@ -87,7 +89,7 @@
             	<c:forEach var="info" items="${infoList}"> 
             	<tr>
                 	<td>${info.info_Num}</td>
-                	<td id="td1"><a href="DetailView.do?info_Num=${info.info_Num}" target="_blank">${info.info_Title}</a></td>
+                	<td id="td1"><a href="DetailView.do?info_Num=${info.info_Num}">${info.info_Title}</a></td>
                 	<td>${info.info_Category}</td>
                 	<td>${info.info_Date}</td>
                 	<td>${info.info_Chk}</td>
@@ -98,7 +100,7 @@
     </div>
    <c:if test="${mbr_author eq 'admin'}">
 	 <div align="right" id="topForm">
-         <input type="button" value="글등록" onclick="writeForm()">
+         <button id="btn" type="submit" onclick="writeForm()">글등록</button>
     </div>
     </c:if>
    

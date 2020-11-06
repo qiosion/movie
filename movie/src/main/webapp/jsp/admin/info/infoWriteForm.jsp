@@ -12,11 +12,7 @@
 	}
 	function addFrm(){
 		var ad = document.frm;
-		if(ad.info_Num.value == ""){
-			alert("공지번호를 입력하세요");
-			ad.info_Num.focus();
-			return false;
-		}
+		
 		if(ad.info_Title.value == ""){
 			alert("제목을 입력하세요");
 			ad.info_Title.focus();
@@ -27,11 +23,6 @@
 			ad.info_Date.focus();
 			return false;
 		}
-		if(ad.info_Category.value == ""){
-			alert("카테고리를 선택하세요");
-			ad.info_Category.focus();
-			return false;
-		}
 		if(ad.info_Cont.value == ""){
 			alert("내용을 입력하세요");
 			ad.info_Cont.focus();
@@ -40,14 +31,24 @@
 		return true;
 	}
 </script>
+<style>
+#btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  width:50px;
+  height:30px;
+  border-radius:10%;
+}
+
+#btn:hover {
+  background-color: #555555;
+  color: white;
+</style>
 </head>
 <body>
 	<form name="frm" id="frm" method="post" action="infoInsert.do"  >
 		<table width="700" border="3" bordercolor="lightgray" align="center">
-			<tr>
-				<td id="title">공지번호</td>
-				<td><input name="info_Num" type="text" value=""></td>
-			</tr>
 			<tr>
 				<td id="title">제목</td>
 				<td><input name="info_Title" type="text" size="70"
@@ -72,9 +73,9 @@
 			</tr>
 			</table>
 		<div align="center" colspan="3">
-				<input type="reset" value="내용지우기"> 
-				<button type="submit" onclick="return addFrm()">등록</button>
-				<input type="button" value="작성취소" onclick="listFrm()">
+				<button id="btn" type="reset">내용삭제</button> 
+				<button id="btn" type="submit" onclick="return addFrm()">등록</button>
+				<button id="btn" type="submit" onclick="listFrm()">작성취소</button>
 		</div>
 	</form>
 

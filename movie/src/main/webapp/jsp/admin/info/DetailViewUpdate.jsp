@@ -11,6 +11,21 @@ function listFrm(){
 
 	
 </script>
+<style>
+#btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  width:50px;
+  height:30px;
+  border-radius:10%;
+}
+
+#btn:hover {
+  background-color: #555555;
+  color: white;
+}
+</style>
 </head>
 <body>
 <div class="tit-heading-wrap tit-evt">
@@ -31,7 +46,7 @@ function listFrm(){
 			</tr>
 			<tr>
 				<td id="title">날짜</td>
-				<td><input name="info_Date" type="text" size="70" maxlength="100" 
+				<td><input name="info_Date" type="date" size="70" maxlength="100" 
                     value="${vo.info_Date}">
                 </td>
 			</tr>
@@ -51,11 +66,9 @@ function listFrm(){
 				</td>			
 			</tr>
 		</table>
-		<div align="center" valign="middle">
-				<td colspan="5">
-				<button type="submit">수정</button>
-				<input type="button" value="목록" onclick="listFrm()">
-				</td>
+		<div align="center">
+				<button id="btn" type="submit">수정</button>
+				<button id="btn" type="submit" onclick="listFrm()">목록</button>
 			</div>
 		</form>
 

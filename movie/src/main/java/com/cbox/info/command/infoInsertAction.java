@@ -18,7 +18,7 @@ public class infoInsertAction implements Action {
 		infoDAO dao = new infoDAO();
 		infoVO vo = new infoVO();
 		
-		vo.setInfo_Num(Integer.valueOf(request.getParameter("info_Num")));
+		
 		vo.setInfo_Title(request.getParameter("info_Title"));
 		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
 		vo.setInfo_Category(request.getParameter("info_Category"));
