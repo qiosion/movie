@@ -18,8 +18,8 @@
 				$("#mvCont").val(chk.parent().children('#mvCont').text());
 				$("#mvAge").val(chk.parent().children('#mvAge').text());
 				$("#mvType").val(chk.parent().children('#mvType').text());
-				$("#mvCha").val(chk.parent().children('#mvCha').text());
-				
+				//$("#mvCha").val(chk.parent().children('#mvCha').text());
+
 				var strdate = chk.parent().children('#strdate').text();
 				console.log("?? " + strdate);
 				var yyyy = strdate.substring(0, 4);
@@ -30,6 +30,7 @@
 				$("#searchPopup").modal("hide"); //닫기 
 				//$("#strdate").val(chk.parent().children('#strdate').text());
 			}
+			// 팝업 닫기
 		});
 
 		movieInsert();
@@ -37,6 +38,8 @@
 
 	function clearSearch() {
 		$("#keyword").val("");
+		$("#list").empty();
+		$("#result").empty();
 	}
 
 	function formCheck() {
@@ -125,14 +128,15 @@
 						var audit = $(movie_data).find("audit");
 						for (var i = 0; i < 1; i++) {
 							str = str + "<p name='mvAge' id='mvAge'>"
-									+ audit.find("watchGradeNm").text() + "</p>";
+									+ audit.find("watchGradeNm").text()
+									+ "</p>";
 						}
-						
-						var actor = $(movie_data).find("actor");
-						for(var i = 0;i<5; i++) {
+
+						/* var actor = $(movie_data).find("actor");
+						for(var i = 0;i<1; i++) {
 							str = str + "<p name='mvCha' id='mvCha'>"
-							+ audit.find("peopleNm").text() + "</p>";
-						}
+							+ actor.find("peopleNm").text() + "</p>";
+						} */
 
 						$(movie_data).find("genre").each(
 								function() {
@@ -156,6 +160,32 @@
 			var data = new FormData(form);
 
 			// 빈칸 체크
+			console.log("mvDir : " + $("#mvDir").val());
+			if (!$("#mvTitle").val()) {
+				alert("제목을 입력해주세요");
+				//$('#mvUptPop').modal('hide');
+				return false;				
+			}
+			if (!$("#mvDir").val()) {
+				alert("감독명을 입력해주세요");
+				//$('#mvUptPop').modal('hide');
+				return false;				
+			}
+			if (!$("#strdate").val()) {
+				alert("개봉일을 선택 해주세요");
+				//$('#mvUptPop').modal('hide');
+				return false;				
+			}
+			if (!$("#findate").val()) {
+				alert("종료일을 선택 해주세요");
+				//$('#mvUptPop').modal('hide');
+				return false;				
+			}
+			if (!$("#mvPost").val()) {
+				alert("포스터 이미지를 첨부 해주세요.");
+				//$('#mvUptPop').modal('hide');
+				return false;				
+			}
 
 			console.log("movieInsert");
 
@@ -189,7 +219,7 @@
 						class="fas fa-square"></i>영화 등록
 					</span>
 					<button type="button" id="searchBtn" data-toggle="modal"
-						data-target="#searchPopup">검색</button>
+						data-target="#searchPopup" onclick="clearSearch()">검색</button>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -274,23 +304,23 @@
 	<div class="text-center mt-3">
 		<button type="button" id="regiBtn" style="margin-right: 30px;"
 			class="btn btn-success">등록</button>
-		<button type="button" class="btn btn-danger"
-			onclick="location.href='mvList.do'">취소</button>
+		<button type="button" class="btn btn-danger" id="cancelBtn" data-toggle="modal" data-target="#mvCancelPop">취소</button>
 	</div>
 
 	<!-- 팝업창 -->
-	<div class="modal" id="searchPopup">
+	<div class="modal" id="searchPopup" data-backdrop="static">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 
 				<!-- Modal Header -->
 				<div class="modal-header">
 					<h1 class="modal-title">영화 검색</h1>
-					<button type="button" class="close" data-dismiss="modal">×</button>
+					<button type="button" class="close" onclick="clearSearch()"
+						data-dismiss="modal">×</button>
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body">
+				<div class="modal-body" style="text-align: center;">
 					<div id="search">
 						<input type="text" name="keyword" id="keyword"
 							placeholder="영화 제목을 입력하세요">
@@ -302,13 +332,37 @@
 				</div>
 
 				<!-- Modal footer -->
-				<div class="modal-footer">
+				<div style="text-align: center; margin: 10px;">
 					<button type="button" name="export" id="export"
-						class="btn btn-success">확인</button>
+						class="btn btn-success" data-dismiss="modal">확인</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="clearSearch()">취소</button>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal" id="mvCancelPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
 
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">등록 취소</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form id="frm" name="frm">
+						<p style="text-align: center; margin: 10px; font-size: 20px;">등록을 취소하시겠습니까?</p>
+						<div style="text-align: center;">
+							<button type="button" style="margin-right: 5px;"
+								name="confirmDel" class="btn btn-success" onclick="location.href='mvList.do'">확인</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>

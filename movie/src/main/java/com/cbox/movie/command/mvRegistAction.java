@@ -53,6 +53,7 @@ public class mvRegistAction implements Action {
 				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
 				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
 				part.write(renameFile.getAbsolutePath()); // 절대경로
+				System.out.println("절대경로 : "+renameFile.getAbsolutePath());
 
 				vo.setMvPost(renameFile.getName());
 			}

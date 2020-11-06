@@ -34,8 +34,9 @@ public class mvUpdateAction implements Action {
 		vo.setMvSum(request.getParameter("mvSum"));
 		vo.setMvCont(request.getParameter("mvCont"));
 
-		String addPath = request.getServletContext().getRealPath("/images");
 
+		// 아...... 이전이미지는 있는데 새로 등록된 이미지가 없을 경우에는 그 이전 이미지를 그대로 저장하도록 해야함
+		String addPath = request.getServletContext().getRealPath("/images");
 		// 포스터 : 단일
 		try {
 			Part part = request.getPart("mvPost");
