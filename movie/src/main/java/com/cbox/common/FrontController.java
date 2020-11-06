@@ -41,6 +41,7 @@ import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
 import com.cbox.movie.command.mvUpdateAction;
 import com.cbox.movie.command.mvUpdateFormAction;
+import com.cbox.movie.command.scMvListAction;
 import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.mvFindDateAction;
@@ -65,29 +66,22 @@ public class FrontController extends HttpServlet {
 		map.put("/movieExpectList.do", new movieExpectListAction());
 		map.put("/movieChartList.do", new movieChartListAction());
 		map.put("/movieDetail.do", new movieDetailAction());
-		
+
 		// admin
 		map.put("/mvList.do", new mvListAction());
 		map.put("/mvRegistForm.do", new mvRegistFormAction());
 		map.put("/ajax/mvRegist.do", new mvRegistAction());
-		
+
 		map.put("/mvUpdateForm.do", new mvUpdateFormAction());
 		map.put("/ajax/mvUpdate.do", new mvUpdateAction());
 		map.put("/ajax/mvDelete.do", new mvDeleteAction());
-		
+
 		// 상영 영화
 		map.put("/screenMvForm.do", new screenMvFormAction());
-		
-//		map.put("/mvDetail.do", new mvDetailAction());
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		map.put("/ajax/screenMvList.do", new scMvListAction());
+
+//				map.put("/mvDetail.do", new mvDetailAction());
+
 		// 은선
 		map.put("/login.do", new loginAction()); // 로그인 결과
 		map.put("/loginForm.do", new loginForm()); // 로그인 화면
@@ -101,34 +95,22 @@ public class FrontController extends HttpServlet {
 		map.put("/memDel.do", new memDelAction()); // admin 회원탈퇴
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 
-		
-		
-		
-		
 		// 광희
-		map.put("/reservation/reservationForm.do", new ReservationForm()); //예매하기 Form
-		//ajax
-		map.put("/ajax/mvFindDate.do", new mvFindDateAction()); //영화 id값에 맞는 날짜 찾아오기.
-		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); //영화 id와 date에 맞는 상영시간 찾아오기.
-		//map.put("/ajax/movieImage.do", new MovieImage()); //mv image 갖고오기
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		map.put("/reservation/reservationForm.do", new ReservationForm()); // 예매하기 Form
+		// ajax
+		map.put("/ajax/mvFindDate.do", new mvFindDateAction()); // 영화 id값에 맞는 날짜 찾아오기.
+		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); // 영화 id와 date에 맞는 상영시간 찾아오기.
+		// map.put("/ajax/movieImage.do", new MovieImage()); //mv image 갖고오기
+
 		// 재훈
-		
-		map.put("/infoList.do", new infoListAction()); //게시판 전체목록 불러오기
-		map.put("/DetailView.do", new DetailViewAction());//제목 클릭시 상세페이지
-		map.put("/infoInsert.do", new infoInsertAction());//db에값추가
-		map.put("/infoWriteForm.do", new infoWriteFormAction());//글작성페이지 보기
-		map.put("/infoDelete.do", new infoDeleteAction());//글삭제
-		map.put("/infoUpdate.do", new infoUpdateAction());//글수정
-		map.put("/infoUpdateForm.do", new infoUpdateFormAction());//글수정페이지로 이동
+
+		map.put("/infoList.do", new infoListAction()); // 게시판 전체목록 불러오기
+		map.put("/DetailView.do", new DetailViewAction());// 제목 클릭시 상세페이지
+		map.put("/infoInsert.do", new infoInsertAction());// db에값추가
+		map.put("/infoWriteForm.do", new infoWriteFormAction());// 글작성페이지 보기
+		map.put("/infoDelete.do", new infoDeleteAction());// 글삭제
+		map.put("/infoUpdate.do", new infoUpdateAction());// 글수정
+		map.put("/infoUpdateForm.do", new infoUpdateFormAction());// 글수정페이지로 이동
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -147,7 +129,7 @@ public class FrontController extends HttpServlet {
 
 		// 내가 요청(request)하는 객체 그대로 전달
 		// viewPage : 내 요청 객체를 전달해줄 페이지
-		if(viewPage != null) {
+		if (viewPage != null) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage); // 선택된 페이지로 가기
 			dispatcher.forward(request, response); // 페이지 return 시켜줌(forward)
 		}

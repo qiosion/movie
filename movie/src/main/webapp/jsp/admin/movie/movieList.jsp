@@ -44,7 +44,7 @@
 		<a href="mvRegistForm.do" class="registBtn">등록</a>
 		<mv:searchMv returnPage="mvList.do" />
 	</div>
-	<div id="mvList">
+	<div id="mvList" align="center">
 		<table border="1">
 			<tr>
 				<th width="50">번호</th>
