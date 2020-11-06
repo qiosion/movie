@@ -44,6 +44,7 @@ import com.cbox.movie.command.mvUpdateFormAction;
 import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.mvFindDateAction;
+import com.cbox.reservation.command.mvFindTimeAction;
 
 @MultipartConfig
 @WebServlet("*.do")
@@ -108,6 +109,7 @@ public class FrontController extends HttpServlet {
 		map.put("/reservation/reservationForm.do", new ReservationForm()); //예매하기 Form
 		//ajax
 		map.put("/ajax/mvFindDate.do", new mvFindDateAction()); //영화 id값에 맞는 날짜 찾아오기.
+		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); //영화 id와 date에 맞는 상영시간 찾아오기.
 		//map.put("/ajax/movieImage.do", new MovieImage()); //mv image 갖고오기
 		
 		

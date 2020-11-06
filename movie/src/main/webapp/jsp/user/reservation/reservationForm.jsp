@@ -21,36 +21,80 @@
 			$("#test00 .text").css("color","");			
 			$(this).css("background-color", "black");
 			$(this).children(".text").css("color","white");
-			
+			//$("#test01 li.day")[0].style="color: red";
 			
 			//$(this).attr("title"); //영화 id
 			var param_id = {m_id: $(this).attr("title")};
 			console.log($("#test01 li").attr("date"));
 			
-			$.ajax({
+			$.ajax({ //뭘받아오냐? 영화 id값에 해당하는 모든 해당상영일을 받아오는 ajax
 				url:"${pageContext.request.contextPath}/ajax/mvFindDate.do", //data보낼 주소
 				type:"get", //전송방식
 				data:param_id, //보낼 data
 				dataType: "json", //요청한 데이터를 받을 형식
-				success : function(data){ //data에 결과값받아옴
+				success : mvFindDate,
+					//function(data){ //data에 결과값받아옴
 					//전송에 성공하면 실행될 코드
 					//alert(data[0].tt_scr_date);
 					
-				},
+				//},
 				error : function(xhr, status){
 					alert("오류");
 				}
-			})
+			}); //end ajax
+			function mvFindDate(data){//start mvFindate
+				$("li.day span").css("color","#A9A9A9"); //누를때마다 초기화 
+				var test;
+				$.each(data,function(idx,items){
+					var mvDate = items.tt_scr_date;
+					
+					//console.log(mvDate);
+					var list= $("#test01 li.day");
+					for(var i=0; i<list.length; i++){//브라우저의 li목록에 있는 날짜 다출력
+						//$("#test01 li.day")[i].children[0].children[0].style="color:#A9A9A9"
+						//$("#test01 li.day")[i].children[0].children[1].style="color:#A9A9A9"
+						var date = $(list[i]).data("date") +"";
+					//	console.log("li날짜 : " +date)
+						if(date.length != 8){
+							date = parseInt(date.replace(/(.{6})/g,"$10"));
+						}else{
+							date =date;
+						}
+						//	console.log("바뀐날짜 : " +date)
+						//mvDate - DB에서 가지고온 영화의 상영일, date = 브라우저에 뿌려진 현재 월의 날짜
+						if(mvDate == date) { //DB에서 갖고온 해당영화의 상영일과 , 브라우저에서 갖고온 날짜와 비교해서 같지않으면, 해당textcolor회색처리
+							$(list[i]).find("span").css("color","black"); //누를때마다 초기화
+							break;
+						}
+						
+						
+					}// end for
+					
+				});//end each
+			}//end funtion mvFindate
 			
 			
 			$("#test01 a").on("click", function(){
 				$("#test01 a").css("background-color","");
-				$("#test01 span").css("color","");
+				//$("#test01 span").css("color","");
 				$(this).css("background-color", "black");
 				$(this).children().css("color","white");
-				
-				
+				//console.log($(this).parent().data("date")) -- 클릭한 년월일
+				var param_idDate = {m_id: param_id, m_date:$(this).parent().data("date")}; //영화 id값 받아오는거.
+				$.ajax({
+					url:"${pageContext.request.contextPath}/ajax/mvFindTime.do", //data보낼 주소
+					type:"get", //전송방식
+					data:param_idDate, //보낼 data
+					dataType: "json", //요청한 데이터를 받을 형식
+					success : alert("성공");
+					error : function(xhr, status){
+						alert("오류");
+					}
+				});
 				$("#test02 .theater").css("display","block");
+				
+				
+				
 			});
 			
 			//$(".info.movie .placeholder").css("display","none");
@@ -58,7 +102,7 @@
 			//ajax사용
 			//해당 영화에 맞는 이미지 불러오기
 			//var param = {userid: userid.value};
-			var param = {m_title: $(this).children(".text").text()};
+			//var param = {m_title: $(this).children(".text").text()};
 			
 			/*$.ajax({
 				url:"${pageContext.request.contextPath}/ajax/movieImage.do",
@@ -78,7 +122,7 @@
 			
 			
 				   
-		});
+		}); //end #test00 a
 	});
 </script>
 
@@ -195,9 +239,12 @@
 											-->
 											<c:forEach var="item" begin="<%=nowDay%>"
 												end="<%=nowLastDay%>" step="1">
-												<li data-index="1" date=<%=cDate %>${item } class="day"><a
-													href="#" onclick="return false;"><span class="dayweek"><%=weekDay[num++ % 7]%></span><span
-														class="day">${item }</span><span class="sreader"></span></a></li>
+												<li id="d${item}" data-date=<%=cDate %>${item } class="day">
+												   <a href="#" onclick="return false;">
+												    <span class="dayweek" ><%=weekDay[num++ % 7]%></span>
+													<span class="day">${item }</span>
+													<span class="sreader"></span></a>
+													</li>
 
 											</c:forEach>
 
