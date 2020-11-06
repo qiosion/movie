@@ -24,6 +24,7 @@ public class MemberDAO extends DAO{
 			+ "SELECT * FROM MEMBER ORDER BY MBR_NO ) A ) B WHERE RN BETWEEN ? AND ?";
 	private final String INSERT = "INSERT INTO MEMBER(MBR_NO, MBR_ID, MBR_PW, MBR_NM, MBR_BIRTH, MBR_EMAIL, MBR_PHONE, MBR_E_YN)"
 								+ "VALUES (MBR_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
+	private final String IDCHK = "SELECT COUNT(MBR_ID) AS CNT FROM MEMBER WHERE MBR_ID = ?";
 	private final String UPDATE = "UPDATE MEMBER SET MBR_PW = ?, MBR_EMAIL = ?, MBR_PHONE = ?, MBR_E_YN = ? WHERE MBR_ID = ?";
 	private final String DELETE = "DELETE FROM MEMBER WHERE MBR_ID = ?";
 	
@@ -210,6 +211,7 @@ public class MemberDAO extends DAO{
 		}
 		return cnt;
 	} 
+	
 	public int insert(MemberVO vo) {
 		int n = 0;
 		try {
@@ -229,6 +231,7 @@ public class MemberDAO extends DAO{
 		}
 		return n;
 	}
+	
 	public int update(MemberVO vo) {
 		int n = 0;
 		try {
@@ -246,6 +249,7 @@ public class MemberDAO extends DAO{
 		}
 		return n;
 	}
+	
 	public int delete(MemberVO vo) {
 		int n = 0;
 		try {
@@ -260,7 +264,23 @@ public class MemberDAO extends DAO{
 		}
 		return n;
 	}
-
+	
+	public int idC(String id) {
+		int cnt = 0;
+		try {
+			pstmt = conn.prepareStatement(IDCHK);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+		} catch (Exception e) {
+			System.out.println("아이디 중복확인 실패");
+			e.printStackTrace();
+		}
+		return cnt;
+	}
+	
 	private void close() { // 커넥션 끊어주는 close()메소드
 		try {
 			if(rs != null) rs.close();

@@ -13,6 +13,10 @@
 			f.mbr_id.focus();
 			return false;
 		}
+		if(f.idUncheck.value != "idCheck"){
+			alert ("아이디 중복체크를 해주세요");
+			return false;
+		}
 		if(f.mbr_pw.value == "") {
 			alert ("비밀번호를 입력하세요");
 			f.mbr_pw.focus();
@@ -28,12 +32,20 @@
 			f.mbr_birth.focus();
 			return false;
 		}
+		if(isNaN(f.mbr_phone.value)) {
+			alert ("전화번호는 숫자만 입력가능합니다");
+			f.mbr_phone.focus();
+			return false;
+		}
 		if(f.mbr_phone.value == "") {
 			alert ("전화번호를 입력하세요");
 			f.mbr_phone.focus();
 			return false;
 		}
 	return true;
+	}
+	function IdCheck() {
+		window.open("jsp/user/member/idChkForm.jsp","idchk","width=400, height=350");
 	}
 </script>
 </head>
@@ -43,7 +55,7 @@
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
     		<input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디">
-    		<input type="button" id="idchk" value="중복확인">
+    		<input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck()">
   		</div>
 		<div class="form-group">
     		<label for="mbr_pw">비밀번호</label>
