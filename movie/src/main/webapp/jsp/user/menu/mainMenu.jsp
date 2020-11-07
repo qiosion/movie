@@ -29,6 +29,7 @@
 							오피스</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="${pageContext.request.contextPath}/mvList.do" onfocus="blur()">관리자 영화 목록</a>
+						<a class="dropdown-item" href="${pageContext.request.contextPath}/screenMvForm.do" onfocus="blur()">상영 영화 관리</a>
 					</div></li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
 					href="${pageContext.request.contextPath}/reservation/reservationForm.do">예매하기

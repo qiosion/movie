@@ -19,7 +19,6 @@ public class screenMvFormAction implements Action {
 		List<MovieVO> mvList = new ArrayList<MovieVO>();
 		ScreenMvDAO dao = new ScreenMvDAO();
 		
-		System.out.println("screenMvFormAction");
 		mvList = dao.selectIng();
 		request.setAttribute("mvList", mvList);
 		

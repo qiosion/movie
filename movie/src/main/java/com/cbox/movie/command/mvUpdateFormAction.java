@@ -11,7 +11,6 @@ public class mvUpdateFormAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("mvUpdateAction");
 		MovieDAO dao = new MovieDAO();
 		MovieVO vo = new MovieVO();
 		String seq = request.getParameter("seq");

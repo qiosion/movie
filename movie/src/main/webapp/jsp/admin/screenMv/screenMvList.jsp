@@ -6,27 +6,50 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
+select {
+	border-radius: 5px;
+}
+
 .btn-group input {
 	margin: 0 10px !important;
+}
+
+#bottomList td {
+	text-align: center!important;
+	vertical-align: middle!important;
+}
+
+#btnSelect {
+	background-color: #689E8E;
+	padding: 5px;
+	border-radius: 5px;
+	color: white;
+}
+
+#btnDelete {
+	background-color: #D85E48;
+	padding: 5px;
+	border-radius: 5px;
+	color: white;
 }
 </style>
 <script type="text/javascript">
 	$(function() {
 		movieList();
 	});
-	
+
 	function movieList() {
 		$.ajax({
-			url:'ajax/screenMvList.do',
-			type:'GET',
-			dataType:'json',
-			error:function(xhr,status,msg) {
-				alert("상태값 :" + status + " Http에러메시지 :"+msg);
+			url : 'ajax/screenMvList.do',
+			type : 'GET',
+			dataType : 'json',
+			error : function(xhr, status, msg) {
+				alert("상태값 :" + status + " Http에러메시지 :" + msg);
 			},
-			success:movieListResult
+			success : movieListResult
 		});
 	}
-	
+
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
 		$.each(data, function(idx, item) {
@@ -154,6 +177,8 @@
 					<th class="text-center">상영관</th>
 					<th class="text-center">상영시작</th>
 					<th class="text-center">상영종료</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody id="listCont"></tbody>

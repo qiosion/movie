@@ -36,7 +36,6 @@ public class MovieDAO extends DAO {
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				System.out.println("title?");
 				whereCondition += " and mv_title like '%'||?||'%'";
 			}
 		}
@@ -89,7 +88,6 @@ public class MovieDAO extends DAO {
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				System.out.println("title?");
 				whereCondition += " and mv_title like '%'||?||'%'";
 			}
 		}
@@ -176,14 +174,12 @@ public class MovieDAO extends DAO {
 	}
 
 	public List<MovieVO> selectExpect(MovieSearchVO searchVO) {
-		System.out.println("selectExpect");
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		String whereCondition = "";
 
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				System.out.println("title?");
 				whereCondition += " and mv_title like '%'||?||'%'";
 			}
 		}
@@ -263,11 +259,7 @@ public class MovieDAO extends DAO {
 	}
 
 	public void movieInsert(MovieVO vo) {
-		System.out.println("movieInsert");
 		try {
-			System.out.println("mvTitle : " + vo.getMvTitle());
-			System.out.println("mvPost : " + vo.getMvPost());
-			System.out.println("Strdate : " + vo.getStrdate());
 			psmt = conn.prepareStatement(INSERT);
 
 			psmt.setString(1, vo.getMvTitle());
@@ -293,10 +285,6 @@ public class MovieDAO extends DAO {
 	}
 
 	public void movieUpdate(MovieVO vo) {
-		// UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?,
-		// MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM
-		// = ?
-		System.out.println("movieUpdate");
 		try {
 			psmt = conn.prepareStatement(UPDATE);
 
@@ -323,8 +311,6 @@ public class MovieDAO extends DAO {
 
 	public void movieDelete(MovieVO vo) {
 		try {
-
-			System.out.println("movieDelete : " + vo.getMvNum());
 			psmt = conn.prepareStatement(DELETE);
 			psmt.setInt(1, vo.getMvNum());
 

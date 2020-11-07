@@ -21,7 +21,6 @@ public class ScreenMvDAO extends DAO {
 	private String SELECT_ING_MOVIE = "SELECT * FROM MOVIE WHERE MV_FINDATE>SYSDATE";
 
 	public List<MovieVO> selectIng() {
-		System.out.println("selectIng");
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		try {
 			psmt = conn.prepareStatement(SELECT_ING_MOVIE);
@@ -47,14 +46,12 @@ public class ScreenMvDAO extends DAO {
 	private String SELECT_THEATER = "SELECT * FROM THEATER ORDER BY 1";
 
 	public List<TheaterVO> selectTheater() {
-		System.out.println("selectTheater");
 		List<TheaterVO> list = new ArrayList<TheaterVO>();
 
 		try {
 			psmt = conn.prepareCall(SELECT_THEATER);
 			rs = psmt.executeQuery();
 
-			System.out.println("try");
 			while (rs.next()) {
 				TheaterVO thVO = new TheaterVO();
 				thVO.setThNum(rs.getInt("th_num"));
@@ -81,11 +78,9 @@ public class ScreenMvDAO extends DAO {
 		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 		try {
 			psmt = conn.prepareCall(SELECT_LIST);
-			System.out.println("getScreenList");
 
 			rs = psmt.executeQuery();
 			while (rs.next()) {
-				System.out.println("????? " + rs.getInt("tt_num"));
 				vo = new ScreenMvVO();
 				vo.setTtNum(rs.getInt("tt_num"));
 				vo.setMvTitle(rs.getString("mv_title"));

@@ -16,7 +16,6 @@ public class mvDeleteAction implements Action {
 		MovieDAO dao = new MovieDAO();
 		MovieVO vo = new MovieVO();
 
-		System.out.println("삭제할 번호 : " + request.getParameter("mvNum"));
 		vo.setMvNum(Integer.parseInt(request.getParameter("mvNum")));
 		dao.movieDelete(vo);
 

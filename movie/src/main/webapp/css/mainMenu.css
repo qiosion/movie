@@ -22,10 +22,6 @@
 	color: #C2CBD3 !important;
 }
 
-a:focus {
-	outline: none;
-}
-
 .dropdown-menu {
 	background-color: #7A8DA0;
 	margin-top: 9px;

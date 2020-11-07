@@ -20,8 +20,6 @@ public class scMvListAction implements Action {
 		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 		ScreenMvDAO dao = new ScreenMvDAO();
 		
-		System.out.println("scMvListAction");
-		
 		list = dao.getScreenList();
 //		request.setAttribute("screenList", list);
 		
@@ -33,5 +31,4 @@ public class scMvListAction implements Action {
 		
 		return null;
 	}
-
 }

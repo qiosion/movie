@@ -11,62 +11,84 @@
 <meta charset="UTF-8">
 
 <style>
-.pagination li {
-	display: inline-block; /* li태그가 가로로 오도록 */
+th, td {
+	text-align: center !important;
+	vertical-align: middle !important;
 }
 
-.pagination {
-	display: inline-block;
+.table>thead {
+	background-color: #EDEBE1;
 }
 
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
+.table>thead>tr>td {
+	text-align: center;
+	font-color: #666666;
+	font-size: large;
+	font-weight: bold;
+	border-bottom: 1px solid #ddd;
 }
 
-.pagination a.active {
-	background-color: #4CAF50;
+.table>tbody>tr>td {
+	border-bottom: 1px solid #ddd;
+	font-family: monospace;
+	text-align: center;
+}
+
+.table>tbody>tr>#td1 {
+	text-align: left;
+}
+
+.table>tbody>tr>td>a:hover {
+	text-decoration: underline;
+}
+
+#editBtn {
+	background-color: #7A8DA0;
+	padding: 5px;
+	border-radius: 5px;
 	color: white;
-	border-radius: 5px;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-	border-radius: 5px;
 }
 </style>
 </head>
 <body>
-	<h2>영화 리스트 관리</h2>
+	<div class="tit-heading-wrap tit-evt">
+		<h3>영화 리스트 관리</h3>
+	</div>
 	<div id="topMvMenu">
-		<a href="mvRegistForm.do" class="registBtn">등록</a>
+		<p style="margin-bottom: 20px;">
+			<a href="mvRegistForm.do" class="registBtn">등록</a>
+		</p>
 		<mv:searchMv returnPage="mvList.do" />
 	</div>
 	<div id="mvList" align="center">
-		<table border="1">
-			<tr>
-				<th width="50">번호</th>
-				<th width="150">제목</th>
-				<th width="180">포스터</th>
-				<th>설명</th>
-				<th width="100">개봉일</th>
-				<th width="100">평균 평점</th>
-				<th width="70">수정</th>
-			</tr>
-			<c:forEach var="movie" items="${movies}">
+		<table border="1" class="table table-hover"
+			style="margin-bottom: 20px;">
+			<thead>
 				<tr>
-					<td>${movie.mvNum }</td>
-					<td>${movie.mvTitle }</td>
-					<td><img id="mvPoster"
-						src="${pageContext.request.contextPath}/images/${movie.mvPost}"></td>
-					<td>${movie.mvCont }</td>
-					<td>${movie.strdate }</td>
-					<td>${movie.mvRank }</td>
-					<td><a href="mvUpdateForm.do?seq=${movie.mvNum }">&#x2705;</a></td>
+					<th width="50">번호</th>
+					<th width="160">제목</th>
+					<th width="180">포스터</th>
+					<th>설명</th>
+					<th width="100">개봉일</th>
+					<th width="100">평균 평점</th>
+					<th width="70"></th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
+				<c:forEach var="movie" items="${movies}">
+					<tr>
+						<td>${movie.mvNum }</td>
+						<td>${movie.mvTitle }</td>
+						<td><img id="mvPoster"
+							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></td>
+						<td>${movie.mvCont }</td>
+						<td>${movie.strdate }</td>
+						<td>${movie.mvRank }</td>
+						<td><button id="editBtn"
+								onclick="location.href='mvUpdateForm.do?seq=${movie.mvNum}'">수정</button></td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 		<script type="text/javascript">
 			function goPage(p) {

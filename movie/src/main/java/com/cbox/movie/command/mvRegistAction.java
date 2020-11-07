@@ -23,12 +23,9 @@ public class mvRegistAction implements Action {
 		// 값을 vo에 저장해서 결과.jsp로 넘김
 		// 여기서 올바르게 저장됐으면 목록으로 실패했으면 팝업창이 뜨도록하기..흠
 
-		System.out.println("mvRegistAction");
 		MovieDAO dao = new MovieDAO();
 		MovieVO vo = new MovieVO();
 
-		System.out.println(">>>> " + request.getParameter("mvTitle"));
-		System.out.println(">>>> " + request.getParameter("strdate"));
 		vo.setMvTitle(request.getParameter("mvTitle"));
 		vo.setMvDir(request.getParameter("mvDir"));
 		vo.setStrdate(Date.valueOf(request.getParameter("strdate")));
@@ -53,7 +50,6 @@ public class mvRegistAction implements Action {
 				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
 				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
 				part.write(renameFile.getAbsolutePath()); // 절대경로
-				System.out.println("절대경로 : "+renameFile.getAbsolutePath());
 
 				vo.setMvPost(renameFile.getName());
 			}
@@ -92,7 +88,6 @@ public class mvRegistAction implements Action {
 		}
 
 		dao.movieInsert(vo);
-		System.out.println("insert 끝");
 
 		try {
 			response.getWriter().print("{\"result\":true}");
