@@ -1,8 +1,4 @@
-<%@page import="com.cbox.movie.vo.MovieSearchVO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.cbox.movie.dao.MovieDAO"%>
-<%@page import="com.cbox.movie.vo.MovieVO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,11 +8,74 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+.tgl {
+	display: none;
+}
+
+.tgl+.tgl-btn {
+	outline: 0;
+	display: block;
+	width: 4em;
+	height: 2em;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.tgl+.tgl-btn:after, .tgl+.tgl-btn:before {
+	position: relative;
+	display: block;
+	content: "";
+	width: 50%;
+	height: 100%;
+}
+
+.tgl+.tgl-btn:after {
+	left: 0;
+}
+
+.tgl+.tgl-btn:before {
+	display: none;
+}
+
+.tgl:checked+.tgl-btn:after {
+	left: 50%;
+}
+
+.tgl-flat+.tgl-btn {
+	padding: 2px;
+	transition: all .2s ease;
+	background: #fff;
+	border: 4px solid #f2f2f2;
+	border-radius: 2em;
+}
+
+.tgl-flat+.tgl-btn:after {
+	transition: all .2s ease;
+	background: #f2f2f2;
+	content: "";
+	border-radius: 1em;
+}
+
+.tgl-flat:checked+.tgl-btn {
+	border: 4px solid #7FC6A6;
+}
+
+.tgl-flat:checked+.tgl-btn:after {
+	left: 50%;
+	background: #7FC6A6;
+}
+</style>
 </head>
 <body>
 	<script>
 		$().ready(function() {
-			$('.toggleBG').click(function() {
+			var chkType = "";
+			/* $('.toggleBG').click(function() {
 				var toggleBG = $(this);
 				var toggleFG = $(this).find('.toggleFG');
 				var left = toggleFG.css('left');
@@ -27,6 +86,28 @@
 					toggleBG.css('background', '#ABD0BC');
 					type = toggleActionStart(toggleFG, 'TO_RIGHT');
 				}
+			}); */
+
+			$('.tgl-flat').change(function() {
+				if ($('.tgl-flat').is(":checked")) {
+					chkType = "ing";
+				} else {
+					chkType = "all";
+				}
+				//localhost.href="${pageContext.request.contextPath}/movieList.do?searchType='chkType'&keyword="+chkType;
+				$.ajax({
+					url : 'movieList.do',
+					type : 'post',
+					data : {
+						searchType : 'chkType',
+						keyword : chkType
+					},
+					success : function() {
+					},
+					error : function() {
+						alert("실패");
+					}
+				});
 			});
 		});
 
@@ -65,35 +146,28 @@
 			<mv:searchMv returnPage="movieList.do" />
 		</div>
 
-		<div class="sort">
+		<div class="sort" style="min-height: 30px;">
 			<span>전체</span>
-			<div class="toggleBG">
+			<!-- <div class="toggleBG">
 				<button type="button" class="toggleFG"></button>
-			</div>
-			<span>개봉작만</span>
+			</div> -->
+			<span style="margin: 0 5px;;"> <input class="tgl tgl-flat" id="cb4" type="checkbox" />
+				<label class="tgl-btn" for="cb4"></label>
+			</span> <span>개봉작만</span>
 		</div>
 		<br>
 		<ol>
 			<c:forEach var="movie" items="${movies}">
-				<c:choose>
-					<c:when test="type eq '상영작'">
-						<script>
-							console.log("상영작");
-						</script>
-						<!-- todo 상영종료일이랑 오늘날짜 비교해서.. 해당하는거만 출력되도록 -->
-					</c:when>
-					<c:otherwise></c:otherwise>
-				</c:choose>
 				<li>
-					<div>
+					<div style="margin-bottom: 5px;">
 						<a href="movieDetail.do?seq=${movie.mvNum }"> <img
 							id="moviePoster"
 							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></a>
 					</div>
-					<div>
+					<div style="margin-bottom: 5px;">
 						<p>${movie.mvTitle }</p>
 					</div>
-					<div>
+					<div style="margin-bottom: 20px;">
 						<span>평점 : ${movie.mvRank }</span> | <span>개봉일 :
 							${movie.strdate }</span>
 						<p>${movie.mvCont }</p>

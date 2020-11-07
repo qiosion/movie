@@ -17,8 +17,7 @@
 
 	<div class="movietop">
 		<ul class="tabs">
-			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">박스
-					오피스</a></li>
+			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">전체 영화</a></li>
 			<li class="tab-link current" data-tab="tab-2"><a
 				href="movieExpectList.do">상영 예정작</a></li>
 			<li class="tab-link" data-tab="tab-3"><a
@@ -26,6 +25,9 @@
 		</ul>
 	</div>
 	<div id="tab-2" class="tab-content current">
+		<div class="tit-heading-wrap tit-evt" id="title">
+			<h3>상영 예정작</h3>
+		</div>
 		<div align="right">
 			<mv:searchMv returnPage="movieExpectList.do" />
 		</div>

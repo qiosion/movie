@@ -31,16 +31,22 @@ public class MovieDAO extends DAO {
 
 	public List<MovieVO> selectAll(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		String whereCondition = " where 1=1";
+		String whereCondition = " WHERE 1=1";
 
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				whereCondition += " and mv_title like '%'||?||'%'";
+				whereCondition += " AND MV_TITLE LIKE '%'||?||'%'";
+			} else if (searchVO.getType().equals("chkType")) {
+				System.out.println("chkType : " + searchVO.getKeyword());
+				if (searchVO.getKeyword().equals("ing")) {
+					whereCondition += " AND MV_FINDATE > SYSDATE";
+				}
 			}
 		}
 		try {
 			SELECT_ALL = SELECT_ALL + whereCondition;
+			System.out.println("SELECT_ALL : " + SELECT_ALL);
 			psmt = conn.prepareStatement(SELECT_ALL);
 
 			int pos = 1;
@@ -84,17 +90,17 @@ public class MovieDAO extends DAO {
 
 	public List<MovieVO> selectPage(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		String whereCondition = " where 1=1";
+		String whereCondition = " WHERE 1=1";
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				whereCondition += " and mv_title like '%'||?||'%'";
+				whereCondition += " AND MV_TITLE LIKE '%'||?||'%'";
 			}
 		}
 
 		try {
-			SELECT_SEARCH = "select * from ( select a.*, rownum rn from ( " + "select * from movie" + whereCondition
-					+ " order by 1 ) a  ) b where rn between ? and ?";
+			SELECT_SEARCH = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( " + "SELECT * FROM MOVIE" + whereCondition
+					+ " ORDER BY 1 ) A  ) B WHERE RN BETWEEN ? AND ?";
 			psmt = conn.prepareStatement(SELECT_SEARCH);
 //			psmt = conn.prepareStatement(SELECT_PAGE);
 //			psmt.setInt(1, searchVO.getFirst());
@@ -143,14 +149,14 @@ public class MovieDAO extends DAO {
 	public int count(MovieSearchVO searchVO) { // 전체 건수 조회
 		int cnt = 0;
 		try {
-			String whereCondition = " where 1=1";
+			String whereCondition = " WHERE 1=1";
 			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 					&& !searchVO.getKeyword().equals("")) {
 				if (searchVO.getType().equals("title")) {
-					whereCondition += " and mv_title and '%'||?||'%'";
+					whereCondition += " AND MV_TITLE AND '%'||?||'%'";
 				}
 			}
-			String sql = "select count(*) from movie" + whereCondition;
+			String sql = "SELECT COUNT(*) FROM MOVIE" + whereCondition;
 			psmt = conn.prepareStatement(sql);
 
 			int pos = 1;
@@ -180,7 +186,7 @@ public class MovieDAO extends DAO {
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
 			if (searchVO.getType().equals("title")) {
-				whereCondition += " and mv_title like '%'||?||'%'";
+				whereCondition += " AND MV_TITLE LIKE '%'||?||'%'";
 			}
 		}
 

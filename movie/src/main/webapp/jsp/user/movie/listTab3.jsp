@@ -5,43 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<style type="text/css">
+#ok {
+	margin-left: 10px;
+	background-color: #F6D578;
+	padding: 8px;
+	border-radius: 5px;
+	color: black;
+}
+
+#title {
+	margin: 10px;
+}
+
+#list{
+	padding: 10px;
+	font-size: 20px;
+}
+</style>
 </head>
 <body>
 <script>
 var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";
-
-function movie(movieCd) {
-    $("#memo").empty();
-    var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?key=" + serviceKey + "&movieCd=";
-    url = url + movieCd;
-
-    $.ajax({
-        url: url,
-        type: "GET",
-        dataType: "xml",
-        success: function (movie_data) {
-            console.log(movie_data);
-            var str = "";
-            str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
-            str = str + "<a href='" + $(movie_data).find("naverMovieSrc").text() + "'>네이버바로가기</a>" ;
-            str = str + "<div>" + $(movie_data).find("movieNm").text() + "(";
-            str = str + $(movie_data).find("movieNmEn").text() + ")</div>";
-
-
-            str = str + "<div>" + $(movie_data).find("nationNm").text() + ", " + $(movie_data).find("openDt").text() + "개봉, " + $(movie_data).find("showTm").text() + "분</div>";
-
-            str = str + "<ul>";
-            $(movie_data).find("actor").each(function () {
-                str = str + "<li>" + $(this).find("peopleNm").text() + "</li>";
-            });
-            str = str + "</ul>";
-            $("#memo").append(str);
-        },
-        error: function () {
-            alert("Error ...");
-        }
-    });
-}
 
 $(document).ready(function () {
     document.getElementById("today").valueAsDate = new Date();
@@ -63,16 +48,14 @@ $(document).ready(function () {
 
                 if ($(mydata).find("dailyBoxOffice").text() == "") {
                     $("#list").append("자료가 없습니다.");
-                    ;
                     return;
                 }
                 $(mydata).find("dailyBoxOffice").each(function () {
-                    str = str + $(this).find("rank").text() + "위 "
+                    str = str + "<span style=\'color:orange; display:inline-block; width:47px; margin-right:10px; text-align:right;\'>"+$(this).find("rank").text() + "위 </span>"
 
-                    str = str + "<a href='#' onclick='javascript:movie(" + $(this).find("movieCd").text() + ")'>";
-                    str = str + $(this).find("movieNm").text() + "</a>";
+                    str = str + $(this).find("movieNm").text();
 
-                    str = str + " (전일대비 ";
+                    str = str + " (<span style=\'color:red;\'>전일대비</span> ";
                     rankInten = eval($(this).find("rankInten").text());
                     if (rankInten > 0) {
                         str = str + "+" + rankInten + ", "
@@ -82,7 +65,7 @@ $(document).ready(function () {
                         str = str + rankInten + ", "
                     }
 
-                    str = str + "누적관객수 " + $(this).find("audiAcc").text() + "명)<br>";
+                    str = str + "<span style=\'color:navy;\'>누적관객수</span> " + $(this).find("audiAcc").text() + "명)<br>";
                 });
                 $("#list").append(str);
             },
@@ -95,8 +78,7 @@ $(document).ready(function () {
 </script>
 	<div class="movietop">
 		<ul class="tabs">
-			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">박스
-					오피스</a></li>
+			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">전체 영화</a></li>
 			<li class="tab-link" data-tab="tab-2"><a
 				href="movieExpectList.do">상영 예정작</a></li>
 			<li class="tab-link current" data-tab="tab-3"><a
@@ -104,15 +86,16 @@ $(document).ready(function () {
 		</ul>
 	</div>
 	<div id="tab-3" class="tab-content current">
-		<div id="choice">
-			<input type="date" id="today">
+		<div id="choice" style="margin: 10px;">
+			<input type="date" id="today" style="height: 30px; border-radius: 5px;">
 			<button id="ok">확인</button>
 		</div>
-		<div id="title">일별 박스오피스</div>
+		
+		<div class="tit-heading-wrap tit-evt" id="title">
+			<h3>일별 박스오피스</h3>
+		</div>
 		<hr>
 		<div id="list"></div>
-		<hr>
-		<div id="memo"></div>
 	</div>
 </body>
 </html>

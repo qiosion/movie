@@ -56,15 +56,10 @@ ul.tabs li.current {
 	display: inherit;
 }
 
-
-.sort {
-	padding-top: 10px;
-	height: 20px;
-}
-
 .sort span {
 	float: left;
 	margin-top: 5px;
+	font-size: 15px;
 }
 
 .toggleBG {
@@ -91,19 +86,6 @@ ul.tabs li.current {
 #moviePoster {
 	width: 280px;
 	height: 370px;
-}
-
-#search {
-	margin: 10px 0 0 10px;
-	width: 100%;
-}
-
-#search #keyword {
-	margin-left: 10px;
-}
-
-#searchType {
-	height: 29px;
 }
 /* movieList E */
 
@@ -171,12 +153,6 @@ a.ticketBtn {
 }
 
 #mvList {
-	width: 1000px;
-	margin: auto;
-}
-
-#mvList table {
-	width: 950px;
 	margin: auto;
 }
 
@@ -215,18 +191,6 @@ a.registBtn {
 	border-radius: 10px;
 	text-decoration: none;
 	margin: 0 10px;
-}
-
-#searchBtn {
-	float: right;
-	text-align: center;
-	background-color: #1F6096;
-	font-size: 15px;
-	color: white;
-	padding: 10px;
-	border-radius: 10px;
-	text-decoration: none;
-	margin-bottom: 10px;
 }
 
 #movieTitle {

@@ -48,6 +48,30 @@ th, td {
 	border-radius: 5px;
 	color: white;
 }
+
+.tit-evt {
+	position: relative;
+}
+
+.tit-heading-wrap {
+	position: relative;
+	height: 51px;
+	margin-top: 30px;
+	border-bottom: 3px solid #241d1e;
+}
+
+.tb-style {
+	width: 1000;
+	border-style: solid;
+	border-color: black;
+}
+
+.dvtable-style {
+	width: 700;
+	border: 3;
+	bordercolor: lightgray;
+	align: center;
+}
 </style>
 </head>
 <body>

@@ -22,6 +22,8 @@ public class movieListAction implements Action {
 		MovieSearchVO searchVO = new MovieSearchVO();
 		searchVO.setType(request.getParameter("searchType"));
 		searchVO.setKeyword(request.getParameter("keyword"));
+		System.out.println("searchType "+request.getParameter("searchType"));
+		System.out.println("keyword "+request.getParameter("keyword"));
 		
 		list = dao.selectAll(searchVO);
 		request.setAttribute("movies", list);

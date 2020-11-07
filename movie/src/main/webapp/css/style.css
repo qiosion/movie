@@ -1,5 +1,4 @@
 /* header.jsp S */
-
 .topRmenu {
 	float: right;
 	margin: 20px 20px 0px 0px;
@@ -23,8 +22,17 @@
 	background-color: #E8E7EB;
 	border-radius: 15px;
 }
-
 /* header E */
+
+/* footer S */
+.address {
+	margin-top: 20px;
+}
+
+.foot .sect-cinfo .address {
+	padding: 0 !important;
+}
+/* footer E */
 
 a:focus {
 	outline: none;
@@ -35,9 +43,15 @@ table {
 	text-align: center;
 }
 
+body {
+	width: 100%;
+}
+
+/* decorators S */
 .header {
 	min-height: 80px;
 	margin-bottom: 10px;
+	width: 100%;
 }
 
 .container {
@@ -47,21 +61,27 @@ table {
 .footer {
 	max-height: 500px;
 }
+/* decorators E */
+
+/* search S */
+#search {
+	margin: 10px 0 10px 10px;
+	width: 100%;
+}
+
+#searchType, #keyword {
+	height: 32px !important;
+	border-radius: 5px;
+	margin-right: 10px;
+}
 
 #menuSearchBtn {
 	text-align: center;
-	background-color: #1F6096;
+	background-color: #EF956E;
 	font-size: 15px;
 	color: white;
 	padding: 7px;
 	border-radius: 10px;
 	text-decoration: none;
 }
-
-.address {
-	margin-top: 20px;
-}
-
-.foot .sect-cinfo .address {
-	padding: 0 !important;
-}
+/* search E */
