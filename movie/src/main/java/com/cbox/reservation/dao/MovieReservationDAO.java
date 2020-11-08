@@ -36,12 +36,28 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
-	public List<MvFindDateDTO> selectMvTime(MvFindDateDTO dto){
-		
-		
-		
-		return null;
+	public List<MvFindDateDTO> selectMvTime(MvFindDateDTO dto){// 2020-11-08 다시해야됨 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		List<MvFindDateDTO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(SELECT_ID_DATE_TIME);
+			psmt.setInt(1, dto.getM_id());
+			psmt.setString(2, dto.getM_date());
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				MvFindDateDTO mdto = new MvFindDateDTO();
+				mdto.setTt_start(rs.getString("tt_start"));
+				mdto.setTt_end(rs.getString("tt_end"));
+				list.add(mdto);			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+				
+		return list;
 	}
+	
+	
 	public List<mvFindDateVO> selectMvDate(mvFindDateVO vo) { //id에 맞는 영화 상영일 찾아오기
 		List<mvFindDateVO> list = new ArrayList<>();
 		try {

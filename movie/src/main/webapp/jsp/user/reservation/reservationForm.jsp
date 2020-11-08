@@ -26,7 +26,7 @@
 			//$(this).attr("title"); //영화 id
 			var paramid = $(this).attr("title");
 			var param_id = {m_id: $(this).attr("title")};
-			console.log($("#test01 li").attr("date"));
+			//console.log($("#test01 li").attr("date"));
 			
 			$.ajax({ //뭘받아오냐? 영화 id값에 해당하는 모든 해당상영일을 받아오는 ajax
 				url:"${pageContext.request.contextPath}/ajax/mvFindDate.do", //data보낼 주소
@@ -43,6 +43,7 @@
 					alert("오류");
 				}
 			}); //end ajax
+			
 			function mvFindDate(data){//start mvFindate
 				$("li.day span").css("color","#A9A9A9"); //누를때마다 초기화 
 				var test;
@@ -75,11 +76,11 @@
 			}//end funtion mvFindate
 			
 			
-			$("#test01 a").on("click", function(){
+			$("#test01 a").on("click", function(){  //영화 클릭후 날짜 클릭
 				$("#test01 a").css("background-color","");
 				//$("#test01 span").css("color","");
 				$(this).css("background-color", "black");
-				$(this).children().css("color","white");
+				//$(this).children().css("color","white");
 				//console.log($(this).parent().data("date")) -- 클릭한 년월일
 				var cDate = $(this).parent().data("date")+""; //cDate - 클릭한 년월일., replace할려면 문자열이여야함
 				if(cDate.length != 8){
@@ -96,18 +97,24 @@
 					type:"get", //전송방식
 					data:param_idDate, //보낼 data
 					dataType: "json", //요청한 데이터를 받을 형식
-					success : function(data){
-						alert("성공");
-					},
+					success : MvFindTime, //함수호출
+						//console.log(data[0]);
 					error : function(xhr, status){
 						alert("오류");
 					}
-				});
-				$("#test02 .theater").css("display","block");
+				});//end ajax
+				//$("#test02 .theater").css("display","block"); --영화, 날짜에 맞는 영화시간표 출력해라.
 				
-				
-				
-			});
+				function MvFindTime(data){
+					$("#test02 .theater").css("display","none"); //time창 초기화
+					$.each(data,function(idx,items){
+						console.log(idx,items);
+						
+						$("#test02 .theater").css("display","block");
+					});
+				}//ned MvFindTime function
+	
+			});//end date button click 
 			
 			//$(".info.movie .placeholder").css("display","none");
 			
