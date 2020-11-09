@@ -33,6 +33,15 @@ select {
 	border-radius: 5px;
 	color: white;
 }
+
+#topBtn {
+	posotion: fixed;
+	float: right;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+	height: 40px;
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -42,6 +51,21 @@ select {
 		//movieUpdate();
 		mvDetail();
 		movieDelete();
+
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 400) {
+				$("#topBtn").fadeIn();
+			} else {
+				$("#topBtn").fadeOut();
+			}
+		});
+
+		$("#topBtn").click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
 	});
 
 	function init() {
@@ -117,7 +141,7 @@ select {
 	}
 
 	function mvDetail() {
- 		$("body").on("click", "#btnSelect", function() {
+		$("body").on("click", "#btnSelect", function() {
 			var ttNum = $(this).closest('tr').find('#ttNum').val();
 			console.log("ttNum : " + ttNum);
 			console.log("this : " + $(this));
@@ -133,13 +157,14 @@ select {
 				},
 				success : movieDetailResult
 			});
-		}); 
+		});
 	}
 
 	function movieDetailResult(data) {
 		$('select[name="mvNum"]').val(data.mvNum).attr("selected", "selected");
 		$('select[name="thNum"]').val(data.thNum).attr("selected", "selected");
-		$('select[name="ttStart"]').val(data.ttStart).attr("selected", "selected");
+		$('select[name="ttStart"]').val(data.ttStart).attr("selected",
+				"selected");
 		$('select[name="ttEnd"]').val(data.ttEnd).attr("selected", "selected");
 		$('input[type="date"]').val(data.ttScrDate);
 	}
@@ -161,7 +186,11 @@ select {
 				data : $("#frm").serialize(),
 				success : function(response) {
 					movieList();
-					init();
+
+					$("#frm").each(function() {
+						this.reset();
+					});
+					alert("등록되었습니다.");
 				},
 				error : function(xhr, status, message) {
 					alert(" status: " + status + " er:" + message);
@@ -271,6 +300,13 @@ select {
 											<input type="hidden" id="thMax" name="thMax"
 												value="${th.thMax}">
 										</c:forEach>
+									</c:if> <c:if test="${!empty mvList}">
+										<c:forEach var="mv" items="${mvList}" end="0">
+											<input type="hidden" id="strDate" name="strDate"
+												value="${mv.strdate}">
+											<input type="hidden" id="finDate" name="finDate"
+												value="${mv.findate}">
+										</c:forEach>
 									</c:if></td>
 							</tr>
 							</tbody>
@@ -359,5 +395,7 @@ select {
 			</div>
 		</div>
 	</div>
+	<img alt="TOP" id="topBtn"
+		src="${pageContext.request.contextPath}/images/top.png">
 </body>
 </html>

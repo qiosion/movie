@@ -72,12 +72,40 @@ th, td {
 	bordercolor: lightgray;
 	align: center;
 }
+
+#topBtn {
+	posotion: fixed;
+	float: right;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+	height: 40px;
+}
 </style>
+<script type="text/javascript">
+$(function() {
+	$(window).scroll(function() {
+		if($(this).scrollTop() > 400) {
+			$("#topBtn").fadeIn();
+		} else {
+			$("#topBtn").fadeOut();
+		}
+	});
+	
+	$("#topBtn").click(function() {
+		$('html, body').animate({
+			scrollTop:0
+		}, 400);
+		return false;
+	});
+});
+</script>
 </head>
 <body>
 	<div class="tit-heading-wrap tit-evt">
 		<h3>영화 리스트 관리</h3>
-		<a href="mvRegistForm.do" class="registBtn" style="float: right; margin-bottom: 8px;">등록</a>
+		<a href="mvRegistForm.do" class="registBtn"
+			style="float: right; margin-bottom: 8px;">등록</a>
 	</div>
 	<div id="topMvMenu">
 		<div align="right">
@@ -123,5 +151,6 @@ th, td {
 		</script>
 		<mv:paging paging="${paging}" jsfunc="goPage" />
 	</div>
+	<img alt="TOP" id="topBtn" src="${pageContext.request.contextPath}/images/top.png">
 </body>
 </html>
