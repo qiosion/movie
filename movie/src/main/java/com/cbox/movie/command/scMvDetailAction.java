@@ -11,23 +11,22 @@ import com.cbox.common.Action;
 import com.cbox.movie.dao.ScreenMvDAO;
 import com.cbox.movie.vo.ScreenMvVO;
 
-public class scMvDeleteAction implements Action {
+public class scMvDetailAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		int ttNum = Integer.parseInt(request.getParameter("ttNum"));
-		System.out.println("scMvDeleteAction : " + ttNum);
 		ScreenMvVO vo = new ScreenMvVO(ttNum);
-		System.out.println("vo get : "+vo.getTtNum());
+		
 		ScreenMvDAO dao = new ScreenMvDAO();
-		dao.deleteScreenMv(vo);
-
+		ScreenMvVO mvVO = dao.detailScreenMv(vo);
+		
 		try {
-			response.getWriter().print(new JSONObject(vo));
+			response.getWriter().print(new JSONObject(mvVO));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		return null;
 	}
 }

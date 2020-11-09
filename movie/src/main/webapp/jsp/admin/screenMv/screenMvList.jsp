@@ -39,6 +39,9 @@ select {
 		init();
 		movieList();
 		movieInsert();
+		//movieUpdate();
+		mvDetail();
+		movieDelete();
 	});
 
 	function init() {
@@ -46,6 +49,30 @@ select {
 			$("#frm").each(function() {
 				this.reset();
 			});
+		});
+	}
+
+	function movieDelete() {
+		$("body").on("click", "#btnDelete", function() {
+			console.log("this : " + $(this));
+			var ttNum = $(this).closest('tr').find('#ttNum').val();
+			console.log("ttNum 삭제 : " + ttNum);
+			var result = confirm(ttNum + "번 상영 영화를 삭제하시겠습니까?");
+			if (result) {
+				$.ajax({
+					url : 'ajax/screenMvDelete.do',
+					data : {
+						ttNum : ttNum
+					},
+					dataType : 'json',
+					error : function(xhr, status, msg) {
+						alert("상태값 :" + status + " Http에러메시지 :" + msg);
+					},
+					success : function(xhr) {
+						movieList();
+					}
+				});
+			}
 		});
 	}
 
@@ -63,22 +90,58 @@ select {
 
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
-		$.each(data, function(idx, item) {
-			$('<tr>').append($('<td>').html(item.mvTitle)).append(
-					$('<td>').html(item.ttScrDate)).append(
-					$('<td>').html(item.thName)).append(
-					$('<td>').html(item.ttStart)).append(
-					$('<td>').html(item.ttEnd)).append(
-					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-					.append(
-							$('<td>').html(
-									'<button id=\'btnDelete\'>삭제</button>'))
-					.append(
-							$('<td>').html(
-									'<input type=\'hidden\' id=\'ttNum\'>')
-									.val(item.ttNum)).appendTo(
-							'tbody[id="listCont"]');
-		});
+		$
+				.each(
+						data,
+						function(idx, item) {
+							$('<tr>')
+									.append($('<td>').html(item.mvTitle))
+									.append($('<td>').html(item.ttScrDate))
+									.append($('<td>').html(item.thName))
+									.append($('<td>').html(item.ttStart))
+									.append($('<td>').html(item.ttEnd))
+									.append(
+											$('<td>')
+													.html(
+															'<button id=\'btnSelect\'>조회</button>'))
+									.append(
+											$('<td>')
+													.html(
+															'<button id=\'btnDelete\'>삭제</button>'))
+									.append(
+											$('<td>')
+													.html(
+															'<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
+									.appendTo('tbody[id="listCont"]');
+						});
+	}
+
+	function mvDetail() {
+ 		$("#listCont").on("click", "#btnSelect", function() {
+			var ttNum = $(this).closest('tr').find('#ttNum').val();
+			console.log("ttNum : " + ttNum);
+			console.log("this : " + $(this));
+
+			$.ajax({
+				url : 'ajax/screenMvDetail.do',
+				data : {
+					ttNum : ttNum
+				},
+				dataType : 'json',
+				error : function(xhr, status, msg) {
+					alert("상태값 :" + status + " Http에러메시지 :" + msg);
+				},
+				success : movieDetailResult
+			});
+		}); 
+	}
+
+	function movieDetailResult(data) {
+		$('select[name="mvNum"]').val(data.mvNum).attr("selected", "selected");
+		$('select[name="thNum"]').val(data.role).attr("selected", "selected");
+		$('select[name="ttStart"]').val(data.ttStart).attr("selected",
+				"selected");
+		$('select[name="ttEnd"]').val(data.ttEnd).attr("selected", "selected");
 	}
 
 	function movieInsert() {

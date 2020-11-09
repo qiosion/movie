@@ -12,6 +12,13 @@ public class ScreenMvVO {
 	private String mvTitle;	// 영화 제목
 	private String thName;	// 상영관명
 
+	public ScreenMvVO() {
+	}
+
+	public ScreenMvVO(int ttNum) {
+		this.ttNum = ttNum;
+	}
+
 	public int getTtNum() {
 		return ttNum;
 	}

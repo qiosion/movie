@@ -131,11 +131,56 @@ public class ScreenMvDAO extends DAO {
 		return cnt;
 	}
 
+	// 상영 영화 상세
+	private String DETAIL_MV = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
+			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
+			+ "WHERE T.TT_NUM = ?";
+
+	public ScreenMvVO detailScreenMv(ScreenMvVO scVO) {
+		try {
+			psmt = conn.prepareStatement(DETAIL_MV);
+			psmt.setInt(1, scVO.getTtNum());
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				vo = new ScreenMvVO();
+				vo.setTtNum(rs.getInt("tt_num"));
+				vo.setMvTitle(rs.getString("mv_title"));
+				vo.setTtScrDate(rs.getString("tt_scr_date"));
+				vo.setTtStart(rs.getString("tt_start"));
+				vo.setTtEnd(rs.getString("tt_end"));
+				vo.setThName(rs.getString("th_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return vo;
+	}
+	
+	// 상영 영화 삭제
+	private String DELETE_MV = "DELETE TIMETABLE WHERE TT_NUM = ?";
+	
+	public void deleteScreenMv(ScreenMvVO scVO) {
+		try {
+			System.out.println("deleteScreenMv : "+scVO.getMvNum());
+			psmt = conn.prepareStatement(DELETE_MV);
+			psmt.setInt(1, scVO.getTtNum());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
 	// 상영 영화 등록
 //	insert into timetable
 //	select 12, 2, '2021-11-11', '09:00', '10:30', th_max, 2 from theater where th_num = 2;
-	private String INSERT_MV = "insert into timetable(tt_num, mv_num, tt_scr_date, tt_start, tt_end, tt_empty, th_num) "
-			+ "select time_seq.nextval, ?, ?, ?, ?, th_max, ? from theater where th_num = ?";
+	private String INSERT_MV = "INSERT INTO TIMETABLE(TT_NUM, MV_NUM, TT_SCR_DATE, TT_START, TT_END, TT_EMPTY, TH_NUM) "
+			+ "SELECT TIME_SEQ.NEXTVAL, ?, ?, ?, ?, TH_MAX, ? FROM THEATER WHERE TH_NUM = ?";
 //			+ "values(time_seq.nextval, ?, ?, ?, ?, ?, ?";
 
 	public void insertScreenMv(ScreenMvVO scVO) {

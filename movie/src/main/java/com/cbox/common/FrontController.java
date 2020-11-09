@@ -82,6 +82,7 @@ public class FrontController extends HttpServlet {
 		// 상영 영화
 		map.put("/screenMvForm.do", new screenMvFormAction());
 		map.put("/ajax/screenMvList.do", new scMvListAction());	// 조회
+		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 상세
 		map.put("/ajax/screenMvInsert.do", new scMvInsertAction());	// 등록
 		map.put("/ajax/screenMvUpdate.do", new scMvUpdateAction());	// 수정
 		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 삭제
@@ -93,7 +94,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
 		map.put("/memberInsert.do", new memberInsertAction()); // user 회원등록
 		map.put("/idChk.do", new idChkAction()); // 중복 id 체크
-		map.put("/memberInfo.do", new memberInfoAction()); // user 회원정보
+		map.put("/member/memberInfo.do", new memberInfoAction()); // user 회원정보
 		map.put("/memberUpdate.do", new memberUpdateAction()); // user 회원정보수정
 		map.put("/memberDelete.do", new memberDeleteAction()); // user 회원탈퇴
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
