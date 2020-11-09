@@ -1,25 +1,34 @@
 package com.cbox.member.command;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.common.Action;
-import com.cbox.member.dao.MemberDAO;
-import com.cbox.member.vo.MemberVO;
+import com.cbox.member.dao.IdChkDAO;
 
 public class idChkAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html; charset=UTF-8");
-		MemberDAO dao = new MemberDAO();
-		MemberVO vo = new MemberVO();
+		IdChkDAO dao = IdChkDAO.getInstance();
 		
-		int cnt = dao.idC(request.getParameter("mbr_id"));
-		System.out.println("아이디체크 : " + cnt);
-		if (cnt == 0) {
-			
+		String id = request.getParameter("mbr_id");
+		boolean result = dao.idChk(id);
+		try {
+			PrintWriter out = response.getWriter();
+			if (result) {
+				out.println("0");
+			} else {
+				out.println("1");
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
-		return "jsp/user/member/idChk.jsp";
+		return null;
 	}
 }

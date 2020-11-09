@@ -13,10 +13,6 @@
 			f.mbr_id.focus();
 			return false;
 		}
-		if(f.idUncheck.value != "idCheck"){
-			alert ("아이디 중복체크를 해주세요");
-			return false;
-		} 
 		if(f.mbr_pw.value == "") {
 			alert ("비밀번호를 입력하세요");
 			f.mbr_pw.focus();
@@ -45,10 +41,8 @@
 	return true;
 	}
 	function IdCheck() {
-		window.open("jsp/user/member/idChkForm.jsp","idchk","width=400, height=350");
-	}
-	function inputIdChk(){
-		$("#idDuplication").val("idUncheck");
+		var url = "jsp/user/member/idChkForm.jsp?mbr_id=" + $("#mbr_id").val(); 
+		open(url,"idchk","width=400, height=350");
 	}
 </script>
 </head>
@@ -58,7 +52,7 @@
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
     		<input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디" onkeydown="inputIdChk()">
-    		<input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck()">
+    		<input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck(this.form)">
     		<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
   		</div>
 		<div class="form-group">

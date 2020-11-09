@@ -7,6 +7,16 @@ import java.sql.SQLException;
 import com.cbox.common.DAO;
 
 public class IdChkDAO extends DAO {
+	private static IdChkDAO instance;
+	private IdChkDAO() {}
+	public static IdChkDAO getInstance() {
+		if (instance == null) {
+			instance = new IdChkDAO();
+		}
+		return instance;
+	}
+	
+	
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private final String IDCHK = "SELECT MBR_ID FROM MEMBER WHERE MBR_ID = ?";
