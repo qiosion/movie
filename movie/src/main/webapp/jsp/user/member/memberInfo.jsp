@@ -14,23 +14,34 @@
 <c:if test="${pwwrong ne null}">
 	<script>alert("비밀번호가 틀렸습니다");</script>
 </c:if>
-<div class="divform">
-	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post">
-		<div class="form-group">
-   	 		<label for="mbr_id">아이디</label>
-    		<input type="text" value="${ myPage.mbr_id }" readonly>
-  		</div>
-		<div class="form-group">
-    		<label for="mbr_pw">비밀번호</label>
-    		<input type="password" class="form-control pw" id="mbr_pw" name="mbr_pw" placeholder="비밀번호">
-		</div>
-		<div class="form-group">
-    		<label for="mbr_pw">비밀번호 확인</label>
-    		<input type="password" class="form-control pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인">
-    		<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
-    		<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
-		</div>
-		<script>
+	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post" style="padding: 20px; max-width: 70%; margin-bottom: 10px;">
+		<div class="col-sm-12 pt-3">
+			<div class="card">
+				<div class="card-header card-header-primary">
+					<span class="card-title" id="title">
+					<i class="fas fa-square"></i>회원 정보
+					</span>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table">
+							<tr style="line-height: 32px;">
+								<td class="txt">아이디</td>
+								<td><input type="text" value="${ myPage.mbr_id }" readonly></td>
+							</tr>
+							<tr>
+								<td class="txt">비밀번호&nbsp;<span style="color: red;">*</span></td>
+								<td><input type="password" class="form-control pw" id="mbr_pw" name="mbr_pw" placeholder="비밀번호"></td>
+							</tr>
+							<tr>
+								<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
+								<td><input type="password" class="form-control pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
+							</tr>
+							<tr><td colspan="2">	
+								<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+    							<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
+							</td></tr>
+<script>
 // 비밀번호 확인
 	$('.pw').focusout(function(){
 		var pw1 = $("#mbr_pw").val();
@@ -49,35 +60,35 @@
 			}
 		}
 	});
-		</script>
-  		<div class="form-group">
-    		<label for="mbr_nm">이름</label>
-    		<input type="text" value="${ myPage.mbr_nm }" readonly>
-		</div>
-		<div class="form-group">
-    		<label for="mbr_birth">생년월일</label>
-    		<input type="text" value="${ myPage.mbr_birth }" readonly>
-		</div>
-		<div class="form-group">
-    		<label for="mbr_phone">전화번호</label>
-    		<input type="text" class="form-control" id="mbr_phone" name="mbr_phone" value="${ myPage.mbr_nm }">
-		</div>
-		<div class="form-group">
-    		<label for="mbr_email">이메일</label>
-    		<input type="email" class="form-control" id="mbr_email" name="mbr_email" value="${ myPage.mbr_email }">
-		</div>
-		<div class="form-group">
-    		<label for="mbr_regi_date">회원가입일</label>
-    		<input type="text" value="${ myPage.mbr_regi_date }" readonly>
-		</div>
-		<div class="form-group">
-    		<label for="mbr_point">포인트</label>
-    		<input type="text" value="${ myPage.mbr_point }" readonly>
-		</div>
-		<div class="form-group form-check">
-    		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }">
-    		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
-		</div>
+</script>
+							<tr>
+								<td class="txt">이름</td>
+								<td><input type="text" value="${ myPage.mbr_nm }" readonly></td>
+							</tr>
+							<tr>
+								<td class="txt">생년월일</td>
+								<td><input type="text" value="${ myPage.mbr_birth }" readonly></td>
+							</tr>
+							<tr>
+								<td class="txt">전화번호</td>
+								<td><input type="text" class="form-control" id="mbr_phone" name="mbr_phone" value="${ myPage.mbr_nm }"></td>
+							</tr>
+							<tr>
+								<td class="txt">이메일</td>
+								<td><input type="email" class="form-control" id="mbr_email" name="mbr_email" value="${ myPage.mbr_email }"></td>
+							</tr>
+							<tr>
+								<td class="txt">회원가입일</td>
+								<td><input type="text" value="${ myPage.mbr_regi_date }" readonly></td>
+							</tr>
+							<tr>
+								<td class="txt">포인트</td>
+								<td><input type="text" value="${ myPage.mbr_point }" readonly></td>
+							</tr>
+							<tr>
+    							<td class="txt">이메일 광고 수신여부</td>
+		    					<td colspan="2"><input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }"></td>
+    						</tr>
 <script type="text/javascript">
 	var chk = $("input[id='mbr_e_yn']:checked");
 	if (chk) {
@@ -92,11 +103,17 @@
 			$("#mbr_e_yn").attr("checked", false);
 		}
 </script>
-		<button type="button" class="btn btn-primary" onclick="location.href='main.do'">메인으로</button>
-    	<button type="submit" class="btn btn-primary" onclick="location.href='memberUpdate.do'">수정</button>
-		<button type="button" class="btn btn-primary" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="text-center mt-3">
+			<button type="submit" class="btn btn-success" onclick="location.href='memberUpdate.do'" style="margin-right: 30px;">수정</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='main.do'" style="margin-right: 30px;">메인으로</button>
+			<button type="button" class="btn btn-danger" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
+		</div>
 	</form>
-</div>
 <!-- 팝업창 -->
 	<div class="modal" id="memDelPop">
 		<div class="modal-dialog modal-dialog-scrollable">

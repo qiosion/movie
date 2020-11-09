@@ -5,11 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<style type="text/css">
-.txt {
-	text-align: right;
-}
-</style>
 <script type="text/javascript">
 	function formCheck(){
 		var f = document.frm;
@@ -60,7 +55,7 @@
 		<div class="col-sm-12 pt-3"><!-- class="form-group" -->
 			<div class="card">
 				<div class="card-header card-header-primary">
-					<span class="card-title" id="join">
+					<span class="card-title" id="title">
 					<i class="fas fa-square"></i>회원 가입
 					</span>
 				</div>
@@ -70,7 +65,7 @@
 							<tr style="line-height: 32px;">
 								<td class="txt">아이디&nbsp;<span style="color: red;">*</span></td>
 								<td><input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디"></td>
-    							<td><input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck()"></td>
+    							<td><input type="button" id="idchk" class="btn btn-primary btn-sm" value="중복확인" onclick="IdCheck()"></td>
     		<!-- <input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck(this.form)"> -->
     		<!-- <input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck"> -->
   							</tr>
@@ -81,6 +76,8 @@
   							<tr>
   								<td class="txt">비밀번호 확인&nbsp;<span style="color: red;">*</span></td>
     							<td colspan="2"><input type="password" class="form-control pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
+    						</tr>
+    						<tr>
     							<td colspan="3">
     								<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
     								<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
