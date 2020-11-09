@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.common.Action;
 
-public class reservInfoAction implements Action {
+public class UserReservAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {

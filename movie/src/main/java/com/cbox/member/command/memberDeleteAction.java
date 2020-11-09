@@ -43,7 +43,7 @@ public class memberDeleteAction implements Action {
 				e.printStackTrace();
 			}
 		} else {
-			int n = dao.delete(vo);
+			dao.delete(vo);
 			try {
 				session.invalidate();
 				response.sendRedirect("main.do");

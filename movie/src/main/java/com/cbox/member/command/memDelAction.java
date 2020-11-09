@@ -18,7 +18,7 @@ public class memDelAction implements Action {
 		
 		String user = request.getParameter("hdn");
 		vo.setMbr_id(user);
-		int n = dao.delete(vo);
+		dao.delete(vo);
 		try {
 			response.sendRedirect("memberList.do");
 		} catch (IOException e) {

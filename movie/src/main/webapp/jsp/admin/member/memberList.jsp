@@ -2,19 +2,73 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ page import="com.cbox.common.Paging" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원관리</title>
-<style type="text/css">
-td {
+<style>
+th, td {
 	text-align: center !important;
 	vertical-align: middle !important;
 }
-th {
-	text-align: center !important;
-	vertical-align: middle !important;
+
+.table>thead {
+	background-color: #EDEBE1;
+}
+
+.table>thead>tr>td {
+	text-align: center;
+	font-color: #666666;
+	font-size: large;
+	font-weight: bold;
+	border-bottom: 1px solid #ddd;
+}
+
+.table>tbody>tr>td {
+	border-bottom: 1px solid #ddd;
+	font-family: monospace;
+	text-align: center;
+}
+
+.table>tbody>tr>#td1 {
+	text-align: left;
+}
+
+.table>tbody>tr>td>a:hover {
+	text-decoration: underline;
+}
+
+#memDelBtn {
+	background-color: #D85E48;
+	padding: 5px;
+	border-radius: 5px;
+	color: white;
+}
+
+.tit-evt {
+	position: relative;
+}
+
+.tit-heading-wrap {
+	position: relative;
+	height: 51px;
+	margin-top: 30px;
+	border-bottom: 3px solid #241d1e;
+}
+
+.tb-style {
+	width: 1000;
+	border-style: solid;
+	border-color: black;
+}
+
+.dvtable-style {
+	width: 700;
+	border: 3;
+	bordercolor: lightgray;
+	align: center;
 }
 </style>
 <script type="text/javascript">
@@ -29,37 +83,41 @@ $(function() {
 		}
 	});
 // 행 클릭하면 거기서 id 받아와서 그거의 예매현황보는 페이지로 넘기도록 하자
-	$('#tbl tbody').on('click', 'tr', function () {
+	$('tbody').on('click', 'tr', function () {
 		var userId = $(this).find("td").eq(2).text();
 		
 	});	
 // 회원탈퇴용
-	$('#tbl tbody').on('click','#memDelBtn',function() {
+	$('tbody').on('click','#memDelBtn',function() {
 		var userId = $(this).closest('tr').find("td").eq(2).text();
 		$("#hdn").val(userId);
+		console.log("userid: " + userId);
 	});
 });
 </script>
 </head>
 <body>
-<div class="table-responsive" align="center">
-	<form>
-		<table class="table table-bordered" id="tbl" border="1" style="text-align: center;">
+	<div class="tit-heading-wrap tit-evt">
+		<h3>회원 관리</h3>
+	</div>
+	<div id="memList" align="center">
+		<table border="1" class="table table-hover"
+			style="margin-bottom: 20px;">
 			<thead>
-			<tr>
-				<th scope="col">선택</th>
-				<th scope="col">회원번호</th>
-				<th scope="col">아이디</th>
-				<th scope="col">이름</th>
-				<th scope="col">생년월일</th>
-				<th scope="col">전화번호</th>
-				<th scope="col">이메일</th>
-				<th scope="col">메일수신</th>
-				<th scope="col">가입일</th>
-				<th scope="col">포인트</th>
-				<th scope="col">권한</th>
-				<th scope="col">회원탈퇴</th>
-			</tr>
+				<tr>
+					<th>선택</th>
+					<th>회원번호</th>
+					<th>아이디</th>
+					<th>이름</th>
+					<th>생년월일</th>
+					<th>전화번호</th>
+					<th>이메일</th>
+					<th>메일수신</th>
+					<th>가입일</th>
+					<th>포인트</th>
+					<th>권한</th>
+					<th>회원탈퇴</th>
+				</tr>
 			</thead>
 			<tbody>
 			<c:forEach var="member" items="${ members }">
@@ -75,7 +133,7 @@ $(function() {
 					<td>${ member.mbr_regi_date }</td>
 					<td>${ member.mbr_point }</td>
 					<td>${ member.mbr_author }</td>
-					<td><button type="button" class="btn btn-outline-secondary btn-sm" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button></td>
+					<td><button id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button></td>
 				</tr>			
 			</c:forEach>
 			</tbody>
@@ -90,8 +148,9 @@ $(function() {
 	</form>
 	<script type="text/javascript">
 		function goPage(p) {
-			searchForm.p.value = p;
-			searchForm.submit();
+			location.href="memberList.do?p=" + p;
+			// searchForm.p.value = p;
+			// searchForm.submit();
 		}
 	</script>
 	<my:paging paging="${paging}" jsfunc="goPage" ></my:paging>
