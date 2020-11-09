@@ -21,9 +21,12 @@ public class MovieReservationDAO extends DAO {
 	private MovieVO vo;
 	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
-	private final String SELECT_ID_DATE_TIME = "select * from timetable\r\n" + 
-											   "where mv_num=?\r\n" + 
-											   "and tt_scr_date = ?";	//id와 날짜값에맞는 상영시간 조회 
+	private final String SELECT_ID_DATE_TIME = "select tt.tt_start \"시작시간\", tt.tt_end \"종료시간\", th.th_max \"총좌석\", th.th_name \"상영관명\"\r\n" + 
+												"from timetable tt, theater th\r\n" + 
+												"where tt.th_num = th.th_num\r\n" + 
+												"and tt.mv_num=?\r\n" + 
+												"and tt.tt_scr_date=?"+
+												" order by tt.tt_start";
 private final String SELECT_M_DATE = "select distinct(tt_scr_date), mv_num\r\n" + 
 									 "from timetable\r\n" + 
 									 "where mv_num = ?";
@@ -45,8 +48,10 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				MvFindDateDTO mdto = new MvFindDateDTO();
-				mdto.setTt_start(rs.getString("tt_start"));
-				mdto.setTt_end(rs.getString("tt_end"));
+				mdto.setTt_start(rs.getString("시작시간"));
+				mdto.setTt_end(rs.getString("종료시간"));
+				mdto.setTh_max(rs.getInt("총좌석"));
+				mdto.setTh_name(rs.getString("상영관명"));
 				list.add(mdto);			
 			}
 		} catch (SQLException e) {
