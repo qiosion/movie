@@ -36,8 +36,18 @@ select {
 </style>
 <script type="text/javascript">
 	$(function() {
+		init();
 		movieList();
+		movieInsert();
 	});
+
+	function init() {
+		$("#initBtn").on("click", function() {
+			$("#frm").each(function() {
+				this.reset();
+			});
+		});
+	}
 
 	function movieList() {
 		$.ajax({
@@ -52,6 +62,52 @@ select {
 	}
 
 	function movieListResult(data) {
+		$("tbody[id='listCont']").empty();
+		$.each(data, function(idx, item) {
+			$('<tr>').append($('<td>').html(item.mvTitle)).append(
+					$('<td>').html(item.ttScrDate)).append(
+					$('<td>').html(item.thName)).append(
+					$('<td>').html(item.ttStart)).append(
+					$('<td>').html(item.ttEnd)).append(
+					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					.append(
+							$('<td>').html(
+									'<button id=\'btnDelete\'>삭제</button>'))
+					.append(
+							$('<td>').html(
+									'<input type=\'hidden\' id=\'ttNum\'>')
+									.val(item.ttNum)).appendTo(
+							'tbody[id="listCont"]');
+		});
+	}
+
+	function movieInsert() {
+		$("#confirmInsert").on('click', function() {
+			var form = $("#frm")[0];
+			var data = new FormData(form);
+
+			if (!$("#ttScrDate").val()) {
+				alert("상영일을 선택 해주세요");
+				return false;
+			}
+
+			$.ajax({
+				url : 'ajax/screenMvInsert.do',
+				dataType : 'json',
+				method : 'post',
+				data : $("#frm").serialize(),
+				success : function(response) {
+					movieList();
+					init();
+				},
+				error : function(xhr, status, message) {
+					alert(" status: " + status + " er:" + message);
+				}
+			});
+		});
+	}
+
+	function movieInsertResult(item) {
 		$("tbody[id='listCont']").empty();
 		$.each(data, function(idx, item) {
 			$('<tr>').append($('<td>').html(item.mvTitle)).append(
@@ -87,7 +143,7 @@ select {
 							<tr style="line-height: 32px;">
 								<td>제목&nbsp;<span style="color: red;">*</span></td>
 								<td id="mvList" name="mvList"><c:if test="${!empty mvList}">
-										<select id="titleSel" name="titleSel">
+										<select id="mvNum" name="mvNum">
 											<c:forEach var="sel" items="${mvList}">
 												<option value="${sel.mvNum}">${sel.mvTitle}</option>
 											</c:forEach>
@@ -95,7 +151,7 @@ select {
 									</c:if></td>
 								<td>상영관&nbsp;<span style="color: red;">*</span></td>
 								<td id="thList" name="thList"><c:if test="${!empty thList}">
-										<select id="thSel" name="thSel">
+										<select id="thNum" name="thNum">
 											<c:forEach var="th" items="${thList}">
 												<option value="${th.thNum}">${th.thName}</option>
 											</c:forEach>
@@ -161,13 +217,13 @@ select {
 			</div>
 		</div>
 		<div class="text-center mt-3">
-			<button type="button" id="uptBtn" style="margin-right: 30px;"
-				data-toggle="modal" data-target="#mvUptPop" class="btn btn-success">등록</button>
+			<button type="button" id="insertBtn" style="margin-right: 30px;"
+				data-toggle="modal" data-target="#mvInsertPop"
+				class="btn btn-success">등록</button>
 			<button type="button" class="btn btn-dark"
-				style="margin-right: 30px;" id="delBtn" data-toggle="modal"
-				data-target="#mvDelPop">수정</button>
-			<button type="button" class="btn btn-danger"
-				onclick="location.href='mvList.do'">초기화</button>
+				style="margin-right: 30px;" id="udpBtn" data-toggle="modal"
+				data-target="#mvUdpPop">수정</button>
+			<button type="button" class="btn btn-danger" id="initBtn">초기화</button>
 		</div>
 	</form>
 	<hr />
@@ -186,6 +242,59 @@ select {
 			</thead>
 			<tbody id="listCont"></tbody>
 		</table>
+	</div>
+
+	<div class="modal" id="mvInsertPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">상영 영화 등록</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form id="frm" name="frm">
+						<p style="text-align: center; margin: 10px; font-size: 20px;">상영
+							영화를 등록 하시겠습니까?</p>
+						<div style="text-align: center;">
+							<button type="button" style="margin-right: 5px;"
+								name="confirmInsert" id="confirmInsert" class="btn btn-success"
+								data-dismiss="modal">등록</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal" id="mvUptPop">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+
+				<!-- Modal Header -->
+				<div class="modal-header">
+					<h1 class="modal-title">영화 수정</h1>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+
+				<!-- Modal body -->
+				<div class="modal-body">
+					<form id="frm" name="frm">
+						<p style="text-align: center; margin: 10px; font-size: 20px;">${vo.mvTitle}
+							을(를) 수정하시겠습니까?</p>
+						<div style="text-align: center;">
+							<button type="button" style="margin-right: 5px;"
+								name="confirmUpt" id="confirmUpt" class="btn btn-success">수정</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

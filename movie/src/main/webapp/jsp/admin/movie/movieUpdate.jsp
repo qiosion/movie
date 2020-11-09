@@ -42,17 +42,14 @@
 			// 빈칸 체크
 			if (!$("#mvDir").val()) {
 				alert("감독명을 입력해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#strdate").val()) {
 				alert("개봉일을 선택 해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#findate").val()) {
 				alert("종료일을 선택 해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 
