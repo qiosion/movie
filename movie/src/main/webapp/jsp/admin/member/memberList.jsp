@@ -80,20 +80,6 @@ $(function() {
 			</c:forEach>
 			</tbody>
 			<tfoot>
-<!-- 			<tr>
-				<th scope="col">선택</th>
-				<th scope="col">회원번호</th>
-				<th scope="col">아이디</th>
-				<th scope="col">이름</th>
-				<th scope="col">생년월일</th>
-				<th scope="col">전화번호</th>
-				<th scope="col">이메일</th>
-				<th scope="col">메일수신</th>
-				<th scope="col">가입일</th>
-				<th scope="col">포인트</th>
-				<th scope="col">권한</th>
-				<th scope="col">회원탈퇴</th>
-			</tr> -->
 			<tr>
 				<td colspan="12" align="center">
 					<button type="button" class="btn btn-link" id="mailing">이메일 전송</button>

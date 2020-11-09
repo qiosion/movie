@@ -7,10 +7,6 @@
 		page="reservation-theme.jsp">
 		<pattern>/reservation/*</pattern>
 	</decorator>
-	<decorator name="user-theme" page="user-theme.jsp">
-		<pattern>/member/*</pattern>
-		<!-- <pattern>/예매/예매내역.jsp</pattern> -->
-	</decorator>
 	<!-- Excludes will never be decorated by Sitemesh. -->
 	<excludes>
 		<pattern>*/ajax/*</pattern>
