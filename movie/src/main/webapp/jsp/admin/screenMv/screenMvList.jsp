@@ -117,7 +117,7 @@ select {
 	}
 
 	function mvDetail() {
- 		$("#listCont").on("click", "#btnSelect", function() {
+ 		$("body").on("click", "#btnSelect", function() {
 			var ttNum = $(this).closest('tr').find('#ttNum').val();
 			console.log("ttNum : " + ttNum);
 			console.log("this : " + $(this));
@@ -138,10 +138,10 @@ select {
 
 	function movieDetailResult(data) {
 		$('select[name="mvNum"]').val(data.mvNum).attr("selected", "selected");
-		$('select[name="thNum"]').val(data.role).attr("selected", "selected");
-		$('select[name="ttStart"]').val(data.ttStart).attr("selected",
-				"selected");
+		$('select[name="thNum"]').val(data.thNum).attr("selected", "selected");
+		$('select[name="ttStart"]').val(data.ttStart).attr("selected", "selected");
 		$('select[name="ttEnd"]').val(data.ttEnd).attr("selected", "selected");
+		$('input[type="date"]').val(data.ttScrDate);
 	}
 
 	function movieInsert() {

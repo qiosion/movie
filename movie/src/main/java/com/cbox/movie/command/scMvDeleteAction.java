@@ -16,9 +16,7 @@ public class scMvDeleteAction implements Action {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		int ttNum = Integer.parseInt(request.getParameter("ttNum"));
-		System.out.println("scMvDeleteAction : " + ttNum);
 		ScreenMvVO vo = new ScreenMvVO(ttNum);
-		System.out.println("vo get : "+vo.getTtNum());
 		ScreenMvDAO dao = new ScreenMvDAO();
 		dao.deleteScreenMv(vo);
 
