@@ -6,16 +6,78 @@
 <html>
 <head>
 <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <title>전체 게시글</title>
-    <link rel="stylesheet" href="/css/info.css">
+<title>전체 게시글</title>
+<link rel="stylesheet" href="/css/info.css">
     <script>
     function writeForm(){
         location.href="infoWriteForm.do"; //글쓰기 버튼 클릭시 작성화면으로 이동
     }
     </script>
+    <script>
+    //쿠키설정    
+	function setCookie(name, value, expiredays) {
+		var todayDate = new Date();
+		todayDate.setDate(todayDate.getDate() + expiredays);
+		document.cookie = name + '=' + escape(value) + '; path=/; expires='
+				+ todayDate.toGMTString() + ';'
+	}
+
+	//쿠키 불러오기
+	function getCookie(name) {
+		var obj = name + "=";
+		var x = 0;
+		while (x <= document.cookie.length) {
+			var y = (x + obj.length);
+			if (document.cookie.substring(x, y) == obj) {
+				if ((endOfCookie = document.cookie.indexOf(";", y)) == -1)
+					endOfCookie = document.cookie.length;
+				return unescape(document.cookie.substring(y, endOfCookie));
+			}
+			x = document.cookie.indexOf(" ", x) + 1;
+			if (x == 0)
+				break;
+		}
+		return "";
+	}
+
+	//닫기 버튼 클릭시
+	function closeWin(key) {
+		if ($("#todaycloseyn").prop("checked")) {
+			setCookie('divpop' + key, 'Y', 1);
+		}
+		$("#divpop" + key + "").hide();
+	}
+	$(function() {
+		if (getCookie("divpop1") != "Y") {
+			$("#divpop1").show();
+		}
+	});
+</script>
     
  <style>
+ 
+  .divpop {
+      position: absolute; 
+      z-index:500; 
+      top:20px; 
+      left:60px;
+      width:280px; 
+      height:413px; 
+      border:1px solid black;
+      background-color:white;display:none;
+  }
+  .title_area {
+  font-weight:bold;
+  text-align:center;
+  width:100%;
+  }
+  .button_area {
+  position:absolute;
+  bottom:0;
+  left:80px;
+  
+  } 
+  
  .table > thead { 
  background-color: #EDEBE1; 
  
@@ -63,7 +125,6 @@
   color: white;
 }
 
-
  </style>
 </head>
 <body> 
@@ -107,14 +168,29 @@
     <script>
 	function goPage(p){
     		location.href="infoList.do?p="+p;
-		//searchFrm.p.value = p;
-		//searchFrm.submit();
     	}
     </script>
+    
     <div id="paging">
     <my:paging paging="${paging}" jsfunc="goPage"></my:paging>
 	</div>
-</div>    
+</div>
+
+<form name="notice_form">
+		<div id="divpop1" class="divpop">
+			<div class="title_area">공지사항/이벤트</div>
+			<div style="text-align:center">
+				<a href="http://www.cgv.co.kr/culture-event/event/detailviewunited.aspx?seq=30029">
+				<img alt="" height="280" src="http://img.cgv.co.kr/Event/cultureplexPhoto/15693148655180.jpg" width="280" style="width: 100%; height: 100%;">
+				</a>
+			</div>
+			<div class="button_area">
+				<input type='checkbox' name='chkbox'  value='Y'>오늘 하루 이 창을 열지 않음
+				<a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B>
+				</a>
+			</div>
+		</div>
+	</form>    
  
 </body>
 </html>
