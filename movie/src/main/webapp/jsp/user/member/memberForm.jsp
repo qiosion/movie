@@ -5,6 +5,15 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style type="text/css">
+.txt {
+	text-align: right;
+}
+input[type='text'], input[type='password'] {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
+</style>
 <script type="text/javascript">
 	function formCheck(){
 		var f = document.frm;
