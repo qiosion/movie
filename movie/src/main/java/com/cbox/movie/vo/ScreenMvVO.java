@@ -7,6 +7,7 @@ public class ScreenMvVO {
 	private String ttScrDate; // 상영일
 	private String ttStart; // 상영 시작 시간
 	private String ttEnd; // 상영 종료 시간
+	private int empty;	// 잔여 좌석
 	
 	private String mvTitle;	// 영화 제목
 	private String thName;	// 상영관명
@@ -57,6 +58,14 @@ public class ScreenMvVO {
 
 	public void setTtEnd(String ttEnd) {
 		this.ttEnd = ttEnd;
+	}
+
+	public int getEmpty() {
+		return empty;
+	}
+
+	public void setEmpty(int empty) {
+		this.empty = empty;
 	}
 
 	public String getMvTitle() {

@@ -27,7 +27,7 @@
 				var dd = strdate.substring(6, 8);
 				console.log(">>> " + yyyy + "-" + mm + "-" + dd);
 				$("#strdate").val(yyyy + "-" + mm + "-" + dd);
-				$("#searchPopup").modal("hide"); //닫기 
+				//$("#searchPopup").modal("hide"); //닫기 
 				//$("#strdate").val(chk.parent().children('#strdate').text());
 			}
 			// 팝업 닫기
@@ -218,8 +218,8 @@
 					<span class="card-title" id="movieTitle"> <i
 						class="fas fa-square"></i>영화 등록
 					</span>
-					<button type="button" id="searchBtn" data-toggle="modal"
-						data-target="#searchPopup" onclick="clearSearch()">검색</button>
+					<button type="button" id="menuSearchBtn" data-toggle="modal"
+						data-target="#searchPopup" onclick="clearSearch()" style="margin-bottom: 10px;">검색</button>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -308,7 +308,7 @@
 	</div>
 
 	<!-- 팝업창 -->
-	<div class="modal" id="searchPopup" data-backdrop="static">
+	<div class="modal" id="searchPopup" data-backdrop="static" style="max-height: 500px;">
 		<div class="modal-dialog modal-dialog-scrollable">
 			<div class="modal-content">
 
@@ -324,7 +324,7 @@
 					<div id="search">
 						<input type="text" name="keyword" id="keyword"
 							placeholder="영화 제목을 입력하세요">
-						<button id="searchButton" type="button"
+						<button id="menuSearchBtn" type="button"
 							onclick="return formCheck()">검색</button>
 					</div>
 					<div id="list"></div>
@@ -334,7 +334,7 @@
 				<!-- Modal footer -->
 				<div style="text-align: center; margin: 10px;">
 					<button type="button" name="export" id="export"
-						class="btn btn-success" data-dismiss="modal">확인</button>
+						class="btn btn-success" data-dismiss="modal" style="margin-right: 30px;">확인</button>
 					<button type="button" class="btn btn-danger" data-dismiss="modal"
 						onclick="clearSearch()">취소</button>
 				</div>

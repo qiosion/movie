@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="mv"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,8 +16,8 @@ select {
 }
 
 #bottomList td {
-	text-align: center!important;
-	vertical-align: middle!important;
+	text-align: center !important;
+	vertical-align: middle !important;
 }
 
 #btnSelect {
@@ -53,16 +54,20 @@ select {
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
 		$.each(data, function(idx, item) {
-			$('<tr>')
-			.append($('<td>').html(item.mvTitle))
-			.append($('<td>').html(item.ttScrDate))
-			.append($('<td>').html(item.thName))
-			.append($('<td>').html(item.ttStart))
-			.append($('<td>').html(item.ttEnd))
-			.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-			.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-			.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\'>').val(item.ttNum))
-			.appendTo('tbody[id="listCont"]');
+			$('<tr>').append($('<td>').html(item.mvTitle)).append(
+					$('<td>').html(item.ttScrDate)).append(
+					$('<td>').html(item.thName)).append(
+					$('<td>').html(item.ttStart)).append(
+					$('<td>').html(item.ttEnd)).append(
+					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					.append(
+							$('<td>').html(
+									'<button id=\'btnDelete\'>삭제</button>'))
+					.append(
+							$('<td>').html(
+									'<input type=\'hidden\' id=\'ttNum\'>')
+									.val(item.ttNum)).appendTo(
+							'tbody[id="listCont"]');
 		});
 	}
 </script>
@@ -79,78 +84,76 @@ select {
 				<div class="card-body">
 					<div class="table-responsive">
 						<table class="table">
-								<tr style="line-height: 32px;">
-									<td>제목&nbsp;<span style="color: red;">*</span></td>
-									<td id="mvList" name="mvList"><c:if
-											test="${!empty mvList}">
-											<select id="titleSel" name="titleSel">
-												<c:forEach var="sel" items="${mvList}">
-													<option value="${sel.mvNum}">${sel.mvTitle}</option>
-												</c:forEach>
-											</select>
-										</c:if></td>
-									<td>상영관&nbsp;<span style="color: red;">*</span></td>
-									<td id="thList" name="thList"><c:if
-											test="${!empty thList}">
-											<select id="thSel" name="thSel">
-												<c:forEach var="th" items="${thList}">
-													<option value="${th.thNum}">${th.thName}</option>
-												</c:forEach>
-											</select>
-										</c:if></td>
-								</tr>
-								<tr>
-									<td style="width: 25%;">상영 시작&nbsp;<span
-										style="color: red;">*</span></td>
-									<td><select id="ttStart" name="ttStart">
-											<option value="0" disabled>상영시작</option>
-											<option value="09:00">09:00</option>
-											<option value="09:30">09:30</option>
-											<option value="10:00">10:00</option>
-											<option value="10:30">10:30</option>
-											<option value="11:00">11:00</option>
-											<option value="11:30">11:30</option>
-											<option value="12:00">12:00</option>
-											<option value="12:30">12:30</option>
-											<option value="13:00">13:00</option>
-											<option value="13:30">13:30</option>
-											<option value="14:00">14:00</option>
-											<option value="14:30">14:30</option>
-									</select></td>
-									<td style="width: 25%;">상영 종료&nbsp;<span
-										style="color: red;">*</span></td>
-									<td style="width: 25%;"><select id="ttEnd" name="ttEnd">
-											<option value="0" disabled>상영종료</option>
-											<option value="10:00">10:00</option>
-											<option value="10:30">10:30</option>
-											<option value="11:00">11:00</option>
-											<option value="11:30">11:30</option>
-											<option value="12:00">12:00</option>
-											<option value="12:30">12:30</option>
-											<option value="13:00">13:00</option>
-											<option value="13:30">13:30</option>
-											<option value="14:00">14:00</option>
-											<option value="14:30">14:30</option>
-											<option value="15:00">15:00</option>
-											<option value="15:30">15:30</option>
-											<option value="16:00">16:00</option>
-											<option value="16:30">16:30</option>
-											<option value="17:00">17:00</option>
-											<option value="17:30">17:30</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td>상영일&nbsp;<span style="color: red;">*</span></td>
-									<td style="width: 25%;"><input type="date"
-										name="ttScrDate" id="ttScrDate" class="form-control" value=""></td>
-									<td></td>
-									<td><c:if test="${!empty thList}">
-											<c:forEach var="th" items="${thList}" end="0">
-												<input type="hidden" id="thMax" name="thMax"
-													value="${th.thMax}">
+							<tr style="line-height: 32px;">
+								<td>제목&nbsp;<span style="color: red;">*</span></td>
+								<td id="mvList" name="mvList"><c:if test="${!empty mvList}">
+										<select id="titleSel" name="titleSel">
+											<c:forEach var="sel" items="${mvList}">
+												<option value="${sel.mvNum}">${sel.mvTitle}</option>
 											</c:forEach>
-										</c:if></td>
-								</tr>
+										</select>
+									</c:if></td>
+								<td>상영관&nbsp;<span style="color: red;">*</span></td>
+								<td id="thList" name="thList"><c:if test="${!empty thList}">
+										<select id="thSel" name="thSel">
+											<c:forEach var="th" items="${thList}">
+												<option value="${th.thNum}">${th.thName}</option>
+											</c:forEach>
+										</select>
+									</c:if></td>
+							</tr>
+							<tr>
+								<td style="width: 25%;">상영 시작&nbsp;<span
+									style="color: red;">*</span></td>
+								<td><select id="ttStart" name="ttStart">
+										<option value="0" disabled>상영시작</option>
+										<option value="09:00">09:00</option>
+										<option value="09:30">09:30</option>
+										<option value="10:00">10:00</option>
+										<option value="10:30">10:30</option>
+										<option value="11:00">11:00</option>
+										<option value="11:30">11:30</option>
+										<option value="12:00">12:00</option>
+										<option value="12:30">12:30</option>
+										<option value="13:00">13:00</option>
+										<option value="13:30">13:30</option>
+										<option value="14:00">14:00</option>
+										<option value="14:30">14:30</option>
+								</select></td>
+								<td style="width: 25%;">상영 종료&nbsp;<span
+									style="color: red;">*</span></td>
+								<td style="width: 25%;"><select id="ttEnd" name="ttEnd">
+										<option value="0" disabled>상영종료</option>
+										<option value="10:00">10:00</option>
+										<option value="10:30">10:30</option>
+										<option value="11:00">11:00</option>
+										<option value="11:30">11:30</option>
+										<option value="12:00">12:00</option>
+										<option value="12:30">12:30</option>
+										<option value="13:00">13:00</option>
+										<option value="13:30">13:30</option>
+										<option value="14:00">14:00</option>
+										<option value="14:30">14:30</option>
+										<option value="15:00">15:00</option>
+										<option value="15:30">15:30</option>
+										<option value="16:00">16:00</option>
+										<option value="16:30">16:30</option>
+										<option value="17:00">17:00</option>
+										<option value="17:30">17:30</option>
+								</select></td>
+							</tr>
+							<tr>
+								<td>상영일&nbsp;<span style="color: red;">*</span></td>
+								<td style="width: 25%;"><input type="date" name="ttScrDate"
+									id="ttScrDate" class="form-control" value=""></td>
+								<td></td>
+								<td><c:if test="${!empty thList}">
+										<c:forEach var="th" items="${thList}" end="0">
+											<input type="hidden" id="thMax" name="thMax"
+												value="${th.thMax}">
+										</c:forEach>
+									</c:if></td>
+							</tr>
 							</tbody>
 						</table>
 					</div>
@@ -168,7 +171,7 @@ select {
 		</div>
 	</form>
 	<hr />
-	<div id="bottomList">
+	<div id="bottomList" style="min-height: 650px;" align="center">
 		<table class="table text-center">
 			<thead>
 				<tr>
