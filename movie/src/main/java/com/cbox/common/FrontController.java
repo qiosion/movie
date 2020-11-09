@@ -42,6 +42,7 @@ import com.cbox.movie.command.mvRegistFormAction;
 import com.cbox.movie.command.mvUpdateAction;
 import com.cbox.movie.command.mvUpdateFormAction;
 import com.cbox.movie.command.scMvDeleteAction;
+import com.cbox.movie.command.scMvDetailAction;
 import com.cbox.movie.command.scMvInsertAction;
 import com.cbox.movie.command.scMvListAction;
 import com.cbox.movie.command.scMvUpdateAction;
@@ -83,7 +84,7 @@ public class FrontController extends HttpServlet {
 		// 상영 영화
 		map.put("/screenMvForm.do", new screenMvFormAction());
 		map.put("/ajax/screenMvList.do", new scMvListAction());	// 조회
-		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 상세
+		map.put("/ajax/screenMvDetail.do", new scMvDetailAction());	// 상세
 		map.put("/ajax/screenMvInsert.do", new scMvInsertAction());	// 등록
 		map.put("/ajax/screenMvUpdate.do", new scMvUpdateAction());	// 수정
 		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 삭제

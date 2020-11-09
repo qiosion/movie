@@ -15,13 +15,7 @@ public class scMvInsertAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("scMvInsertAction");
 		ScreenMvVO vo = new ScreenMvVO();
-		System.out.println("1: "+request.getParameter("mvNum"));
-		System.out.println("2: "+request.getParameter("ttScrDate"));
-		System.out.println("3: "+request.getParameter("ttStart"));
-		System.out.println("4: "+request.getParameter("ttEnd"));
-		System.out.println("5: "+request.getParameter("thNum"));
 		vo.setMvNum(Integer.parseInt(request.getParameter("mvNum")));
 		vo.setTtScrDate(request.getParameter("ttScrDate"));
 		vo.setTtStart(request.getParameter("ttStart"));

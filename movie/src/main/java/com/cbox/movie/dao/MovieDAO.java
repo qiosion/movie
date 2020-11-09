@@ -38,7 +38,6 @@ public class MovieDAO extends DAO {
 			if (searchVO.getType().equals("title")) {
 				whereCondition += " AND MV_TITLE LIKE '%'||?||'%'";
 			} else if (searchVO.getType().equals("chkType")) {
-				System.out.println("chkType : " + searchVO.getKeyword());
 				if (searchVO.getKeyword().equals("ing")) {
 					whereCondition += " AND MV_FINDATE > SYSDATE";
 				}
@@ -46,7 +45,6 @@ public class MovieDAO extends DAO {
 		}
 		try {
 			SELECT_ALL = SELECT_ALL + whereCondition;
-			System.out.println("SELECT_ALL : " + SELECT_ALL);
 			psmt = conn.prepareStatement(SELECT_ALL);
 
 			int pos = 1;
