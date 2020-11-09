@@ -49,6 +49,7 @@ import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.mvFindDateAction;
 import com.cbox.reservation.command.mvFindTimeAction;
+import com.cbox.reservation.command.reservInfoAction;
 
 @MultipartConfig
 @WebServlet("*.do")
@@ -100,7 +101,8 @@ public class FrontController extends HttpServlet {
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/memDel.do", new memDelAction()); // admin 회원탈퇴
 		map.put("/logout.do", new logoutAction()); // 로그아웃
-
+		map.put("/reservInfo.do", new reservInfoAction()); // user 예매정보 보기
+		
 		// 광희
 		map.put("/reservation/reservationForm.do", new ReservationForm()); // 예매하기 Form
 		// ajax
