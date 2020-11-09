@@ -77,12 +77,12 @@ th, td {
 <body>
 	<div class="tit-heading-wrap tit-evt">
 		<h3>영화 리스트 관리</h3>
+		<a href="mvRegistForm.do" class="registBtn" style="float: right; margin-bottom: 8px;">등록</a>
 	</div>
 	<div id="topMvMenu">
-		<p style="margin-bottom: 20px;">
-			<a href="mvRegistForm.do" class="registBtn">등록</a>
-		</p>
-		<mv:searchMv returnPage="mvList.do" />
+		<div align="right">
+			<mv:searchMv returnPage="mvList.do" />
+		</div>
 	</div>
 	<div id="mvList" align="center">
 		<table border="1" class="table table-hover"
@@ -91,10 +91,10 @@ th, td {
 				<tr>
 					<th width="50">번호</th>
 					<th width="160">제목</th>
-					<th width="180">포스터</th>
-					<th>설명</th>
+					<th>포스터</th>
+					<th width="150">설명</th>
 					<th width="100">개봉일</th>
-					<th width="100">평균 평점</th>
+					<th width="90">평균 평점</th>
 					<th width="70"></th>
 				</tr>
 			</thead>

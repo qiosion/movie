@@ -31,6 +31,8 @@ public class ScreenMvDAO extends DAO {
 				MovieVO mvVO = new MovieVO();
 				mvVO.setMvNum(rs.getInt("mv_num"));
 				mvVO.setMvTitle(rs.getString("mv_title"));
+				mvVO.setStrdate(rs.getDate("mv_strdate"));
+				mvVO.setFindate(rs.getDate("mv_findate"));
 
 				list.add(mvVO);
 			}

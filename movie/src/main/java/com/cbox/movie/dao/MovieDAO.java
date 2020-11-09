@@ -97,7 +97,7 @@ public class MovieDAO extends DAO {
 		}
 
 		try {
-			SELECT_SEARCH = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( " + "SELECT * FROM MOVIE" + whereCondition
+			SELECT_SEARCH = "SELECT B.* FROM ( SELECT A.*, ROWNUM RN FROM ( " + "SELECT * FROM MOVIE" + whereCondition
 					+ " ORDER BY 1 ) A  ) B WHERE RN BETWEEN ? AND ?";
 			psmt = conn.prepareStatement(SELECT_SEARCH);
 //			psmt = conn.prepareStatement(SELECT_PAGE);
@@ -116,7 +116,8 @@ public class MovieDAO extends DAO {
 
 			while (rs.next()) {
 				vo = new MovieVO();
-				vo.setMvNum(rs.getInt("mv_num"));
+				System.out.println("rn : " + rs.getInt("rn"));
+				vo.setMvNum(rs.getInt("rn"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
 				vo.setMvCha(rs.getString("mv_cha"));
