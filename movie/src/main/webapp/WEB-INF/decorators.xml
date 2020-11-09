@@ -3,15 +3,12 @@
 	<decorator name="all-theme" page="all-theme.jsp">
 		<pattern>/*</pattern>
 	</decorator>
-	<decorator name="basic-theme" page="admin-theme.jsp">
-		<pattern>/admin/*</pattern>
-	</decorator>
-	<decorator name="basic-theme" page="user-theme.jsp">
-		<pattern>/user/*</pattern>
-	</decorator>
-	
 	<decorator name="reservation-theme" page="reservation-theme.jsp">
 		<pattern>/reservation/*</pattern>
+	</decorator>
+		<decorator name="user-theme" page="user-theme.jsp">
+		<pattern>/member/memberInfo.jsp</pattern>
+		<!-- <pattern>/예매/예매내역.jsp</pattern> -->
 	</decorator>
 	<!-- Excludes will never be decorated by Sitemesh. -->
 	<excludes>

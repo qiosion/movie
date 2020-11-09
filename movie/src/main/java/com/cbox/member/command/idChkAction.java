@@ -17,13 +17,14 @@ public class idChkAction implements Action {
 		IdChkDAO dao = IdChkDAO.getInstance();
 		
 		String id = request.getParameter("mbr_id");
-		boolean result = dao.idChk(id);
+		boolean result = false;
 		try {
 			PrintWriter out = response.getWriter();
+			result = dao.idChk(id);
 			if (result) {
-				out.println("0");
+				out.println("이미 있는 아이디입니다");
 			} else {
-				out.println("1");
+				out.println("사용가능한 아이디입니다");
 			}
 			out.close();
 		} catch (IOException e) {

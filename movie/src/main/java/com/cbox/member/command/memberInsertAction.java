@@ -36,7 +36,9 @@ public class memberInsertAction implements Action {
 			}
 		} else {
 			try {
-				response.sendRedirect("memberForm.do");
+				PrintWriter out = response.getWriter();
+				out.println("회원가입에 실패하였습니다");
+				//response.sendRedirect("memberForm.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
