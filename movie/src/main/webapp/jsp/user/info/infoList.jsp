@@ -185,7 +185,7 @@
 				</a>
 			</div>
 			<div class="button_area">
-				<input type='checkbox' name='chkbox'  value='Y'>오늘 하루 이 창을 열지 않음
+				<input type='checkbox' name='chkbox' id='todaycloseyn' value='Y'>오늘 하루 이 창을 열지 않음
 				<a href='#' onclick="javascript:closeWin(1);"><B>[닫기]</B>
 				</a>
 			</div>
