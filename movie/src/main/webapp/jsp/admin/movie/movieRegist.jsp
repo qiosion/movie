@@ -163,27 +163,22 @@
 			console.log("mvDir : " + $("#mvDir").val());
 			if (!$("#mvTitle").val()) {
 				alert("제목을 입력해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#mvDir").val()) {
 				alert("감독명을 입력해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#strdate").val()) {
 				alert("개봉일을 선택 해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#findate").val()) {
 				alert("종료일을 선택 해주세요");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 			if (!$("#mvPost").val()) {
 				alert("포스터 이미지를 첨부 해주세요.");
-				//$('#mvUptPop').modal('hide');
 				return false;				
 			}
 

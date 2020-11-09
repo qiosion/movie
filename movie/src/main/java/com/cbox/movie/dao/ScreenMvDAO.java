@@ -74,7 +74,7 @@ public class ScreenMvDAO extends DAO {
 	private String SELECT_LIST = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
 			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
 			+ "ORDER BY 2, 3, 4";
-	
+
 //	private String SELECT_LIST = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( " + 
 //			"SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME " + 
 //			"FROM TIMETABLE T " + 
@@ -111,7 +111,7 @@ public class ScreenMvDAO extends DAO {
 
 		return list;
 	}
-	
+
 	public int count(MovieSearchVO searchVO) {
 		System.out.println("count");
 		int cnt = 0;
@@ -130,20 +130,32 @@ public class ScreenMvDAO extends DAO {
 
 		return cnt;
 	}
-	
+
 	// 상영 영화 등록
-	private String INSERT_MV = "insert into timetable(tt_num, mv_num, tt_scr_date, tt_start, tt_end, tt_empty, th_num"
-			+ "values(time_seq.nextval, ?, ?, ?, ?, ?, ?";
-	
+//	insert into timetable
+//	select 12, 2, '2021-11-11', '09:00', '10:30', th_max, 2 from theater where th_num = 2;
+	private String INSERT_MV = "insert into timetable(tt_num, mv_num, tt_scr_date, tt_start, tt_end, tt_empty, th_num) "
+			+ "select time_seq.nextval, ?, ?, ?, ?, th_max, ? from theater where th_num = ?";
+//			+ "values(time_seq.nextval, ?, ?, ?, ?, ?, ?";
+
 	public void insertScreenMv(ScreenMvVO scVO) {
 		try {
+			System.out.println("insertScreenMv");
 			psmt = conn.prepareStatement(INSERT_MV);
+			System.out.println("1 : " + scVO.getMvNum());
+			System.out.println("2 : " + scVO.getTtScrDate());
+			System.out.println("3 : " + scVO.getTtStart());
+			System.out.println("4 : " + scVO.getTtEnd());
+			System.out.println("5 : " + scVO.getThNum());
+			System.out.println("6 : " + scVO.getThNum());
 			psmt.setInt(1, scVO.getMvNum());
 			psmt.setString(2, scVO.getTtScrDate());
 			psmt.setString(3, scVO.getTtStart());
 			psmt.setString(4, scVO.getTtEnd());
-			psmt.setInt(5, scVO.getEmpty());
+			psmt.setInt(5, scVO.getThNum());
 			psmt.setInt(6, scVO.getThNum());
+			System.out.println("INSERT_MV : " + INSERT_MV);
+			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
