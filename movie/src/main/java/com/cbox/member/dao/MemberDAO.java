@@ -24,7 +24,6 @@ public class MemberDAO extends DAO{
 			+ "SELECT * FROM MEMBER ORDER BY MBR_NO ) A ) B WHERE RN BETWEEN ? AND ?";
 	private final String INSERT = "INSERT INTO MEMBER(MBR_NO, MBR_ID, MBR_PW, MBR_NM, MBR_BIRTH, MBR_EMAIL, MBR_PHONE, MBR_E_YN)"
 								+ "VALUES (MBR_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
-	private final String IDCHK = "SELECT COUNT(MBR_ID) AS CNT FROM MEMBER WHERE MBR_ID = ?";
 	private final String UPDATE = "UPDATE MEMBER SET MBR_PW = ?, MBR_EMAIL = ?, MBR_PHONE = ?, MBR_E_YN = ? WHERE MBR_ID = ?";
 	private final String DELETE = "DELETE FROM MEMBER WHERE MBR_ID = ?";
 	
@@ -222,7 +221,12 @@ public class MemberDAO extends DAO{
 			pstmt.setDate(4, vo.getMbr_birth());
 			pstmt.setString(5, vo.getMbr_email());
 			pstmt.setString(6, vo.getMbr_phone());
-			pstmt.setString(7, vo.getMbr_e_yn());
+			if (vo.getMbr_e_yn() == "" || vo.getMbr_e_yn() == null) {
+				System.out.println("chk:" + vo.getMbr_e_yn());
+				pstmt.setString(7, "n");
+			} else {
+				pstmt.setString(7, vo.getMbr_e_yn());
+			}
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -239,7 +243,11 @@ public class MemberDAO extends DAO{
 			pstmt.setString(1, vo.getMbr_pw());
 			pstmt.setString(2, vo.getMbr_email());
 			pstmt.setString(3, vo.getMbr_phone());
-			pstmt.setString(4, vo.getMbr_e_yn());
+			if (vo.getMbr_e_yn() == "" || vo.getMbr_e_yn() == null) {
+				pstmt.setString(4, "n");
+			} else {
+				pstmt.setString(4, vo.getMbr_e_yn());
+			}
 			pstmt.setString(5, vo.getMbr_id());
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -263,22 +271,6 @@ public class MemberDAO extends DAO{
 			close();
 		}
 		return n;
-	}
-	
-	public int idC(String id) {
-		int cnt = 0;
-		try {
-			pstmt = conn.prepareStatement(IDCHK);
-			pstmt.setString(1, id);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				cnt = rs.getInt("cnt");
-			}
-		} catch (Exception e) {
-			System.out.println("아이디 중복확인 실패");
-			e.printStackTrace();
-		}
-		return cnt;
 	}
 	
 	private void close() { // 커넥션 끊어주는 close()메소드

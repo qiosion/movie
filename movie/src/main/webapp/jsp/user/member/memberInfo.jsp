@@ -74,26 +74,24 @@
     		<label for="mbr_point">포인트</label>
     		<input type="text" value="${ myPage.mbr_point }" readonly>
 		</div>
-		<script type="text/javascript">
-// 회원의 기존 체크박스 체크여부
-			var chk = $("#mbr_e_yn").val();
-			console.log("chk: " + chk);
-			if (chk == 'y'){
-				$("#mbr_e_yn").prop("checked", true);
-			} else {
-				$("#mbr_e_yn").prop("checked", false);
-			}
-// 현재 체크박스 체크 여부		
-			if ($("#mbr_e_yn").prop("checked", true)){
-				$("#mbr_e_yn").attr("value", "y");
-			} else {
-				$("#mbr_e_yn").attr("value", "n");
-			}
-		</script>
 		<div class="form-group form-check">
     		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn" value="${ myPage.mbr_e_yn }">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
+<script type="text/javascript">
+	var chk = $("input[id='mbr_e_yn']:checked");
+	if (chk) {
+		$("#mbr_e_yn").val("y");
+	} else {
+		$("#mbr_e_yn").val("n");
+	}
+	var nowchk = "${ myPage.mbr_e_yn }";
+		if (nowchk == "y"){
+			$("#mbr_e_yn").attr("checked", true);
+		} else {
+			$("#mbr_e_yn").attr("checked", false);
+		}
+</script>
 		<button type="button" class="btn btn-primary" onclick="location.href='main.do'">메인으로</button>
     	<button type="submit" class="btn btn-primary" onclick="location.href='memberUpdate.do'">수정</button>
 		<button type="button" class="btn btn-primary" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
@@ -112,7 +110,7 @@
 
 				<!-- Modal body -->
 				<div class="modal-body">
-					<form id="frm" name="frm" action="memberDelete.do" method="post">
+					<form id="frm2" name="frm2" action="memberDelete.do" method="post">
 						<div id="delete">
 							<input type="text" name="pwchk" id="pwchk" placeholder="비밀번호를 입력하세요">
 						</div>

@@ -16,7 +16,7 @@
 		if(f.idUncheck.value != "idCheck"){
 			alert ("아이디 중복체크를 해주세요");
 			return false;
-		}
+		} 
 		if(f.mbr_pw.value == "") {
 			alert ("비밀번호를 입력하세요");
 			f.mbr_pw.focus();
@@ -47,6 +47,9 @@
 	function IdCheck() {
 		window.open("jsp/user/member/idChkForm.jsp","idchk","width=400, height=350");
 	}
+	function inputIdChk(){
+		$("#idDuplication").val("idUncheck");
+	}
 </script>
 </head>
 <body>
@@ -54,8 +57,9 @@
 	<form class="frm" id="frm" name="frm" action="memberInsert.do" method="post">
 		<div class="form-group">
    	 		<label for="mbr_id">아이디</label>
-    		<input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디">
+    		<input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디" onkeydown="inputIdChk()">
     		<input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck()">
+    		<input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck">
   		</div>
 		<div class="form-group">
     		<label for="mbr_pw">비밀번호</label>
@@ -102,19 +106,19 @@
     		<label for="mbr_email">이메일</label>
     		<input type="email" class="form-control" id="mbr_email" name="mbr_email" placeholder="abc@example.com">
 		</div>
-		<script type="text/javascript">
-// 현재 체크박스 체크 여부		
-			if ($("#mbr_e_yn").prop("checked", true)){
-				$("#mbr_e_yn").attr("value", "y");
-			} else {
-				$("#mbr_e_yn").attr("value", "n");
-			}
-		</script>
 		<div class="form-group form-check">
     		<input type="checkbox" class="form-check-input" id="mbr_e_yn" name="mbr_e_yn">
     		<label class="form-check-label" for="mbr_e_yn">이메일 광고 수신여부</label>
 		</div>
-		
+				<script type="text/javascript">
+// 현재 체크박스 체크 여부		
+	var chk = $("input[id='mbr_e_yn']:checked");
+	if (chk) {
+		$("#mbr_e_yn").val("y");
+	} else {
+		$("#mbr_e_yn").val("n");
+	}
+		</script>
     	<button type="submit" class="btn btn-primary" onclick="return formCheck()">회원가입</button>
 		<button type="reset" class="btn btn-primary">취소</button>		
 	</form>
