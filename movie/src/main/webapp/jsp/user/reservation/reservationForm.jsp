@@ -48,7 +48,7 @@
 			$("#test00 .text").css("color","");			
 			$(this).css("background-color", "black");
 			$(this).children(".text").css("color","white");
-			//$("#test01 li.day")[0].style="color: red";
+			
 			
 			//$(this).attr("title"); //영화 id
 			var paramid = $(this).attr("title");
@@ -70,6 +70,23 @@
 					alert("오류");
 				}
 			}); //end ajax
+			
+			
+			//start img ajax
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/mvFindImg.do", //data보낼 주소
+				type:"get", //전송방식
+				data:param_id, //보낼 data
+				dataType: "json", //요청한 데이터를 받을 형식
+				success : mvFindImg,
+				error:function(xhr,status){
+					alert("이미지 불러오기 오류");
+				}
+			});//end img ajax
+			
+			function mvFindImg(data){
+				
+			}
 			
 			function mvFindDate(data){//start mvFindate
 				$("li.day span").css("color","#A9A9A9"); //누를때마다 초기화 
@@ -204,28 +221,29 @@
 			
 		}); //end #test00 a, movie button click
 		//$(".theater_minimap .seatsClick").
+		var title = ["A","B","C","D","E","F"];
+		var cnt=0;
 		var table = $("<table >").attr("class","seatTable");
 		var seaNum = 1;
-		for(var i=1; i<=6 ; i++){
+		for(var i=0; i<6 ; i++){
 			var tr=$("<tr >").attr("class","seatTr");
 			for(var j=1; j<=8; j++){
-				var td=$("<td >").attr({"class":"seatTd", "data-seaNum":+seaNum+"번"});
-				
-				tr.append(td.html(j));
+				var td=$("<td >").attr({"class":"seatTd", "data-seaNum":title[cnt]+"-"+j+"번"});
+				tr.append(td.html(j+"번"));
 				seaNum++;
 			}
+			cnt++;
 			table.append(tr);
 		}
 		$(".theater_minimap .seatsClick").append(table);
 		
-		var title = ["A","B","C","D","E","F"];
-		var cnt=0;
+		cnt=0;
 		table = $("<table>").attr("class","seatTableTitle");
 		for(var i=1; i<=6; i++){
 		    tr=$("<tr>").attr("class","seatTr");
 		    td=$("<td>").attr("class","seatTd");
 			tr.append(td.html(title[cnt]));
-			cnt = cnt+1;
+			cnt++;
 			table.append(tr);
 			
 			$(".theater_minimap .seatsLeft").append(table);
@@ -279,7 +297,8 @@
 			}
 		});//end 좌석선택 function
 		
-		table = $("<table>")
+		
+		
 	}); //end start function
 </script>
 
@@ -606,7 +625,14 @@
 					<!-- step3-->
 					<div class="step step3" style="display: none;">
 						<div class="reservResult">
-						
+							<table class="resultReserv">
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
+								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>							
+							</table>
 						</div>
 					</div>
 			
