@@ -1,5 +1,7 @@
 package com.cbox.movie.vo;
 
+import java.sql.Date;
+
 public class ScreenMvVO {
 	private int ttNum; // 상영 번호
 	private int mvNum; // 영화 번호 FK
@@ -11,6 +13,9 @@ public class ScreenMvVO {
 	
 	private String mvTitle;	// 영화 제목
 	private String thName;	// 상영관명
+
+	private Date strdate; // 개봉일
+	private Date findate; // 종료일
 
 	public ScreenMvVO() {
 	}
@@ -91,4 +96,19 @@ public class ScreenMvVO {
 		this.thName = thName;
 	}
 
+	public Date getStrdate() {
+		return strdate;
+	}
+
+	public void setStrdate(Date strdate) {
+		this.strdate = strdate;
+	}
+
+	public Date getFindate() {
+		return findate;
+	}
+
+	public void setFindate(Date findate) {
+		this.findate = findate;
+	}
 }
