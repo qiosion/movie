@@ -110,8 +110,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memDel.do", new memDelAction()); // admin 회원탈퇴
 		map.put("/logout.do", new logoutAction()); // 로그아웃
 		map.put("/UserReservList.do", new UserReservListAction()); // user 예매정보 전체 보기
-		map.put("/ajax/UserReservInfo.do", new UserReservInfoAction()); // user 예매정보 상세 보기
-		map.put("/ShowReservInfo.do", new ShowReservInfoAction());
+		map.put("/UserReservInfo.do", new UserReservInfoAction()); // user 예매정보 상세 보기
 		map.put("/AdminReserv.do", new AdminReservAction()); // admin 예매현황 보기
 		
 		// 광희
