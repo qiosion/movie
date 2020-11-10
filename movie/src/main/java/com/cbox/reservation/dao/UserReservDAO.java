@@ -32,15 +32,14 @@ public class UserReservDAO extends DAO {
 					"JOIN MOVIE MV ON MV.MV_NUM = TT.MV_NUM " + 
 					"JOIN THEATER TH ON TH.TH_NUM = TT.TH_NUM " + 
 					"JOIN MEMBER MBR ON MBR.MBR_NO = TC.MBR_NO " + 
-					"WHERE MBR.MBR_NO = ? AND TC.TC_NUM = ? )A )B";
+					"WHERE TC.TC_NUM = ? )A )B";
 	
-	public List<UserReservVO> userReservOne(UserReservVO vo) {
-		List<UserReservVO> list = new ArrayList<UserReservVO>();
+	public UserReservVO userReservOne(int tcn) {
 		try {
 			pstmt = conn.prepareStatement(SELECT_ONE_RESERV);
-			pstmt.setInt(1, vo.getMbr_no());
-			pstmt.setInt(2, vo.getTc_num());
+			pstmt.setInt(1, tcn);
 			rs = pstmt.executeQuery();
+			vo = new UserReservVO();
 			if(rs.next()){
 				vo.setTc_date(rs.getDate("tc_date"));
 				vo.setMv_title(rs.getString("mv_title"));
@@ -50,14 +49,13 @@ public class UserReservDAO extends DAO {
 				vo.setTt_end(rs.getString("tt_end"));
 				vo.setTc_st_num(rs.getString("tc_st_num"));
 				vo.setTh_name(rs.getString("th_name"));
-				list.add(vo);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
         	close();
         }
-        return list;
+        return vo;
 	}
 	
 	public List<UserReservVO> userReservList(UserReservVO uvo){

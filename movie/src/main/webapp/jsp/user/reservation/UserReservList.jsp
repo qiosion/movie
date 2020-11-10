@@ -79,13 +79,12 @@ $(function() {
 		$.ajax({
 			url: "ajax/UserReservInfo.do",
 			method: "post",
+			dataType: "json",
 			processData : false,
 			contentType : false,
 			data: { tc_no: tcNum },
-			dataType: "json",
 			success: function(xhr){
-				alert("몰라");
-				location.href = "ShowReservInfo.do?tc_num=" + ${vo.tc_num};
+				alert("됐..나..?");
 			}, error : function(xhr, status, msg) {
 				alert("status : " + status + " error : " + msg);
 			}
@@ -121,7 +120,10 @@ $(function() {
 					<td>${ uReList.tt_start }</td>
 					<td>${ uReList.tc_st_num }</td>
 					<td>${ uReList.th_name }</td>
-					<td><button id="selBtn">조회</button></td>
+					<td>
+						<button id="selBtn">조회</button>
+						<input type="hidden" id="hdn" name="hdn">
+					</td>
 				</tr>			
 			</c:forEach>
 			</tbody>
