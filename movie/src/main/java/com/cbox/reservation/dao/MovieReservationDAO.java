@@ -10,6 +10,7 @@ import com.cbox.common.DAO;
 import com.cbox.movie.vo.MovieVO;
 import com.cbox.reservation.vo.MovieReservationVO;
 import com.cbox.reservation.vo.MvFindDateDTO;
+import com.cbox.reservation.vo.MvFindImgDTO;
 import com.cbox.reservation.vo.mvFindDateVO;
 
 public class MovieReservationDAO extends DAO {
@@ -21,6 +22,12 @@ public class MovieReservationDAO extends DAO {
 	private MovieVO vo;
 	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
+	private MvFindImgDTO idto;
+	
+	private final String SELECT_TITLE_IMG = 
+			"SELECT MV_NUM, MV_TITLE, MV_POST\r\n" + 
+			"FROM MOVIE\r\n" + 
+			"WHERE MV_NUM=?";				
 	private final String SELECT_ID_DATE_TIME = "select tt.tt_start \"시작시간\", tt.tt_end \"종료시간\", th.th_max \"총좌석\", th.th_name \"상영관명\"\r\n" + 
 												"from timetable tt, theater th\r\n" + 
 												"where tt.th_num = th.th_num\r\n" + 
@@ -39,6 +46,26 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
+	public List<MvFindImgDTO> selectMvImg(MvFindImgDTO dto){//id값으로 이미지, 영화명찾기
+		List<MvFindImgDTO> list = new ArrayList<>();
+		
+		try {
+			psmt = conn.prepareStatement(SELECT_TITLE_IMG);
+			psmt.setInt(1, dto.getMv_num());
+			rs= psmt.executeQuery();
+			if(rs.next()) {
+				idto = new MvFindImgDTO();
+				idto.setMv_title(rs.getString("mv_title"));
+				idto.setMv_post(rs.getString("mv_post"));
+				list.add(idto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 	public List<MvFindDateDTO> selectMvTime(MvFindDateDTO dto){// 2020-11-08 다시해야됨 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		List<MvFindDateDTO> list = new ArrayList<>();
 		try {

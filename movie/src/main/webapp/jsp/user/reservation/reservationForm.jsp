@@ -36,6 +36,17 @@
 		background-color:#333;
 		color:white;
 	}
+	.tnb .info .row {
+   	 	width:185px;
+   	 	
+	}
+	.tnb .info .row .header {
+		height:10px !important;
+		min-height: 0px !important;
+	}
+	.tnb .info.theater .row .header{
+		width:50px;
+	}
 </style>
 <script type="text/javascript">
 
@@ -43,11 +54,16 @@
 		
 		
 		$("#test00 a").on("click",function(){ //예매에서 영화를 선택했을경우
+			$("#test01 a").css("background-color","");
+			//$("#test00 a").css("background-color","");
+			//$("#test00 .text").css("color","");			
+			//$(this).css("background-color", "black");
+			//$(this).children(".text").css("color","white");
+			if($("#test00 li").hasClass("selected")){
+				$("#test00 li").removeClass("selected");
+			}
+				$(this).parent().addClass("selected");
 			
-			$("#test00 a").css("background-color","");
-			$("#test00 .text").css("color","");			
-			$(this).css("background-color", "black");
-			$(this).children(".text").css("color","white");
 			
 			
 			//$(this).attr("title"); //영화 id
@@ -85,6 +101,18 @@
 			});//end img ajax
 			
 			function mvFindImg(data){
+				var mv_title = data[0].mv_title;
+				var mv_post = data[0].mv_post;
+				//console.log(mv_title);
+				$(".info.movie .placeholder").css("display","none");
+				$(".info.movie .movie_poster img")
+				.attr({"src":"${pageContext.request.contextPath}/images/"+mv_post, "style":"display:inline"});
+				$(".info.movie .row.movie_title.colspan2").css("display","block");
+				$(".info.movie .row.movie_title.colspan2 a").attr("title",mv_title);
+				$(".info.movie .row.movie_title.colspan2 a").text(mv_title);
+
+				
+				
 				
 			}
 			
@@ -147,9 +175,9 @@
 				}else{
 					cDate =cDate;
 				}
-				console.log(cDate);
+				//console.log(cDate);
 				var param_idDate = {m_id: paramid, m_date:cDate}; //영화 id값 받아오는거.
-				console.log(param_idDate);
+				//console.log(param_idDate);
 				
 				$.ajax({
 					url:"${pageContext.request.contextPath}/ajax/mvFindTime.do", //data보낼 주소
@@ -168,7 +196,7 @@
 					//$("#test02").css("display","none"); //time창 초기화
 					$("#test02").empty();
 					
-					console.log(data.length);
+					//console.log(data.length);
 					for(var i=0; i<data.length; i++){
 					var test = '<div class="theater" screen_cd="'+i+'" >'+
 										'<span class="title"><span class="name">2D</span><span '+
@@ -186,7 +214,21 @@
 					$("#test02").append(test);
 					} // end for
 				
+			
 				}//end MvFindTime function
+				$(".info.theater .placeholder").css("display","none");
+				$(".info.theater .row.date").css("display","block");
+				$(".info.theater .row.screen").css("display","block");
+				$(".info.theater .row.number").css("display","block");
+				//console.log($(this).children(".dayweek").text());
+				//console.log($(this).parent().data("date"));
+				var date = $(this).parent().data("date");
+				var dayweek = $(this).children(".dayweek").text();
+				
+				$(".info.theater .row.date .data").text(date+"("+dayweek+")");
+				$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")");
+				
+				//start #test02 click
 				$("#test02").on("click",".time", function(){ //비동기방식, 시간선택
 					$("#test02 a .time").css("background-color","");
 					$("#test02 a .time").css("color","");
@@ -214,6 +256,13 @@
 						
 					});
 					
+					var screen = $(this).parents("div.theater").children().children(".floor").text();
+					$(".info.theater .row.screen .data").text(screen);
+					var starttime= $(this).text();
+					var endtime = $(this).siblings(".sreader").text();
+					
+					$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime);
+					$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime);
 					
 				});//end time button click
 				
@@ -652,13 +701,41 @@
 					onclick="OnTnbLeftClick(); return false;" title="영화선택">이전단계로 이동</a>
 				<!-- 영화선택 -->
 				<div class="info movie">
-					<span><img src =""></span>
+					<span class="movie_poster"><img src="" alt="영화 포스터" style="display: none;"></span>
+					<div class="row movie_title colspan2" style="display: none;">
+						<span class="data letter-spacing-min ellipsis-line2">
+						<a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');"></a></span>
+					</div>
+					<div class="row movie_type" style="display: none;">
+						<span class="data ellipsis-line1"></span>
+					</div>
+					<div class="row movie_rating" style="display: none;">
+						<span class="data" title=""></span>
+					</div>
 					<div class="placeholder" title="영화선택"></div>
 				</div>
+				<!-- end 영화선택 -->
+				
 				<!-- 극장선택 -->
 				<div class="info theater">
-					<div class="placeholder" title="극장선택"></div>
+				<div class="row name" style="display: none;">
+					<span class="header">극장</span>
+					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader"></span></a></span>
 				</div>
+				<div class="row date" style="display: none;">
+					<span class="header">일시</span>
+					<span class="data" title=""></span>
+				</div>
+				<div class="row screen" style="display: none;">
+					<span class="header">상영관</span>
+					<span class="data"></span>
+				</div>
+				<div class="row number" style="display: none;">
+					<span class="header">인원</span>
+					<span class="data"></span>
+				</div>
+				<div class="placeholder" title="극장선택" style="display: block;"></div>
+			</div>
 				<!-- 좌석선택 
 				<div class="info seat">
 					<div class="placeholder" title="좌석선택"></div>
