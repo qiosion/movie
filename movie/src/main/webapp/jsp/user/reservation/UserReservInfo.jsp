@@ -6,12 +6,9 @@
 <meta charset="UTF-8">
 <title>예매 상세정보</title>
 <style type="text/css">
-.txt {
-	text-align: right;
-}
-input[type='text'], input[type='password'] {
-    height: calc(1.5em + .75rem + 2px) !important;
-    width: 100% !important;
+#mv_title{
+	font-size: 21px;
+	font-weight: bolder;
 }
 </style>
 </head>
@@ -29,15 +26,26 @@ input[type='text'], input[type='password'] {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">예매번호</td>
-								<td><input type="text" name="tc_num" class="form-control" value="${ vo.mv_title }" readonly></td>
+								<td><label id="tc_num" class="highlight">예매번호 ${ vo.tc_num }</label></td>
+								<td class="txt">예매일</td>
+								<td><label id="tc_date">${ vo.tc_date }</label></td>
 							</tr>
 							<tr>
 								<td class="txt">영화 제목</td>
-								<td><input type="text" name="mv_title" class="form-control" value="${ vo.mv_title }" readonly></td>
+								<td colspan="2"><label class="highlight" id="mv_title">${ vo.mv_title } </label></td>
+								<td class="txt"><label id="mv_age">${ vo.mv_age }</label></td>
 							</tr>
 							<tr>
-								<td class="txt">연령제한</td>
-								<td><input type="text" name="mv_age" class="form-control" value="${ vo.mv_age }" readonly></td>
+								<td class="txt">상영일</td>
+								<td><label id="tt_scr_date" class="highlight">${ vo.tt_scr_date }</label></td>
+								<td class="txt">상영시간</td>
+								<td><label id="tt_time"><b>${ vo.tt_start }</b> ~ <b>${ vo.tt_end }</b></label></td>
+							</tr>
+							<tr>
+								<td class="txt">상영관명</td>
+								<td><label id="th_name" class="highlight">${ vo.th_name }</label></td>
+								<td class="txt">좌석번호</td>
+								<td><label id="tc_st_num" class="highlight">${ vo.tc_st_num }</label></td>
 							</tr>
 							
 						</table>
@@ -46,7 +54,7 @@ input[type='text'], input[type='password'] {
 			</div>
 		</div>
 		<div class="text-center mt-3">
-			<button type="button" class="btn btn-dark" onclick="location.href='main.do'">목록으로</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'">목록으로</button>
 			<!-- <button type="button" class="btn btn-danger" id="cancelBtn" data-toggle="modal" data-target="#cancelPop">예매 취소</button> -->
 		</div>
 	</form>

@@ -60,7 +60,7 @@ input[type='text'], input[type='password'] {
 </script>
 </head>
 <body>
-	<form class="frm" id="frm" name="frm" action="memberInsert.do" method="post" style="padding: 20px; max-width: 70%; margin-bottom: 10px;">
+	<form class="frm" id="frm" name="frm" action="memberInsert.do" method="post" style="margin:auto; padding: 20px; max-width: 70%; margin-bottom: 10px;">
 		<div class="col-sm-12 pt-3"><!-- class="form-group" -->
 			<div class="card">
 				<div class="card-header card-header-primary">

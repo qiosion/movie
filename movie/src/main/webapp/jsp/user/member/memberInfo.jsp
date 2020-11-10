@@ -23,7 +23,7 @@ input[type='text'], input[type='password'] {
 <c:if test="${pwwrong ne null}">
 	<script>alert("비밀번호가 틀렸습니다");</script>
 </c:if>
-	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post" style="padding: 20px; max-width: 70%; margin-bottom: 10px;">
+	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post" style="margin:auto; padding: 20px; max-width: 70%; margin-bottom: 10px;">
 		<div class="col-sm-12 pt-3">
 			<div class="card">
 				<div class="card-header card-header-primary">
