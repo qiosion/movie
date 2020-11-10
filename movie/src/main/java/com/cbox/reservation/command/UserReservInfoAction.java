@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.cbox.common.Action;
 import com.cbox.reservation.dao.UserReservDAO;
 import com.cbox.reservation.vo.UserReservVO;
@@ -20,19 +22,9 @@ public class UserReservInfoAction implements Action {
 		
 		vo.setTc_num(Integer.parseInt(request.getParameter("tc_no")));
 		System.out.println(">> "+vo.getTc_num());
-		//String tcn = (String) request.getAttribute("tcNum");
-		//int tcn = Integer.parseInt((String) request.getAttribute("tc_no"));
-		
-		// vo.setTc_num(Integer.parseInt(request.getAttribute("tc_no")));
-		try {
-			response.getWriter().print("{\"result\":true}");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		// System.out.println("tcn 제발" + tcn);
 		vo = dao.userReservOne(vo.getTc_num());
-		request.setAttribute("showReserv", vo);
-		return null; //"jsp/user/reservation/UserReservInfo.jsp";
+		request.setAttribute("vo", vo);
+		return "/jsp/user/reservation/UserReservInfo.jsp";
 	}
 
 }

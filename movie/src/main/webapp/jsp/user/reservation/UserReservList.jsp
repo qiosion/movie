@@ -75,7 +75,9 @@ th, td {
 $(function() {
 	$('tbody').on('click','#selBtn',function() {
 		var tcNum = $(this).closest('tr').find("td").eq(0).text();
-		console.log("tcNum: " + tcNum);
+		location.href ='ajax/UserReservInfo.do?tc_no='+tcNum;
+		/* console.log("tcNum: " + tcNum);
+		
 		$.ajax({
 			url: "ajax/UserReservInfo.do?tc_no="+tcNum,
 			method: "post",
@@ -85,11 +87,11 @@ $(function() {
 			//data: { tc_no: tcNum },
 			success: function(xhr){
 				alert("됐..나..?");
-				location.href ='jsp/user/reservation/UserReservInfo.jsp';
+				location.href ='UserReservInfo.do?tc_no="+tcNum';
 			}, error : function(xhr, status, msg) {
 				alert("status : " + status + " error : " + msg);
 			}
-		});
+		}); */
 	});
 });
 </script>

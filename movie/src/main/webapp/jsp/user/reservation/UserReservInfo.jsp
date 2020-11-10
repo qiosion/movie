@@ -29,15 +29,15 @@ input[type='text'], input[type='password'] {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">예매번호</td>
-								<td><input type="text" name="tc_num" class="form-control" value="${ showReserv.mv_title }" readonly></td>
+								<td><input type="text" name="tc_num" class="form-control" value="${ vo.mv_title }" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">영화 제목</td>
-								<td><input type="text" name="mv_title" class="form-control" value="${ showReserv.mv_title }" readonly></td>
+								<td><input type="text" name="mv_title" class="form-control" value="${ vo.mv_title }" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">연령제한</td>
-								<td><input type="text" name="mv_age" class="form-control" value="${ showReserv.mv_age }" readonly></td>
+								<td><input type="text" name="mv_age" class="form-control" value="${ vo.mv_age }" readonly></td>
 							</tr>
 							
 						</table>
