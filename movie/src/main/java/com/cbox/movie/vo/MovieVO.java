@@ -15,7 +15,7 @@ public class MovieVO {
 	private String mvCont; // 설명
 	private String mvImg; // 이미지
 	private String mvTeaser; // 티저영상
-	private int mvRank; // 평균 평점
+	private Double mvRank; // 평균 평점
 	private String mvPost; // 포스터 이미지
 	private String mvAge;	// 관람연령
 
@@ -27,7 +27,7 @@ public class MovieVO {
 	}
 
 	public MovieVO(int mvNum, String mvTitle, String mvDir, String mvCha, Date strdate, Date findate,
-			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, int mvRank, String mvAge) {
+			String mvSum, String mvType, String mvCont, String mvImg, String mvTeaser, Double mvRank, String mvAge) {
 		super();
 		this.mvNum = mvNum;
 		this.mvTitle = mvTitle;
@@ -140,11 +140,11 @@ public class MovieVO {
 		this.mvTeaser = mvTeaser;
 	}
 
-	public int getMvRank() {
+	public Double getMvRank() {
 		return mvRank;
 	}
 
-	public void setMvRank(int mvRank) {
+	public void setMvRank(Double mvRank) {
 		this.mvRank = mvRank;
 	}
 

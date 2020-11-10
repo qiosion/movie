@@ -73,7 +73,7 @@ public class MovieDAO extends DAO {
 				vo.setMvAge(rs.getString("mv_age"));
 
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
-				vo.setMvRank(rs.getInt("mv_rank"));
+				vo.setMvRank(rs.getDouble("mv_rank"));
 
 				list.add(vo);
 			}
@@ -132,7 +132,7 @@ public class MovieDAO extends DAO {
 				vo.setMvAge(rs.getString("mv_age"));
 
 				// todo : 평균 평점은 해당 영화번호를 가진 review들의 평점을 계산해서
-				vo.setMvRank(rs.getInt("mv_rank"));
+				vo.setMvRank(rs.getDouble("mv_rank"));
 
 				list.add(vo);
 			}
@@ -252,7 +252,7 @@ public class MovieDAO extends DAO {
 				vo.setMvPost(rs.getString("mv_post"));
 				vo.setMvImg(rs.getString("mv_img"));
 				vo.setMvTeaser(rs.getString("mv_teaser"));
-				vo.setMvRank(rs.getInt("mv_rank"));
+				vo.setMvRank(rs.getDouble("mv_rank"));
 				vo.setMvAge(rs.getString("mv_age"));
 			}
 		} catch (SQLException e) {
@@ -277,7 +277,7 @@ public class MovieDAO extends DAO {
 			psmt.setString(8, vo.getMvCont());
 			psmt.setString(9, vo.getMvImg());
 			psmt.setString(10, vo.getMvTeaser());
-			psmt.setInt(11, vo.getMvRank());
+			psmt.setDouble(11, vo.getMvRank());
 			psmt.setString(12, vo.getMvPost());
 			psmt.setString(13, vo.getMvAge());
 

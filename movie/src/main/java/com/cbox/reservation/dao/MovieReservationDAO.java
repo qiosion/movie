@@ -129,7 +129,7 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 						rs.getString("mv_cont"),
 						rs.getString("mv_img"),
 						rs.getString("mv_teaser"),
-						rs.getInt("mv_rank"),
+						rs.getDouble("mv_rank"),
 						rs.getString("mv_age"));
 				list.add(vo);
 				
