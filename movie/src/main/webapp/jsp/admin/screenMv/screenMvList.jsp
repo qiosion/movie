@@ -117,30 +117,17 @@ select {
 
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
-		$
-				.each(
-						data,
-						function(idx, item) {
-							$('<tr>')
-									.append($('<td>').html(item.mvTitle))
-									.append($('<td>').html(item.ttScrDate))
-									.append($('<td>').html(item.thName))
-									.append($('<td>').html(item.ttStart))
-									.append($('<td>').html(item.ttEnd))
-									.append(
-											$('<td>')
-													.html(
-															'<button id=\'btnSelect\'>조회</button>'))
-									.append(
-											$('<td>')
-													.html(
-															'<button id=\'btnDelete\'>삭제</button>'))
-									.append(
-											$('<td>')
-													.html(
-															'<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
-									.appendTo('tbody[id="listCont"]');
-						});
+		$.each(data, function(idx, item) {
+			$('<tr>').append($('<td>').html(item.mvTitle))
+					.append($('<td>').html(item.ttScrDate))
+					.append($('<td>').html(item.thName))
+					.append($('<td>').html(item.ttStart))
+					.append($('<td>').html(item.ttEnd))
+					.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+					.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
+					.appendTo('tbody[id="listCont"]');
+		});
 	}
 
 	function mvDetail() {
@@ -354,7 +341,6 @@ select {
 										</c:forEach>
 									</c:if> <input type="hidden" id="ttNum" name="ttNum"></td>
 							</tr>
-							</tbody>
 						</table>
 					</div>
 				</div>

@@ -156,7 +156,7 @@
 			</span> <span>개봉작만</span>
 		</div>
 		<br>
-		<ol>
+		<ol align="center">
 			<c:forEach var="movie" items="${movies}">
 				<li>
 					<div style="margin-bottom: 5px;">
@@ -165,11 +165,10 @@
 							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></a>
 					</div>
 					<div style="margin-bottom: 5px;">
-						<p>${movie.mvTitle }</p>
+						<p>${movie.mvTitle}</p>
 					</div>
-					<div style="margin-bottom: 20px;">
-						<span>평점 : ${movie.mvRank }</span> | <span>개봉일 :
-							${movie.strdate }</span>
+					<div style="margin-bottom: 20px; min-height: 30px;">
+						<span>평점 : ${movie.mvRank}</span> | <span>개봉일 : ${movie.strdate}</span>
 						<p>${movie.mvCont }</p>
 					</div>
 					<div>
