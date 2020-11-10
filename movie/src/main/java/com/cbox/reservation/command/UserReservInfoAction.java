@@ -16,7 +16,10 @@ public class UserReservInfoAction implements Action {
 		UserReservDAO dao = new UserReservDAO();
 		UserReservVO vo = new UserReservVO();
 
-		System.out.println("확인");
+		System.out.println("확인 : "+request.getParameter("tc_no"));
+		
+		vo.setTc_num(Integer.parseInt(request.getParameter("tc_no")));
+		System.out.println(">> "+vo.getTc_num());
 		//String tcn = (String) request.getAttribute("tcNum");
 		//int tcn = Integer.parseInt((String) request.getAttribute("tc_no"));
 		
@@ -27,9 +30,9 @@ public class UserReservInfoAction implements Action {
 			e.printStackTrace();
 		}
 		// System.out.println("tcn 제발" + tcn);
-		//vo = dao.userReservOne(tcn);
-		//request.setAttribute("showReserv", vo);
-		return null; // "jsp/user/reservation/UserReservList.jsp";
+		vo = dao.userReservOne(vo.getTc_num());
+		request.setAttribute("showReserv", vo);
+		return null; //"jsp/user/reservation/UserReservInfo.jsp";
 	}
 
 }

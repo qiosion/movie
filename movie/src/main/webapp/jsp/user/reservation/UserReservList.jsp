@@ -77,14 +77,15 @@ $(function() {
 		var tcNum = $(this).closest('tr').find("td").eq(0).text();
 		console.log("tcNum: " + tcNum);
 		$.ajax({
-			url: "ajax/UserReservInfo.do",
+			url: "ajax/UserReservInfo.do?tc_no="+tcNum,
 			method: "post",
 			dataType: "json",
 			processData : false,
 			contentType : false,
-			data: { tc_no: tcNum },
+			//data: { tc_no: tcNum },
 			success: function(xhr){
 				alert("됐..나..?");
+				location.href ='jsp/user/reservation/UserReservInfo.jsp';
 			}, error : function(xhr, status, msg) {
 				alert("status : " + status + " error : " + msg);
 			}

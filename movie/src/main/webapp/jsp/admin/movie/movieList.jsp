@@ -118,9 +118,9 @@ $(function() {
 			<thead>
 				<tr>
 					<th width="50">번호</th>
-					<th width="160">제목</th>
-					<th>포스터</th>
-					<th width="150">설명</th>
+					<th>제목</th>
+					<th width="180">포스터</th>
+					<th>설명</th>
 					<th width="100">개봉일</th>
 					<th width="90">평균 평점</th>
 					<th width="70"></th>

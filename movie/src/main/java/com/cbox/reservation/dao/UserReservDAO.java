@@ -36,6 +36,7 @@ public class UserReservDAO extends DAO {
 	
 	public UserReservVO userReservOne(int tcn) {
 		try {
+			System.out.println("userReservOne " + tcn);
 			pstmt = conn.prepareStatement(SELECT_ONE_RESERV);
 			pstmt.setInt(1, tcn);
 			rs = pstmt.executeQuery();
@@ -49,6 +50,7 @@ public class UserReservDAO extends DAO {
 				vo.setTt_end(rs.getString("tt_end"));
 				vo.setTc_st_num(rs.getString("tc_st_num"));
 				vo.setTh_name(rs.getString("th_name"));
+				System.out.println(">> "+rs.getString("th_name"));
             }
         } catch (Exception e) {
             e.printStackTrace();

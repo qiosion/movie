@@ -29,7 +29,7 @@ input[type='text'], input[type='password'] {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">예매번호</td>
-								<td><input type="text" name="tc_num" class="form-control" value="${ showReserv.tc_no }" readonly></td>
+								<td><input type="text" name="tc_num" class="form-control" value="${ showReserv.mv_title }" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">영화 제목</td>

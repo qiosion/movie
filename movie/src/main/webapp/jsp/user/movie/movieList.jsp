@@ -168,7 +168,19 @@
 						<p>${movie.mvTitle}</p>
 					</div>
 					<div style="margin-bottom: 20px; min-height: 30px;">
-						<span>평점 : ${movie.mvRank}</span> | <span>개봉일 : ${movie.strdate}</span>
+						<span>평점 : 
+							<c:if test="${empty movie.mvRank}">
+								<c:forEach begin="1" end="5">&#127770;</c:forEach>
+							</c:if>
+							<c:if test="${!empty movie.mvRank}">
+								<c:set var="num" value="${movie.mvRank - (movie.mvRank % 1)}"/>
+								<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
+								<c:if test="${movie.mvRank-num eq 0.5}">
+									<c:forEach begin="1" end="${movie.mvRank-num}">&#127763;</c:forEach>
+								</c:if>
+							</c:if>
+						</span>
+						 | <span>개봉일 : ${movie.strdate}</span>
 						<p>${movie.mvCont }</p>
 					</div>
 					<div>
