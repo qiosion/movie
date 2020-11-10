@@ -34,31 +34,30 @@ public class UserReservDAO extends DAO {
 					"JOIN MEMBER MBR ON MBR.MBR_NO = TC.MBR_NO " + 
 					"WHERE MBR.MBR_NO = ? AND TC.TC_NUM = ? )A )B";
 	
-	public UserReservVO userReservOne(UserReservVO vo) {
+	public List<UserReservVO> userReservOne(UserReservVO vo) {
+		List<UserReservVO> list = new ArrayList<UserReservVO>();
 		try {
 			pstmt = conn.prepareStatement(SELECT_ONE_RESERV);
 			pstmt.setInt(1, vo.getMbr_no());
 			pstmt.setInt(2, vo.getTc_num());
 			rs = pstmt.executeQuery();
 			if(rs.next()){
-//				vo.setMbr_no(rs.getInt("mbr_no"));
-//				vo.setMbr_id(rs.getString("mbr_id"));
-//				vo.setMbr_pw(rs.getString("mbr_pw"));
-//				vo.setMbr_nm(rs.getString("mbr_nm")); 
-//				vo.setMbr_birth(rs.getDate("mbr_birth"));
-//				vo.setMbr_email(rs.getString("mbr_email"));
-//				vo.setMbr_phone(rs.getString("mbr_phone"));
-//				vo.setMbr_regi_date(rs.getDate("mbr_regi_date"));
-//				vo.setMbr_point(rs.getInt("mbr_point"));
-//				vo.setMbr_e_yn(rs.getString("mbr_e_yn"));
-//				vo.setMbr_author(rs.getString("mbr_author"));
+				vo.setTc_date(rs.getDate("tc_date"));
+				vo.setMv_title(rs.getString("mv_title"));
+				vo.setMv_age(rs.getString("mv_age"));
+				vo.setTt_scr_date(rs.getString("tt_scr_date")); 
+				vo.setTt_start(rs.getString("tt_start"));
+				vo.setTt_end(rs.getString("tt_end"));
+				vo.setTc_st_num(rs.getString("tc_st_num"));
+				vo.setTh_name(rs.getString("th_name"));
+				list.add(vo);
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
         	close();
         }
-        return vo;
+        return list;
 	}
 	
 	public List<UserReservVO> userReservList(UserReservVO uvo){

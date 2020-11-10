@@ -71,6 +71,28 @@ th, td {
 	align: center;
 }
 </style>
+<script type="text/javascript">
+$(function() {
+	$('tbody').on('click','#selBtn',function() {
+		var tcNum = $(this).closest('tr').find("td").eq(0).text();
+		console.log("tcNum: " + tcNum);
+		$.ajax({
+			url: "ajax/UserReservInfo.do",
+			method: "post",
+			processData : false,
+			contentType : false,
+			data: { tc_no: tcNum },
+			dataType: "json",
+			success: function(xhr){
+				alert("몰라");
+				location.href = "ShowReservInfo.do?tc_num=" + ${vo.tc_num};
+			}, error : function(xhr, status, msg) {
+				alert("status : " + status + " error : " + msg);
+			}
+		});
+	});
+});
+</script>
 </head>
 <body>
 	<div class="tit-heading-wrap tit-evt">
