@@ -1,10 +1,12 @@
 package com.cbox.coupon.command;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import com.cbox.common.Action;
 import com.cbox.coupon.dao.couponDAO;
@@ -16,10 +18,13 @@ public class couponListAction implements Action {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		couponDAO dao = new couponDAO();
 		
-		List<couponVO> list = new ArrayList<couponVO>();
+		List<couponVO> list = dao.selectAll();
 		
-		list = dao.selectAll();
-		request.setAttribute("couponList", list);
+		try {
+			response.getWriter().print(new JSONArray(list));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return "jsp/user/coupon/couponList.jsp";
 	}
 

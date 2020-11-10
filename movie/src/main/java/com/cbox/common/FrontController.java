@@ -13,7 +13,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.coupon.command.couponDeleteAction;
+import com.cbox.coupon.command.couponFormAction;
+import com.cbox.coupon.command.couponInsertAction;
 import com.cbox.coupon.command.couponListAction;
+import com.cbox.coupon.command.couponSelectAction;
 import com.cbox.info.command.DetailViewAction;
 import com.cbox.info.command.infoDeleteAction;
 import com.cbox.info.command.infoInsertAction;
@@ -126,8 +129,11 @@ public class FrontController extends HttpServlet {
 		map.put("/infoUpdate.do", new infoUpdateAction());// 글수정
 		map.put("/infoUpdateForm.do", new infoUpdateFormAction());// 글수정페이지로 이동
 		//쿠폰
-		map.put("/couponList.do", new couponListAction());//쿠폰리스트
-		map.put("/couponDelete.do", new couponDeleteAction());//쿠폰삭제
+		map.put("/couponForm.do", new couponFormAction());
+		map.put("/ajax/couponList.do", new couponListAction());//쿠폰리스트
+		map.put("/ajax/couponDelete.do", new couponDeleteAction());//쿠폰삭제
+		map.put("/ajax/couponInsert.do", new couponInsertAction());//쿠폰등록
+		map.put("/ajax/couponSelect.do", new couponSelectAction());//쿠폰조회
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
