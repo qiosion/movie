@@ -8,7 +8,35 @@
 <meta charset="UTF-8">
 
 <title>예매 페이지</title>
-
+<style>
+	.seatTableTitle{
+		border:2px solid black;
+		font-size: 22px;	
+		
+	}
+	.seatTable{
+		border:1px solid black;
+		font-size:22px;
+	}
+	.seatTr{
+		border:1px solid black;
+	}
+	.seatTr .seatTd{
+		border:1px solid black;
+		padding: 10px;
+	}
+	.seatAll {
+		display: flex;
+		justify-content:center; 
+		align-items:center; 
+		
+	}
+	td.selected{
+		border-color:#000;
+		background-color:#333;
+		color:white;
+	}
+</style>
 <script type="text/javascript">
 
 	$(function(){
@@ -164,6 +192,7 @@
 						console.log("aaa");
 						$(".step.step1").css("display","none");
 						$(".step.step2").css("display","block");
+						$(".btn-right").css("background-position", "0 -330px");
 						
 						
 					});
@@ -175,17 +204,82 @@
 			
 		}); //end #test00 a, movie button click
 		//$(".theater_minimap .seatsClick").
-		var table = $("<table >").attr({"id":"tbl","style":"border:1px solid","font-size":"10px"});
-		for(var i=0; i<5 ; i++){
-			var tr=$("<tr >");
-			for(var j=0; j<10; j++){
-				var td=$("<td >");
+		var table = $("<table >").attr("class","seatTable");
+		var seaNum = 1;
+		for(var i=1; i<=6 ; i++){
+			var tr=$("<tr >").attr("class","seatTr");
+			for(var j=1; j<=8; j++){
+				var td=$("<td >").attr({"class":"seatTd", "data-seaNum":+seaNum+"번"});
+				
 				tr.append(td.html(j));
+				seaNum++;
 			}
 			table.append(tr);
 		}
 		$(".theater_minimap .seatsClick").append(table);
 		
+		var title = ["A","B","C","D","E","F"];
+		var cnt=0;
+		table = $("<table>").attr("class","seatTableTitle");
+		for(var i=1; i<=6; i++){
+		    tr=$("<tr>").attr("class","seatTr");
+		    td=$("<td>").attr("class","seatTd");
+			tr.append(td.html(title[cnt]));
+			cnt = cnt+1;
+			table.append(tr);
+			
+			$(".theater_minimap .seatsLeft").append(table);
+			
+		}
+		
+		var ReservNum; //예매인원
+		var btnCount = 0;//좌석클릭카운트
+		$("#nop_group_adult ul li").on("click", function(){
+			btnCount=0;//좌석클릭카운트 초기화
+			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
+			$(".btn-right").css("background-position", "0 -330px");
+			$("#nop_group_adult ul li.selected").removeClass("selected");
+			$(this).addClass("selected");
+			
+			if($(this).data("count")>0){
+				$(".mouse_block").css("display","none");
+			}else{
+				$(".mouse_block").css("display","block");
+			}
+				
+			ReservNum = $(this).data("count");
+		}); //end 예매인원 선택
+		
+		
+		$(".seatTable .seatTd").on("click",function(){
+			if($(this).hasClass("selected")){
+				$(this).removeClass("selected");
+				btnCount=$("td.selected").length;
+				if(btnCount != ReservNum){
+					$(".btn-right").css("background-position", "0 -330px");
+				}
+			}else{
+				//console.log(ReservNum);
+				//예매인원 받아와서, 인원수에맞게 클릭
+				
+				if(btnCount >= ReservNum){
+					alert("선택한 예매인원수를 초과하셨습니다.");
+				}else{
+				$(this).addClass("selected");
+					btnCount=$("td.selected").length;
+					if(btnCount == ReservNum){
+						$(".btn-right").css("background-position", "-150px -330px");
+						
+						$("#tnb_step_btn_right").on("click",function(){
+							$(".step.step2").css("display","none");
+							$(".step.step3").css("display","block");
+						});
+					}
+				}
+			}
+		});//end 좌석선택 function
+		
+		table = $("<table>")
 	}); //end start function
 </script>
 
@@ -382,19 +476,7 @@
 								<div class="section section-numberofpeople">
 									<div class="col-body">
 
-										<!-- 인접좌석 -->
-										<!-- <div class="adjacent_seat_wrap">
-											<div class="adjacent_seat" id="adjacent_seat">
-												<span class="title">좌석 붙임 설정</span>
-												<div class="block_wrap">
-													<span class="seat_block block1"><label><input type="radio" name="adjacent_seat" onclick="ftSetAdjacentSeatSelector(1, this);" disabled><span class="box"></span><span class="sreader">1석 좌석붙임</span></label></span>
-													<span class="seat_block block2"><label><input type="radio" name="adjacent_seat" onclick="ftSetAdjacentSeatSelector(2, this);" disabled><span class="box"></span><span class="box"></span><span class="sreader">2석 좌석붙임</span></label></span>
-													<span class="seat_block block3"><label><input type="radio" name="adjacent_seat" onclick="ftSetAdjacentSeatSelector(3, this);" disabled><span class="box"></span><span class="box"></span><span class="box"></span><span class="sreader">3석 좌석붙임</span></label></span>
-													<span class="seat_block block4"><label><input type="radio" name="adjacent_seat" onclick="ftSetAdjacentSeatSelector(4, this);" disabled><span class="box"></span><span class="box"></span><span class="box"></span><span class="box"></span><span class="sreader">4석 좌석붙임</span></label></span>
-												</div>
-											</div>
-										</div> -->
-
+										
 										<div id="nopContainer" class="numberofpeople-select">
 											
 											
@@ -412,6 +494,7 @@
 													<li data-count="8" type="adult"><a href="#" onclick="return false;"><span class="sreader mod">일반</span>8<span class="sreader">명</span></a></li>
 												</ul>
 											</div>
+											<!--  
 											<div class="group youth" id="nop_group_youth" style="display: block;">
 												<span class="title">청소년</span>
 												<ul>
@@ -425,7 +508,7 @@
 													<li data-count="7" type="youth"><a href="#" onclick="return false;"><span class="sreader mod">청소년</span>7<span class="sreader">명</span></a></li>
 													<li data-count="8" type="youth"><a href="#" onclick="return false;"><span class="sreader mod">청소년</span>8<span class="sreader">명</span></a></li>
 												</ul>
-											</div>
+											</div>-->
 									
 											
 											
@@ -451,11 +534,16 @@
 								<div class="theater nano has-scrollbar" id="seat_minimap_nano">
 									<div class="content" tabindex="-1" style="right: -17px; bottom: -17px;">
 										<div class="screen" title="SCREEN" style="width: 652px;"><span class="text"></span></div>
-										<!-- 좌석 선택 !!!!!!!!!!!!!!!!!! -->
-										<div class="seatsClick" align="center">
-											
-										</div>
-										<!-- end 좌석 선택 -->
+										
+											<div class="seatAll">
+												<div class="seatsLeft" >
+													<!-- title -->
+												</div>
+												<div class="seatsClick" >
+													<!-- 좌석 선택 !!!!!!!!!!!!!!!!!! -->
+												</div>
+												<!-- end 좌석 선택 -->
+											</div>
 									</div>
 								<div class="pane pane-y" style="display: none; opacity: 1; visibility: visible;"><div class="slider slider-y" style="height: 50px;"></div></div><div class="pane pane-x" style="display: none; opacity: 1; visibility: visible;"><div class="slider slider-x" style="width: 50px;"></div></div></div>
 								<div class="minimap opened" id="minimap" style="display: none;">
@@ -487,7 +575,7 @@
 										<span class="radiobutton type-cinekids last" title="365일 어린이 전용 상영관" style="display: none;"><span class="icon"></span>CINEKIDS</span>
 									<span class="radiobutton type-eggbox" title="EGG BOX" style="display: none;">EGG BOX<span class="icon"></span></span><span class="radiobutton type-recliner" title="Recliner" style="display: none;">Recliner<span class="icon"></span></span><span class="radiobutton type-cabana" title="카바나 석" style="display: none;">카바나석<span class="icon"></span></span><span class="radiobutton type-beanbag" title="빈백 석" style="display: none;">빈백석<span class="icon"></span></span><span class="radiobutton type-mat" title="매트 석" style="display: none;">매트석<span class="icon"></span></span><span class="radiobutton type-premium" title="프리미엄 석" style="display: none;">프리미엄석<span class="icon"></span></span><span class="radiobutton type-relax" title="릴렉스 석" style="display: none;">릴렉스석<span class="icon"></span></span><span class="radiobutton type-comport" title="컴포트 석" style="display: none;">컴포트석<span class="icon"></span></span><span class="radiobutton type-mybox" title="My box 석" style="display: none;">MYBOX<span class="icon"></span></span><span class="radiobutton type-cdcSofa" title="쇼파 석" style="display: none;">소파<span class="icon"></span></span><span class="radiobutton type-cdcRecliner" title="리클라이너 석" style="display: none;">리클라이너<span class="icon"></span></span><span class="radiobutton type-coupleSofa" title="Couple 쇼파 석" style="display: none;">커플소파<span class="icon"></span></span><span class="radiobutton type-vibration" title="진동 석" style="display: none;">진동석<span class="icon"></span></span></div>
 								</div>
-								<div class="mouse_block" style="display:none;"></div>
+								<div class="mouse_block"></div>
 							</div>
 						</div>
 					</div>
@@ -514,7 +602,14 @@
 					<!-- 시간표 변경 -->
 				</div>
 					<!-- //step2 -->
-		
+					
+					<!-- step3-->
+					<div class="step step3" style="display: none;">
+						<div class="reservResult">
+						
+						</div>
+					</div>
+			
 				</div><!-- end main content -->
 				
 				
@@ -554,8 +649,7 @@
 				
 				<a class="btn-right" id="tnb_step_btn_right" href="#"
 					onclick="return false;" title="좌석선택"></a>
-				<a class="btn-right" id="tnb_step_btn_right" href="#" 
-					onclick="return false;" title="결제선택" style="display:none;">	 
+					 
 			</div>
 		</div>
 		<!-- end 예매한 영화정보저장??? -->
