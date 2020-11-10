@@ -26,8 +26,8 @@ public class MovieDAO extends DAO {
 	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
 	private final String DELETE = "DELETE FROM MOVIE WHERE MV_NUM=?";
 
-	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_RANK, MV_POST, MV_AGE)"
-			+ "VALUES (MV_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_POST, MV_AGE)"
+			+ "VALUES (MV_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 	public List<MovieVO> selectAll(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
@@ -277,9 +277,8 @@ public class MovieDAO extends DAO {
 			psmt.setString(8, vo.getMvCont());
 			psmt.setString(9, vo.getMvImg());
 			psmt.setString(10, vo.getMvTeaser());
-			psmt.setDouble(11, vo.getMvRank());
-			psmt.setString(12, vo.getMvPost());
-			psmt.setString(13, vo.getMvAge());
+			psmt.setString(11, vo.getMvPost());
+			psmt.setString(12, vo.getMvAge());
 
 			psmt.executeUpdate();
 		} catch (SQLException e) {

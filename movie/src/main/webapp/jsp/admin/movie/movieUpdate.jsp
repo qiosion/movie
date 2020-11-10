@@ -53,6 +53,11 @@
 				return false;				
 			}
 
+			if (!$("#mvPost").val() && !$("#prevPost").val()) {
+				alert("포스터 이미지를 첨부 해주세요.");
+				return false;				
+			}
+
 			$.ajax({
 				url : "ajax/mvUpdate.do",
 				dataType : "json",

@@ -176,7 +176,10 @@
 								<c:set var="num" value="${movie.mvRank - (movie.mvRank % 1)}"/>
 								<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
 								<c:if test="${movie.mvRank-num eq 0.5}">
-									<c:forEach begin="1" end="${movie.mvRank-num}">&#127763;</c:forEach>
+								<script type="text/javascript">
+									console.log(">>>0.5");
+								</script>
+									<c:forEach begin="1" end="${movie.mvRank-num+1}">&#127767;</c:forEach>
 								</c:if>
 							</c:if>
 						</span>

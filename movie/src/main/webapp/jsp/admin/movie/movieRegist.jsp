@@ -13,14 +13,15 @@
 			console.log("export");
 			var chk = $("input[type='checkbox']:checked");
 			if (chk) {
-				$("#mvTitle").val(chk.parent().children('#mvTitle').text());
-				$("#mvDir").val(chk.parent().children('#mvDir').text());
-				$("#mvCont").val(chk.parent().children('#mvCont').text());
-				$("#mvAge").val(chk.parent().children('#mvAge').text());
-				$("#mvType").val(chk.parent().children('#mvType').text());
+				$("#mvTitle").val(chk.parent().find('#mvTitle').text());
+				$("#mvDir").val(chk.parent().find('#mvDir').text());
+				$("#mvCont").val(chk.parent().find('#mvCont').text());
+				$("#mvAge").val(chk.parent().find('#mvAge').text());
+				$("#mvType").val(chk.parent().find('#mvType').text());
 				//$("#mvCha").val(chk.parent().children('#mvCha').text());
+				console.log(">>title : "+chk.parent().find('#mvTitle').text());
 
-				var strdate = chk.parent().children('#strdate').text();
+				var strdate = chk.parent().find('#strdate').text();
 				console.log("?? " + strdate);
 				var yyyy = strdate.substring(0, 4);
 				var mm = strdate.substring(4, 6);
@@ -105,10 +106,10 @@
 						//      str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
 						str = str
 								+ "<tr>"
-								+"<td><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'></td>"
-								+"<td style='max-width:150px; white-space: normal;'><h2 name='mvTitle' id='mvTitle'>"+ $(movie_data).find("movieNm").text()+"</h2></td>"
-								+"<td><p name='mvCont' id='mvCont'>"+ $(movie_data).find("nationNm").text()+ ", 상영 시간 : "+ $(movie_data).find("showTm").text() + "분</p>"
-								+"<p name='strdate' id='strdate'>"+ $(movie_data).find("openDt").text() + "</p></td>";
+								+"<td><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'>"
+								+"<h2 name='mvTitle' id='mvTitle'>"+ $(movie_data).find("movieNm").text()+"</h2>"
+								+"<p name='mvCont' id='mvCont'>"+ $(movie_data).find("nationNm").text()+ ", 상영 시간 : "+ $(movie_data).find("showTm").text() + "분</p>"
+								+"<p name='strdate' id='strdate'>"+ $(movie_data).find("openDt").text() + "</p>";
 								
 								/* +"</td><td><h2 name='mvTitle' id='mvTitle'>"
 								+ $(movie_data).find("movieNm").text()+"</h2></td>";
@@ -125,12 +126,13 @@
 						}); */
 						$(movie_data).find("director").each(
 								function() {
-									str = str + "<td style='min-width:130px;'><p name='mvDir' id='mvDir'>"
+									str = str + "<p name='mvDir' id='mvDir'>"
 											+ $(this).find("peopleNm").text()
 											+ "</p>";
 								});
 						var audit = $(movie_data).find("audit");
 						for (var i = 0; i < 1; i++) {
+							console.log("age");
 							str = str + "<p name='mvAge' id='mvAge'>"
 									+ audit.find("watchGradeNm").text()
 									+ "</p>";

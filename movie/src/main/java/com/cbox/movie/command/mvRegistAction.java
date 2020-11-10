@@ -48,10 +48,10 @@ public class mvRegistAction implements Action {
 			String fileName = FileUtil.extractFileName(part);
 			if (!fileName.equals("")) {
 				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-				part.write(renameFile.getAbsolutePath()); // 절대경로
+//				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
 
-				vo.setMvPost(renameFile.getName());
+				vo.setMvPost(new File(uploadFile).getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,10 +63,10 @@ public class mvRegistAction implements Action {
 			String fileName = FileUtil.extractFileName(part);
 			if (!fileName.equals("")) {
 				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-				part.write(renameFile.getAbsolutePath()); // 절대경로
+//				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
 
-				vo.setMvImg(renameFile.getName());
+				vo.setMvImg(new File(uploadFile).getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -78,10 +78,10 @@ public class mvRegistAction implements Action {
 			String fileName = FileUtil.extractFileName(part);
 			if (!fileName.equals("")) {
 				String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-				part.write(renameFile.getAbsolutePath()); // 절대경로
+//				File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+				part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
 
-				vo.setMvTeaser(renameFile.getName());
+				vo.setMvTeaser(new File(uploadFile).getName());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
