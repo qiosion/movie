@@ -25,7 +25,7 @@ public class couponListAction implements Action {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "jsp/user/coupon/couponList.jsp";
+		return null;
 	}
 
 }

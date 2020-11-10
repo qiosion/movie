@@ -22,7 +22,7 @@ public class couponDAO extends DAO{
 	private final String SELECT_ALL = "SELECT * FROM COUPON";
 	private final String SELECT ="SELECT * FROM COUPON WHERE CP_NO=?";
 	private final String DELETE = "DELETE FROM COUPON WHERE CP_NO=?";
-	private final String INSERT = "INSERT INTO COUPON(CP_NO,CP_NM,_CP_VAILD_DATE,CP_TYPE,CP_DISCOUNT)";
+	private final String INSERT = "INSERT INTO COUPON(CP_NO,CP_NM,CP_VAILD_DATE,CP_TYPE,CP_DISCOUNT)VALUES(?,?,?,?,?)";
 	//목록 조회
 	public List<couponVO> selectAll(){
 		List<couponVO> couponList = new ArrayList<couponVO>();

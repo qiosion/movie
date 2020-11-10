@@ -48,7 +48,7 @@ public class infoDAO extends DAO {
 		}
 		return list;
 	}
-	//삽입
+	//등록
 	public int insert(infoVO vo) {
 		int n = 0;
 		try {
