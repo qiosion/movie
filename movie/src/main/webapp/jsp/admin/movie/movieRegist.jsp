@@ -104,16 +104,20 @@
 						var str = "";
 						//      str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
 						str = str
-								+ "<div><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'><h2 name='mvTitle' id='mvTitle'>"
-								+ $(movie_data).find("movieNm").text() + "(";
-						str = str + $(movie_data).find("movieNmEn").text()
-								+ ")</h2>";
-						str = str + "<p name='mvCont' id='mvCont'>"
+								+ "<tr>"
+								+"<td><input type='checkbox' name='selMV' id='selMV' onclick='chkBox(this)'></td>"
+								+"<td style='max-width:150px; white-space: normal;'><h2 name='mvTitle' id='mvTitle'>"+ $(movie_data).find("movieNm").text()+"</h2></td>"
+								+"<td><p name='mvCont' id='mvCont'>"+ $(movie_data).find("nationNm").text()+ ", 상영 시간 : "+ $(movie_data).find("showTm").text() + "분</p>"
+								+"<p name='strdate' id='strdate'>"+ $(movie_data).find("openDt").text() + "</p></td>";
+								
+								/* +"</td><td><h2 name='mvTitle' id='mvTitle'>"
+								+ $(movie_data).find("movieNm").text()+"</h2></td>";
+						str = str + "<td><p name='mvCont' id='mvCont'>"
 								+ $(movie_data).find("nationNm").text()
 								+ ", 상영 시간 : "
-								+ $(movie_data).find("showTm").text() + "분</p>";
-						str = str + "<p name='strdate' id='strdate'>"
-								+ $(movie_data).find("openDt").text() + "</p>";
+								+ $(movie_data).find("showTm").text() + "분</p></td>";
+						str = str + "<td><p name='strdate' id='strdate'>"
+								+ $(movie_data).find("openDt").text() + "</p></td>"; */
 
 						//str = str + "<ul>";
 						/* $(movie_data).find("actor").each(function () {
@@ -121,7 +125,7 @@
 						}); */
 						$(movie_data).find("director").each(
 								function() {
-									str = str + "<p name='mvDir' id='mvDir'>"
+									str = str + "<td style='min-width:130px;'><p name='mvDir' id='mvDir'>"
 											+ $(this).find("peopleNm").text()
 											+ "</p>";
 								});
@@ -142,9 +146,9 @@
 								function() {
 									str = str + "<p name='mvType' id='mvType'>"
 											+ $(this).find("genreNm").text()
-											+ "</p>";
+											+ "</p></td>";
 								});
-						str = str + "</div>";
+						str = str + "</tr>";
 						$("#result").append(str);
 					},
 					error : function() {
@@ -323,7 +327,8 @@
 							onclick="return formCheck()">검색</button>
 					</div>
 					<div id="list"></div>
-					<div id="result"></div>
+					<!-- <div id="result"></div> -->
+					<table id="result" class="table text-center"></table>
 				</div>
 
 				<!-- Modal footer -->

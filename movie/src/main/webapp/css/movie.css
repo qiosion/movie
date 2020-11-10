@@ -39,6 +39,7 @@ ul.tabs li {
 	display: inline-block;
 	padding: 10px 15px;
 	cursor: pointer;
+	border-radius: 5px;
 }
 
 ul.tabs li.current {
@@ -98,6 +99,7 @@ ul.tabs li.current {
 	width: 100%;
 	margin: 5px;
 	padding: 5px;
+	min-width: 600px !important;
 }
 
 .info::after {
@@ -111,10 +113,12 @@ ul.tabs li.current {
 #info #infoR {
 	float: right;
 	text-align: center;
+	margin: 30px;
 }
 
 #infoR img {
-	height: 400px;
+	height: 300px;
+	width: 100%;
 }
 
 #info #infoL {

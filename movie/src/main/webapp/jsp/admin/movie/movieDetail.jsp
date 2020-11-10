@@ -75,10 +75,10 @@
 							<tr style="line-height: 32px; float: center; text-align: center;">
 								<td colspan="2" style="width: 50%;"><p
 										style="width: 220px; size: 20px;">포스터 이미지</p>
-									<img style="height: 300px;"
+									<img style="height: 300px; width: 100%;"
 									src="${pageContext.request.contextPath}/images/${vo.mvPost}"></td>
 								<td colspan="2" style="width: 50%;"><p>스틸컷</p>
-									<img style="height: 300px; width: 100%"
+									<img style="height: 300px; width: 100%;"
 									src="${pageContext.request.contextPath}/images/${vo.mvImg}"></td>
 							</tr>
 							<tr style="float: center; text-align: center;">
