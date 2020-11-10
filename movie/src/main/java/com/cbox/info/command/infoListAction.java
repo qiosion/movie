@@ -30,7 +30,7 @@ public class infoListAction implements Action {
 		}
 		//레코드건수 조회
 		Paging paging = new Paging();
-		paging.setPageUnit(5); //레코드 수
+		paging.setPageUnit(10); //레코드 수
 		paging.setPageSize(5);//한페이지에 출력 할 페이지 번호수
 		paging.setPage(p);
 		infoDAO cntdao = new infoDAO();

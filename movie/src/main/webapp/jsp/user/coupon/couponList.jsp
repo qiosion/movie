@@ -16,12 +16,15 @@
   width:60px;
   height:40px;
   border-radius:10%;
+  
 }
 
 .btn:hover {
   background-color: #555555;
   color: white;
 }
+
+
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -46,7 +49,7 @@
 	}
 	//쿠폰삭제
 	function couponDelete(){
-		$('body').on('click','#btnDelete',function(){
+		$('tbody').on('click','#btnDelete',function(){
 			var cpNo = $(this).closest('tr').find('#hidden_cpNo').val();
 			var result = confirm(cpNo +"쿠폰을 정말로 삭제하시겠습니까?");
 			if(result){
@@ -65,8 +68,8 @@
 	}
 	//상세조회
 	function couponSelect(){
-		$('body').on('click','#btnSelect',function(){
-			var cpNo = $(this).closest('tr').find('hidden_cpNo').val();
+		$('tbody').on('click','#btnSelect',function(){
+			var cpNo = $(this).closest('tr').find('#hidden_cpNo').val();
 			$.ajax({
 				url:'ajax/couponSelect.do',
 				data:{cp_no:cpNo},
@@ -127,6 +130,7 @@
 			.append($('<td>').html(item.cp_discount))
 			.append($('<td>').html('<button class=\'btn\' id=\'btnSelect\'>조회</button>'))
 			.append($('<td>').html('<button class=\'btn\' id=\'btnDelete\'>삭제</button>'))
+			.append($('<input type=\'hidden\' id=\'hidden_cpNo\'>').val(item.cp_no))
 			.appendTo('.table');
 			
 		});
@@ -136,7 +140,7 @@
 <body>
 <div class="container">
 	<form id="form1"  class="form-horizontal">
-		<h2>쿠폰 등록 및 조회</h2>
+		<h4>쿠폰 등록 및 조회</h4>
 		<div class="form-group">		
 			<label >쿠폰번호:</label>
 			<input type="text"  class="form-control" name="cp_no" >
@@ -147,7 +151,7 @@
 		</div>				
 		<div class="form-group">
 			<label >유효기간:</label>
-			<input type="date"  class="form-control"  name="cp_vaild_date" >
+			<input type="date" name="cp_vaild_date" >
 		</div>	    
 		<div class="form-group">   
 			<label>쿠폰종류:</label>
@@ -181,11 +185,13 @@
 	<table class="table">
 		<thead>
 			<tr>
-				<th >쿠폰번호</th>
-				<th >쿠폰이름</th>
-				<th >유효기간</th>
-				<th >쿠폰종류</th>
-				<th >할인금액</th>
+				<th>쿠폰번호</th>
+				<th>쿠폰이름</th>
+				<th>유효기간</th>
+				<th>쿠폰종류</th>
+				<th>할인금액</th>
+				<th></th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
