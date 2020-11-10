@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my" %>
+<%@ page import="com.cbox.common.Paging" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -90,18 +93,19 @@ th, td {
 			<tbody>
 			<c:forEach var="uReList" items="${ userReservList }">
 				<tr>
-					<td>${ uReList.mbr_no }</td>
-					<td>${ uReList.mbr_id }</td>
-					<td>${ uReList.mbr_nm }</td>
-					<td>${ uReList.mbr_birth }</td>
-					<td>${ uReList.mbr_phone }</td>
-					<td>${ uReList.mbr_email }</td>
+					<td>${ uReList.tc_num }</td>
+					<td>${ uReList.mv_title }</td>
+					<td>${ uReList.tt_scr_date }</td>
+					<td>${ uReList.tt_start }</td>
+					<td>${ uReList.tc_st_num }</td>
+					<td>${ uReList.th_name }</td>
 					<td><button id="selBtn">조회</button></td>
 				</tr>			
 			</c:forEach>
 			</tbody>
 		</table>
-	</form>
+	<my:paging paging="${paging}" jsfunc="goPage" ></my:paging>
+</div>
 	<script type="text/javascript">
 		function goPage(p) {
 			location.href="UserReservList.do?p=" + p;
@@ -109,7 +113,5 @@ th, td {
 			// searchForm.submit();
 		}
 	</script>
-	<my:paging paging="${paging}" jsfunc="goPage" ></my:paging>
-</div>
 </body>
 </html>

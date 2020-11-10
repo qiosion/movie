@@ -16,7 +16,7 @@ public class UserReservListAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		UserReservDAO udao = new UserReservDAO();
+		UserReservDAO dao = new UserReservDAO();
 		List<UserReservVO> list = new ArrayList<UserReservVO>();
 		
 		HttpSession session = request.getSession();
@@ -31,16 +31,15 @@ public class UserReservListAction implements Action {
 		paging.setPage(p);
 		
 		UserReservDAO cntdao = new UserReservDAO();
-		UserReservVO uvo = new UserReservVO();
+		UserReservVO vo = new UserReservVO();
 		
-		uvo.setMbr_no(sno);
-		uvo.setFirst(paging.getFirst());
-		uvo.setLast(paging.getLast());
-		paging.setTotalRecord(cntdao.count(uvo));
+		vo.setMbr_no(sno);
+		vo.setFirst(paging.getFirst());
+		vo.setLast(paging.getLast());
+		paging.setTotalRecord(cntdao.count(vo));
 		request.setAttribute("paging", paging);
-		list = udao.userReserv_list(uvo);
+		list = dao.userReservList(vo);
 		request.setAttribute("userReservList", list);
-		
 		return "jsp/user/reservation/UserReservList.jsp";
 	}
 

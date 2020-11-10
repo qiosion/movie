@@ -145,7 +145,6 @@ $(function() {
 			</tr>
 			</tfoot>
 		</table>
-	</form>
 	<script type="text/javascript">
 		function goPage(p) {
 			location.href="memberList.do?p=" + p;
