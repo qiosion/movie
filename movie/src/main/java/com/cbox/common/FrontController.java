@@ -50,7 +50,7 @@ import com.cbox.movie.command.scMvUpdateAction;
 import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.AdminReservAction;
 import com.cbox.reservation.command.ReservationForm;
-import com.cbox.reservation.command.UserReservAction;
+import com.cbox.reservation.command.UserReservListAction;
 import com.cbox.reservation.command.mvFindDateAction;
 import com.cbox.reservation.command.mvFindTimeAction;
 
@@ -104,7 +104,8 @@ public class FrontController extends HttpServlet {
 		map.put("/memberList.do", new memberListAction()); // admin 회원목록
 		map.put("/memDel.do", new memDelAction()); // admin 회원탈퇴
 		map.put("/logout.do", new logoutAction()); // 로그아웃
-		map.put("/UserReserv.do", new UserReservAction()); // user 예매정보 보기
+		map.put("/UserReservList.do", new UserReservListAction()); // user 예매정보 전체 보기
+		map.put("/UserReserv.do", new UserReservListAction()); // user 예매정보 상세 보기
 		map.put("/AdminReserv.do", new AdminReservAction()); // admin 예매현황 보기
 		
 		// 광희
