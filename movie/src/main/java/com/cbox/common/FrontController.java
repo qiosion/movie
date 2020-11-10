@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.coupon.command.couponDeleteAction;
+import com.cbox.coupon.command.couponListAction;
 import com.cbox.info.command.DetailViewAction;
 import com.cbox.info.command.infoDeleteAction;
 import com.cbox.info.command.infoInsertAction;
@@ -35,7 +37,6 @@ import com.cbox.movie.command.movieDetailAction;
 import com.cbox.movie.command.movieExpectListAction;
 import com.cbox.movie.command.movieListAction;
 import com.cbox.movie.command.mvDeleteAction;
-import com.cbox.movie.command.mvDetailAction;
 import com.cbox.movie.command.mvListAction;
 import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
@@ -49,9 +50,9 @@ import com.cbox.movie.command.scMvUpdateAction;
 import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.AdminReservAction;
 import com.cbox.reservation.command.ReservationForm;
+import com.cbox.reservation.command.UserReservAction;
 import com.cbox.reservation.command.mvFindDateAction;
 import com.cbox.reservation.command.mvFindTimeAction;
-import com.cbox.reservation.command.UserReservAction;
 
 @MultipartConfig
 @WebServlet("*.do")
@@ -122,6 +123,9 @@ public class FrontController extends HttpServlet {
 		map.put("/infoDelete.do", new infoDeleteAction());// 글삭제
 		map.put("/infoUpdate.do", new infoUpdateAction());// 글수정
 		map.put("/infoUpdateForm.do", new infoUpdateFormAction());// 글수정페이지로 이동
+		//쿠폰
+		map.put("/couponList.do", new couponListAction());//쿠폰리스트
+		map.put("/couponDelete.do", new couponDeleteAction());//쿠폰삭제
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

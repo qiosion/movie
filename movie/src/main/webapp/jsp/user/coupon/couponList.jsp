@@ -37,8 +37,8 @@ function addFrm(){
 				<td>${cp.cp_no}</td>
 				<td>${cp.cp_nm}</td>
 				<td>${cp.cp_valid_date}</td>
-				<td>${cp_type}</td>
-				<td>${cp_discount}</td>
+				<td>${cp.cp_type}</td>
+				<td>${cp.cp_discount}</td>
 				<c:if test="${mbr_author eq 'admin'}">	
 				<td><button type="submit" onclick="deleteFrm()">삭제</button></td>
 				</c:if>
