@@ -134,7 +134,7 @@ public class ScreenMvDAO extends DAO {
 	}
 
 	// 상영 영화 상세
-	private String DETAIL_MV = "SELECT T.TT_NUM,  M.MV_NUM, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NUM "
+	private String DETAIL_MV = "SELECT T.TT_NUM,  M.MV_NUM, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NUM, M.MV_STRDATE, M.MV_FINDATE "
 			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
 			+ "WHERE T.TT_NUM = ?";
 
@@ -153,13 +153,17 @@ public class ScreenMvDAO extends DAO {
 				vo.setTtStart(rs.getString("tt_start"));
 				vo.setTtEnd(rs.getString("tt_end"));
 				vo.setThNum(rs.getInt("th_num"));
-				
-				System.out.println("1 : "+rs.getInt("tt_num"));
-				System.out.println("2 : "+rs.getInt("mv_num"));
-				System.out.println("3 : "+rs.getString("tt_scr_date"));
-				System.out.println("4 : "+rs.getString("tt_start"));
-				System.out.println("5 : "+rs.getString("tt_end"));
-				System.out.println("6 : "+rs.getInt("th_num"));
+				vo.setStrdate(rs.getDate("mv_strdate"));
+				vo.setFindate(rs.getDate("mv_findate"));
+
+				System.out.println("1 : " + rs.getInt("tt_num"));
+				System.out.println("2 : " + rs.getInt("mv_num"));
+				System.out.println("3 : " + rs.getString("tt_scr_date"));
+				System.out.println("4 : " + rs.getString("tt_start"));
+				System.out.println("5 : " + rs.getString("tt_end"));
+				System.out.println("6 : " + rs.getInt("th_num"));
+				System.out.println("7 : " + rs.getDate("mv_strdate"));
+				System.out.println("8 : " + rs.getDate("mv_findate"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -169,13 +173,13 @@ public class ScreenMvDAO extends DAO {
 
 		return vo;
 	}
-	
+
 	// 상영 영화 삭제
 	private String DELETE_MV = "DELETE TIMETABLE WHERE TT_NUM = ?";
-	
+
 	public void deleteScreenMv(ScreenMvVO scVO) {
 		try {
-			System.out.println("deleteScreenMv : "+scVO.getMvNum());
+			System.out.println("deleteScreenMv : " + scVO.getMvNum());
 			psmt = conn.prepareStatement(DELETE_MV);
 			psmt.setInt(1, scVO.getTtNum());
 			psmt.executeUpdate();
@@ -203,6 +207,30 @@ public class ScreenMvDAO extends DAO {
 			psmt.setString(4, scVO.getTtEnd());
 			psmt.setInt(5, scVO.getThNum());
 			psmt.setInt(6, scVO.getThNum());
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
+	// 상영 영화 수정
+	private String UPDATE_MV = "UPDATE TIMETABLE SET TT_SCR_DATE = ?, TT_START = ?, TT_END = ?, TH_NUM = ?, "
+			+ "TT_EMPTY = (SELECT TH_MAX FROM THEATER WHERE TH_NUM = ?) " + "WHERE TT_NUM=?";
+
+	public void updateScreenMv(ScreenMvVO scVO) {
+		System.out.println("updateScreenMv");
+
+		try {
+			psmt = conn.prepareStatement(UPDATE_MV);
+			psmt.setString(1, scVO.getTtScrDate());
+			psmt.setString(2, scVO.getTtStart());
+			psmt.setString(3, scVO.getTtEnd());
+			psmt.setInt(4, scVO.getThNum());
+			psmt.setInt(5, scVO.getThNum());
+			psmt.setInt(6, scVO.getTtNum());
+			
 			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

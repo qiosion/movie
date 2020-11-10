@@ -48,7 +48,7 @@ select {
 		init();
 		movieList();
 		movieInsert();
-		//movieUpdate();
+		movieUpdate()
 		mvDetail();
 		movieDelete();
 
@@ -73,6 +73,9 @@ select {
 			$("#frm").each(function() {
 				this.reset();
 			});
+			$("#ttNum").val("");
+			$('select[name="mvNum"]').attr("disabled", false);
+			// 초기화시 onchange? 되서 지금 선택된 영화의 개봉 시작, 종료일 받기... todo
 		});
 	}
 
@@ -162,11 +165,24 @@ select {
 
 	function movieDetailResult(data) {
 		$('select[name="mvNum"]').val(data.mvNum).attr("selected", "selected");
+		$('select[name="mvNum"]').attr("disabled", true);
 		$('select[name="thNum"]').val(data.thNum).attr("selected", "selected");
 		$('select[name="ttStart"]').val(data.ttStart).attr("selected",
 				"selected");
 		$('select[name="ttEnd"]').val(data.ttEnd).attr("selected", "selected");
 		$('input[type="date"]').val(data.ttScrDate);
+
+		// hidden 값
+		$('#ttNum').val(data.ttNum);
+		$('#strDate').val(data.strdate);
+		$('#finDate').val(data.findate);
+	}
+
+	function chkInsert() {
+		var num = $("#ttNum").val();
+		if (num != "") {
+			alert("수정 중인 상영 정보입니다. 초기화 후 등록해주세요.");
+		}
 	}
 
 	function movieInsert() {
@@ -218,6 +234,35 @@ select {
 							'tbody[id="listCont"]');
 		});
 	}
+
+	function checkNum() {
+		var num = $("#ttNum").val();
+		if (num == "") {
+			alert("등록 후 수정해 주세요.");
+		}
+	}
+
+	function movieUpdate() {
+		$('#confirmUpt').on('click', function() {
+			$.ajax({
+				url : "ajax/screenMvUpdate.do",
+				dataType : 'json',
+				data : $("#frm").serialize(),
+				success : function(data) {
+					movieList();
+					$("#frm").each(function() {
+						this.reset();
+					});
+					$("#ttNum").val("");
+					$('select[name="mvNum"]').attr("disabled", false);
+					alert("수정되었습니다.");
+				},
+				error : function(xhr, status, message) {
+					alert(" status: " + status + " er:" + message);
+				}
+			});
+		});
+	}
 </script>
 </head>
 <body>
@@ -234,7 +279,7 @@ select {
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td>제목&nbsp;<span style="color: red;">*</span></td>
-								<td id="mvList" name="mvList"><c:if test="${!empty mvList}">
+								<td id="mvList"><c:if test="${!empty mvList}">
 										<select id="mvNum" name="mvNum">
 											<c:forEach var="sel" items="${mvList}">
 												<option value="${sel.mvNum}">${sel.mvTitle}</option>
@@ -242,7 +287,7 @@ select {
 										</select>
 									</c:if></td>
 								<td>상영관&nbsp;<span style="color: red;">*</span></td>
-								<td id="thList" name="thList"><c:if test="${!empty thList}">
+								<td id="thList"><c:if test="${!empty thList}">
 										<select id="thNum" name="thNum">
 											<c:forEach var="th" items="${thList}">
 												<option value="${th.thNum}">${th.thName}</option>
@@ -307,7 +352,7 @@ select {
 											<input type="hidden" id="finDate" name="finDate"
 												value="${mv.findate}">
 										</c:forEach>
-									</c:if></td>
+									</c:if> <input type="hidden" id="ttNum" name="ttNum"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -316,12 +361,12 @@ select {
 			</div>
 		</div>
 		<div class="text-center mt-3">
-			<button type="button" id="insertBtn" style="margin-right: 30px;"
-				data-toggle="modal" data-target="#mvInsertPop"
-				class="btn btn-success">등록</button>
-			<button type="button" class="btn btn-dark"
-				style="margin-right: 30px;" id="udpBtn" data-toggle="modal"
-				data-target="#mvUdpPop">수정</button>
+			<button type="button" id="insertBtn" onclick="chkInsert()"
+				style="margin-right: 30px;" data-toggle="modal"
+				data-target="#mvInsertPop" class="btn btn-success">등록</button>
+			<button type="button" class="btn btn-dark" data-target="#mvUptPop"
+				style="margin-right: 30px;" id="udpBtn" onclick="checkNum()"
+				data-toggle="modal">수정</button>
 			<button type="button" class="btn btn-danger" id="initBtn">초기화</button>
 		</div>
 	</form>
@@ -383,11 +428,12 @@ select {
 				<!-- Modal body -->
 				<div class="modal-body">
 					<form id="frm" name="frm">
-						<p style="text-align: center; margin: 10px; font-size: 20px;">${vo.mvTitle}
-							을(를) 수정하시겠습니까?</p>
+						<p style="text-align: center; margin: 10px; font-size: 20px;">
+							상영 시간을 수정하시겠습니까?</p>
 						<div style="text-align: center;">
 							<button type="button" style="margin-right: 5px;"
-								name="confirmUpt" id="confirmUpt" class="btn btn-success">수정</button>
+								name="confirmUpt" id="confirmUpt" class="btn btn-success"
+								data-dismiss="modal">수정</button>
 							<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
 						</div>
 					</form>
