@@ -32,6 +32,9 @@
 		
 		couponSelect();
 		
+		couponDelete();
+		
+		couponInsert();
 		
 		init();
 		
@@ -44,7 +47,25 @@
 			});
 		});
 	}
-
+	//쿠폰삭제
+	function couponDelete(){
+		$('tbody').on('click','#btnDelete',function(){
+			var cpNo = $(this).closest('tr').find('#hidden_cpNo').val();
+			var result = confirm(cpNo +"쿠폰을 정말로 삭제하시겠습니까?");
+			if(result){
+				$.ajax({
+					url:'ajax/couponDelete.do',
+					data : {cp_no:cpNo},
+					dataType:'json',
+					error:function(xhr,status,msg){
+						
+					},success:function(xhr){
+						couponList();
+					}
+				});
+			}
+		});
+	}
 	//상세조회
 	function couponSelect(){
 		$('tbody').on('click','#btnSelect',function(){
@@ -67,7 +88,23 @@
 		$('select[name="cp_type"]').val(coupon.cp_type).attr("selected","selected","selected","selected");
 		$('select[name="cp_discount"]').val(coupon.cp_discount).attr("selected","selected","selected","selected");
 	}
-	
+	//쿠폰등록
+	function couponInsert(){
+		$('#btnInsert').on('click',function(){
+			$.ajax({
+				url:"ajax/couponInsert.do",
+				dataType: 'json',
+				method:"POST",
+				data : $("#form1").serialize(),
+				success: function(response){
+					couponList();
+				},
+				error:function(xhr, status, message){
+				alert("status: " + status+"er: "+message);
+				}
+			});
+		});
+	}
 	function couponList(){
 		$.ajax({
 			url:'ajax/couponList.do',
@@ -92,6 +129,7 @@
 			.append($('<td>').html(item.cp_type))
 			.append($('<td>').html(item.cp_discount))
 			.append($('<td>').html('<button class=\'btn\' id=\'btnSelect\'>조회</button>'))
+			.append($('<td>').html('<button class=\'btn\' id=\'btnDelete\'>삭제</button>'))
 			.append($('<input type=\'hidden\' id=\'hidden_cpNo\'>').val(item.cp_no))
 			.appendTo('.table');
 			
@@ -102,7 +140,7 @@
 <body>
 <div class="container">
 	<form id="form1"  class="form-horizontal">
-		<h4>쿠폰 조회</h4>
+		<h4>쿠폰 등록 및 조회</h4>
 		<div class="form-group">		
 			<label >쿠폰번호:</label>
 			<input type="text"  class="form-control" name="cp_no" >
@@ -132,6 +170,10 @@
 					   		<option value="4000">4000</option>
 					   		<option value="2000">2000</option>
 				</select>
+		</div>
+		<div class="btn-group">      
+				<input type="button"  class="btn" value="등록"  id="btnInsert" />&nbsp;&nbsp; 
+				<input type="button"  class="btn" value="초기화" id="btnInit" />
 		</div>
 	</form>
 </div>

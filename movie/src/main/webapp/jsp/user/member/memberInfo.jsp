@@ -14,9 +14,51 @@ input[type='text'], input[type='password'] {
     height: calc(1.5em + .75rem + 2px) !important;
     width: 100% !important;
 }
+.col-sm-12 pt-3 {
+	position:relative;
+	top:10px;
+}
+    
+#menubar {
+  position:relative;
+  top:220px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 190px;
+}
+
+#menubar li a {
+  display:block;
+  color: #000;
+  padding: 15px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+#menubar li a.active {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}   
+
 </style>
 </head>
 <body>
+<div id="menubar">
+<ul>
+  <li><a class="active" href="#home">CBOX HOME</a></li>
+  <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+</div>
+
 <c:if test="${pwnull ne null}">
 	<script> alert("비밀번호를 입력하세요");</script>
 </c:if>

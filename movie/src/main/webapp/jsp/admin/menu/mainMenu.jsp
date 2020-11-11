@@ -37,6 +37,10 @@
 					href="${pageContext.request.contextPath}/infoList.do">공지사항 <span
 						class="sr-only">(current)</span>
 				</a></li>
+				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
+					href="${pageContext.request.contextPath}/couponFormAd.do">쿠폰관리 <span
+						class="sr-only">(current)</span>
+				</a></li>
 			</ul>
 		</div>
 	</nav>
