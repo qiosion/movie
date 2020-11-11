@@ -146,15 +146,6 @@ public class ScreenMvDAO extends DAO {
 				vo.setThNum(rs.getInt("th_num"));
 				vo.setStrdate(rs.getDate("mv_strdate"));
 				vo.setFindate(rs.getDate("mv_findate"));
-
-				System.out.println("1 : " + rs.getInt("tt_num"));
-				System.out.println("2 : " + rs.getInt("mv_num"));
-				System.out.println("3 : " + rs.getString("tt_scr_date"));
-				System.out.println("4 : " + rs.getString("tt_start"));
-				System.out.println("5 : " + rs.getString("tt_end"));
-				System.out.println("6 : " + rs.getInt("th_num"));
-				System.out.println("7 : " + rs.getDate("mv_strdate"));
-				System.out.println("8 : " + rs.getDate("mv_findate"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -180,13 +171,38 @@ public class ScreenMvDAO extends DAO {
 			close();
 		}
 	}
+	
+	// 상영 영화 중복 체크
+	private String CHECK_MV = "SELECT T.* "
+			+ "FROM TIMETABLE T, MOVIE M "
+			+ "WHERE T.MV_NUM = M.MV_NUM "
+			+ "AND M.MV_FINDATE >= SYSDATE "
+			+ "AND T.MV_NUM = ? AND T.TT_SCR_DATE = ? AND T.TH_NUM = ?";
+	
+	public String checkDupl(ScreenMvVO scVO) {
+		String result = "N";
+		try {
+			psmt = conn.prepareStatement(CHECK_MV);
+			psmt.setInt(1, scVO.getMvNum());
+			psmt.setString(2, scVO.getTtScrDate());
+			psmt.setInt(3, scVO.getThNum());
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				result = "Y";	// 중복
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	// 상영 영화 등록
 //	insert into timetable
 //	select 12, 2, '2021-11-11', '09:00', '10:30', th_max, 2 from theater where th_num = 2;
 	private String INSERT_MV = "INSERT INTO TIMETABLE(TT_NUM, MV_NUM, TT_SCR_DATE, TT_START, TT_END, TT_EMPTY, TH_NUM) "
 			+ "SELECT TIME_SEQ.NEXTVAL, ?, ?, ?, ?, TH_MAX, ? FROM THEATER WHERE TH_NUM = ?";
-//			+ "values(time_seq.nextval, ?, ?, ?, ?, ?, ?";
 
 	public void insertScreenMv(ScreenMvVO scVO) {
 		try {
