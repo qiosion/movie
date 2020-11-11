@@ -69,11 +69,35 @@
 	left: 50%;
 	background: #7FC6A6;
 }
+
+#topBtn {
+	posotion: fixed;
+	float: right;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+	height: 40px;
+}
 </style>
 </head>
 <body>
 	<script>
-		$().ready(function() {
+		$(function() {
+			$(window).scroll(function() {
+				if($(this).scrollTop() > 400) {
+					$("#topBtn").fadeIn();
+				} else {
+					$("#topBtn").fadeOut();
+				}
+			});
+			
+			$("#topBtn").click(function() {
+				$('html, body').animate({
+					scrollTop:0
+				}, 400);
+				return false;
+			});
+			
 			var chkType = "";
 			/* $('.toggleBG').click(function() {
 				var toggleBG = $(this);
@@ -193,5 +217,6 @@
 			</c:forEach>
 		</ol>
 	</div>
+	<img alt="TOP" id="topBtn" src="${pageContext.request.contextPath}/images/top.png">
 </body>
 </html>

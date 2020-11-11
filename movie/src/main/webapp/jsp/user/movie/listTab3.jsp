@@ -28,7 +28,7 @@
 <script>
 var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";
 
-$(document).ready(function () {
+$(function () {
     document.getElementById("today").valueAsDate = new Date();
 
     $("#ok").click(function () {

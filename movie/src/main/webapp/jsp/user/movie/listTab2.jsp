@@ -11,13 +11,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+#topBtn {
+	posotion: fixed;
+	float: right;
+	bottom: 50px;
+	display: none;
+	z-index: 999;
+	height: 40px;
+}
+</style>
+<script type="text/javascript">
+	$(function() {
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 400) {
+				$("#topBtn").fadeIn();
+			} else {
+				$("#topBtn").fadeOut();
+			}
+		});
+
+		$("#topBtn").click(function() {
+			$('html, body').animate({
+				scrollTop : 0
+			}, 400);
+			return false;
+		});
+	});
+</script>
 </head>
 <body>
-
-
 	<div class="movietop">
 		<ul class="tabs">
-			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">전체 영화</a></li>
+			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">전체
+					영화</a></li>
 			<li class="tab-link current" data-tab="tab-2"><a
 				href="movieExpectList.do">상영 예정작</a></li>
 			<li class="tab-link" data-tab="tab-3"><a
@@ -53,5 +80,7 @@
 			</c:forEach>
 		</ol>
 	</div>
+	<img alt="TOP" id="topBtn"
+		src="${pageContext.request.contextPath}/images/top.png">
 </body>
 </html>
