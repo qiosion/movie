@@ -6,7 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
+<style>
+	.selected{
+		background-color:white;
+	}
+	
+</style>
 
 <title>CBOX</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -29,6 +36,15 @@
 <link href="${pageContext.request.contextPath}/css/member.css"
 	rel="stylesheet">
 
+<script>
+	$(function(){
+		$("#navbarSupportedContent .navbar-nav.mr-auto .nav-link").on("click",function(){
+			$(this).parent().addClass("selected");
+			
+		});
+		
+	});
+</script>
 </head>
 <body>
 	<div class="header">

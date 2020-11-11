@@ -8,6 +8,18 @@
 
 <html>
 <head id="ctl00_Head1">
+<style>
+	body, input, textarea, select, button, table {
+	    font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif !important;
+	    
+	}
+	body, input, select, textarea, header, footer {
+    
+    font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif !important;
+   
+}
+</style>
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 <link rel="stylesheet"
 	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/common.css">
@@ -45,7 +57,6 @@
 	href="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/css/2020/08/FORM_TYPE/reservation_step3_step2.css">
 <link href="${pageContext.request.contextPath}/css/style.css"
 	rel="stylesheet">
-
 <script type="text/javascript"
 	src="http://img.cgv.co.kr/CGV_RIA/Ticket/Common/js/cgvpackage.min.js"></script>
 <script type="text/javascript"

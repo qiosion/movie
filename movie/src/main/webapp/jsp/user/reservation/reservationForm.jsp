@@ -9,6 +9,7 @@
 
 <title>예매 페이지</title>
 <style>
+		
 	.seatTableTitle{
 		border:2px solid black;
 		font-size: 22px;	
@@ -311,9 +312,14 @@
 		
 		var ReservNum; //예매인원
 		var btnCount = 0;//좌석클릭카운트
+		var seanum= "";// 좌석번호
+		var persons=0;
 		$("#nop_group_adult ul li").on("click", function(){//예매인원클릭
 			btnCount=0;//좌석클릭카운트 초기화
-			var persons =$(this).data("count");
+			seanum="";
+			$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
+			$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text("");
+			persons =$(this).data("count");
 			$(".info.theater .row.number .data").text(persons);
 			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
 			$(".btn-right").css("background-position", "0 -330px");
@@ -329,14 +335,18 @@
 			ReservNum = $(this).data("count");
 		}); //end 예매인원 선택
 		
-		var seanum= "";
+		
 		$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
-			console.log($(this).data("seanum"));
+			//console.log($(this).data("seanum"));
 			if($(this).hasClass("selected")){
 				$(this).removeClass("selected");
 				btnCount=$("td.selected").length;
-				$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text();
-				.removeData($(this).data("seanum"));
+				var testSeat =$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text();
+				var testSeanum = $(this).data("seanum");
+				//console.log(testSeat+ " : "+ testSeanum);
+				//console.log(testSeat.replace(testSeanum,""));
+				seanum = testSeat.replace(testSeanum,"");
+				$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
 				if(btnCount != ReservNum){
 					$(".btn-right").css("background-position", "0 -330px");
 				}
@@ -349,6 +359,13 @@
 					alert("선택한 예매인원수를 초과하셨습니다.");
 				}else{
 					$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
+					$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","block");
+					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text("8000");
+					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text(persons);
+					var price =$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text();
+					var quantity = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text();
+					var sum = (parseInt(price) * parseInt(quantity));
+					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .price").text(sum);  
 					$(this).addClass("selected");
 					btnCount=$("td.selected").length;
 					if(btnCount == ReservNum){
@@ -731,7 +748,7 @@
 			<div class="info theater">
 				<div class="row name" style="display: none;">
 					<span class="header">극장</span>
-					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader">극장정보 상세보기</span></a></span>
+					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');">CBOX 예담<span class="sreader">극장정보 상세보기</span></a></span>
 				</div>
 				<div class="row date" style="display: none;">
 					<span class="header">일시</span>
@@ -759,23 +776,23 @@
 				<div class="placeholder" title="좌석선택"></div>
 			</div>
 			<div class="info payment-ticket">
-				<div class="row payment-millitary">
+				<div class="row payment-millitary" style="display:none">
 					<span class="header">군인</span>
 					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
 				</div>
-				<div class="row payment-adult">
+				<div class="row payment-adult" >
 					<span class="header">일반</span>
 					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
 				</div>
-				<div class="row payment-youth">
+				<div class="row payment-youth" style="display:none">
 					<span class="header">청소년</span>
 					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
 				</div>
-				<div class="row payment-child">
+				<div class="row payment-child" style="display:none">
 					<span class="header">어린이</span>
 					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
 				</div>						
-				<div class="row payment-special">
+				<div class="row payment-special" style="display:none">
 					<span class="header">우대</span>
 					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
 				</div>
