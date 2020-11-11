@@ -17,7 +17,7 @@ public class QnADAO extends DAO {
 	private final String SELECT_ALL = "SELECT * FROM QNA ORDER BY QA_NO";
 	private final String SELECT = "SELECT * FROM QNA WHERE QA_NO=?";
 	private final String INSERT = "INSERT INTO QNA(QA_NO,QA_TYPE,QA_TITLE,QA_CONT,QA_DATE,QA_NAME)VALUES(qna_num.NEXTVAL,?,?,?,SYSDATE,?)";
-	
+	private final String UPDATE = "UPDATE QNA SET QA_TITLE=?, QA_TYPE=?, QA_CONT=?,QA_DATE=SYSDATE,QA_NAME=? WHERE QA_NO=?";
 	//리스트 조회
 	public List<QnAVO> selectAll(){
 		List<QnAVO> list = new ArrayList<QnAVO>();
@@ -39,6 +39,7 @@ public class QnADAO extends DAO {
 		}
 		return list;
 	}
+	//등록
 	public int insert(QnAVO vo) {
 		int n =0;
 		try {
@@ -72,6 +73,22 @@ public class QnADAO extends DAO {
 			e.printStackTrace();
 		}
 		return vo;
+	}
+	
+	public int update(QnAVO vo) {
+		int n=0;
+		try {
+			psmt = conn.prepareStatement(UPDATE);
+			psmt.setString(1, vo.getQa_title());
+			psmt.setString(2, vo.getQa_type());
+			psmt.setString(3, vo.getQa_cont());
+			psmt.setDate(4, vo.getQa_date());
+			psmt.setString(5, vo.getQa_name());
+			n = psmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
 	}
 
 }

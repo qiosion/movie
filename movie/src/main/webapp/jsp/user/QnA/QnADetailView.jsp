@@ -66,23 +66,23 @@ function updateFrm(){
 			<tbody>
 			<tr>
 				<td id="title">글번호</td>
-				<td></td>
+				<td>${vo.qa_no}</td>
 			</tr>
 			<tr>
 				<td id="title">제목</td>
-				<td></td>
+				<td>${vo.qa_title}</td>
 			</tr>
 			<tr>
 				<td id="title">문의유형</td>
-				<td></td>
+				<td>${vo.qa_type}</td>
 			</tr>
 			<tr>
 				<td id="title">날짜</td>
-				<td></td>
+				<td>${vo.qa_date}</td>
 			</tr>
 			<tr>
 				<td id="title">내 용</td>
-				<td id="cont"></td>
+				<td id="cont">${vo.qa_cont}</td>
 			</tr>
 			</tbody>
 		</table>
