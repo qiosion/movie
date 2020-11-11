@@ -1,8 +1,6 @@
 package com.cbox.movie.vo;
 
-import com.cbox.movie.dao.MovieDAO;
-
-public class MovieSearchVO extends MovieDAO {
+public class MovieSearchVO {
 	Integer start;
 	Integer end;
 	String type;

@@ -22,8 +22,13 @@
 				dataType : 'json',
 				method : 'post',
 				success : function(xhr) {
-					alert("삭제 성공");
-					location.href = "mvList.do";
+					console.log("삭제 xhr : "+xhr.result);
+					if(xhr.result) {
+						alert("삭제 성공");
+						location.href = "mvList.do";
+					} else {
+						alert("등록된 상영 정보가 있어 삭제가 불가능합니다.");
+					}
 				},
 				error : function(xhr, status, msg) {
 					alert("status : " + status + " error : " + msg);

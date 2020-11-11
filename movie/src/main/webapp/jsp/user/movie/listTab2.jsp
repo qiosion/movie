@@ -34,15 +34,15 @@
 		<ol>
 			<c:forEach var="movie" items="${exMovies}">
 				<li>
-					<div>
+					<div style="margin-bottom: 5px;">
 						<a href="movieDetail.do?seq=${movie.mvNum }"> <img
 							id="moviePoster"
 							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></a>
 					</div>
-					<div>
+					<div style="margin-bottom: 5px;">
 						<p>${movie.mvTitle }</p>
 					</div>
-					<div>
+					<div style="margin-bottom: 20px; min-height: 20px;">
 						<span>개봉일 : ${movie.strdate }</span>
 						<p>${movie.mvCont }</p>
 					</div>

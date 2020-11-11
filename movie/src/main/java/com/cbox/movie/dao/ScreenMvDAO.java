@@ -238,6 +238,30 @@ public class ScreenMvDAO extends DAO {
 			close();
 		}
 	}
+	
+	// 등록된 상영 영화 조회
+	private String REGI_CHECK = "SELECT * FROM TIMETABLE WHERE MV_NUM=?";
+	public String regiChk(MovieVO vo) {
+		String result = "N";
+		
+		try {
+			psmt = conn.prepareStatement(REGI_CHECK);
+			psmt.setInt(1, vo.getMvNum());
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				System.out.println("등록된게 있따.");
+				result = "Y";
+			} else {
+				System.out.println("등록된게 없다.");
+				result = "N";
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 
 	// 모든 동작 후 연결 끊어주기
 	private void close() {

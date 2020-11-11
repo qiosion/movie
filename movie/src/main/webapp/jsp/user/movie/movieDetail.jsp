@@ -10,7 +10,8 @@
 <title>Insert title here</title>
 <style type="text/css">
 #frm img {
-display: block; margin: 0px auto;
+	display: block;
+	margin: 0px auto;
 }
 </style>
 </head>
@@ -143,12 +144,11 @@ display: block; margin: 0px auto;
 									<tbody>
 										<tr
 											style="line-height: 32px; float: center; text-align: center;">
-											<td colspan="4"><p
-													style="width: 220px; size: 20px;">포스터 이미지</p> <img
+											<td colspan="4"><p style="size: 20px;">포스터 이미지</p> <img style="max-height: 400px;"
 												src="${pageContext.request.contextPath}/images/${vo.mvPost}"></td>
 										</tr>
 										<tr style="text-align: center;">
-											<td colspan="4" style="width: 50%;"><p>스틸컷</p> <img
+											<td colspan="4" style="max-height: 400px;"><p>스틸컷</p> <img
 												src="${pageContext.request.contextPath}/images/${vo.mvImg}"></td>
 										</tr>
 										<tr style="text-align: center;">
