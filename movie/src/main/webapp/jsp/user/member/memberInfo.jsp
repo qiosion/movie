@@ -14,14 +14,14 @@ input[type='text'], input[type='password'] {
     height: calc(1.5em + .75rem + 2px) !important;
     width: 100% !important;
 }
-.col-sm-12 pt-3 {
+.col-sm-12 {
 	position:relative;
-	top:10px;
+	bottom:110px;
 }
     
 #menubar {
   position:relative;
-  top:220px;
+  top:120px;
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ input[type='text'], input[type='password'] {
 #menubar li a {
   display:block;
   color: #000;
-  padding: 15px 16px;
+  padding: 16px 16px;
   text-decoration: none;
   border-bottom: 1px solid;
 }
@@ -42,7 +42,7 @@ input[type='text'], input[type='password'] {
   font-weight: bold;
 }
 
-li a:hover:not(.active) {
+#menubar li a:hover:not(.active) {
   background-color: #555;
   color: white;
 }   
