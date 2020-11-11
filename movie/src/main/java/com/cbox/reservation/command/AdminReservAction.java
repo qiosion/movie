@@ -10,6 +10,7 @@ import com.cbox.common.Action;
 import com.cbox.common.Paging;
 import com.cbox.reservation.dao.AdminReservDAO;
 import com.cbox.reservation.vo.AdminReservVO;
+import com.cbox.reservation.vo.SearchVo;
 
 public class AdminReservAction implements Action {
 
@@ -27,14 +28,17 @@ public class AdminReservAction implements Action {
 		paging.setPage(p);
 		
 		AdminReservDAO cntdao = new AdminReservDAO();
-		AdminReservVO vo = new AdminReservVO();
+		SearchVo vo = new SearchVo();
 		
 		vo.setFirst(paging.getFirst());
 		vo.setLast(paging.getLast());
+		vo.setType(request.getParameter("searchType"));
+		vo.setKeyword(request.getParameter("keyword"));
+		
 		paging.setTotalRecord(cntdao.count(vo));
 		request.setAttribute("paging", paging);
 		list = dao.AdminReservList(vo);
-		request.setAttribute("adminReservList", list);
+		request.setAttribute("allReservList", list);
 		return "jsp/admin/reservation/AdminReserv.jsp";
 	}
 
