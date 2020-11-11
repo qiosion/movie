@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.cbox.QnA.command.QnADetailViewAction;
+import com.cbox.QnA.command.QnAListFormAction;
+import com.cbox.QnA.command.QnAReplyFormAction;
+import com.cbox.QnA.command.QnAWriteFormAction;
 import com.cbox.coupon.command.couponDeleteAction;
 import com.cbox.coupon.command.couponFormAction;
 import com.cbox.coupon.command.couponFormAdAction;
@@ -48,7 +52,6 @@ import com.cbox.movie.command.mvRegistAction;
 import com.cbox.movie.command.mvRegistFormAction;
 import com.cbox.movie.command.mvUpdateAction;
 import com.cbox.movie.command.mvUpdateFormAction;
-import com.cbox.movie.command.scMvDeleteAction;
 import com.cbox.movie.command.scMvDetailAction;
 import com.cbox.movie.command.scMvInsertAction;
 import com.cbox.movie.command.scMvListAction;
@@ -144,6 +147,13 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/couponDelete.do", new couponDeleteAction());//쿠폰삭제
 		map.put("/ajax/couponInsert.do", new couponInsertAction());//쿠폰등록
 		map.put("/ajax/couponSelect.do", new couponSelectAction());//쿠폰조회
+		//1:1문의
+		map.put("/QnAListForm.do", new QnAListFormAction());
+		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
+		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
+		map.put("/QnADetailView.do", new QnADetailViewAction());
+		
+		
 	}
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)

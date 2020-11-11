@@ -83,6 +83,7 @@ input[type='text'], input[type='password'] {
   <li><a href="#contact">회원정보</a></li>
   <li><a href="#about">예매정보</a></li>
   <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
 
 </ul>
 </div>
