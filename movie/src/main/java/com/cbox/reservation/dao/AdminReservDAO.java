@@ -46,7 +46,7 @@ public class AdminReservDAO extends DAO {
 					pstmt.setString(pos++, svo.getKeyword());
 				}
 			}
-			pstmt.setInt(pos++, svo.getFirst());;
+			pstmt.setInt(pos++, svo.getFirst());
 			pstmt.setInt(pos++, svo.getLast());
 			rs = pstmt.executeQuery();
 			
