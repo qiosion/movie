@@ -19,6 +19,7 @@ public class FindDAO extends DAO {
 
 	public MemberVO searchId(MemberVO vo) {
 		try {
+			System.out.println(">>> 들어오니?");
 			pstmt = conn.prepareStatement(FINDID);
 			pstmt.setString(1, vo.getMbr_nm());
 			pstmt.setDate(2, vo.getMbr_birth());

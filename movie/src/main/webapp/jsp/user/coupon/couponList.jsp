@@ -9,6 +9,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <style>
+/* .container {
+	float: left;
+	width: 80%;
+	position:relative;
+	top:50px;
+} */
 .btn {
   background-color: white;
   color: black;
@@ -23,8 +29,35 @@
   background-color: #555555;
   color: white;
 }
+/* #menubar {
+	float: left;
+	width: 20% !important;
+	position:relative;
+	top:50px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
 
+#menubar li a {
+  display:block;
+  color: #000;
+  padding: 16px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
 
+#menubar li a.active {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#menubar li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+ */
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -100,6 +133,15 @@
 </script>
 </head>
 <body>
+<%-- <div id="menubar">
+<ul>
+  <li><a class="active">MY PAGE</a></li>
+  <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
+</ul>
+</div> --%>
 <div class="container">
 	<form id="form1"  class="form-horizontal">
 		<h4>쿠폰 조회</h4>

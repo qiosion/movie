@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +19,30 @@ input[type='text'], input[type='password'] {
 	position:relative;
 	bottom:110px;
 }
-    
+/* @media screen and (max-width: 800px) {
+	#frm,
+	#menubar {
+                width: 100%;
+                padding: 0;
+            }
+        } */
+#frm {
+	float: left;
+	width: 80%;
+	position:relative;
+	top:120px;
+	margin:auto;
+	padding: 20px;
+	margin-bottom: 10px;
+}  
 #menubar {
-  position:relative;
-  top:120px;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  width: 190px;
+	float: left;
+	width: 20% !important;
+	position:relative;
+	top:120px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #menubar li a {
@@ -79,9 +96,9 @@ input[type='text'], input[type='password'] {
 <body>
 <div id="menubar">
 <ul>
-  <li><a class="active" href="#home">CBOX HOME</a></li>
-  <li><a href="#contact">회원정보</a></li>
-  <li><a href="#about">예매정보</a></li>
+  <li><a class="active">MY PAGE</a></li>
+  <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
   <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
   <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
 
@@ -94,7 +111,7 @@ input[type='text'], input[type='password'] {
 <c:if test="${pwwrong ne null}">
 	<script>alert("비밀번호가 틀렸습니다");</script>
 </c:if>
-	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post" style="margin:auto; padding: 20px; max-width: 70%; margin-bottom: 10px;">
+	<form class="frm" id="frm" name="frm" action="memberUpdate.do" method="post" style="max-width: 70%;">
 		<div class="col-sm-12 pt-3">
 			<div class="card">
 				<div class="card-header card-header-primary">

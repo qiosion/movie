@@ -56,6 +56,13 @@ th, td {
 	height: 51px;
 	margin-top: 30px;
 	border-bottom: 3px solid #241d1e;
+	float: left;
+	width: 80%;
+	top:30px;
+	margin:auto;
+	padding-left: 20px;
+	margin-bottom: 10px;
+}
 }
 
 .tb-style {
@@ -70,6 +77,43 @@ th, td {
 	bordercolor: lightgray;
 	align: center;
 }
+#menubar {
+	float: left;
+	width: 20% !important;
+	position:relative;
+	top:120px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menubar li a {
+  display:block;
+  color: #000;
+  padding: 16px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+#menubar li a.active {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#menubar li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+#ReservList {
+	float: left;
+	width: 80%;
+	position:relative;
+	top:30px;
+	margin:auto;
+	padding-left: 20px;
+	margin-bottom: 10px;
+}
 </style>
 <script type="text/javascript">
 $(function() {
@@ -81,6 +125,15 @@ $(function() {
 </script>
 </head>
 <body>
+<div id="menubar">
+<ul>
+  <li><a class="active">MY PAGE</a></li>
+  <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
+</ul>
+</div>
 	<div class="tit-heading-wrap tit-evt">
 		<h3>예매 내역</h3>
 	</div>

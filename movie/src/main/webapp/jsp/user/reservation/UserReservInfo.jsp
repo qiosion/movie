@@ -10,9 +10,52 @@
 	font-size: 20px;
 	font-weight: bolder;
 }
+#menubar {
+	float: left;
+	width: 20% !important;
+	position:relative;
+	top:120px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menubar li a {
+  display:block;
+  color: #000;
+  padding: 16px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+#menubar li a.active {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#menubar li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+.frm {
+	float: left;
+	width: 80%;
+	position:relative;
+	top:120px;
+}
 </style>
 </head>
 <body>
+<div id="menubar">
+<ul>
+  <li><a class="active">MY PAGE</a></li>
+  <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
+</ul>
+</div>
 	<form class="frm" id="frm" name="frm" method="post" style="padding: 20px; max-width: 70%; margin-bottom: 10px;">
 		<div class="col-sm-12 pt-3">
 			<div class="card">

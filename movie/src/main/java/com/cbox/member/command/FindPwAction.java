@@ -22,8 +22,8 @@ public class FindPwAction implements Action {
 		vo.setMbr_nm(nmchk);
 		vo.setMbr_phone(phchk);
 		
-		MemberVO searchPw = dao.searchPw(vo);
-		request.setAttribute("pw", searchPw.getMbr_pw());
+		vo = dao.searchPw(vo);
+		request.setAttribute("pw", vo.getMbr_pw());
 		return null;
 	}
 
