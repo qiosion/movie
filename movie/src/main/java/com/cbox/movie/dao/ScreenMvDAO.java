@@ -75,23 +75,14 @@ public class ScreenMvDAO extends DAO {
 	// 상영 영화 목록
 	private String SELECT_LIST = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
 			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
+			+ "WHERE M.MV_FINDATE >= SYSDATE "
 			+ "ORDER BY 2, 3, 4";
-
-//	private String SELECT_LIST = "SELECT * FROM ( SELECT A.*, ROWNUM RN FROM ( " + 
-//			"SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME " + 
-//			"FROM TIMETABLE T " + 
-//			"JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + 
-//			"JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM " + 
-//			"ORDER BY 1 ) A  ) B WHERE RN BETWEEN ? AND ?";
 
 	public List<ScreenMvVO> getScreenList(MovieSearchVO searchVO) {
 		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 		try {
 			System.out.println("getScreenList");
 			psmt = conn.prepareCall(SELECT_LIST);
-//			int pos = 1;
-//			psmt.setInt(pos++, searchVO.getStart());
-//			psmt.setInt(pos++, searchVO.getEnd());
 
 			rs = psmt.executeQuery();
 			while (rs.next()) {
@@ -175,11 +166,11 @@ public class ScreenMvDAO extends DAO {
 	}
 
 	// 상영 영화 삭제
-	private String DELETE_MV = "DELETE TIMETABLE WHERE TT_NUM = ?";
+	private String DELETE_MV = "DELETE FROM TIMETABLE WHERE TT_NUM = ?";
 
 	public void deleteScreenMv(ScreenMvVO scVO) {
 		try {
-			System.out.println("deleteScreenMv : " + scVO.getMvNum());
+			System.out.println("deleteScreenMv : " + scVO.getTtNum());
 			psmt = conn.prepareStatement(DELETE_MV);
 			psmt.setInt(1, scVO.getTtNum());
 			psmt.executeUpdate();

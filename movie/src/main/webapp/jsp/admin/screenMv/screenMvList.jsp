@@ -27,12 +27,12 @@ select {
 	color: white;
 }
 
-#btnDelete {
+/* #btnDelete {
 	background-color: #D85E48;
 	padding: 5px;
 	border-radius: 5px;
 	color: white;
-}
+} */
 
 #topBtn {
 	posotion: fixed;
@@ -50,7 +50,7 @@ select {
 		movieInsert();
 		movieUpdate()
 		mvDetail();
-		movieDelete();
+		//movieDelete();
 
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 400) {
@@ -73,17 +73,15 @@ select {
 			$("#frm").each(function() {
 				this.reset();
 			});
-			$("#ttNum").val("");
+			$("#TTNum").val("");
 			$('select[name="mvNum"]').attr("disabled", false);
 			// 초기화시 onchange? 되서 지금 선택된 영화의 개봉 시작, 종료일 받기... todo
 		});
 	}
 
-	function movieDelete() {
+	/* function movieDelete() {
 		$("body").on("click", "#btnDelete", function() {
-			console.log("this : " + $(this));
 			var ttNum = $(this).closest('tr').find('#ttNum').val();
-			console.log("ttNum 삭제 : " + ttNum);
 			var result = confirm(ttNum + "번 상영 영화를 삭제하시겠습니까?");
 			if (result) {
 				$.ajax({
@@ -101,7 +99,7 @@ select {
 				});
 			}
 		});
-	}
+	} */
 
 	function movieList() {
 		$.ajax({
@@ -117,24 +115,26 @@ select {
 
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
-		$.each(data, function(idx, item) {
-			$('<tr>').append($('<td>').html(item.mvTitle))
-					.append($('<td>').html(item.ttScrDate))
-					.append($('<td>').html(item.thName))
-					.append($('<td>').html(item.ttStart))
-					.append($('<td>').html(item.ttEnd))
-					.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-					.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-					.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
-					.appendTo('tbody[id="listCont"]');
-		});
+		$
+				.each(
+						data,
+						function(idx, item) {
+							$('<tr>')
+									.append($('<td>').html(item.mvTitle))
+									.append($('<td>').html(item.ttScrDate))
+									.append($('<td>').html(item.thName))
+									.append($('<td>').html(item.ttStart))
+									.append($('<td>').html(item.ttEnd))
+									.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+									//.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+									.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
+									.appendTo('tbody[id="listCont"]');
+						});
 	}
 
 	function mvDetail() {
 		$("body").on("click", "#btnSelect", function() {
 			var ttNum = $(this).closest('tr').find('#ttNum').val();
-			console.log("ttNum : " + ttNum);
-			console.log("this : " + $(this));
 
 			$.ajax({
 				url : 'ajax/screenMvDetail.do',
@@ -160,15 +160,18 @@ select {
 		$('input[type="date"]').val(data.ttScrDate);
 
 		// hidden 값
-		$('#ttNum').val(data.ttNum);
+		$('#TTNum').val(data.ttNum);
 		$('#strDate').val(data.strdate);
 		$('#finDate').val(data.findate);
 	}
 
 	function chkInsert() {
-		var num = $("#ttNum").val();
+		var num = $("#TTNum").val();
 		if (num != "") {
 			alert("수정 중인 상영 정보입니다. 초기화 후 등록해주세요.");
+		} else {
+			console.log("num : "+num);
+			$(".text-center.mt-3 .btn.btn-success").attr("data-target", "#mvInsertPop");
 		}
 	}
 
@@ -211,23 +214,19 @@ select {
 					$('<td>').html(item.ttStart)).append(
 					$('<td>').html(item.ttEnd)).append(
 					$('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-					.append(
-							$('<td>').html(
-									'<button id=\'btnDelete\'>삭제</button>'))
-					.append(
-							$('<td>').html(
-									'<input type=\'hidden\' id=\'ttNum\'>')
-									.val(item.ttNum)).appendTo(
-							'tbody[id="listCont"]');
+					//.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+					.append($('<td>').html('<input type=\'hidden\' id=\'TTNum\'>').val(item.ttNum))
+					.appendTo('tbody[id="listCont"]');
 		});
 	}
 
 	function checkNum() {
-		var num = $("#ttNum").val();
+		var num = $("#TTNum").val();
 		if (num == "") {
-			alert("등록 후 수정해 주세요.");		
-		}else{
-			$(".text-center.mt-3 .btn.btn-dark").attr("data-target","#mvUptPop");
+			alert("등록 후 수정해 주세요.");
+		} else {
+			$(".text-center.mt-3 .btn.btn-dark").attr("data-target",
+					"#mvUptPop");
 		}
 	}
 
@@ -341,7 +340,7 @@ select {
 											<input type="hidden" id="finDate" name="finDate"
 												value="${mv.findate}">
 										</c:forEach>
-									</c:if> <input type="hidden" id="ttNum" name="ttNum"></td>
+									</c:if> <input type="hidden" id="TTNum" name="TTNum"></td>
 							</tr>
 						</table>
 					</div>
@@ -351,8 +350,8 @@ select {
 		<div class="text-center mt-3">
 			<button type="button" id="insertBtn" onclick="chkInsert()"
 				style="margin-right: 30px;" data-toggle="modal"
-				data-target="#mvInsertPop" class="btn btn-success">등록</button>
-			<button type="button" class="btn btn-dark" 
+				class="btn btn-success">등록</button>
+			<button type="button" class="btn btn-dark"
 				style="margin-right: 30px;" id="udpBtn" onclick="checkNum()"
 				data-toggle="modal">수정</button>
 			<button type="button" class="btn btn-danger" id="initBtn">초기화</button>
@@ -368,7 +367,7 @@ select {
 					<th class="text-center">상영관</th>
 					<th class="text-center">상영시작</th>
 					<th class="text-center">상영종료</th>
-					<th></th>
+					<!-- <th></th> -->
 					<th></th>
 				</tr>
 			</thead>

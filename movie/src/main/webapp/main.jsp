@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String cp = request.getContextPath();
-	request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,16 +16,17 @@
 			<!-- 슬라이드 쇼 -->
 			<div class="carousel-item active">
 				<!--가로-->
-				<img class="d-block w-100" style="height: 400px;" src="images/event1.jpg" alt="First slide">
+				<img class="d-block w-100" style="height: 400px;"
+					src="images/event1.jpg" alt="First slide">
 				<div class="carousel-caption d-none d-md-block"></div>
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" style="height: 400px;" src="images/event2.jpg"
-					alt="Second slide">
+				<img class="d-block w-100" style="height: 400px;"
+					src="images/event2.jpg" alt="Second slide">
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" style="height: 400px;" src="images/notice2.jpg"
-					alt="Third slide">
+				<img class="d-block w-100" style="height: 400px;"
+					src="images/notice2.jpg" alt="Third slide">
 			</div>
 			<!-- / 슬라이드 쇼 끝 -->
 			<!-- 왼쪽 오른쪽 화살표 버튼 -->
@@ -47,6 +48,9 @@
 			<!-- 인디케이터 끝 -->
 		</div>
 	</div>
-	<div style="height: 300px;"></div>
+	<div class="row" style="height: 300px;">
+		<div class="col">col</div>
+		<div class="col">col</div>
+	</div>
 </body>
 </html>

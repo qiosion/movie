@@ -96,7 +96,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/screenMvDetail.do", new scMvDetailAction());	// 상세
 		map.put("/ajax/screenMvInsert.do", new scMvInsertAction());	// 등록
 		map.put("/ajax/screenMvUpdate.do", new scMvUpdateAction());	// 수정
-		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 삭제
+//		map.put("/ajax/screenMvDelete.do", new scMvDeleteAction());	// 삭제
 
 
 		// 은선

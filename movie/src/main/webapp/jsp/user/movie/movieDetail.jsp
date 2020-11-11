@@ -56,9 +56,19 @@
 			<p style="font-size: 20px;">${vo.mvAge}</p>
 			<p style="font-size: 20px; margin: 10px 0;">${vo.mvCont}</p>
 			<p style="font-size: 20px;">
-				<c:forEach begin="1" end="${vo.mvRank}">
-					&#11088;
-				</c:forEach>
+				<c:if test="${empty vo.mvRank}">
+								<c:forEach begin="1" end="5">&#127770;</c:forEach>
+							</c:if>
+							<c:if test="${!empty vo.mvRank}">
+								<c:set var="num" value="${vo.mvRank - (vo.mvRank % 1)}"/>
+								<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
+								<c:if test="${vo.mvRank-num eq 0.5}">
+								<script type="text/javascript">
+									console.log(">>>0.5");
+								</script>
+									<c:forEach begin="1" end="${vo.mvRank-num+1}">&#127767;</c:forEach>
+								</c:if>
+							</c:if>
 			</p>
 		</div>
 	</div>
