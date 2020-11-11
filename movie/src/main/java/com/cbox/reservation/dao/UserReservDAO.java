@@ -42,6 +42,7 @@ public class UserReservDAO extends DAO {
 			rs = pstmt.executeQuery();
 			vo = new UserReservVO();
 			if(rs.next()){
+				vo.setTc_num(rs.getInt("tc_num"));
 				vo.setTc_date(rs.getDate("tc_date"));
 				vo.setMv_title(rs.getString("mv_title"));
 				vo.setMv_age(rs.getString("mv_age"));

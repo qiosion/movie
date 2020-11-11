@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>예매 상세정보</title>
 <style type="text/css">
-#mv_title{
-	font-size: 21px;
+.highlight{
+	font-size: 20px;
 	font-weight: bolder;
 }
 </style>
@@ -26,26 +26,26 @@
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">예매번호</td>
-								<td><label id="tc_num" class="highlight">예매번호 ${ vo.tc_num }</label></td>
+								<td><label id="tc_num" class="highlight">${ infoData.tc_num }</label></td>
 								<td class="txt">예매일</td>
-								<td><label id="tc_date">${ vo.tc_date }</label></td>
+								<td><label id="tc_date" class="highlight">${ infoData.tc_date }</label></td>
 							</tr>
 							<tr>
 								<td class="txt">영화 제목</td>
-								<td colspan="2"><label class="highlight" id="mv_title">${ vo.mv_title } </label></td>
-								<td class="txt"><label id="mv_age">${ vo.mv_age }</label></td>
+								<td colspan="2"><label class="highlight" id="mv_title"><b>${ infoData.mv_title }</b></label></td>
+								<td class="txt"><label id="mv_age" class="highlight">${ infoData.mv_age }세</label></td>
 							</tr>
 							<tr>
 								<td class="txt">상영일</td>
-								<td><label id="tt_scr_date" class="highlight">${ vo.tt_scr_date }</label></td>
+								<td><label id="tt_scr_date" class="highlight">${ infoData.tt_scr_date }</label></td>
 								<td class="txt">상영시간</td>
-								<td><label id="tt_time"><b>${ vo.tt_start }</b> ~ <b>${ vo.tt_end }</b></label></td>
+								<td><label id="tt_time" class="highlight">${ infoData.tt_start } ~ ${ infoData.tt_end }</label></td>
 							</tr>
 							<tr>
 								<td class="txt">상영관명</td>
-								<td><label id="th_name" class="highlight">${ vo.th_name }</label></td>
+								<td><label id="th_name" class="highlight">${ infoData.th_name }</label></td>
 								<td class="txt">좌석번호</td>
-								<td><label id="tc_st_num" class="highlight">${ vo.tc_st_num }</label></td>
+								<td><label id="tc_st_num" class="highlight">${ infoData.tc_st_num }</label></td>
 							</tr>
 							
 						</table>

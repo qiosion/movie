@@ -53,7 +53,6 @@ import com.cbox.movie.command.scMvUpdateAction;
 import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.AdminReservAction;
 import com.cbox.reservation.command.ReservationForm;
-import com.cbox.reservation.command.ShowReservInfoAction;
 import com.cbox.reservation.command.UserReservInfoAction;
 import com.cbox.reservation.command.UserReservListAction;
 import com.cbox.reservation.command.mvFindDateAction;
