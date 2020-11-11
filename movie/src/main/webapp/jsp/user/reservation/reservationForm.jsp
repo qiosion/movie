@@ -52,6 +52,16 @@
 	    margin-bottom: 0px; 
     
 	}
+	.resultReserv{
+		border:2px solid black;
+		font-size:22px;
+	}
+	.resultReserv tr{
+		border:1px solid black;
+	}
+	.resultReserv tr td{
+		border:1px solid black;
+	}
 	
 </style>
 
@@ -709,12 +719,11 @@
 					<div class="step step3" style="display: none;">
 						<div class="reservResult">
 							<table class="resultReserv">
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>
-								<tr><td>예매번호</td><td></td><td>예약자</td><td></td></tr>							
+								<tr><td>예매번호</td><td></td><td>회원이름</td><td></td></tr>
+								<tr><td>예매날짜</td><td></td><td>예매인원</td><td></td></tr>
+								<tr><td>영화명</td><td></td><td>상영관</td><td></td></tr>
+								<tr><td>상영날짜</td><td></td><td>상영시간</td><td></td></tr>
+								<tr><td>좌석위치</td><td></td><td>결제금액</td><td></td></tr>
 							</table>
 						</div>
 					</div>
