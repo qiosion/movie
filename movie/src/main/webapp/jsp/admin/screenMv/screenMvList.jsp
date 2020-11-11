@@ -101,9 +101,11 @@ select {
 		});
 	} */
 
-	function movieList() {
+	function movieList(p) {
+		console.log("movieList p : "+p);
 		$.ajax({
 			url : 'ajax/screenMvList.do',
+			data: {p : p},
 			type : 'GET',
 			dataType : 'json',
 			error : function(xhr, status, msg) {
@@ -362,6 +364,7 @@ select {
 			</thead>
 			<tbody id="listCont"></tbody>
 		</table>
+		<mv:paging paging="${paging}" jsfunc="movieList" />
 	</div>
 
 	<div class="modal" id="mvInsertPop">

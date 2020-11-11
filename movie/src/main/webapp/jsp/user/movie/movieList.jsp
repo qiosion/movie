@@ -99,18 +99,6 @@
 			});
 			
 			var chkType = "";
-			/* $('.toggleBG').click(function() {
-				var toggleBG = $(this);
-				var toggleFG = $(this).find('.toggleFG');
-				var left = toggleFG.css('left');
-				if (left == '15px') {
-					toggleBG.css('background', '#CCCCCC');
-					type = toggleActionStart(toggleFG, 'TO_LEFT');
-				} else if (left == '0px') {
-					toggleBG.css('background', '#ABD0BC');
-					type = toggleActionStart(toggleFG, 'TO_RIGHT');
-				}
-			}); */
 
 			$('.tgl-flat').change(function() {
 				if ($('.tgl-flat').is(":checked")) {
@@ -118,6 +106,7 @@
 				} else {
 					chkType = "all";
 				}
+				console.log("chkType : "+chkType);
 				//localhost.href="${pageContext.request.contextPath}/movieList.do?searchType='chkType'&keyword="+chkType;
 				$.ajax({
 					url : 'movieList.do',
@@ -127,6 +116,7 @@
 						keyword : chkType
 					},
 					success : function() {
+						console.log("성공");
 					},
 					error : function() {
 						alert("실패");
@@ -134,25 +124,6 @@
 				});
 			});
 		});
-
-		// 토글 버튼 이동 모션 함수
-		function toggleActionStart(toggleBtn, LR) {
-			// 0.01초 단위로 실행
-			var intervalID = setInterval(function() {
-				// 버튼 이동
-				var left = parseInt(toggleBtn.css('left'));
-				left += (LR == 'TO_RIGHT') ? 5 : -5;
-				if (left >= 0 && left <= 15) {
-					left += 'px';
-					toggleBtn.css('left', left);
-				}
-			}, 10);
-			setTimeout(function() {
-				clearInterval(intervalID);
-			}, 201);
-			const left_px = parseInt(toggleBtn.css('left'));
-			return (left_px > 0) ? "전체" : "상영작";
-		}
 	</script>
 
 	<div class="movietop">
@@ -175,7 +146,7 @@
 			<!-- <div class="toggleBG">
 				<button type="button" class="toggleFG"></button>
 			</div> -->
-			<span style="margin: 0 5px;;"> <input class="tgl tgl-flat" id="cb4" type="checkbox" />
+			<span style="margin: 0 5px;"> <input class="tgl tgl-flat" id="cb4" type="checkbox" />
 				<label class="tgl-btn" for="cb4"></label>
 			</span> <span>개봉작만</span>
 		</div>

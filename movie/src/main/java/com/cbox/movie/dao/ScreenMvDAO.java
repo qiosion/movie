@@ -73,17 +73,27 @@ public class ScreenMvDAO extends DAO {
 	}
 
 	// 상영 영화 목록
-	private String SELECT_LIST = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
-			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
+//	private String SELECT_LIST = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
+//			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
+//			+ "WHERE M.MV_FINDATE >= SYSDATE "
+//			+ "ORDER BY 2, 3, 4";
+	private String SELECT_LIST = "SELECT B.* FROM ( SELECT A.*, ROWNUM RN FROM (SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
+			+ "FROM TIMETABLE T "
+			+ "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM "
+			+ "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
 			+ "WHERE M.MV_FINDATE >= SYSDATE "
-			+ "ORDER BY 2, 3, 4";
+			+ "ORDER BY 2, 3, 4 ) A  ) B WHERE RN BETWEEN ? AND ?";
+	
 
 	public List<ScreenMvVO> getScreenList(MovieSearchVO searchVO) {
 		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 		try {
 			System.out.println("getScreenList");
+			int pos = 1;
 			psmt = conn.prepareCall(SELECT_LIST);
-
+			psmt.setInt(pos++, searchVO.getStart());
+			psmt.setInt(pos++, searchVO.getEnd());
+			
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new ScreenMvVO();

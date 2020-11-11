@@ -16,6 +16,7 @@ public class movieListAction implements Action {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 
+		System.out.println("movieListAction");
 		MovieDAO dao = new MovieDAO();
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		

@@ -32,9 +32,12 @@ public class MovieDAO extends DAO {
 	public List<MovieVO> selectAll(MovieSearchVO searchVO) {
 		List<MovieVO> list = new ArrayList<MovieVO>();
 		String whereCondition = " WHERE 1=1";
+		System.out.println("selectAll");
 
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
+			System.out.println("type : "+searchVO.getType());
+			System.out.println("keyword : "+searchVO.getKeyword());
 			if (searchVO.getType().equals("title")) {
 				whereCondition += " AND MV_TITLE LIKE '%'||?||'%'";
 			} else if (searchVO.getType().equals("chkType")) {
@@ -45,6 +48,7 @@ public class MovieDAO extends DAO {
 		}
 		try {
 			SELECT_ALL = SELECT_ALL + whereCondition;
+			System.out.println("selectall : "+SELECT_ALL);
 			psmt = conn.prepareStatement(SELECT_ALL);
 
 			int pos = 1;
@@ -116,7 +120,6 @@ public class MovieDAO extends DAO {
 
 			while (rs.next()) {
 				vo = new MovieVO();
-				System.out.println("rn : " + rs.getInt("rn"));
 				vo.setMvNum(rs.getInt("rn"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
