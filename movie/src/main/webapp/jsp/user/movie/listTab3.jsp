@@ -33,48 +33,63 @@ $(document).ready(function () {
 
     $("#ok").click(function () {
         $("#list").empty();
-        $("#memo").empty();
 
-        var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=" + serviceKey + "&targetDt=";
-        date_list = $('#today').val().split('-');
-        url = url + date_list[0] + date_list[1] + date_list[2];
-
-        $.ajax({
-            url: url,
-            type: "GET",
-            dataType: "xml",
-            success: function (mydata) {
-                var str = "";
-
-                if ($(mydata).find("dailyBoxOffice").text() == "") {
-                    $("#list").append("자료가 없습니다.");
-                    return;
-                }
-                $(mydata).find("dailyBoxOffice").each(function () {
-                    str = str + "<span style=\'color:orange; display:inline-block; width:47px; margin-right:10px; text-align:right;\'>"+$(this).find("rank").text() + "위 </span>"
-
-                    str = str + $(this).find("movieNm").text();
-
-                    str = str + " (<span style=\'color:red;\'>전일대비</span> ";
-                    rankInten = eval($(this).find("rankInten").text());
-                    if (rankInten > 0) {
-                        str = str + "+" + rankInten + ", "
-                    } else if (rankInten < 0) {
-                        str = str + "-" + Math.abs(rankInten) + ", "
-                    } else {
-                        str = str + rankInten + ", "
-                    }
-
-                    str = str + "<span style=\'color:navy;\'>누적관객수</span> " + $(this).find("audiAcc").text() + "명)<br>";
-                });
-                $("#list").append(str);
-            },
-            error: function () {
-                $("#list").append("Error ...");
-            }
-        });
+        listOffice("select");
     });
+    
+    listOffice("yesterday");
 });
+
+function listOffice(type) {
+	var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=" + serviceKey + "&targetDt=";
+    date_list = $('#today').val().split('-');
+    $("#title").empty();
+
+	console.log("type : "+type);
+	
+    if(type == "select") {
+        url = url + date_list[0] + date_list[1] + date_list[2];
+        $("#title").append(date_list[1]+"월"+(date_list[2])+"일 박스 오피스")
+    } else {
+        url = url + date_list[0] + date_list[1] + (date_list[2]-1);
+        $("#title").append(date_list[1]+"월"+(date_list[2]-1)+"일 박스 오피스")
+    }
+    
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "xml",
+        success: function (mydata) {
+            var str = "";
+
+            if ($(mydata).find("dailyBoxOffice").text() == "") {
+                $("#list").append("자료가 없습니다.");
+                return;
+            }
+            $(mydata).find("dailyBoxOffice").each(function () {
+                str = str + "<span style=\'color:orange; display:inline-block; width:47px; margin-right:10px; text-align:right;\'>"+$(this).find("rank").text() + "위 </span>"
+
+                str = str + $(this).find("movieNm").text();
+
+                str = str + " (<span style=\'color:red;\'>전일대비</span> ";
+                rankInten = eval($(this).find("rankInten").text());
+                if (rankInten > 0) {
+                    str = str + "+" + rankInten + ", "
+                } else if (rankInten < 0) {
+                    str = str + "-" + Math.abs(rankInten) + ", "
+                } else {
+                    str = str + rankInten + ", "
+                }
+
+                str = str + "<span style=\'color:navy;\'>누적관객수</span> " + $(this).find("audiAcc").text() + "명)<br>";
+            });
+            $("#list").append(str);
+        },
+        error: function () {
+            $("#list").append("Error ...");
+        }
+    });
+}
 </script>
 	<div class="movietop">
 		<ul class="tabs">
@@ -92,7 +107,6 @@ $(document).ready(function () {
 		</div>
 		
 		<div class="tit-heading-wrap tit-evt" id="title">
-			<h3>일별 박스오피스</h3>
 		</div>
 		<hr>
 		<div id="list"></div>
