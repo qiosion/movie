@@ -25,6 +25,8 @@ import com.cbox.info.command.infoListAction;
 import com.cbox.info.command.infoUpdateAction;
 import com.cbox.info.command.infoUpdateFormAction;
 import com.cbox.info.command.infoWriteFormAction;
+import com.cbox.member.command.FindIdAction;
+import com.cbox.member.command.FindPwAction;
 import com.cbox.member.command.idChkAction;
 import com.cbox.member.command.loginAction;
 import com.cbox.member.command.loginForm;
@@ -102,6 +104,8 @@ public class FrontController extends HttpServlet {
 		// 은선
 		map.put("/login.do", new loginAction()); // 로그인 결과
 		map.put("/loginForm.do", new loginForm()); // 로그인 화면
+		map.put("/findId.do", new FindIdAction()); // id찾기
+		map.put("/findPw.do", new FindPwAction()); // 비번찾기
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
 		map.put("/memberInsert.do", new memberInsertAction()); // user 회원등록
 		map.put("/idChk.do", new idChkAction()); // 중복 id 체크

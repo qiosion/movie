@@ -26,7 +26,7 @@ public class MemberDAO extends DAO{
 								+ "VALUES (MBR_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
 	private final String UPDATE = "UPDATE MEMBER SET MBR_PW = ?, MBR_EMAIL = ?, MBR_PHONE = ?, MBR_E_YN = ? WHERE MBR_ID = ?";
 	private final String DELETE = "DELETE FROM MEMBER WHERE MBR_ID = ?";
-	
+
 	public List<MemberVO> selectAll(){
 		List<MemberVO> list = new ArrayList<MemberVO>();
 		try {

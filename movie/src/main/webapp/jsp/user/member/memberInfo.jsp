@@ -48,14 +48,42 @@ input[type='text'], input[type='password'] {
 }   
 
 </style>
+<script type="text/javascript">
+	function formCheck(){
+		var f = document.frm;
+ 		if(f.mbr_pw.value == "") {
+			alert ("비밀번호를 입력하세요");
+			f.mbr_pw.focus();
+			return false;
+		}
+ 		/*
+		if(f.mbr_birth.value == "") {
+			alert ("생년월일을 선택하세요");
+			f.mbr_birth.focus();
+			return false;
+		} */
+		if(isNaN(f.mbr_phone.value)) {
+			alert ("전화번호는 숫자만 입력가능합니다");
+			f.mbr_phone.focus();
+			return false;
+		}
+/* 		if(f.mbr_phone.value == "") {
+			alert ("전화번호를 입력하세요");
+			f.mbr_phone.focus();
+			return false;
+		} */
+	return true;
+	}
+</script>
 </head>
 <body>
 <div id="menubar">
 <ul>
   <li><a class="active" href="#home">CBOX HOME</a></li>
+  <li><a href="#contact">회원정보</a></li>
+  <li><a href="#about">예매정보</a></li>
   <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
+
 </ul>
 </div>
 
@@ -160,7 +188,7 @@ input[type='text'], input[type='password'] {
 			</div>
 		</div>
 		<div class="text-center mt-3">
-			<button type="submit" class="btn btn-success" onclick="location.href='memberUpdate.do'" style="margin-right: 30px;">수정</button>
+			<button type="submit" class="btn btn-success" onclick="return formCheck()" style="margin-right: 30px;">수정</button>
 			<button type="button" class="btn btn-dark" onclick="location.href='main.do'" style="margin-right: 30px;">메인으로</button>
 			<button type="button" class="btn btn-danger" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
 		</div>
