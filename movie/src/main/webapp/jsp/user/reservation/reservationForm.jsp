@@ -47,7 +47,15 @@
 	.tnb .info.theater .row .header{
 		width:50px;
 	}
+	.tnb .info{
+		
+		min-width:0px !important;
+	}
+	*, ::after, ::before{
+		box-sizing:inherit !important;
+	}
 </style>
+
 <script type="text/javascript">
 
 	$(function(){
