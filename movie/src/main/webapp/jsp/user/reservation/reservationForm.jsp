@@ -36,24 +36,22 @@
 		background-color:#333;
 		color:white;
 	}
-	.tnb .info .row {
-   	 	width:185px;
-   	 	
-	}
-	.tnb .info .row .header {
-		height:10px !important;
-		min-height: 0px !important;
-	}
-	.tnb .info.theater .row .header{
-		width:50px;
-	}
-	.tnb .info{
-		
-		min-width:0px !important;
+	.tnb .info.movie .row .data{
+		width:140px !important;
 	}
 	*, ::after, ::before{
-		box-sizing:inherit !important;
+		box-sizing:inherit;
 	}
+	.row{
+		margin-right: 0px;
+    	margin-left: 0px;
+	}
+	.header {
+	    min-height: 0px; 
+	    margin-bottom: 0px; 
+    
+	}
+	
 </style>
 
 <script type="text/javascript">
@@ -225,9 +223,10 @@
 			
 				}//end MvFindTime function
 				$(".info.theater .placeholder").css("display","none");
-				$(".info.theater .row.date").css("display","block");
-				$(".info.theater .row.screen").css("display","block");
-				$(".info.theater .row.number").css("display","block");
+				//$(".info.theater .row.date").css("display","block");
+				//$(".info.theater .row.screen").css("display","block");
+				//$(".info.theater .row.number").css("display","block");
+				$(".info.theater .row").css("display","block");
 				//console.log($(this).children(".dayweek").text());
 				//console.log($(this).parent().data("date"));
 				var date = $(this).parent().data("date");
@@ -256,7 +255,7 @@
 					$(".section.section-screen-select .time").text(start2+" ~ "+end2);
 					
 					$("#tnb_step_btn_right").on("click",function(){
-						console.log("aaa");
+						//console.log("aaa");
 						$(".step.step1").css("display","none");
 						$(".step.step2").css("display","block");
 						$(".btn-right").css("background-position", "0 -330px");
@@ -309,8 +308,10 @@
 		
 		var ReservNum; //예매인원
 		var btnCount = 0;//좌석클릭카운트
-		$("#nop_group_adult ul li").on("click", function(){
+		$("#nop_group_adult ul li").on("click", function(){//예매인원클릭
 			btnCount=0;//좌석클릭카운트 초기화
+			var persons =$(this).data("count");
+			$(".info.theater .row .data").text(persons);
 			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
 			$(".btn-right").css("background-position", "0 -330px");
 			$("#nop_group_adult ul li.selected").removeClass("selected");
@@ -703,36 +704,30 @@
 
 		<!-- 클릭한 예매정보 저장??? -->
 		<div id="ticket_tnb" class="tnb_container ">
-			<div class="tnb step1">
-				<!-- btn-left -->
-				<a class="btn-left" href="#"
-					onclick="OnTnbLeftClick(); return false;" title="영화선택">이전단계로 이동</a>
-				<!-- 영화선택 -->
-				<div class="info movie">
-					<span class="movie_poster"><img src="" alt="영화 포스터" style="display: none;"></span>
-					<div class="row movie_title colspan2" style="display: none;">
-						<span class="data letter-spacing-min ellipsis-line2">
-						<a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');"></a></span>
-					</div>
-					<div class="row movie_type" style="display: none;">
-						<span class="data ellipsis-line1"></span>
-					</div>
-					<div class="row movie_rating" style="display: none;">
-						<span class="data" title=""></span>
-					</div>
-					<div class="placeholder" title="영화선택"></div>
+		<div class="tnb step1">
+			<!-- btn-left -->
+			<a class="btn-left" href="#" onclick="OnTnbLeftClick(); return false;" title="영화선택">이전단계로 이동</a>
+			<div class="info movie">
+				<span class="movie_poster"><img src="" alt="영화 포스터" style="display: none;"></span>
+				<div class="row movie_title colspan2" style="display: none;">
+					<span class="data letter-spacing-min ellipsis-line2"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/영화상세보기');">영화정보 상세보기</a></span>
 				</div>
-				<!-- end 영화선택 -->
-				
-				<!-- 극장선택 -->
-				<div class="info theater">
+				<div class="row movie_type" style="display: none;">
+					<span class="data ellipsis-line1"></span>
+				</div>
+				<div class="row movie_rating" style="display: none;">
+					<span class="data" title=""></span>
+				</div>
+				<div class="placeholder" title="영화선택"></div>
+			</div>
+			<div class="info theater">
 				<div class="row name" style="display: none;">
 					<span class="header">극장</span>
-					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader"></span></a></span>
+					<span class="data letter-spacing-min ellipsis-line1"><a href="#" target="_blank" onmousedown="javascript:logClick('SUMMARY/극장상세보기');"><span class="sreader">극장정보 상세보기</span></a></span>
 				</div>
 				<div class="row date" style="display: none;">
 					<span class="header">일시</span>
-					<span class="data" title=""></span>
+					<span class="data"></span>
 				</div>
 				<div class="row screen" style="display: none;">
 					<span class="header">상영관</span>
@@ -742,27 +737,56 @@
 					<span class="header">인원</span>
 					<span class="data"></span>
 				</div>
-				<div class="placeholder" title="극장선택" style="display: block;"></div>
+				<div class="placeholder" title="극장선택"></div>
 			</div>
-				<!-- 좌석선택 
-				<div class="info seat">
-					<div class="placeholder" title="좌석선택"></div>
+			<div class="info seat">
+				<div class="row seat_name">
+					<span class="header">좌석명</span>
+					<span class="data">일반석</span>
 				</div>
-				-->
-				<div>
-					<div>
-						<span><img src="${pageContext.request.contextPath}/images/좌석선택.JPG">&nbsp;</span>
-						<span><img src="${pageContext.request.contextPath}/images/결제.JPG">&nbsp;</span> 
-					</div>
+				<div class="row seat_no colspan3">
+					<span class="header">좌석번호</span>
+					<span class="data ellipsis-line3"></span>
 				</div>
-				
-				<!-- btn-right -->
-				
-				<a class="btn-right" id="tnb_step_btn_right" href="#"
-					onclick="return false;" title="좌석선택"></a>
-					 
+				<div class="placeholder" title="좌석선택"></div>
 			</div>
+			<div class="info payment-ticket">
+				<div class="row payment-millitary">
+					<span class="header">군인</span>
+					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
+				</div>
+				<div class="row payment-adult">
+					<span class="header">일반</span>
+					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
+				</div>
+				<div class="row payment-youth">
+					<span class="header">청소년</span>
+					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
+				</div>
+				<div class="row payment-child">
+					<span class="header">어린이</span>
+					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
+				</div>						
+				<div class="row payment-special">
+					<span class="header">우대</span>
+					<span class="data"><span class="price"></span>원 x <span class="quantity"></span></span>
+				</div>
+				<div class="row payment-final">
+					<span class="header">총금액</span>
+					<span class="data"><span class="price">0</span><span class="won">원</span></span>
+				</div>
+			</div>
+			<div class="info path">
+				<div class="row colspan4">
+					<span class="path-step2" title="좌석선택">&nbsp;</span>
+					<span class="path-step3" title="결제">&nbsp;</span>
+				</div>
+			</div>
+			<!-- btn-right -->
+			<div class="tnb_step_btn_right_before" id="tnb_step_btn_right_before"></div>
+			<a class="btn-right" id="tnb_step_btn_right" href="#" onclick="OnTnbRightClick(); return false;" title="좌석선택">다음단계로 이동 - 레이어로 서비스 되기 때문에 가상커서를 해지(Ctrl+Shift+F12)한 후 사용합니다.</a>
 		</div>
+	</div>
 		<!-- end 예매한 영화정보저장??? -->
 
 		<!-- bottom banner -->
