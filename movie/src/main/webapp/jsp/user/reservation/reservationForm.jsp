@@ -258,6 +258,9 @@
 						//console.log("aaa");
 						$(".step.step1").css("display","none");
 						$(".step.step2").css("display","block");
+						$("#ticket_tnb .info.path").css("display","none");
+						$(".tnb.step1 .info.seat").css("display","block");
+						$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
 						$(".btn-right").css("background-position", "0 -330px");
 						
 						
@@ -311,7 +314,7 @@
 		$("#nop_group_adult ul li").on("click", function(){//예매인원클릭
 			btnCount=0;//좌석클릭카운트 초기화
 			var persons =$(this).data("count");
-			$(".info.theater .row .data").text(persons);
+			$(".info.theater .row.number .data").text(persons);
 			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
 			$(".btn-right").css("background-position", "0 -330px");
 			$("#nop_group_adult ul li.selected").removeClass("selected");
@@ -326,22 +329,27 @@
 			ReservNum = $(this).data("count");
 		}); //end 예매인원 선택
 		
-		
-		$(".seatTable .seatTd").on("click",function(){
+		var seanum= "";
+		$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
+			console.log($(this).data("seanum"));
 			if($(this).hasClass("selected")){
 				$(this).removeClass("selected");
 				btnCount=$("td.selected").length;
+				$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text();
+				.removeData($(this).data("seanum"));
 				if(btnCount != ReservNum){
 					$(".btn-right").css("background-position", "0 -330px");
 				}
 			}else{
 				//console.log(ReservNum);
 				//예매인원 받아와서, 인원수에맞게 클릭
-				
+				seanum = seanum + $(this).data("seanum");
+	
 				if(btnCount >= ReservNum){
 					alert("선택한 예매인원수를 초과하셨습니다.");
 				}else{
-				$(this).addClass("selected");
+					$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
+					$(this).addClass("selected");
 					btnCount=$("td.selected").length;
 					if(btnCount == ReservNum){
 						$(".btn-right").css("background-position", "-150px -330px");

@@ -225,7 +225,9 @@ select {
 	function checkNum() {
 		var num = $("#ttNum").val();
 		if (num == "") {
-			alert("등록 후 수정해 주세요.");
+			alert("등록 후 수정해 주세요.");		
+		}else{
+			$(".text-center.mt-3 .btn.btn-dark").attr("data-target","#mvUptPop");
 		}
 	}
 
@@ -350,7 +352,7 @@ select {
 			<button type="button" id="insertBtn" onclick="chkInsert()"
 				style="margin-right: 30px;" data-toggle="modal"
 				data-target="#mvInsertPop" class="btn btn-success">등록</button>
-			<button type="button" class="btn btn-dark" data-target="#mvUptPop"
+			<button type="button" class="btn btn-dark" 
 				style="margin-right: 30px;" id="udpBtn" onclick="checkNum()"
 				data-toggle="modal">수정</button>
 			<button type="button" class="btn btn-danger" id="initBtn">초기화</button>
