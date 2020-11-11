@@ -19,13 +19,16 @@ public class FindIdAction implements Action {
 		String nmch = request.getParameter("nmch");
 		Date bdch = Date.valueOf(request.getParameter("bdch"));
 		String phch = request.getParameter("phch");
+		System.out.println("nmch : " + nmch);
+		System.out.println("bdch : " + bdch);
+		System.out.println("phch : " + phch);
+
+		MemberVO svo = dao.searchId(vo);
 		
-		vo.setMbr_nm(nmch);
-		vo.setMbr_birth(bdch);
-		vo.setMbr_phone(phch);
-		
-		dao.searchId(vo);
-		
+		System.out.println("id확인: " + svo.getMbr_id());
+		// 여기서 짜르고
+		// id를 setattribute로 담아주고
+		// 그걸 모달에서 불러
 		return null;
 	}
 

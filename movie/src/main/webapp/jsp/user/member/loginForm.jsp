@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,6 +41,7 @@ input[type='text'], input[type='password'] {
 		return true;
 	}
 	function findIdCheck() {
+		var frm3 = document.frm3;
 		if (frm3.nmch.value == "") {
 			alert("이름을 입력하세요");
 			frm3.nmch.focus();
@@ -158,7 +161,7 @@ input[type='text'], input[type='password'] {
 
 				<!-- Modal body -->
 				<div class="modal-body" align="center">
-					<form id="frm3" name="frm3" action="searchId.do" method="post">
+					<form id="frm3" name="frm3" action="findId.do" method="post">
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">이름</td>
@@ -176,6 +179,12 @@ input[type='text'], input[type='password'] {
 						<button type="submit" name="fid" id="fid" class="btn btn-danger" onclick="return findIdCheck()">아이디찾기</button>
 						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
 					</form>
+					<div style="text-align: center; margin: 10px;">
+						<c:if test="${!empty id }">
+						<h5>회원가입 시 사용한 아이디는 <strong>${fn:substring(id, 0, 4)}
+						<c:forEach begin="1" end="${fn:length(id)-4}">*</c:forEach></strong>입니다.</h5>
+						</c:if>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -193,7 +202,7 @@ input[type='text'], input[type='password'] {
 
 				<!-- Modal body -->
 				<div class="modal-body" align="center">
-					<form id="frm4" name="frm4" action="searchPw.do" method="post">
+					<form id="frm4" name="frm4" action="findPw.do" method="post">
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">아이디</td>
@@ -211,6 +220,13 @@ input[type='text'], input[type='password'] {
 						<button type="submit" name="fid" id="fid" class="btn btn-danger" onclick="return findPwCheck()">비밀번호찾기</button>
 						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
 					</form>
+				</div>
+				<!-- Modal footer -->
+				<div style="text-align: center; margin: 10px;">
+					<c:if test="${!empty pw }">
+						<h5>회원가입 시 사용한 비밀번호는 <strong>${fn:substring(pw, 0, 4)}
+						<c:forEach begin="1" end="${fn:length(pw)-4}">*</c:forEach></strong>입니다.</h5>
+					</c:if>
 				</div>
 			</div>
 		</div>

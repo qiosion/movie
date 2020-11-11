@@ -26,6 +26,7 @@ public class FindDAO extends DAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()){
 				vo.setMbr_id(rs.getString("mbr_id"));
+				System.out.println("아이디:" + vo.getMbr_id());
             }
 		} catch (Exception e) {
             e.printStackTrace();

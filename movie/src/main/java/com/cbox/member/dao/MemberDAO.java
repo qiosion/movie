@@ -117,11 +117,11 @@ public class MemberDAO extends DAO{
         	pstmt.setString(1, vo.getMbr_id());
             rs = pstmt.executeQuery();
  
-            if (rs.next()) // 입려된 아이디에 해당하는 비번 있을경우
+            if (rs.next()) // 입력된 아이디에 해당하는 비번 있을경우
             {
                 dbPW = rs.getString("mbr_pw"); // 비번을 변수에 넣는다.
                 if (dbPW.equals(vo.getMbr_pw())) 
-                    x = 1; // 넘겨받은 비번과 꺼내온 배번 비교. 같으면 인증성공
+                    x = 1; // 넘겨받은 비번과 꺼내온 비번 비교. 같으면 인증성공
                 else                  
                     x = 0; // DB의 비밀번호와 입력받은 비밀번호 다름, 인증실패
             } else {

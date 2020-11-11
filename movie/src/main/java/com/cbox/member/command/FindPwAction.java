@@ -1,7 +1,5 @@
 package com.cbox.member.command;
 
-import java.sql.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,8 +22,8 @@ public class FindPwAction implements Action {
 		vo.setMbr_nm(nmchk);
 		vo.setMbr_phone(phchk);
 		
-		dao.searchPw(vo);
-		
+		MemberVO searchPw = dao.searchPw(vo);
+		request.setAttribute("pw", searchPw.getMbr_pw());
 		return null;
 	}
 
