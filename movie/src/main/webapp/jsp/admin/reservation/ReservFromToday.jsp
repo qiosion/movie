@@ -75,7 +75,7 @@ th, td {
 </head>
 <body>
 	<div class="tit-heading-wrap tit-evt">
-		<h3>예매 내역</h3>
+		<h3>오늘이후 예매 내역</h3>
 	</div>
 	<div id="topMvMenu">
 		<div align="right">

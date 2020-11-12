@@ -12,10 +12,10 @@
 				<td>
 					<!-- Mypage 링크 메뉴  --> <c:if test='${!empty mbr_id}'>
 						<a href="<%=cp%>/memberInfo.do" onfocus="blur()"><font size="2.5px"
-							face="BareunDotum1"> MyPage &nbsp;</a>
+							face="BareunDotum1"> MyPage &nbsp;</font></a>
 					</c:if> <!-- 회원가입 링크 메뉴  --> <c:if test='${empty mbr_id}'>
 						<a href="<%=cp%>/memberForm.do" onfocus="blur()"><font size="2.5px"
-							face="BareunDotum1"> 회원가입&nbsp;</a>
+							face="BareunDotum1"> 회원가입&nbsp;</font></a>
 					</c:if> <!-- 로그인 링크 메뉴  --> <c:if test='${empty mbr_id}'>
 						<a href="<%=cp%>/loginForm.do" onfocus="blur()"><font size="2.5px"
 							face="BareunDotum1"> 로그인&nbsp;</font></a>

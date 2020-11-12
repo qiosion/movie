@@ -6,15 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
-<style>
-	.selected{
-		background-color:white;
-	}
-	
-</style>
-
 <title>CBOX</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script

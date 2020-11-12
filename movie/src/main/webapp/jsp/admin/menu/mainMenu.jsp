@@ -18,21 +18,29 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false" onfocus="blur()">영화 관리</a>
+					aria-expanded="false" onfocus="blur()">영화관리</a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" onfocus="blur()"
 							href="${pageContext.request.contextPath}/mvList.do">영화관리</a>
 						<a class="dropdown-item" onfocus="blur()"
 							href="${pageContext.request.contextPath}/screenMvForm.do">상영 영화 관리</a>
-					</div></li>
+					</div>
+				</li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
 					href="${pageContext.request.contextPath}/memberList.do">회원관리
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
-					href="${pageContext.request.contextPath}/AdminReserv.do">예매관리
-						<span class="sr-only">(current)</span>
-				</a></li>
+				<li class="nav-item dropdown"><a
+					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false" onfocus="blur()">예매관리</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" onfocus="blur()"
+							href="${pageContext.request.contextPath}/AdminReserv.do">전체 예매내역</a>
+						<a class="dropdown-item" onfocus="blur()"
+							href="${pageContext.request.contextPath}/ReservFromToday.do">이후 예매내역</a>
+					</div>
+				</li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
 					href="${pageContext.request.contextPath}/infoList.do">공지사항 <span
 						class="sr-only">(current)</span>
