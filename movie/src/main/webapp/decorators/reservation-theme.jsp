@@ -18,6 +18,11 @@
     font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif !important;
    
 }
+	header{
+		background-color:#fdfcf0;
+	}
+	
+	
 </style>
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
@@ -103,7 +108,7 @@
 	<hr>
 		<decorator:body />
 	<hr>
-	<footer>바보들의 행진이다</footer>
+	<footer></footer>
 </body>
 </html>
 

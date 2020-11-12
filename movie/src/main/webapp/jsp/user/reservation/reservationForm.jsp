@@ -37,9 +37,7 @@
 		background-color:#333;
 		color:white;
 	}
-	.tnb .info.movie .row .data{
-		width:140px !important;
-	}
+	
 	*, ::after, ::before{
 		box-sizing:inherit;
 	}
@@ -55,6 +53,9 @@
 	.resultReserv{
 		border:2px solid black;
 		font-size:22px;
+		margin: 10px;
+    	width: 100%;
+    	height: 500px;
 	}
 	.resultReserv tr{
 		border:1px solid black;
@@ -62,9 +63,11 @@
 	.resultReserv tr td{
 		border:1px solid black;
 	}
-	
+	body{
+		background-color:#fdfcf0;
+	}
 </style>
-
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
 
 	$(function(){
@@ -273,6 +276,7 @@
 						$(".tnb.step1 .info.seat").css("display","block");
 						$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
 						$(".btn-right").css("background-position", "0 -330px");
+						$(this).attr("title","결제선택");
 						
 						
 					});
@@ -283,9 +287,9 @@
 					var endtime = $(this).siblings(".sreader").text();
 					
 					$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime);
-					$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime);
+					$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime+"~"+endtime);
 					
-				});//end time button click
+				});//end #test02 time button click
 				
 			});//end date button click 	
 			
@@ -345,7 +349,7 @@
 			ReservNum = $(this).data("count");
 		}); //end 예매인원 선택
 		
-		
+		var no=0;//예매번호
 		$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
 			//console.log($(this).data("seanum"));
 			if($(this).hasClass("selected")){
@@ -384,12 +388,122 @@
 						$("#tnb_step_btn_right").on("click",function(){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
+							var date = new Date();
+							var year = date.getFullYear();
+							var month = (date.getMonth()+1); 
+							var day = date.getDate();
+							var Rno = (year+""+month+""+day+"-"+no);
+							var Rday = (year+"-"+month+"-"+day);
+							$(".step.step3 .resultReserv td.ReservNo").text(Rno);
+							$(".step.step3 .resultReserv td.ReservDay").text(Rday);
+							$(".step.step3 .resultReserv td.ReservNum").text(persons);
+							var mvTitle = $("#ticket_tnb .tnb.step1 .info.movie div span a").attr("title");
+							$(".step.step3 .resultReserv td.ReservMv").text(mvTitle);
+							var mvNum= $("#ticket_tnb .tnb.step1 .info.theater .row.screen .data").text();
+							$(".step.step3 .resultReserv td.ReservMvNum").text(mvNum);
+							var mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
+							mvDay = String(mvDay).substr(0,12);
+							$(".step.step3 .resultReserv td.ReservMvDay").text(mvDay);
+							mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
+							console.log(mvDay);
+							mvDay = String(mvDay).substr(12);
+							$(".step.step3 .resultReserv td.ReservMvTime").text(mvDay);
+							var mvSeat = $("#ticket_tnb .tnb.step1 .info.seat .row.seat_no .data").text();
+							$(".step.step3 .resultReserv td.ReservMvSeat").text(mvSeat);
+							var ReservPrice = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .data").text();
+							$(".step.step3 .resultReserv td.ReservPrice").text(ReservPrice);
+							$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
+							$(this).css({"background-position":"0px -550px","width":"220px"});
+							$(this).attr("title","결제완료");
+							
+							
+							
 						});
 					}
 				}
 			}
 		});//end 좌석선택 function
-		
+		$("#tnb_step_btn_right").on("click",function(){
+			if($(this).attr("title")=="결제완료"){
+					var today = new Date();
+					var dd = today.getDate();
+					var mm = today.getMonth()+1; 
+					var yyyy = today.getFullYear();
+					date = (yyyy+""+mm+""+dd);
+
+					var IMP = window.IMP; // 생략가능
+					IMP.init('imp49017479');
+					// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+					// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
+					IMP.request_pay({
+					pg: 'inicis', // version 1.1.0부터 지원.
+					/*
+					'kakao':카카오페이,
+					html5_inicis':이니시스(웹표준결제)
+					'nice':나이스페이
+					'jtnet':제이티넷
+					'uplus':LG유플러스
+					'danal':다날
+					'payco':페이코
+					'syrup':시럽페이
+					'paypal':페이팔
+					*/
+					pay_method: 'card',
+					/*
+					'samsung':삼성페이,
+					'card':신용카드,
+					'trans':실시간계좌이체,
+					'vbank':가상계좌,
+					'phone':휴대폰소액결제
+					*/
+					merchant_uid: 'merchant_'+ date+"_"+ new Date().getTime(),
+					/*
+					merchant_uid에 경우
+					https://docs.iamport.kr/implementation/payment
+					위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
+					참고하세요.
+					나중에 포스팅 해볼게요.
+					*/
+					name: '주문명:결제테스트',
+					//결제창에서 보여질 이름
+					amount: 1000,
+					//가격
+					buyer_email: 'test@test.com',
+					buyer_name: '테스트이름',
+					buyer_tel: '010-1234-5678',
+					buyer_addr: '대구 예담동',
+					buyer_postcode: '123-456',
+					m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+					/*
+					모바일 결제시,
+					결제가 끝나고 랜딩되는 URL을 지정
+					(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
+					*/
+					}, function (rsp) {
+					console.log(rsp);
+					if (rsp.success) {
+						var msg = '결제가 완료되었습니다.';
+						msg += '고유ID : ' + rsp.imp_uid;
+						msg += '상점 거래ID : ' + rsp.merchant_uid;
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						msg += '카드 승인번호 : ' + rsp.apply_num;
+						no++;
+						location.href="${pageContext.request.contextPath}/main.do";
+						
+						
+						
+					} else {
+					var msg = '결제에 실패하였습니다.';
+						msg += '에러내용 : ' + rsp.error_msg;
+						location.href="${pageContext.request.contextPath}/reservation/reservationForm.do";
+					}
+					alert(msg);
+					});
+					
+				
+				
+			}
+		});
 		
 		
 	}); //end start function
@@ -716,15 +830,16 @@
 					<!-- //step2 -->
 					
 					<!-- step3-->
-					<div class="step step3" style="display: none;">
-						<div class="reservResult">
+					<div class="step step3"  style="display: none;">
+						<div class="reservResult" align="center">
 							<table class="resultReserv">
-								<tr><td>예매번호</td><td></td><td>회원이름</td><td></td></tr>
-								<tr><td>예매날짜</td><td></td><td>예매인원</td><td></td></tr>
-								<tr><td>영화명</td><td></td><td>상영관</td><td></td></tr>
-								<tr><td>상영날짜</td><td></td><td>상영시간</td><td></td></tr>
-								<tr><td>좌석위치</td><td></td><td>결제금액</td><td></td></tr>
+								<tr><th>예매번호</th><td class="ReservNo"></td><th>회원이름</th><td>회원이름넣기</td></tr>
+								<tr><th>예매날짜</th><td class="ReservDay"></td><th>예매인원</th><td class="ReservNum"></td></tr>
+								<tr><th>영화명</th><td class="ReservMv"></td><th>상영관</th><td class="ReservMvNum"></td></tr>
+								<tr><th>상영날짜</th><td class="ReservMvDay"></td><th>상영시간</th><td class="ReservMvTime"></td></tr>
+								<tr><th>좌석위치</th><td class="ReservMvSeat"></td><th>결제금액</th><td class="ReservPrice"></td></tr>
 							</table>
+							
 						</div>
 					</div>
 			
@@ -828,10 +943,9 @@
 			style="padding-top: 0px;">
 			<a target="_blank" title="새창"
 				href="http://ad.cgv.co.kr/click/CGV/CGV_201401/RIA@B_ticketing?ads_id=44087&amp;creative_id=62166&amp;click_id=82006&amp;event="
-				style="background-color: rgb(255, 255, 255);"><span style="">?援</span><img
-				src="http://adimg.cgv.co.kr/images/202010/Collectors/1030_996x140.jpg"
-				alt="?援" onload="ticketNeedResize();"
-				style="width: 996px; height: 140px"></a>
+				style="background-color: rgb(255, 255, 255);">
+				<span style="">?援</span>
+				<img src="https://adimg.cgv.co.kr/images/202011/Freaky/1109_996x140_02.jpg" alt="?由ы" onload="ticketNeedResize();" style="width:996px;height:140px"></a>
 		</div>
 
 		
