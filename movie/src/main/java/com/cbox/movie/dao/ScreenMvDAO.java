@@ -75,8 +75,7 @@ public class ScreenMvDAO extends DAO {
 	// 상영 영화 목록
 	private String SELECT_LIST = "SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
 			+ "FROM TIMETABLE T " + "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM " + "JOIN THEATER TH ON T.TH_NUM = TH.TH_NUM "
-			+ "WHERE M.MV_FINDATE >= SYSDATE "
-			+ "ORDER BY 2, 3, 4";
+			+ "WHERE M.MV_FINDATE >= SYSDATE ";
 //	private String SELECT_LIST = "SELECT B.* FROM ( SELECT A.*, ROWNUM RN FROM (SELECT T.TT_NUM,  M.MV_TITLE, T.TT_SCR_DATE, T.TT_START, T.TT_END, TH.TH_NAME "
 //			+ "FROM TIMETABLE T "
 //			+ "JOIN MOVIE M ON T.MV_NUM = M.MV_NUM "
@@ -85,12 +84,31 @@ public class ScreenMvDAO extends DAO {
 //			+ "ORDER BY 2, 3, 4 ) A  ) B WHERE RN BETWEEN ? AND ?";
 	
 
-	public List<ScreenMvVO> getScreenList() {
+	public List<ScreenMvVO> getScreenList(MovieSearchVO searchVO) {
 		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
+		String whereCondition = "";
+		
+		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+				&& !searchVO.getKeyword().equals("")) {
+			System.out.println("type : "+searchVO.getType());
+			System.out.println("keyword : "+searchVO.getKeyword());
+			if (searchVO.getType().equals("title")) {
+				whereCondition += " AND M.MV_TITLE LIKE '%'||?||'%'";
+			}
+		}
+		
 		try {
+			SELECT_LIST = SELECT_LIST + whereCondition + "ORDER BY 2, 3, 4";
 			System.out.println("getScreenList");
 			psmt = conn.prepareCall(SELECT_LIST);
-			
+
+			int pos = 1;
+			if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
+					&& !searchVO.getKeyword().equals("")) {
+				if (searchVO.getType().equals("title")) {
+					psmt.setString(pos++, searchVO.getKeyword());
+				}
+			}
 			rs = psmt.executeQuery();
 			while (rs.next()) {
 				vo = new ScreenMvVO();

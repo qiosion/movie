@@ -65,6 +65,13 @@ select {
 			}, 400);
 			return false;
 		});
+		
+		$("#menuSearchBtn").click(function() {
+			searchType = 'title';
+			keyword = $("#keyword").val();
+			console.log("keyword : "+keyword);
+			movieList(searchType, keyword);
+		});
 	});
 
 	function init() {
@@ -100,11 +107,15 @@ select {
 		});
 	} */
 
-	function movieList() {
+	function movieList(searchType, keyword) {
 		$.ajax({
 			url : 'ajax/screenMvList.do',
 			type : 'GET',
 			dataType : 'json',
+			data : {
+				searchType : searchType,
+				keyword : keyword
+			},
 			error : function(xhr, status, msg) {
 				alert("상태값 :" + status + " Http에러메시지 :" + msg);
 			},
@@ -165,8 +176,9 @@ select {
 		if (num != "") {
 			alert("수정 중인 상영 정보입니다. 초기화 후 등록해주세요.");
 		} else {
-			console.log("num : "+num);
-			$(".text-center.mt-3 .btn.btn-success").attr("data-target", "#mvInsertPop");
+			console.log("num : " + num);
+			$(".text-center.mt-3 .btn.btn-success").attr("data-target",
+					"#mvInsertPop");
 		}
 	}
 
@@ -186,7 +198,7 @@ select {
 				method : 'post',
 				data : $("#frm").serialize(),
 				success : function(response) {
-					if(response.result) {
+					if (response.result) {
 						movieList();
 
 						$("#frm").each(function() {
@@ -341,7 +353,16 @@ select {
 			<button type="button" class="btn btn-danger" id="initBtn">초기화</button>
 		</div>
 	</form>
-	<hr />
+	<div align="right">
+		<form name="search" id="search">
+			<input type="hidden" name="action" value="list" /> <input
+				type="hidden" name="p" value="1" /> <select id="searchType"
+				name="searchType">
+				<option value="title">제목</option>
+			</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
+			<button type="button" id="menuSearchBtn">검색</button>
+		</form>
+	</div>
 	<div id="bottomList" style="min-height: 650px;" align="center">
 		<table class="table text-center">
 			<thead>

@@ -19,10 +19,14 @@ public class scMvListAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 		ScreenMvDAO dao = new ScreenMvDAO();
+		List<ScreenMvVO> list = new ArrayList<ScreenMvVO>();
 
-		list = dao.getScreenList();
+		MovieSearchVO searchVO = new MovieSearchVO();
+		searchVO.setType(request.getParameter("searchType"));
+		searchVO.setKeyword(request.getParameter("keyword"));
+
+		list = dao.getScreenList(searchVO);
 
 		try {
 			response.getWriter().print(new JSONArray(list));

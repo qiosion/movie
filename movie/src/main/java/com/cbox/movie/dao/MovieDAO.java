@@ -46,6 +46,7 @@ public class MovieDAO extends DAO {
 				}
 			}
 		}
+		
 		try {
 			SELECT_ALL = SELECT_ALL + whereCondition;
 			System.out.println("selectall : "+SELECT_ALL);
