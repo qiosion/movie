@@ -37,6 +37,11 @@
 		background-color:#333;
 		color:white;
 	}
+	li.selected, li.selected span{
+		border-color:#000;
+		background-color:#333;
+		color:white !important;
+	}
 	
 	*, ::after, ::before{
 		box-sizing:inherit;
@@ -74,7 +79,10 @@
 		
 		
 		$("#test00 a").on("click",function(){ //예매에서 영화를 선택했을경우
-			$("#test01 a").css("background-color","");
+			if($("#test01 li").hasClass("selected")){
+				$("#test01 li").removeClass("selected");
+			}
+			//$("#test01 a").css("background-color","");
 			//$("#test00 a").css("background-color","");
 			//$("#test00 .text").css("color","");			
 			//$(this).css("background-color", "black");
@@ -135,29 +143,31 @@
 				
 				
 			}
-			
+			var mvDate; //해당영화 상영일
+			var date; //전체 날짜
 			function mvFindDate(data){//start mvFindate
-				$("li.day span").css("color","#A9A9A9"); //누를때마다 초기화 
+				$("li.day span").css("color","#A9A9A9"); //영화누르면 모든날짜 회색
 				var test;
 				$.each(data,function(idx,items){
-					var mvDate = items.tt_scr_date;
+					mvDate = items.tt_scr_date;
 					
 					//console.log(mvDate);
 					var list= $("#test01 li.day");
 					for(var i=0; i<list.length; i++){//브라우저의 li목록에 있는 날짜 다출력
 						//$("#test01 li.day")[i].children[0].children[0].style="color:#A9A9A9"
 						//$("#test01 li.day")[i].children[0].children[1].style="color:#A9A9A9"
-						var date = $(list[i]).data("date") +"";
+						 date = $(list[i]).data("date") +"";
 					//	console.log("li날짜 : " +date)
 						if(date.length != 8){
 							date = parseInt(date.replace(/(.{6})/g,"$10"));
 						}else{
-							date =date;
+							date = parseInt(date);
 						}
-						//	console.log("바뀐날짜 : " +date)
+							//console.log("바뀐날짜 : " +date)
 						//mvDate - DB에서 가지고온 영화의 상영일, date = 브라우저에 뿌려진 현재 월의 날짜
 						if(mvDate == date) { //DB에서 갖고온 해당영화의 상영일과 , 브라우저에서 갖고온 날짜와 비교해서 같지않으면, 해당textcolor회색처리
 							$(list[i]).find("span").css("color","black"); //누를때마다 초기화
+							$(list[i]).attr("data-check","yes");
 							break;
 						}
 						
@@ -167,10 +177,18 @@
 				});//end each
 			}//end funtion mvFindate
 			
-			
 			$("#test01 a").on("click", function(){  //영화 클릭후 날짜 클릭
-				$("#test01 a").css("background-color","");		
-				//$("#tnb_step_btn_right").css("background-color", "url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_buttons.png) no-repeat");
+				
+				if($("#test01 li").hasClass("selected")){
+					$("#test01 li").removeClass("selected");
+				}
+				
+				if($(this).parent(".day").data("check")=='yes'){
+					$(this).parent().addClass("selected");
+				}else{
+					alert("상영정보가 없습니다.");
+				}
+				
 				$(".btn-right").css("background-position", "0px -220px")
 				var screenInfo = $(".section.section-screen-select .playYMD-info");
 				var date2 = $(this).parent().data("date")+"";
@@ -185,7 +203,7 @@
 				
 				
 				//$("#test01 span").css("color","");
-				$(this).css("background-color", "black");
+				//$(this).css("background-color", "black");
 				//$("#tnb_step_btn_right").css("backgorund-position","0px 0px");
 				//$(this).children().css("color","white");
 				//console.log($(this).parent().data("date")) -- 클릭한 년월일
@@ -226,7 +244,7 @@
 											'play_start_tm="1800"  '+
 											'play_num="4"><a class="button" href="#" '+
 											'onclick="return false;"><span '+
-												'class="time">'+data[i].tt_start+'</span><span class="count"><!-- 잔여좌석 --></span>'+
+												'class="time">'+data[i].tt_start+'</span><span class="count">'+data[i].tt_empty+'석<!-- 잔여좌석 --></span>'+
 											'<div class="sreader">'+data[i].tt_end+'</div>'+
 												'<span class="sreader mod"></span></a></li>'+
 									 '</ul>'+
@@ -276,10 +294,26 @@
 						$(".tnb.step1 .info.seat").css("display","block");
 						$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
 						$(".btn-right").css("background-position", "0 -330px");
+						$("#ticket_tnb .tnb.step1 .btn-left").css("display","block");
 						$(this).attr("title","결제선택");
 						
 						
 					});
+					$("#ticket_tnb .tnb.step1 .btn-left").on("click",function(){
+						$(".step.step2").css("display","none");
+						$(".step.step1").css("display","block");
+						$("#ticket_tnb .tnb.step1 .btn-left").css("display","none");
+						$(".btn-right").css("background-position", "-150px -220px");
+						$("#tnb_step_btn_right").attr("title","좌석선택");	
+						$(".seatsClick .seatTable .seatTd").removeClass("selected");
+						$(".mouse_block").css("display","block");
+						$(".section.section-numberofpeople #nop_group_adult ul li").removeClass("selected");
+						if($(".section.section-numberofpeople #nop_group_adult ul li").data("count")==0){
+							$(this).addClass("selected");
+						}
+						
+						
+					})
 					
 					var screen = $(this).parents("div.theater").children().children(".floor").text();
 					$(".info.theater .row.screen .data").text(screen);
@@ -291,8 +325,8 @@
 					
 				});//end #test02 time button click
 				
-			});//end date button click 	
-			
+			});//end test01 date button click 	
+		
 		}); //end #test00 a, movie button click
 		//$(".theater_minimap .seatsClick").
 		var title = ["A","B","C","D","E","F"];
@@ -385,6 +419,7 @@
 					if(btnCount == ReservNum){
 						$(".btn-right").css("background-position", "-150px -330px");
 						
+						if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 						$("#tnb_step_btn_right").on("click",function(){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
@@ -405,7 +440,7 @@
 							mvDay = String(mvDay).substr(0,12);
 							$(".step.step3 .resultReserv td.ReservMvDay").text(mvDay);
 							mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
-							console.log(mvDay);
+							//console.log(mvDay);
 							mvDay = String(mvDay).substr(12);
 							$(".step.step3 .resultReserv td.ReservMvTime").text(mvDay);
 							var mvSeat = $("#ticket_tnb .tnb.step1 .info.seat .row.seat_no .data").text();
@@ -419,10 +454,12 @@
 							
 							
 						});
+						}
 					}
 				}
 			}
 		});//end 좌석선택 function
+		
 		$("#tnb_step_btn_right").on("click",function(){
 			if($(this).attr("title")=="결제완료"){
 					var today = new Date();

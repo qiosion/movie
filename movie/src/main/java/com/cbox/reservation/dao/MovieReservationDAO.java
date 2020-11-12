@@ -28,12 +28,14 @@ public class MovieReservationDAO extends DAO {
 			"SELECT MV_NUM, MV_TITLE, MV_POST\r\n" + 
 			"FROM MOVIE\r\n" + 
 			"WHERE MV_NUM=?";				
-	private final String SELECT_ID_DATE_TIME = "select tt.tt_start \"시작시간\", tt.tt_end \"종료시간\", th.th_max \"총좌석\", th.th_name \"상영관명\"\r\n" + 
-												"from timetable tt, theater th\r\n" + 
-												"where tt.th_num = th.th_num\r\n" + 
-												"and tt.mv_num=?\r\n" + 
-												"and tt.tt_scr_date=?"+
-												" order by tt.tt_start";
+	private final String SELECT_ID_DATE_TIME = 
+			"select tt.tt_num \"상영번호\", tt.mv_num \"영화번호\", tt.tt_scr_date \"영화상영일\", tt.tt_start \"시작시간\", tt.tt_end \"종료시간\", th.th_max \"총좌석\", th.th_name \"상영관명\"\r\n" + 
+			",       (th.th_max- nvl((select sum(tc.tc_ppl)        from ticketing tc        where  tc.tt_num=tt.tt_num ),0)) as \"잔여좌석\"\r\n" + 
+			"from timetable tt, theater th\r\n" + 
+			"where tt.th_num = th.th_num\r\n" + 
+			"and tt.mv_num= ?\r\n" + 
+			"and tt.tt_scr_date = ?\r\n" + 
+			"order by tt.tt_start";
 private final String SELECT_M_DATE = "select distinct(tt_scr_date), mv_num\r\n" + 
 									 "from timetable\r\n" + 
 									 "where mv_num = ?";
@@ -75,10 +77,12 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 			rs = psmt.executeQuery();
 			while(rs.next()) {
 				MvFindDateDTO mdto = new MvFindDateDTO();
+				mdto.setTt_num(rs.getInt("상영번호"));
 				mdto.setTt_start(rs.getString("시작시간"));
 				mdto.setTt_end(rs.getString("종료시간"));
 				mdto.setTh_max(rs.getInt("총좌석"));
 				mdto.setTh_name(rs.getString("상영관명"));
+				mdto.setTt_empty(rs.getInt("잔여좌석"));
 				list.add(mdto);			
 			}
 		} catch (SQLException e) {
