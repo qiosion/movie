@@ -9,8 +9,78 @@ request.setCharacterEncoding("UTF-8");
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+.tit-heading-wrap {
+	margin-top: 5px !important;
+}
+thead th {
+	font-size: 20px;
+	text-align: center;
+}
+
+#list td {
+	font-size: 20px;
+	text-align: center;
+}
+</style>
 </head>
 <body>
+<script type="text/javascript">
+var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";$(function () {
+    document.getElementById("today").valueAsDate = new Date();
+
+    listOffice("yesterday");
+});
+
+function listOffice(type) {
+	var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=" + serviceKey + "&targetDt=";
+    date_list = $('#today').val().split('-');
+    $("#title").empty();
+
+    if(type == "select") {
+        url = url + date_list[0] + date_list[1] + date_list[2];
+        $("#title").append(date_list[1]+"월"+(date_list[2])+"일 박스 오피스")
+    } else {
+        url = url + date_list[0] + date_list[1] + (date_list[2]-1);
+        $("#title").append(date_list[1]+"월"+(date_list[2]-1)+"일 박스 오피스")
+    }
+    
+    $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "xml",
+        success: function (mydata) {
+            var str = "";
+
+            if ($(mydata).find("dailyBoxOffice").text() == "") {
+                $("#list").append("자료가 없습니다.");
+                return;
+            }
+            $(mydata).find("dailyBoxOffice").each(function () {
+            	str = str + "<tr>";
+            	str = str + "<td style=\'color:orange; width: 50px; text-align:right;\'>"+$(this).find("rank").text() + "위 </td>";
+            	str = str + "<td>"+$(this).find("movieNm").text()+"</td>";
+            	var rank = "";
+                rankInten = eval($(this).find("rankInten").text());
+                if (rankInten > 0) {
+                	rank = rank + "+" + rankInten
+                } else if (rankInten < 0) {
+                	rank = rank + "-" + Math.abs(rankInten)
+                } else {
+                	rank = rank + rankInten
+                }
+            	str = str + "<td style=\'width: 100px;\'>"+rank+"</td>";
+            	str = str + "<td style=\'width: 100px; text-align:right;\'>"+$(this).find("audiAcc").text()+"</td>";
+            	str = str + "</tr>";
+            });
+            $("#list").append(str);
+        },
+        error: function () {
+            $("#list").append("Error ...");
+        }
+    });
+}
+</script>
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<div class="carousel-inner" style="height: 400px;">
 			<!-- 슬라이드 쇼 -->
@@ -48,8 +118,24 @@ request.setCharacterEncoding("UTF-8");
 			<!-- 인디케이터 끝 -->
 		</div>
 	</div>
-	<div class="row" style="height: 300px; margin: 20px 10px;">
-		<div class="col">col</div>
+	<div class="row" style="height: 400px; margin: 20px 10px;">
+		<div class="col">
+			<div style="display:none;"><input type="date" id="today"></div>
+			<div class="tit-heading-wrap tit-evt" id="title"></div>
+			<div style="margin-top: 5px;">
+				<table>
+					<thead>
+					<tr>
+						<th style="width: 50px;">순위</th>
+						<th>제목</th>
+						<th style="width: 100px;">전일대비</th>
+						<th style="width: 100px;">누적관객수</th>
+					</tr>
+					</thead>
+					<tbody id="list"></tbody>
+				</table>
+			</div>
+		</div>
 		<div class="col" id="map" style="width: 100%;"></div>
 	</div>
 	<script type="text/javascript"
