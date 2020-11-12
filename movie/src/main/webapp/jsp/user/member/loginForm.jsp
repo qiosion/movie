@@ -53,6 +53,11 @@ input[type='text'], input[type='password'] {
 			frm3.bdch.focus();
 			return false;
 		}
+		if(frm3.phch.value == "") {
+			alert ("전화번호를 입력하세요");
+			frm3.phch.focus();
+			return false;
+		}
 		if(isNaN(frm3.phch.value)) {
 			alert ("전화번호는 숫자만 입력가능합니다");
 			frm3.phch.focus();
@@ -62,10 +67,35 @@ input[type='text'], input[type='password'] {
 			var nmch = $("#nmch").val();
 			var bdch = $("#bdch").val();
 			var phch = $("#phch").val();
-			console.log(bdch + "이름넣은거");
-			return false;// true;
+			console.log(bdch + "생일넣은거");
 			
+			$.ajax({
+				url: "ajax/findId.do",
+				data : {
+					"mbr_nm" : nmch,
+					"mbr_birth" : bdch,
+					"mbr_phone" : phch
+				},
+				dataType : "json",
+				error:function(xhr,status,msg){
+					alert("존재하지 않는 회원입니다");
+				}, success : function (vo){
+					var id = vo.mbr_id;
+					console.log(vo.mbr_id);
+					console.log("아이디" + id);
+					$("#showId").val(id);
+				}
+			})
+			return false;
 		}
+	}
+	function showId(vo){
+		msg = "아이디: " + vo.getMbr_id;
+		console.log(msg);
+		msg2 = "아이디2: " + vo.mbr_id;
+		console.log(msg2);
+		$("div[id='showId']").append(msg);
+		
 	}
 	function findPwCheck() {
 		var frm4 = document.frm4;
@@ -79,6 +109,11 @@ input[type='text'], input[type='password'] {
 			frm4.nmchk.focus();
 			return false;
 		}
+		if(frm4.phchk.value == "") {
+			alert ("전화번호를 입력하세요");
+			frm4.phchk.focus();
+			return false;
+		}
 		if(isNaN(frm4.phchk.value)) {
 			alert ("전화번호는 숫자만 입력가능합니다");
 			frm4.phchk.focus();
@@ -88,11 +123,28 @@ input[type='text'], input[type='password'] {
 			var idchk = $("#idchk").val();
 			var nmchk = $("#nmchk").val();
 			var phchk = $("#phchk").val();
-			console.log(nmch + "이름넣은거");
-			return false;// true;
-			
+
+			$.ajax({
+				url: "ajax/findPw.do",
+				data : {
+					"mbr_id" : idchk,
+					"mbr_nm" : nmchk,
+					"mbr_phone" : phchk
+				},
+				dataType : "json",
+				error:function(xhr,status,msg){
+					alert("존재하지 않는 회원입니다");
+				}, success : function (vo){
+					var pw = vo.mbr_pw;
+					console.log(vo.mbr_pw);
+					console.log("비번" + pw);
+					$("#showPw").val(pw);
+				}
+			})
+			return false;
 		}
 	}
+
 	/* function searchId() {
 		$("#fid").on("click", function () {
 			var nmch = $("#nmch").val();
@@ -200,13 +252,8 @@ input[type='text'], input[type='password'] {
 						<button type="submit" name="fid" id="fid" class="btn btn-danger" onclick="return findIdCheck()">아이디찾기</button>
 						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
 					</form>
-					<div style="text-align: center; margin: 10px;">
-						<%-- <c:if test="${!empty id }">
-						<h5>회원가입 시 사용한 아이디는 <strong>${fn:substring(id, 0, 4)}
-						<c:forEach begin="1" end="${fn:length(id)-4}">*</c:forEach></strong>입니다.</h5>
-						</c:if> --%>
-					</div>
 				</div>
+				<input type="text" id ="showId" style="text-align: center;" readonly>
 			</div>
 		</div>
 	</div>
@@ -243,13 +290,7 @@ input[type='text'], input[type='password'] {
 						<button type="button" class="btn btn-dark" data-dismiss="modal" style="margin-left: 10px;">취소</button>
 					</form>
 				</div>
-				<!-- Modal footer -->
-				<div style="text-align: center; margin: 10px;">
-					<%-- <c:if test="${!empty pw }">
-						<h5>회원가입 시 사용한 비밀번호는 <strong>${fn:substring(pw, 0, 4)}
-						<c:forEach begin="1" end="${fn:length(pw)-4}">*</c:forEach></strong>입니다.</h5>
-					</c:if> --%>
-				</div>
+				<input type="text" id ="showPw" style="text-align: center;" readonly>
 			</div>
 		</div>
 	</div>

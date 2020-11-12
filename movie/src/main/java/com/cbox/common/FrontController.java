@@ -109,8 +109,8 @@ public class FrontController extends HttpServlet {
 		// 은선
 		map.put("/login.do", new loginAction()); // 로그인 결과
 		map.put("/loginForm.do", new loginForm()); // 로그인 화면
-		map.put("/findId.do", new FindIdAction()); // id찾기
-		map.put("/findPw.do", new FindPwAction()); // 비번찾기
+		map.put("/ajax/findId.do", new FindIdAction()); // id찾기
+		map.put("/ajax/findPw.do", new FindPwAction()); // 비번찾기
 		map.put("/memberForm.do", new memberFormAction()); // 회원가입 화면
 		map.put("/memberInsert.do", new memberInsertAction()); // user 회원등록
 		map.put("/idChk.do", new idChkAction()); // 중복 id 체크

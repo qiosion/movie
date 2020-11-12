@@ -137,5 +137,35 @@ public class MemberVO {
 		this.mbr_e_yn = mbr_e_yn;
 		this.mbr_author = mbr_author;
 	}
+
+	public MemberVO(String mbr_id, String mbr_nm, String mbr_phone) {
+		super();
+		this.mbr_id = mbr_id;
+		this.mbr_nm = mbr_nm;
+		this.mbr_phone = mbr_phone;
+	}
+
+	public MemberVO(String mbr_id, String mbr_pw, String mbr_nm, String mbr_phone) {
+		super();
+		this.mbr_id = mbr_id;
+		this.mbr_pw = mbr_pw;
+		this.mbr_nm = mbr_nm;
+		this.mbr_phone = mbr_phone;
+	}
+
+	public MemberVO(String mbr_nm, Date mbr_birth, String mbr_phone) {
+		super();
+		this.mbr_nm = mbr_nm;
+		this.mbr_birth = mbr_birth;
+		this.mbr_phone = mbr_phone;
+	}
+
+	public MemberVO(String mbr_id, String mbr_nm, Date mbr_birth, String mbr_phone) {
+		super();
+		this.mbr_id = mbr_id;
+		this.mbr_nm = mbr_nm;
+		this.mbr_birth = mbr_birth;
+		this.mbr_phone = mbr_phone;
+	}
 	
 }
