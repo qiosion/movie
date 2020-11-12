@@ -73,21 +73,7 @@ th, td {
 </style>
 <script type="text/javascript">
 $(function() {
-// 이메일전송버튼	
-	$("#mailing").bind("click", function() {
-	var chk = $("input[type='checkbox']:checked");
-		console.log("----" + chk.length);
-		for (var i=0; i<chk.length; i++ ){
-			var em = $(chk[i]).parent().parent().find("td").eq(6).text();
-			console.log('em' + em);
-		}
-	});
-// 행 클릭하면 거기서 id 받아와서 그거의 예매현황보는 페이지로 넘기도록 하자
-	$('tbody').on('click', 'tr', function () {
-		var userId = $(this).find("td").eq(2).text();
-		
-	});	
-// 회원탈퇴용
+// 회원탈퇴
 	$('tbody').on('click','#memDelBtn',function() {
 		var userId = $(this).closest('tr').find("td").eq(2).text();
 		$("#hdn").val(userId);
@@ -105,7 +91,6 @@ $(function() {
 			style="margin-bottom: 20px;">
 			<thead>
 				<tr>
-					<th>선택</th>
 					<th>회원번호</th>
 					<th>아이디</th>
 					<th>이름</th>
@@ -122,7 +107,6 @@ $(function() {
 			<tbody>
 			<c:forEach var="member" items="${ members }">
 				<tr>
-					<td><input type="checkbox" id="mbr_e" name="mbr_e"></td>
 					<td>${ member.mbr_no }</td>
 					<td>${ member.mbr_id }</td>
 					<td>${ member.mbr_nm }</td>
@@ -137,13 +121,6 @@ $(function() {
 				</tr>			
 			</c:forEach>
 			</tbody>
-			<tfoot>
-			<tr>
-				<td colspan="12" align="center">
-					<button type="button" class="btn btn-link" id="mailing">이메일 전송</button>
-				</td>
-			</tr>
-			</tfoot>
 		</table>
 	<script type="text/javascript">
 		function goPage(p) {

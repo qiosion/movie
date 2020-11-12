@@ -54,8 +54,8 @@ input[type='text'], input[type='password'] {
 			alert ("아이디를 입력하세요");
 			return;
 		}
-		var url = "idChk.do?mbr_id=" + $("#mbr_id").val(); 
-		open(url,"idchk","width=400, height=350");
+		var url = "exclude/idChk.do?mbr_id=" + $("#mbr_id").val(); 
+		open(url,"idchk","width=350, height=50");
 	}
 </script>
 </head>

@@ -11,6 +11,6 @@
 	<excludes>
 		<pattern>*/ajax/*</pattern>
 		<pattern>/data/plaintext/*</pattern>
-		<!-- <pattern>/index.jsp</pattern> -->
+		<pattern>*/exclude/*</pattern>
 	</excludes>
 </decorators>
