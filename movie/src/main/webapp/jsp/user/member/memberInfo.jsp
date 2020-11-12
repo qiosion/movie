@@ -168,7 +168,7 @@ input[type='text'], input[type='password'] {
 							</tr>
 							<tr>
 								<td class="txt">전화번호</td>
-								<td><input type="text" class="form-control" id="mbr_phone" name="mbr_phone" value="${ myPage.mbr_nm }"></td>
+								<td><input type="text" class="form-control" id="mbr_phone" name="mbr_phone" value="${ myPage.mbr_phone }"></td>
 							</tr>
 							<tr>
 								<td class="txt">이메일</td>

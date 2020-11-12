@@ -30,7 +30,7 @@
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
-					href="${pageContext.request.contextPath}/reservation/reservationForm.do">예매관리
+					href="${pageContext.request.contextPath}/AdminReserv.do">예매관리
 						<span class="sr-only">(current)</span>
 				</a></li>
 				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
