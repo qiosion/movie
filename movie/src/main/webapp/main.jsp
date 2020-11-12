@@ -67,7 +67,7 @@ function listOffice(type) {
                 } else if (rankInten < 0) {
                 	rank = rank + "-" + Math.abs(rankInten)
                 } else {
-                	rank = rank + rankInten
+                	rank = rank + "➖"
                 }
             	str = str + "<td style=\'width: 100px;\'>"+rank+"</td>";
             	str = str + "<td style=\'width: 100px; text-align:right;\'>"+$(this).find("audiAcc").text()+"</td>";
@@ -119,12 +119,12 @@ function listOffice(type) {
 		</div>
 	</div>
 	<div class="row" style="height: 400px; margin: 20px 10px;">
-		<div class="col">
+		<div class="col-sm-12 col-lg-6">
 			<div style="display:none;"><input type="date" id="today"></div>
 			<div class="tit-heading-wrap tit-evt" id="title"></div>
 			<div style="margin-top: 5px;">
 				<table>
-					<thead>
+					<thead style="background-color: #7A8DA0; color: white;">
 					<tr>
 						<th style="width: 50px;">순위</th>
 						<th>제목</th>
@@ -136,7 +136,7 @@ function listOffice(type) {
 				</table>
 			</div>
 		</div>
-		<div class="col" id="map" style="width: 100%;"></div>
+		<div class="col-sm-12 col-lg-6" id="map" style="width: 100%;"></div>
 	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee28883e1eb341f656e2215eb7b6e27e&libraries=services"></script>
