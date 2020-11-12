@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.QnA.command.QnADetailViewAction;
 import com.cbox.QnA.command.QnAListFormAction;
+import com.cbox.QnA.command.QnAReplyAction;
 import com.cbox.QnA.command.QnAReplyFormAction;
 import com.cbox.QnA.command.QnAWriteFormAction;
 import com.cbox.coupon.command.couponDeleteAction;
@@ -154,6 +155,7 @@ public class FrontController extends HttpServlet {
 		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
 		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
 		map.put("/QnADetailView.do", new QnADetailViewAction());
+		map.put("/QnAReply.do", new QnAReplyAction());
 		
 		
 	}

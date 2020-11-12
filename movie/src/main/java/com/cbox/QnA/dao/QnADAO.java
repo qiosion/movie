@@ -16,8 +16,10 @@ public class QnADAO extends DAO {
 	
 	private final String SELECT_ALL = "SELECT * FROM QNA ORDER BY QA_NO";
 	private final String SELECT = "SELECT * FROM QNA WHERE QA_NO=?";
-	private final String INSERT = "INSERT INTO QNA(QA_NO,QA_TYPE,QA_TITLE,QA_CONT,QA_DATE,QA_NAME)VALUES(qna_num.NEXTVAL,?,?,?,SYSDATE,?)";
-	private final String UPDATE = "UPDATE QNA SET QA_TITLE=?, QA_TYPE=?, QA_CONT=?,QA_DATE=SYSDATE,QA_NAME=? WHERE QA_NO=?";
+	private final String INSERT = "INSERT INTO QNA(QA_NO,QA_TYPE,QA_TITLE,QA_CONT,QA_DATE,QA_NAME,qa_re_ref,qa_re_lev,qa_re_step)VALUES(?,?,?,?,SYSDATE,?,?,?,?)";
+	private final String UPDATE = "UPDATE QNA SET QA_TITLE=?, QA_TYPE=?, QA_CONT=?,QA_DATE=SYSDATE,QA_NAME=? WHERE QA_NO=?"; 
+	private final String UPDATERE = "UPDATE QNA SET QA_RE_STEP=QA_RE_STEP+1 WHERE QA_RE_REF=? AND QA_RE_STEP > ?";
+	
 	//리스트 조회
 	public List<QnAVO> selectAll(){
 		List<QnAVO> list = new ArrayList<QnAVO>();
@@ -32,6 +34,9 @@ public class QnADAO extends DAO {
 				vo.setQa_cont(rs.getString("qa_cont"));
 				vo.setQa_date(rs.getDate("qa_date"));
 				vo.setQa_name(rs.getString("qa_name"));
+				vo.setQa_re_ref(rs.getInt("qa_re_ref"));
+				vo.setQa_re_lev(rs.getInt("qa_re_lev"));
+				vo.setQa_re_step(rs.getInt("qa_re_step"));
 				list.add(vo);
 			}
 		}catch(SQLException e) {
@@ -39,16 +44,20 @@ public class QnADAO extends DAO {
 		}
 		return list;
 	}
-	//등록
+	//답변등록
 	public int insert(QnAVO vo) {
 		int n =0;
 		try {
 			psmt = conn.prepareStatement(INSERT);
-			psmt.setString(1, vo.getQa_title());
-			psmt.setString(2, vo.getQa_type());
-			psmt.setString(3, vo.getQa_cont());
-			psmt.setDate(4, vo.getQa_date());
-			psmt.setString(5, vo.getQa_name());
+			psmt.setInt(1, vo.getQa_no());
+			psmt.setString(2, vo.getQa_title());
+			psmt.setString(3, vo.getQa_type());
+			psmt.setString(4, vo.getQa_cont());
+			psmt.setDate(5, vo.getQa_date());
+			psmt.setString(6, vo.getQa_name());
+			psmt.setInt(7, vo.getQa_re_ref());
+			psmt.setInt(8, vo.getQa_re_lev());
+			psmt.setInt(9, vo.getQa_re_step());
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -68,6 +77,10 @@ public class QnADAO extends DAO {
 				vo.setQa_cont(rs.getString("qa_cont"));
 				vo.setQa_date(rs.getDate("qa_date"));
 				vo.setQa_name(rs.getString("qa_name"));
+				vo.setQa_re_ref(rs.getInt("qa_re_ref"));
+				vo.setQa_re_lev(rs.getInt("qa_re_lev"));
+				vo.setQa_re_step(rs.getInt("qa_re_step"));
+				
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -90,5 +103,21 @@ public class QnADAO extends DAO {
 		}
 		return n;
 	}
+	
+	public int UPDATERE(QnAVO vo) {
+		int n=0;
+		try {
+			psmt = conn.prepareStatement(UPDATERE);
+			psmt.setInt(1, vo.getQa_re_ref());
+			psmt.setInt(2, vo.getQa_re_step());
+			n = psmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return n;
+	}
+	
+	
 
 }

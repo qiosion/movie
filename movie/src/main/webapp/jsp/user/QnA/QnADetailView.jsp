@@ -11,8 +11,9 @@ function listFrm(){
 	location.href="QnAListForm.do";
 }
 
-function updateFrm(){
-	location.href="QnAUpdateForm.do?qa_no=${vo.qa_no}";
+
+function replyFrm(){
+	location.href="QnAReplyForm.do?qa_no=${vo.qa_no}";
 }
 	
 </script>
@@ -91,7 +92,7 @@ function updateFrm(){
 				<button id="btn" type="submit" onclick = "updateFrm()">수정</button>
 				</c:if>
 				<c:if test="${mbr_author eq 'admin'}">
-	 			<button id="btn" type="submit" onclick ="QnAReplyForm.do">답변달기</button>
+	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
 	 			</c:if>
 				<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>

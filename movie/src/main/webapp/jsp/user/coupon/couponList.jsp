@@ -29,11 +29,26 @@
   background-color: #555555;
   color: white;
 }
-/* #menubar {
+
+#form1{
+	position:relative;
+	bottom:110px;
+}
+
+#container{
+float: left;
+	width: 80%;
+	position:relative;
+	top:120px;
+	margin:auto;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+ #menubar {
 	float: left;
 	width: 20% !important;
 	position:relative;
-	top:50px;
+	top:40px;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -57,7 +72,7 @@
   background-color: #555;
   color: white;
 }
- */
+ 
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -133,7 +148,7 @@
 </script>
 </head>
 <body>
-<%-- <div id="menubar">
+ <div id="menubar">
 <ul>
   <li><a class="active">MY PAGE</a></li>
   <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
@@ -141,8 +156,8 @@
   <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
   <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
 </ul>
-</div> --%>
-<div class="container">
+</div> 
+<div id="container">
 	<form id="form1"  class="form-horizontal">
 		<h4>쿠폰 조회</h4>
 		<div class="form-group">		

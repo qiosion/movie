@@ -58,13 +58,67 @@
   color: white;
 }
 
+.table{
+position:relative;
+	bottom:110px;
+}
+
+#container{
+float: left;
+	width: 80%;
+	position:relative;
+	top:120px;
+	margin:auto;
+	padding: 20px;
+	margin-bottom: 10px;
+
+}
+#menubar {
+	float: left;
+	width: 20% !important;
+	position:relative;
+	top:100px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+#menubar li a {
+  display:block;
+  color: #000;
+  padding: 16px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid;
+}
+
+#menubar li a.active {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+}
+
+#menubar li a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}  
+
  </style>
 </head>
 <body> 
+<div id="menubar">
+<ul>
+  <li><a class="active">MY PAGE</a></li>
+  <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
+  <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
+</ul>
+</div>
 <div class="tit-heading-wrap tit-evt">
 <h3>1:1문의</h3>
 </div>   
 <br>
+
  
 <div id="container">
     <br/>
@@ -82,8 +136,8 @@
             <tbody>
             <c:forEach var="qa" items="${qnaList}"> 
             	<tr>
-                	<td>${qa.qa_no}</td>
-                	<td id="td1"><a href="QnADetailView.do?qa_no=${qa.qa_no}">${qa.qa_title}</a></td>
+                	<td>${qa.qa_no}</td>                	
+                	<td id="td1"><a href="QnADetailView.do?qa_no=${qa.qa_no}">&nbsp;${qa.qa_title}</a></td>           	            
                 	<td>${qa.qa_type}</td>	
                 	<td>${qa.qa_date}</td>
                 	<td>${qa.qa_name}</td>
