@@ -46,6 +46,7 @@ import com.cbox.movie.command.movieChartListAction;
 import com.cbox.movie.command.movieDetailAction;
 import com.cbox.movie.command.movieExpectListAction;
 import com.cbox.movie.command.movieListAction;
+import com.cbox.movie.command.movieListFormAction;
 import com.cbox.movie.command.mvDeleteAction;
 import com.cbox.movie.command.mvListAction;
 import com.cbox.movie.command.mvRegistAction;
@@ -81,6 +82,7 @@ public class FrontController extends HttpServlet {
 		// 화진
 		// user
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
+		map.put("/movieListForm.do", new movieListFormAction());
 		map.put("/movieList.do", new movieListAction());
 		map.put("/movieExpectList.do", new movieExpectListAction());
 		map.put("/movieChartList.do", new movieChartListAction());
