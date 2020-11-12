@@ -1,10 +1,13 @@
 package com.cbox.movie.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import com.cbox.common.Action;
 import com.cbox.movie.dao.MovieDAO;
@@ -19,14 +22,21 @@ public class movieListAction implements Action {
 		System.out.println("movieListAction");
 		MovieDAO dao = new MovieDAO();
 		List<MovieVO> list = new ArrayList<MovieVO>();
-		
+
 		MovieSearchVO searchVO = new MovieSearchVO();
 		searchVO.setType(request.getParameter("searchType"));
 		searchVO.setKeyword(request.getParameter("keyword"));
-		
-		list = dao.selectAll(searchVO);
-		request.setAttribute("movies", list);
+		System.out.println("type2 : "+searchVO.getType());
+		System.out.println("Keyword2 : "+searchVO.getKeyword());
 
-		return "jsp/user/movie/movieList.jsp";
+		list = dao.selectAll(searchVO);
+//		request.setAttribute("movies", list);
+		try {
+			response.getWriter().print(new JSONArray(list));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 }

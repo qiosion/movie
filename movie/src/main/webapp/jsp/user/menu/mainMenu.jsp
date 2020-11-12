@@ -21,7 +21,7 @@
 					aria-expanded="false" onfocus="blur()"> 영화 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<a class="dropdown-item" onfocus="blur()"
-							href="${pageContext.request.contextPath}/movieList.do">전체 리스트</a>
+							href="${pageContext.request.contextPath}/movieListForm.do">전체 리스트</a>
 						<a class="dropdown-item" onfocus="blur()"
 							href="${pageContext.request.contextPath}/movieExpectList.do">상영
 							예정작</a> <a class="dropdown-item" onfocus="blur()"

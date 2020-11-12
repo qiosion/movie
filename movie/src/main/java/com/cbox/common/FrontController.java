@@ -84,7 +84,7 @@ public class FrontController extends HttpServlet {
 		// user
 		map.put("/main.do", new MainAction()); // 처음 브라우저에 접근했을 때 사용
 		map.put("/movieListForm.do", new movieListFormAction());
-		map.put("/movieList.do", new movieListAction());
+		map.put("/ajax/movieList.do", new movieListAction());
 		map.put("/movieExpectList.do", new movieExpectListAction());
 		map.put("/movieChartList.do", new movieChartListAction());
 		map.put("/movieDetail.do", new movieDetailAction());

@@ -78,58 +78,117 @@
 	z-index: 999;
 	height: 40px;
 }
+
+#div1 {
+	margin: 5px 0;
+}
+
+#div2 {
+	margin-bottom: 20px;
+	min-height: 30px;
+}
+#div3 {
+	text-align: center;
+}
 </style>
 </head>
 <body>
 	<script>
 		$(function() {
+			var keyword = "";
+			var searchType ="";
+			
+			movieList();
+
 			$(window).scroll(function() {
-				if($(this).scrollTop() > 400) {
+				if ($(this).scrollTop() > 400) {
 					$("#topBtn").fadeIn();
 				} else {
 					$("#topBtn").fadeOut();
 				}
 			});
-			
+
 			$("#topBtn").click(function() {
 				$('html, body').animate({
-					scrollTop:0
+					scrollTop : 0
 				}, 400);
 				return false;
 			});
 			
-			var chkType = "";
+			$("#menuSearchBtn").click(function() {
+				searchType = 'title';
+				keyword = $("#keyword").val();
+				console.log("keyword : "+keyword);
+				movieList(searchType, keyword);
+			});
 
 			$('.tgl-flat').change(function() {
+				searchType ="chkType";
 				if ($('.tgl-flat').is(":checked")) {
-					chkType = "ing";
+					keyword = "ing";
 				} else {
-					chkType = "all";
+					keyword = "all";
 				}
-				console.log("chkType : "+chkType);
+				console.log("keyword : " + keyword);
 				//localhost.href="${pageContext.request.contextPath}/movieList.do?searchType='chkType'&keyword="+chkType;
-				$.ajax({
-					url : 'movieList.do',
-					type : 'post',
-					data : {
-						searchType : 'chkType',
-						keyword : chkType
-					},
-					success : function() {
-						console.log("성공");
-					},
-					error : function() {
-						alert("실패");
-					}
-				});
+				movieList(searchType, keyword);
 			});
 		});
+
+		function movieList(searchType, keyword) {
+			$.ajax({
+				url : 'ajax/movieList.do',
+				type : 'get',
+				dataType : 'json',
+				data : {
+					searchType : searchType,
+					keyword : keyword
+				},
+				error : function(xhr, status, msg) {
+					alert("상태값 :" + status + " Http에러메시지 :" + msg);
+				},
+				success : movieListResult
+			});
+		}
+
+		function movieListResult(data) {
+			$("ol[id='listCont']").empty();
+			$.each(data, function(idx, item) {
+				var rank = "";
+				if (item.mvRank == "") {
+					for (var i = 0; i < 5; i++) {
+						rank += '&#127770';
+					}
+				} else {
+					var cnt = Math.floor(item.mvRank);
+					for (var i = 0; i < cnt; i++) {
+						rank += '&#127773';
+					}
+					if ((item.mvRank - cnt) == 0.5) {
+						rank += '&#127767';
+					}
+				}
+
+				var cont = "";
+				if (typeof item.mvCont == "undefined") {
+					cont = "";
+				} else {
+					cont = item.mvCont
+				}
+
+				$('<li>').append($('<div>').html('<a href="movieDetail.do?seq=${movie.mvNum }"><img id="moviePoster" src="${pageContext.request.contextPath}/images/'+item.mvPost+'"></a>'))
+						.append($('<div>').attr('id', 'div1').html('<p style="font-size:20px;">'+ item.mvTitle+ '</p>'))
+						.append($('<div>').attr('id', 'div2').html('<span style="font-size:15px;">평점 : '+ rank+ '</span> | <span style="font-size:15px;">개봉일 : '+ item.strdate+ '</span><p style="font-size:15px; margin-top:5px;">'+ cont+ '</p>'))
+						.append($('<div>').attr('id', 'div3').html('<a href="#" class="ticketBtn">예매</a>'))
+						.appendTo('ol[id="listCont"]');
+			});
+		}
 	</script>
 
 	<div class="movietop">
 		<ul class="tabs">
 			<li class="tab-link current" data-tab="tab-1"><a
-				href="movieList.do">전체 영화</a></li>
+				href="movieListForm.do">전체 영화</a></li>
 			<li class="tab-link" data-tab="tab-2"><a
 				href="movieExpectList.do">상영 예정작</a></li>
 			<li class="tab-link" data-tab="tab-3"><a
@@ -138,7 +197,14 @@
 	</div>
 	<div id="tab-1" class="tab-content current">
 		<div align="right">
-			<mv:searchMv returnPage="movieList.do" />
+			<form name="search" id="search">
+				<input type="hidden" name="action" value="list" />
+				<input type="hidden" name="p" value="1" />
+				<select id="searchType" name="searchType">
+					<option value="title">제목</option>
+				</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
+				<button type="button" id="menuSearchBtn">검색</button>
+			</form>
 		</div>
 
 		<div class="sort" style="min-height: 30px;">
@@ -146,48 +212,14 @@
 			<!-- <div class="toggleBG">
 				<button type="button" class="toggleFG"></button>
 			</div> -->
-			<span style="margin: 0 5px;"> <input class="tgl tgl-flat" id="cb4" type="checkbox" />
-				<label class="tgl-btn" for="cb4"></label>
-			</span> <span>개봉작만</span>
+			<span style="margin: 0 5px;"> <input class="tgl tgl-flat"
+				id="cb4" type="checkbox" /> <label class="tgl-btn" for="cb4"></label>
+			</span> <span>상영작만</span>
 		</div>
 		<br>
-		<ol align="center">
-			<c:forEach var="movie" items="${movies}">
-				<li>
-					<div style="margin-bottom: 5px;">
-						<a href="movieDetail.do?seq=${movie.mvNum }"> <img
-							id="moviePoster"
-							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></a>
-					</div>
-					<div style="margin-bottom: 5px;">
-						<p>${movie.mvTitle}</p>
-					</div>
-					<div style="margin-bottom: 20px; min-height: 30px;">
-						<span>평점 : 
-							<c:if test="${empty movie.mvRank}">
-								<c:forEach begin="1" end="5">&#127770;</c:forEach>
-							</c:if>
-							<c:if test="${!empty movie.mvRank}">
-								<c:set var="num" value="${movie.mvRank - (movie.mvRank % 1)}"/>
-								<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
-								<c:if test="${movie.mvRank-num eq 0.5}">
-								<script type="text/javascript">
-									console.log(">>>0.5");
-								</script>
-									<c:forEach begin="1" end="${movie.mvRank-num+1}">&#127767;</c:forEach>
-								</c:if>
-							</c:if>
-						</span>
-						 | <span>개봉일 : ${movie.strdate}</span>
-						<p>${movie.mvCont }</p>
-					</div>
-					<div>
-						<a href="#" class="ticketBtn">예매</a>
-					</div>
-				</li>
-			</c:forEach>
-		</ol>
+		<ol id="listCont"></ol>
 	</div>
-	<img alt="TOP" id="topBtn" src="${pageContext.request.contextPath}/images/top.png">
+	<img alt="TOP" id="topBtn"
+		src="${pageContext.request.contextPath}/images/top.png">
 </body>
 </html>

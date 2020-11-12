@@ -33,7 +33,6 @@ select {
 	border-radius: 5px;
 	color: white;
 } */
-
 #topBtn {
 	posotion: fixed;
 	float: right;
@@ -101,11 +100,9 @@ select {
 		});
 	} */
 
-	function movieList(p) {
-		console.log("movieList p : "+p);
+	function movieList() {
 		$.ajax({
 			url : 'ajax/screenMvList.do',
-			data: {p : p},
 			type : 'GET',
 			dataType : 'json',
 			error : function(xhr, status, msg) {
@@ -117,21 +114,17 @@ select {
 
 	function movieListResult(data) {
 		$("tbody[id='listCont']").empty();
-		$
-				.each(
-						data,
-						function(idx, item) {
-							$('<tr>')
-									.append($('<td>').html(item.mvTitle))
-									.append($('<td>').html(item.ttScrDate))
-									.append($('<td>').html(item.thName))
-									.append($('<td>').html(item.ttStart))
-									.append($('<td>').html(item.ttEnd))
-									.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
-									//.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
-									.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
-									.appendTo('tbody[id="listCont"]');
-						});
+		$.each(data, function(idx, item) {
+			$('<tr>').append($('<td>').html(item.mvTitle))
+					.append($('<td>').html(item.ttScrDate))
+					.append($('<td>').html(item.thName))
+					.append($('<td>').html(item.ttStart))
+					.append($('<td>').html(item.ttEnd))
+					.append($('<td>').html('<button id=\'btnSelect\'>조회</button>'))
+					//.append($('<td>').html('<button id=\'btnDelete\'>삭제</button>'))
+					.append($('<td>').html('<input type=\'hidden\' id=\'ttNum\' value=\''+item.ttNum+'\'>'))
+					.appendTo('tbody[id="listCont"]');
+		});
 	}
 
 	function mvDetail() {
@@ -364,7 +357,6 @@ select {
 			</thead>
 			<tbody id="listCont"></tbody>
 		</table>
-		<mv:paging paging="${paging}" jsfunc="movieList" />
 	</div>
 
 	<div class="modal" id="mvInsertPop">

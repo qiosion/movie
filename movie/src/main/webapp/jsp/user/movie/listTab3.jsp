@@ -93,7 +93,7 @@ function listOffice(type) {
 </script>
 	<div class="movietop">
 		<ul class="tabs">
-			<li class="tab-link" data-tab="tab-1"><a href="movieList.do">전체 영화</a></li>
+			<li class="tab-link" data-tab="tab-1"><a href="movieListForm.do">전체 영화</a></li>
 			<li class="tab-link" data-tab="tab-2"><a
 				href="movieExpectList.do">상영 예정작</a></li>
 			<li class="tab-link current" data-tab="tab-3"><a
