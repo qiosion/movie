@@ -88,9 +88,6 @@ function replyFrm(){
 			</tbody>
 		</table>
 		<div align="center">
-				<c:if test="${mbr_author eq 'user'}">
-				<button id="btn" type="submit" onclick = "updateFrm()">수정</button>
-				</c:if>
 				<c:if test="${mbr_author eq 'admin'}">
 	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
 	 			</c:if>

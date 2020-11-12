@@ -118,7 +118,11 @@ float: left;
 <h3>1:1문의</h3>
 </div>   
 <br>
-
+<c:if test="${mbr_author eq 'user'}">
+	 <div align="right" id="topForm">
+         <button id="btn" type="submit" onclick="writeForm()">글등록</button>
+    </div>
+    </c:if>
  
 <div id="container">
     <br/>
@@ -137,7 +141,7 @@ float: left;
             <c:forEach var="qa" items="${qnaList}"> 
             	<tr>
                 	<td>${qa.qa_no}</td>                	
-                	<td id="td1"><a href="QnADetailView.do?qa_no=${qa.qa_no}">&nbsp;${qa.qa_title}</a></td>           	            
+                	<td id="td1"><a href="QnADetailView.do?qa_no=${qa.qa_no}">${qa.qa_title}</a></td>           	            
                 	<td>${qa.qa_type}</td>	
                 	<td>${qa.qa_date}</td>
                 	<td>${qa.qa_name}</td>
@@ -146,11 +150,7 @@ float: left;
             </tbody>   
         </table>
     </div>
-   <c:if test="${mbr_author eq 'user'}">
-	 <div align="right" id="topForm">
-         <button id="btn" type="submit" onclick="writeForm()">글등록</button>
-    </div>
-    </c:if>
+   
 </div>
    
  

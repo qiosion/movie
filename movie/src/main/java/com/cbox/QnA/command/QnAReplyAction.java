@@ -1,6 +1,7 @@
 package com.cbox.QnA.command;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,10 +21,12 @@ public class QnAReplyAction implements Action {
 		vo.setQa_name(request.getParameter("qa_name"));
 		vo.setQa_title(request.getParameter("qa_title"));
 		vo.setQa_cont(request.getParameter("qa_cont"));
+		vo.setQa_date(Date.valueOf(request.getParameter("qa_date")));
 		vo.setQa_re_ref(Integer.valueOf(request.getParameter("qa_re_ref")));
-		vo.setQa_re_step(Integer.valueOf(request.getParameter("qa_re_step")));	
 		vo.setQa_re_lev(Integer.valueOf(request.getParameter("qa_re_lev")));
 		
+		
+	
 		dao.insert(vo);
 		
 		

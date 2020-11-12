@@ -10,13 +10,12 @@
     <br>
 
 	<form method="post" action="QnAReply.do" name="QnAForm">
-	
-		<input type="hidden" name="qa_no" value="${vo.qa_no}"/>
-		<input type="hidden" name="qa_re_ref" value="${vo.qa_re_ref}"/>
-		<input type="hidden" name="qa_re_step" value="${vo.qa_re_step}"/>
-		<input type="hidden" name="qa_re_lev" value="${vo.qa_re_lev}"/>
-
 		<table width="700" border="3" bordercolor="lightgray" align="center">
+		<tr>
+				<td id="title">글번호</td>
+				<td><input name="qa_no" type="text" size="70" maxlength="100"
+					/></td>
+			</tr>
 		<tr>
 				<td id="title">작성자</td>
 				<td><input name="qa_name" type="text" size="70" maxlength="100"
@@ -31,6 +30,13 @@
 				<td id="title">내 용</td>
 				<td><textarea name="qa_cont" cols="72" rows="20">
                 </textarea></td>
+			</tr>
+			
+			<tr>
+				<td id="title">작성일</td>
+				<td><input name="qa_date" type="date" size="70"
+					maxlength="100" /></td>
+                
 			</tr>
 
 			<tr align="center" valign="middle">
