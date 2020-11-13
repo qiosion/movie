@@ -74,7 +74,7 @@ input[type='text'], input[type='password'] {
 							<tr style="line-height: 32px;">
 								<td class="txt">아이디&nbsp;<span style="color: red;">*</span></td>
 								<td><input type="text" class="form-control" id="mbr_id" name="mbr_id" placeholder="아이디"></td>
-    							<td><input type="button" id="idchk" class="btn btn-primary btn-sm" value="중복확인" onclick="IdCheck()"></td>
+    							<td><input type="button" id="idchk" class="btn btn-primary" value="중복확인" onclick="IdCheck()" style="padding: 5px"></td>
     		<!-- <input type="button" id="idchk" class="btn btn-danger btn-sm" value="중복확인" onclick="IdCheck(this.form)"> -->
     		<!-- <input type="hidden" id="idDuplication" name="idDuplication" value="idUncheck"> -->
   							</tr>
