@@ -16,10 +16,8 @@ public class ReviewDAO extends DAO {
 			+ "VALUES (RV_SEQ.NEXTVAL,?,?,sysdate,?,?)";
 	
 	public int insert(ReviewVO vo) {
-		System.out.println("1");
 		int n = 0;
 		try {
-			System.out.println("2");
 			pstmt = conn.prepareStatement(INSERT);
 			pstmt.setDouble(1, vo.getRvRank());
 			pstmt.setString(2, vo.getRvCont());

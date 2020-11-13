@@ -67,7 +67,6 @@ input[type='text'], input[type='password'] {
 			var nmch = $("#nmch").val();
 			var bdch = $("#bdch").val();
 			var phch = $("#phch").val();
-			console.log(bdch + "생일넣은거");
 			
 			$.ajax({
 				url: "ajax/findId.do",
@@ -80,20 +79,12 @@ input[type='text'], input[type='password'] {
 				error:function(xhr,status,msg){
 					alert("존재하지 않는 회원입니다");
 				}, success : function (vo){
-					var id = loginvo.mbr_id;
+					var id = vo.mbr_id;
 					$("#showId").val(id);
 				}
 			})
 			return false;
 		}
-	}
-	function showId(vo){
-		msg = "아이디: " + loginvo.getMbr_id;
-		console.log(msg);
-		msg2 = "아이디2: " + loginvo.mbr_id;
-		console.log(msg2);
-		$("div[id='showId']").append(msg);
-		
 	}
 	function findPwCheck() {
 		var frm4 = document.frm4;
@@ -133,7 +124,7 @@ input[type='text'], input[type='password'] {
 				error:function(xhr,status,msg){
 					alert("존재하지 않는 회원입니다");
 				}, success : function (vo){
-					var pw = loginvo.mbr_pw;
+					var pw = vo.mbr_pw;
 					$("#showPw").val(pw);
 				}
 			})
@@ -141,12 +132,6 @@ input[type='text'], input[type='password'] {
 		}
 	}
 
-	/* function searchId() {
-		$("#fid").on("click", function () {
-			var nmch = $("#nmch").val();
-			console.log(nmch + "이름넣은거");
-		});
-	} */
 </script>
 </head>
 <body>

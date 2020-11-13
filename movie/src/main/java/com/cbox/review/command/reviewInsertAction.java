@@ -16,7 +16,6 @@ public class reviewInsertAction implements Action {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		ReviewVO vo = new ReviewVO();
 		ReviewDAO dao = new ReviewDAO();
-		System.out.println("쩜두");
 		vo.setRvRank(Double.parseDouble(request.getParameter("revRank")));
 		vo.setRvCont(request.getParameter("revCont"));
 		vo.setMbrNum(Integer.parseInt(request.getParameter("hdnNo")));

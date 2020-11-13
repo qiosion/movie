@@ -27,19 +27,11 @@ public class FindPwAction implements Action {
 		
 		FindDAO dao = new FindDAO();
 		vo = dao.searchPw(vo);
-		System.out.println("비번" + vo.getMbr_pw());
-		//String pw = vo.getMbr_pw();
-		//String pswd = "{\"pswd\":"+pw+"}";
 		try {
-		//	System.out.println("여기냐");
-		//response.getWriter().print("{\"pswd\" : " + vo.getMbr_pw() + "}");
-		// response.getWriter().print(pswd);
 			response.getWriter().print(new JSONObject(vo));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//request.setAttribute("pw", vo.getMbr_pw());
 		
 		return null;
 	}

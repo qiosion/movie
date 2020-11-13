@@ -77,7 +77,6 @@ $(function() {
 	$('tbody').on('click','#memDelBtn',function() {
 		var userId = $(this).closest('tr').find("td").eq(2).text();
 		$("#hdn").val(userId);
-		console.log("userid: " + userId);
 	});
 });
 </script>
