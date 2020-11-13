@@ -94,6 +94,18 @@ function replyFrm(){
 				<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>
 	</div>
-
+	<table class="table table-bordered">
+		<tbody>
+			<tr>
+				<td id="title">작성자</td>
+				<td>${vo.qa_ad_name}</td>
+			</tr>
+			<tr>
+			<td id="title">내용</td>
+			<td id="cont">${vo.qa_ad_comment}</td>
+			</tr>
+		</tbody>
+	</table>
+		
 </body>
 </html>

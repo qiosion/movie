@@ -17,17 +17,12 @@ public class QnAReplyAction implements Action {
 		QnADAO dao = new QnADAO();
 		QnAVO vo = new QnAVO();
 		
-		vo.setQa_no(Integer.valueOf(request.getParameter("qa_no")));
-		vo.setQa_name(request.getParameter("qa_name"));
-		vo.setQa_title(request.getParameter("qa_title"));
-		vo.setQa_cont(request.getParameter("qa_cont"));
-		vo.setQa_date(Date.valueOf(request.getParameter("qa_date")));
-		vo.setQa_re_ref(Integer.valueOf(request.getParameter("qa_re_ref")));
-		vo.setQa_re_lev(Integer.valueOf(request.getParameter("qa_re_lev")));
+		vo.setQa_no(Integer.parseInt(request.getParameter("qa_no")));
+		vo.setQa_ad_name(request.getParameter("qa_ad_name"));
+		vo.setQa_ad_comment(request.getParameter("qa_ad_comment"));
 		
 		
-	
-		dao.insert(vo);
+		dao.update(vo);
 		
 		
 		try {

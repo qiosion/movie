@@ -9,21 +9,22 @@ public class QnAVO {
 	private String qa_cont;
 	private String qa_name;
 	private Date qa_date;
-	private int qa_re_ref;
-	private int qa_re_lev;
+	private String qa_ad_name;
+	private String qa_ad_comment;
 	
 	
-	public int getQa_re_ref() {
-		return qa_re_ref;
+	
+	public String getQa_ad_name() {
+		return qa_ad_name;
 	}
-	public void setQa_re_ref(int qa_re_ref) {
-		this.qa_re_ref = qa_re_ref;
+	public void setQa_ad_name(String qa_ad_name) {
+		this.qa_ad_name = qa_ad_name;
 	}
-	public int getQa_re_lev() {
-		return qa_re_lev;
+	public String getQa_ad_comment() {
+		return qa_ad_comment;
 	}
-	public void setQa_re_lev(int qa_re_lev) {
-		this.qa_re_lev = qa_re_lev;
+	public void setQa_ad_comment(String qa_ad_comment) {
+		this.qa_ad_comment = qa_ad_comment;
 	}
 	public String getQa_name() {
 		return qa_name;

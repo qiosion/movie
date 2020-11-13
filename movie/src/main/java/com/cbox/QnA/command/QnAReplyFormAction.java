@@ -11,6 +11,7 @@ public class QnAReplyFormAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
+		
 		QnADAO dao = new QnADAO();
 		QnAVO vo = new QnAVO();
 		
@@ -19,7 +20,6 @@ public class QnAReplyFormAction implements Action {
 		vo = dao.select(vo);
 		
 		request.setAttribute("vo", vo);
-		
 		
 		return "jsp/user/QnA/QnAReplyForm.jsp";
 	}
