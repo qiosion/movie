@@ -345,7 +345,9 @@ public class MovieDAO extends DAO {
 			psmt.setInt(1, vo.getMvNum());
 
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
+				rvVO = new ReviewVO();
+				System.out.println(">>review : "+rs.getInt("rv_num"));
 				rvVO.setRvNum(rs.getInt("rv_num"));
 				rvVO.setRvCont(rs.getString("rv_cont"));
 				rvVO.setRvRank(rs.getDouble("rv_rank"));
@@ -355,9 +357,6 @@ public class MovieDAO extends DAO {
 				rvVO.setMvTitle(rs.getString("mv_title"));
 				rvVO.setMvNum(rs.getInt("mv_num"));
 				
-				System.out.println("rvVO1 : "+rs.getInt("mv_num"));
-				System.out.println("rvVO2 : "+rs.getDouble("rv_rank"));
-				System.out.println("rvVO3 : "+rs.getInt("rv_num"));
 				list.add(rvVO);
 			}
 		} catch (SQLException e) {

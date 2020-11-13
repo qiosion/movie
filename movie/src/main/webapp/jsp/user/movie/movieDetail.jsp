@@ -190,7 +190,7 @@ input[type='text'], input[type='password'] {
 									<tbody>
 									<c:forEach var="rv" items="${rvList}">
 										<tr>
-											<td>${rv.mvTitle }</td>
+											<td>${rv.mbrId }</td>
 											<td>${rv.rvCont }</td>
 											<td>${rv.rvRank }</td>
 											<td>${rv.rvDate }</td>
