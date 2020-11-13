@@ -219,7 +219,7 @@
 					cDate =cDate;
 				}
 				cDate = (cDate.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
-				console.log(cDate);
+				//console.log(cDate);
 				var param_idDate = {m_id: paramid, m_date:cDate}; //영화 id값 받아오는거.
 				//console.log(param_idDate);
 				
@@ -237,6 +237,7 @@
 				//$("#test02 .theater").css("display","block"); --영화, 날짜에 맞는 영화시간표 출력해라.
 				
 				function MvFindTime(data){
+					
 					//$("#test02").css("display","none"); //time창 초기화
 					$("#test02").empty();
 					
@@ -246,7 +247,7 @@
 										'<span class="title"><span class="name">2D</span><span '+
 										'class="floor">'+data[i].th_name+'</span><span class="seatcount">(총'+data[i].th_max+'석)</span></span>'+
 									'<ul>'+
-										'<li data-index="0" data-remain_seat="211" '+
+										'<li data-tt_num="'+data[i].tt_num+'" data-remain_seat="211" '+
 											'play_start_tm="1800"  '+
 											'play_num="4"><a class="button" href="#" '+
 											'onclick="return false;"><span '+
@@ -293,6 +294,7 @@
 					var end2 = $(this).parent().children("div.sreader").text();//종료시간\
 					
 					$(".section.section-screen-select .time").text(start2+" ~ "+end2);
+					//예매할 영화,날짜, 시간의 상영번호 불러오기
 					
 					$("#tnb_step_btn_right").on("click",function(){
 						//console.log("aaa");
@@ -356,7 +358,7 @@
 		$(".theater_minimap .seatsClick").append(table);
 		
 		cnt=0;
-		table = $("<table>").attr("class","seatTableTitle");
+		table = $("<table>").attr("class","seatTableTitle"); //좌석테이블 생성
 		for(var i=1; i<=6; i++){
 		    tr=$("<tr>").attr("class","seatTr");
 		    td=$("<td>").attr("class","seatTd");
@@ -433,6 +435,15 @@
 							if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
+							$.ajax({
+								url: '${pageContext.request.contextPath}/ajax/ReservNo.do',
+								dataType:"json",
+								success:function(data){
+									alert("성공이쥬.");
+								},error:function(){
+									alert("no실패");
+								}
+							})
 							var date = new Date();
 							var year = date.getFullYear();
 							var month = (date.getMonth()+1); 
@@ -537,24 +548,24 @@
 					'vbank':가상계좌,
 					'phone':휴대폰소액결제
 					*/
-					merchant_uid: 'merchant_'+ date+"_"+ new Date().getTime(),
+					merchant_uid: 'merchant_'+ date+"_"+ new Date().getTime(), //생성,관리하는 고유번호
 					/*
 					merchant_uid에 경우
 					https://docs.iamport.kr/implementation/payment
 					위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
 					참고하세요.
-					나중에 포스팅 해볼게요.
+					
 					*/
-					name: '주문명:결제테스트',
+					name: 'CBOX 영화 결제', //주문명
 					//결제창에서 보여질 이름
-					amount: 1000,
+					amount: 100, //결제할 금액
 					//가격
-					buyer_email: 'test@test.com',
-					buyer_name: '테스트이름',
-					buyer_tel: '010-1234-5678',
-					buyer_addr: '대구 예담동',
-					buyer_postcode: '123-456',
-					m_redirect_url: 'https://www.yourdomain.com/payments/complete'
+					buyer_email: 'test@test.com', //주문자 이메일
+					buyer_name: '테스트이름', //주문자명
+					buyer_tel: '010-1234-5678', //주문자 연락처
+					buyer_addr: '대구 예담동', //주문자 주소
+					buyer_postcode: '123-456', //주문자 우편번호
+					m_redirect_url: 'https://www.yourdomain.com/payments/complete' //모바일결제후 이동될주소?
 					/*
 					모바일 결제시,
 					결제가 끝나고 랜딩되는 URL을 지정
@@ -568,26 +579,29 @@
 						msg += '상점 거래ID : ' + rsp.merchant_uid;
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						msg += '카드 승인번호 : ' + rsp.apply_num;
-						
 						//예매정보 테이블로
-						var RservNo =$(".resultReserv .ReservNo").text(); //예매번호
-						var MemberId =$(".resultReserv .MemberId").text(); //회원ID
-						var ReservDay =$(".resultReserv .ReservDay").text(); //예매날짜
-						var ReservNum =$(".resultReserv .ReservNum").text(); //예매인원
-						var ReservMv =$(".resultReserv .ReservMv").text(); //예매영화
-						var ReservMvNum =$(".resultReserv .ReservMvNum").text(); //상영관
-						var ReservMvDay =$(".resultReserv .ReservMvDay").text(); //상영날짜
-						var ReservMvTime =$(".resultReserv .ReservMvTime").text(); //상영시간
-						var ReservMvSeat =$(".resultReserv .ReservMvSeat").text(); //좌석위치
-						var ReservPrice =$(".resultReserv .ReservPrice").text(); //결제금액
+						var ReservNo =$(".resultReserv .ReservNo").text(); //예매번호 -
+						var ttNum = $("#test02 li").data("tt_num");//상영번호 -
+						var MemberNo = '${mbr_no}'; //회원번호 -
+						var payMethod = rsp.pay_method; //결제수단 -card고정?
+						var ReservDay =$(".resultReserv .ReservDay").text(); //예매날짜 -
+						var ReservNum =$(".resultReserv .ReservNum").text(); //예매인원 -
+						var ReservMvSeat =$(".resultReserv .ReservMvSeat").text(); //좌석번호 - 
+						var ReservPrice =$(".resultReserv .ReservPrice").text().replace("원",""); //결제금액 -
+						//var MemberId =$(".resultReserv .MemberId").text(); //회원ID 
+						//var ReservMv =$(".resultReserv .ReservMv").text(); //예매영화
+						//var ReservMvNum =$(".resultReserv .ReservMvNum").text(); //상영관
+						//var ReservMvDay =$(".resultReserv .ReservMvDay").text(); //상영날짜
+						//var ReservMvTime =$(".resultReserv .ReservMvTime").text(); //상영시간
 						$.ajax({
 							url :'${pageContext.request.contextPath}/ajax/ReservInsert.do',
 							type:"post",
+							contentType:"application/x-www-form-urlencoded",
 							data : 
-								{ RservNo: RservNo, MemberId: MemberId, ReservDay: ReservDay,
-								ReservNum: ReservNum, ReservMv: ReservMv, ReservMvNum: ReservMvNum,
-								ReservMvDay: ReservMvDay, ReservMvTime: ReservMvTime, 
-								ReservMvSeat: ReservMvSeat, ReservPrice: ReservPrice},
+								{ ReservNo:ReservNo, ttNum:ttNum, MemberNo:MemberNo, payMethod:payMethod,
+								ReservDay:ReservDay, ReservNum:ReservNum, ReservMvSeat:ReservMvSeat,
+								ReservPrice: ReservPrice
+								},
 							success:function(data){
 								alert("성공");
 							},error:function(){

@@ -11,8 +11,8 @@
 	</page_setting>
 	<category_index>0</category_index>
 	<zoom>1.0</zoom>
-	<x>0</x>
-	<y>197</y>
+	<x>142</x>
+	<y>167</y>
 	<default_color>
 		<r>255</r>
 		<g>255</g>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-10-27 15:34:42</creation_date>
-			<updated_date>2020-11-12 10:40:23</updated_date>
+			<updated_date>2020-11-13 15:57:59</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -938,7 +938,7 @@
 		</word>
 		<word>
 			<id>48</id>
-			<length>10</length>
+			<length>500</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -2917,7 +2917,7 @@
 			<connections>
 				<relation>
 					<id>5</id>
-					<source>8</source>
+					<source>6</source>
 					<target>7</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -2939,7 +2939,7 @@
 				</relation>
 				<relation>
 					<id>6</id>
-					<source>6</source>
+					<source>8</source>
 					<target>7</target>
 						<source_xp>-1</source_xp>
 						<source_yp>-1</source_yp>
@@ -3003,7 +3003,7 @@
 				<normal_column>
 					<id>46</id>
 					<referenced_column>31</referenced_column>
-					<relation>6</relation>
+					<relation>5</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -3169,7 +3169,7 @@
 				<normal_column>
 					<id>51</id>
 					<referenced_column>52</referenced_column>
-					<relation>5</relation>
+					<relation>6</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>

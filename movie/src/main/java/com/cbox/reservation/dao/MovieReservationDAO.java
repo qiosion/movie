@@ -1,5 +1,6 @@
 package com.cbox.reservation.dao;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,7 @@ import com.cbox.movie.vo.MovieVO;
 import com.cbox.reservation.vo.MovieReservationVO;
 import com.cbox.reservation.vo.MvFindDateDTO;
 import com.cbox.reservation.vo.MvFindImgDTO;
+import com.cbox.reservation.vo.ReservInsertDTO;
 import com.cbox.reservation.vo.mvFindDateVO;
 
 public class MovieReservationDAO extends DAO {
@@ -23,7 +25,9 @@ public class MovieReservationDAO extends DAO {
 	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
 	private MvFindImgDTO idto;
-	
+	private final String INSERT = 
+			"INSERT INTO TICKETING(TC_NUM, TT_NUM, TC_ST_NUM, TC_DATE, MBR_NO, TC_PAY_METHOD, TC_PRICE, TC_PPL)\r\n" + 
+			"VALUES (?,?,?,?,?,?,?,?)";
 	private final String SELECT_TITLE_IMG = 
 			"SELECT MV_NUM, MV_TITLE, MV_POST\r\n" + 
 			"FROM MOVIE\r\n" + 
@@ -48,6 +52,31 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
+
+	public void insertMvReserv(ReservInsertDTO dto) { //예매한 내역 저장
+		
+		try {
+			//SQL문 준비하고 
+			psmt = conn.prepareStatement(INSERT);
+			
+			//준비한 쿼리에 맞는값 넣어주기
+			psmt.setString(1, dto.getReservNo());
+			psmt.setInt(2, dto.getTtNum());
+			psmt.setString(3, dto.getReservMvSeat());
+			psmt.setDate(4, Date.valueOf(dto.getReservDay()));
+			psmt.setInt(5, dto.getMemberNo());
+			psmt.setString(6, dto.getPayMethod());
+			psmt.setInt(7, dto.getReservPrice());
+			psmt.setInt(8, dto.getReservNum());
+			
+			//insert실행
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	public List<MvFindImgDTO> selectMvImg(MvFindImgDTO dto){//id값으로 이미지, 영화명찾기
 		List<MvFindImgDTO> list = new ArrayList<>();
 		

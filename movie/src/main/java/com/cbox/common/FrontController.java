@@ -64,6 +64,7 @@ import com.cbox.reservation.command.AdminReservAction;
 import com.cbox.reservation.command.MvFindImgAction;
 import com.cbox.reservation.command.ReservFromTodayAction;
 import com.cbox.reservation.command.ReservInsertAction;
+import com.cbox.reservation.command.ReservNoAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.UserReservInfoAction;
 import com.cbox.reservation.command.UserReservListAction;
@@ -138,6 +139,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); // 영화 id와 date에 맞는 상영시간 찾아오기.
 		map.put("/ajax/mvFindImg.do", new MvFindImgAction()); //mv image 갖고오기
 		map.put("/ajax/ReservInsert.do", new ReservInsertAction()); //예매내역 저장
+		map.put("//ajax/ReservNo.do", new ReservNoAction()); //예매번호 생성?
 
 		// 재훈
 
@@ -156,12 +158,12 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/couponInsert.do", new couponInsertAction());//쿠폰등록
 		map.put("/ajax/couponSelect.do", new couponSelectAction());//쿠폰조회
 		//1:1문의
-		map.put("/QnAListForm.do", new QnAListFormAction()); //1:1문의 리스트 이동
-		map.put("/QnAWriteForm.do", new QnAWriteFormAction());//글등록페이지 이동
-		map.put("/QnAInsert.do", new QnAInsertAction());//글등록
-		map.put("/QnAReplyForm.do", new QnAReplyFormAction());//답변페이지 이동
-		map.put("/QnADetailView.do", new QnADetailViewAction());//글 상세내용
-		map.put("/QnAReply.do", new QnAReplyAction());//답변등록
+		map.put("/QnAListForm.do", new QnAListFormAction());
+		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
+		map.put("/QnAInsert.do", new QnAInsertAction());
+		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
+		map.put("/QnADetailView.do", new QnADetailViewAction());
+		map.put("/QnAReply.do", new QnAReplyAction());
 		
 		
 	}
