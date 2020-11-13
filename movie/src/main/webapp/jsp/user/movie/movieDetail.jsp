@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,15 @@ input[type='text'], input[type='password'] {
 	display: none;
 	z-index: 999;
 	height: 40px;
+}
+
+#status {
+	padding: 0 10px;
+	border-radius: 10px;
+	color: red;
+	margin-left: 5px;
+	border: 2px solid black;
+	font-weight: bold;
 }
 </style>
 </head>
@@ -80,7 +90,16 @@ input[type='text'], input[type='password'] {
 			</div>
 		</div>
 		<div id="infoL">
-			<p class="title" style="white-space: normal;">${vo.mvTitle}</p>
+			<div style="height: 50px; line-height:40px;">
+			<span class="title"
+				style="white-space: normal; display: inline-block; line-height:40px; float: left;">${vo.mvTitle}</span>
+
+			<jsp:useBean id="today" class="java.util.Date" />
+			<fmt:formatDate var="now" value="${today}" pattern="yyyy-MM-dd" />
+			<c:if test="${vo.findate >= now }">
+				<span id="status" style="height:40px; float: left; vertical-align: middle;">현재상영중</span>
+			</c:if>
+			</div>
 			<p style="font-size: 20px;">${vo.mvAge}</p>
 			<p style="font-size: 20px; margin: 10px 0;">${vo.mvCont}</p>
 			<p style="font-size: 20px;">
@@ -92,11 +111,12 @@ input[type='text'], input[type='password'] {
 					<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
 					<c:if test="${vo.mvRank-num eq 0.5}">
 						<script type="text/javascript">
-							console.log(">>>0.5");
+							
 						</script>
 						<c:forEach begin="1" end="${vo.mvRank-num+1}">&#127767;</c:forEach>
 					</c:if>
 				</c:if>
+				${vo.mvRank}
 			</p>
 		</div>
 	</div>
