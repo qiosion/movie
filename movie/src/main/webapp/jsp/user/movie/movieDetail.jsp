@@ -119,9 +119,6 @@ input[type='text'], input[type='password'] {
 					<c:set var="num" value="${vo.mvRank - (vo.mvRank % 1)}" />
 					<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
 					<c:if test="${vo.mvRank-num eq 0.5}">
-						<script type="text/javascript">
-							
-						</script>
 						<c:forEach begin="1" end="${vo.mvRank-num+1}">&#127767;</c:forEach>
 					</c:if>
 				</c:if>

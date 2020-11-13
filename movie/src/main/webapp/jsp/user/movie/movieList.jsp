@@ -165,6 +165,8 @@
 					}
 					if ((item.mvRank - cnt) == 0.5) {
 						rank += '&#127767';
+					} else {
+						rank += '&#127770';
 					}
 				}
 
