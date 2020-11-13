@@ -102,15 +102,6 @@ ul.tabs li.current {
 	min-width: 600px !important;
 }
 
-.info::after {
-	overflow: auto;
-	height: 500px;
-	width: 100%;
-	/* background-image: url("../images/event1.jpg"); */
-	background-color: black;
-	opacity: 0.5;
-}
-
 #info #infoR {
 	float: right;
 	text-align: center;

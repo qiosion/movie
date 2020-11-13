@@ -37,6 +37,15 @@ input[type='text'], input[type='password'] {
 	border: 2px solid black;
 	font-weight: bold;
 }
+
+.info::after {
+	overflow: auto;
+	height: 500px;
+	width: 100%;
+	/* background-image: url("../images/event1.jpg"); */
+	background-color: black;
+	opacity: 0.5;
+}
 </style>
 </head>
 <body>
