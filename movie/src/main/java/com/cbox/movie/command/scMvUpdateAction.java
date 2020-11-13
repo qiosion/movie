@@ -18,11 +18,6 @@ public class scMvUpdateAction implements Action {
 		System.out.println("scMvUpdateAction");
 		ScreenMvVO vo = new ScreenMvVO();
 		
-		System.out.println("1 : "+request.getParameter("ttScrDate"));
-		System.out.println("2 : "+request.getParameter("ttStart"));
-		System.out.println("3 : "+request.getParameter("ttEnd"));
-		System.out.println("5 : "+request.getParameter("TTNum"));
-		System.out.println("5 : "+request.getParameter("thNum"));
 		vo.setTtScrDate(request.getParameter("ttScrDate"));
 		vo.setTtStart(request.getParameter("ttStart"));
 		vo.setTtEnd(request.getParameter("ttEnd"));
