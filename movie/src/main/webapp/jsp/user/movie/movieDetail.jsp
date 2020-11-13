@@ -9,6 +9,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
+input[type='text'], input[type='password'] {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
 #frm img {
 	display: block;
 	margin: 0px auto;
