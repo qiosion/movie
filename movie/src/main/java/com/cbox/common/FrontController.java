@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.QnA.command.QnADetailViewAction;
-import com.cbox.QnA.command.QnAInsertAction;
 import com.cbox.QnA.command.QnAListFormAction;
 import com.cbox.QnA.command.QnAReplyAction;
 import com.cbox.QnA.command.QnAReplyFormAction;
@@ -63,6 +62,7 @@ import com.cbox.movie.command.screenMvFormAction;
 import com.cbox.reservation.command.AdminReservAction;
 import com.cbox.reservation.command.MvFindImgAction;
 import com.cbox.reservation.command.ReservFromTodayAction;
+import com.cbox.reservation.command.ReservInsertAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.UserReservInfoAction;
 import com.cbox.reservation.command.UserReservListAction;
@@ -134,6 +134,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/mvFindDate.do", new mvFindDateAction()); // 영화 id값에 맞는 날짜 찾아오기.
 		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); // 영화 id와 date에 맞는 상영시간 찾아오기.
 		map.put("/ajax/mvFindImg.do", new MvFindImgAction()); //mv image 갖고오기
+		map.put("/ajax/ReservInsert.do", new ReservInsertAction()); //예매내역 저장
 
 		// 재훈
 
@@ -154,7 +155,6 @@ public class FrontController extends HttpServlet {
 		//1:1문의
 		map.put("/QnAListForm.do", new QnAListFormAction());
 		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
-		map.put("/QnAInsert.do", new QnAInsertAction());
 		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
 		map.put("/QnADetailView.do", new QnADetailViewAction());
 		map.put("/QnAReply.do", new QnAReplyAction());

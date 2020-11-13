@@ -71,6 +71,7 @@
 	body{
 		background-color:#fdfcf0;
 	}
+	
 </style>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript">
@@ -91,6 +92,7 @@
 				$("#test00 li").removeClass("selected");
 			}
 				$(this).parent().addClass("selected");
+				$("#test02").empty();
 			
 			
 			
@@ -150,8 +152,9 @@
 				var test;
 				$.each(data,function(idx,items){
 					mvDate = items.tt_scr_date;
-					
-					//console.log(mvDate);
+					//str.slice(0, 5) + '-' + str.slice(5, 9) + '-' + str.slice(9);
+					//console.log(mvDate)
+					mvDate = mvDate.replaceAll("-","") //불러온 영화상영일에서 -제거
 					var list= $("#test01 li.day");
 					for(var i=0; i<list.length; i++){//브라우저의 li목록에 있는 날짜 다출력
 						//$("#test01 li.day")[i].children[0].children[0].style="color:#A9A9A9"
@@ -197,6 +200,8 @@
 				}else{
 					date2=date2;
 				}
+				//console.log((date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-"))
+				date2 = (date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
 				$(screenInfo).children(".date").text(date2);
 				var dayweek2 = $(this).children(".dayweek").text();
 				$(screenInfo).children(".exe").text("("+dayweek2+")");
@@ -213,7 +218,8 @@
 				}else{
 					cDate =cDate;
 				}
-				//console.log(cDate);
+				cDate = (cDate.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
+				console.log(cDate);
 				var param_idDate = {m_id: paramid, m_date:cDate}; //영화 id값 받아오는거.
 				//console.log(param_idDate);
 				
@@ -280,7 +286,9 @@
 					var Cmax = $(this).parents("ul").prev().children(".seatcount").text();
 					Cmax = Cmax.substring(2,4);
 					$(".section.section-screen-select .totalNum").text(Cmax);
-					
+					var emptySeat = $(this).siblings(".count").text();
+					emptySeat = emptySeat.substr(0,2);
+					$(".section.section-screen-select .restNum").text(emptySeat);
 					var start2 = $(this).text();//시작시간
 					var end2 = $(this).parent().children("div.sreader").text();//종료시간\
 					
@@ -294,12 +302,14 @@
 						$(".tnb.step1 .info.seat").css("display","block");
 						$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
 						$(".btn-right").css("background-position", "0 -330px");
-						$("#ticket_tnb .tnb.step1 .btn-left").css("display","block");
+						//$("#ticket_tnb .tnb.step1 .btn-left").css("display","block");
 						$(this).attr("title","결제선택");
 						
 						
 					});
-					$("#ticket_tnb .tnb.step1 .btn-left").on("click",function(){
+					/*$(".btn-left").on("click",function(){
+						if($(this).attr("title")=="영화선택"){
+							alert("영화선택");
 						$(".step.step2").css("display","none");
 						$(".step.step1").css("display","block");
 						$("#ticket_tnb .tnb.step1 .btn-left").css("display","none");
@@ -311,16 +321,16 @@
 						if($(".section.section-numberofpeople #nop_group_adult ul li").data("count")==0){
 							$(this).addClass("selected");
 						}
+						}
 						
-						
-					})
+					});*/
 					
 					var screen = $(this).parents("div.theater").children().children(".floor").text();
 					$(".info.theater .row.screen .data").text(screen);
 					var starttime= $(this).text();
 					var endtime = $(this).siblings(".sreader").text();
 					
-					$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime);
+					$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime+"~"+endtime);
 					$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime+"~"+endtime);
 					
 				});//end #test02 time button click
@@ -368,7 +378,7 @@
 			$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
 			$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text("");
 			persons =$(this).data("count");
-			$(".info.theater .row.number .data").text(persons);
+			$(".info.theater .row.number .data").text(persons+"명");
 			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
 			$(".btn-right").css("background-position", "0 -330px");
 			$("#nop_group_adult ul li.selected").removeClass("selected");
@@ -419,8 +429,8 @@
 					if(btnCount == ReservNum){
 						$(".btn-right").css("background-position", "-150px -330px");
 						
-						if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 						$("#tnb_step_btn_right").on("click",function(){
+							if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
 							var date = new Date();
@@ -449,17 +459,51 @@
 							$(".step.step3 .resultReserv td.ReservPrice").text(ReservPrice);
 							$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
 							$(this).css({"background-position":"0px -550px","width":"220px"});
+							$(".btn-left").css("background-position","0 -110px");
+							$(".btn-left").attr("title","좌석선택");
 							$(this).attr("title","결제완료");
 							
 							
-							
+							}
 						});
-						}
+						
 					}
 				}
 			}
 		});//end 좌석선택 function
-		
+		$(".btn-left").on("click",function(){
+			if($(this).attr("title")=="좌석선택"){
+				alert("좌석선택");
+				$(".step.step3").css("display","none");
+				$(".step.step2").css("display","block");
+				$(this).css("background-position","0 0");
+				$(this).attr("title","영화선택");
+				$(".btn-right").css({"background-position":"0 -330px","width":""});
+				$(".btn-right").attr("title","결제선택");
+				$(".row.number .data").text("");
+				$(".row.seat_no.colspan3 .data.ellipsis-line3").text("");
+				$(".seatsClick .seatTable .seatTd").removeClass("selected");
+				$(".mouse_block").css("display","block");
+				$(".section.section-numberofpeople #nop_group_adult ul li").removeClass("selected");
+				if($(".section.section-numberofpeople #nop_group_adult ul li").data("count")==0){
+					$(this).addClass("selected");
+				}
+				
+			}else if($(this).attr("title")=="영화선택"){
+					alert("영화선택");
+					$(".step.step2").css("display","none");
+					$(".step.step1").css("display","block");
+					$("#ticket_tnb .tnb.step1 .btn-left").css("display","none");
+					$(".btn-right").css("background-position", "-150px -220px");
+					$("#tnb_step_btn_right").attr("title","좌석선택");	
+					$(".seatsClick .seatTable .seatTd").removeClass("selected");
+					$(".mouse_block").css("display","block");
+					$(".section.section-numberofpeople #nop_group_adult ul li").removeClass("selected");
+					if($(".section.section-numberofpeople #nop_group_adult ul li").data("count")==0){
+						$(this).addClass("selected");
+					}
+			}
+		});
 		$("#tnb_step_btn_right").on("click",function(){
 			if($(this).attr("title")=="결제완료"){
 					var today = new Date();
@@ -519,11 +563,37 @@
 					}, function (rsp) {
 					console.log(rsp);
 					if (rsp.success) {
-						var msg = '결제가 완료되었습니다.';
+					var msg = '결제가 완료되었습니다.';
 						msg += '고유ID : ' + rsp.imp_uid;
 						msg += '상점 거래ID : ' + rsp.merchant_uid;
 						msg += '결제 금액 : ' + rsp.paid_amount;
 						msg += '카드 승인번호 : ' + rsp.apply_num;
+						
+						//예매정보 테이블로
+						var RservNo =$(".resultReserv .ReservNo").text(); //예매번호
+						var MemberId =$(".resultReserv .MemberId").text(); //회원ID
+						var ReservDay =$(".resultReserv .ReservDay").text(); //예매날짜
+						var ReservNum =$(".resultReserv .ReservNum").text(); //예매인원
+						var ReservMv =$(".resultReserv .ReservMv").text(); //예매영화
+						var ReservMvNum =$(".resultReserv .ReservMvNum").text(); //상영관
+						var ReservMvDay =$(".resultReserv .ReservMvDay").text(); //상영날짜
+						var ReservMvTime =$(".resultReserv .ReservMvTime").text(); //상영시간
+						var ReservMvSeat =$(".resultReserv .ReservMvSeat").text(); //좌석위치
+						var ReservPrice =$(".resultReserv .ReservPrice").text(); //결제금액
+						$.ajax({
+							url :'${pageContext.request.contextPath}/ajax/ReservInsert.do',
+							type:"post",
+							data : 
+								{ RservNo: RservNo, MemberId: MemberId, ReservDay: ReservDay,
+								ReservNum: ReservNum, ReservMv: ReservMv, ReservMvNum: ReservMvNum,
+								ReservMvDay: ReservMvDay, ReservMvTime: ReservMvTime, 
+								ReservMvSeat: ReservMvSeat, ReservPrice: ReservPrice},
+							success:function(data){
+								alert("성공");
+							},error:function(){
+								alert("실패");
+							}
+						});
 						no++;
 						location.href="${pageContext.request.contextPath}/main.do";
 						
@@ -818,7 +888,7 @@
 									</div>
 									<div class="mini_region" style="height: 96px; width: 98px; top: 25px; left: 5px;"><span></span></div>
 								</div>
-								<div class="legend" style="width: 110px;">
+								<!--  <div class="legend" style="width: 110px;">
 									
 
 									<div class="seat-icon-desc">
@@ -837,7 +907,7 @@
 										<span class="radiobutton type-widebox" title="일반석보다 더 넓고 편안한 좌석" style="display: none;"><span class="icon"></span>WIDEBOX</span>
 										<span class="radiobutton type-cinekids last" title="365일 어린이 전용 상영관" style="display: none;"><span class="icon"></span>CINEKIDS</span>
 									<span class="radiobutton type-eggbox" title="EGG BOX" style="display: none;">EGG BOX<span class="icon"></span></span><span class="radiobutton type-recliner" title="Recliner" style="display: none;">Recliner<span class="icon"></span></span><span class="radiobutton type-cabana" title="카바나 석" style="display: none;">카바나석<span class="icon"></span></span><span class="radiobutton type-beanbag" title="빈백 석" style="display: none;">빈백석<span class="icon"></span></span><span class="radiobutton type-mat" title="매트 석" style="display: none;">매트석<span class="icon"></span></span><span class="radiobutton type-premium" title="프리미엄 석" style="display: none;">프리미엄석<span class="icon"></span></span><span class="radiobutton type-relax" title="릴렉스 석" style="display: none;">릴렉스석<span class="icon"></span></span><span class="radiobutton type-comport" title="컴포트 석" style="display: none;">컴포트석<span class="icon"></span></span><span class="radiobutton type-mybox" title="My box 석" style="display: none;">MYBOX<span class="icon"></span></span><span class="radiobutton type-cdcSofa" title="쇼파 석" style="display: none;">소파<span class="icon"></span></span><span class="radiobutton type-cdcRecliner" title="리클라이너 석" style="display: none;">리클라이너<span class="icon"></span></span><span class="radiobutton type-coupleSofa" title="Couple 쇼파 석" style="display: none;">커플소파<span class="icon"></span></span><span class="radiobutton type-vibration" title="진동 석" style="display: none;">진동석<span class="icon"></span></span></div>
-								</div>
+								</div>-->
 								<div class="mouse_block"></div>
 							</div>
 						</div>
@@ -870,7 +940,7 @@
 					<div class="step step3"  style="display: none;">
 						<div class="reservResult" align="center">
 							<table class="resultReserv">
-								<tr><th>예매번호</th><td class="ReservNo"></td><th>회원이름</th><td>회원이름넣기</td></tr>
+								<tr><th>예매번호</th><td class="ReservNo"></td><th>회원아이디</th><td class="MemberId"><%= session.getAttribute("mbr_id") %></td></tr>
 								<tr><th>예매날짜</th><td class="ReservDay"></td><th>예매인원</th><td class="ReservNum"></td></tr>
 								<tr><th>영화명</th><td class="ReservMv"></td><th>상영관</th><td class="ReservMvNum"></td></tr>
 								<tr><th>상영날짜</th><td class="ReservMvDay"></td><th>상영시간</th><td class="ReservMvTime"></td></tr>

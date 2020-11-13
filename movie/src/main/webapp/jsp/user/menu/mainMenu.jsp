@@ -28,7 +28,7 @@
 							href="${pageContext.request.contextPath}/movieChartList.do">박스
 							오피스</a>
 					</div></li>
-				<li class="nav-item active"><a class="nav-link" onfocus="blur()"
+				<li class="nav-item active"><a class="nav-link Rerv" onfocus="blur()"
 					href="${pageContext.request.contextPath}/reservation/reservationForm.do">예매하기
 						<span class="sr-only">(current)</span>
 				</a></li>

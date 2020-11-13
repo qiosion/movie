@@ -30,12 +30,18 @@
 
 <script>
 	$(function(){
-		$("#navbarSupportedContent .navbar-nav.mr-auto .nav-link").on("click",function(){
-			$(this).parent().addClass("selected");
+		$(".Rerv").on("click",function(){
+			var mbr_id = '${mbr_id}';
+			console.log(mbr_id);
+			if(mbr_id == ''){
+				event.preventDefault(); // 이벤트기능 default시킴
+				alert("로그인 후 사용 가능합니다.");
+				
+			}
 			
 		});
-		
 	});
+		
 </script>
 </head>
 <body>
