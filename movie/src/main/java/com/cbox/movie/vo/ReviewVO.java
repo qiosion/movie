@@ -13,6 +13,11 @@ public class ReviewVO {
 	
 	private String mvTitle;
 	private String mbrId;
+	
+	public ReviewVO() {
+		
+	}
+	
 	public int getRvNum() {
 		return rvNum;
 	}

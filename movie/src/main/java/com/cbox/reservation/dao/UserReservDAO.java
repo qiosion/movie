@@ -15,7 +15,7 @@ public class UserReservDAO extends DAO {
 	private UserReservVO vo;
 	
 	private String SELECT_RESERV_LIST = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM ( " + 
-					"SELECT TC.TC_NUM, MV.MV_TITLE, TT.TT_SCR_DATE, " + 
+					"SELECT TC.TC_NUM, MV.MV_TITLE, MV.MV_NUM, TT.TT_SCR_DATE, " + 
 					"TT.TT_START, TC.TC_ST_NUM, TH.TH_NAME FROM TICKETING TC " + 
 					"JOIN TIMETABLE TT ON TT.TT_NUM = TC.TT_NUM " + 
 					"JOIN MOVIE MV ON MV.MV_NUM = TT.MV_NUM " + 
@@ -26,7 +26,7 @@ public class UserReservDAO extends DAO {
 						"FROM TICKETING TC, MEMBER MBR " + 
 						"WHERE TC.MBR_NO = MBR.MBR_NO AND MBR.MBR_NO = ?";
 	private String SELECT_ONE_RESERV = "SELECT * FROM (SELECT A.*, ROWNUM RN FROM ( " + 
-					"SELECT TC.TC_NUM, TC.TC_DATE, MV.MV_TITLE, MV.MV_AGE, TT.TT_SCR_DATE, " + 
+					"SELECT TC.TC_NUM, TC.TC_DATE, MV.MV_TITLE, MV.MV_NUM, MV.MV_AGE, TT.TT_SCR_DATE, " + 
 					"TT.TT_START, TT.TT_END, TC.TC_ST_NUM, TH.TH_NAME " + 
 					"FROM TICKETING TC JOIN TIMETABLE TT ON TT.TT_NUM = TC.TT_NUM " + 
 					"JOIN MOVIE MV ON MV.MV_NUM = TT.MV_NUM " + 
@@ -45,6 +45,7 @@ public class UserReservDAO extends DAO {
 				vo.setTc_num(rs.getInt("tc_num"));
 				vo.setTc_date(rs.getDate("tc_date"));
 				vo.setMv_title(rs.getString("mv_title"));
+				vo.setMv_num(rs.getInt("mv_num"));
 				vo.setMv_age(rs.getString("mv_age"));
 				vo.setTt_scr_date(rs.getString("tt_scr_date")); 
 				vo.setTt_start(rs.getString("tt_start"));
@@ -72,6 +73,7 @@ public class UserReservDAO extends DAO {
 			while(rs.next()) {
 				vo = new UserReservVO();
 				vo.setMv_title(rs.getString("mv_title"));
+				vo.setMv_num(rs.getInt("mv_num"));
 				vo.setTt_scr_date(rs.getString("tt_scr_date"));
 				vo.setTt_start(rs.getString("tt_start")); 
 				vo.setTc_st_num(rs.getString("tc_st_num"));

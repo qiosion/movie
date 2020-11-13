@@ -33,8 +33,9 @@ public class loginAction implements Action {
             session.setAttribute("mbr_pw", vo.getMbr_pw());
             session.setAttribute("mbr_no", vo.getMbr_no());
             session.setAttribute("mbr_author", vo.getMbr_author());
-            
-            request.setAttribute("vo", vo);
+            System.out.println("회원id" + vo.getMbr_id());
+            System.out.println("회원번호" + vo.getMbr_no());
+            request.setAttribute("loginvo", vo);
             msg = "main.jsp";
         } else if(check == 0) { // 비밀번호가 틀릴경우
         	msg = "loginForm.do?msg=0";

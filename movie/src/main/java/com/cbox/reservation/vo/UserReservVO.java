@@ -6,6 +6,7 @@ public class UserReservVO {
 	private int tc_num;
 	private Date tc_date;
 	private String mv_title;
+	private int mv_num;
 	private String mv_age;
 	private String tt_scr_date;
 	private String tt_start;
@@ -18,6 +19,14 @@ public class UserReservVO {
 	
 	public UserReservVO() {
 		
+	}
+
+	public int getMv_num() {
+		return mv_num;
+	}
+
+	public void setMv_num(int mv_num) {
+		this.mv_num = mv_num;
 	}
 
 	public String getMv_age() {

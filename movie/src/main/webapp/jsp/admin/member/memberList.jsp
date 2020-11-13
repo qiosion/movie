@@ -143,7 +143,7 @@ $(function() {
 				</div>
 
 				<!-- Modal body -->
-				<div class="modal-body">
+				<div class="modal-body" align="center">
 					<form id="frm" name="frm" action="memDel.do" method="post">
 						<div>해당 회원을 탈퇴시키겠습니까?<br><br></div>
 						<input type="hidden" id="hdn" name="hdn">

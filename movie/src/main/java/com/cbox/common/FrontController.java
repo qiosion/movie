@@ -69,6 +69,7 @@ import com.cbox.reservation.command.UserReservInfoAction;
 import com.cbox.reservation.command.UserReservListAction;
 import com.cbox.reservation.command.mvFindDateAction;
 import com.cbox.reservation.command.mvFindTimeAction;
+import com.cbox.review.command.reviewInsertAction;
 
 @MultipartConfig
 @WebServlet("*.do")
@@ -127,6 +128,7 @@ public class FrontController extends HttpServlet {
 		map.put("/UserReservInfo.do", new UserReservInfoAction()); // user 예매정보 상세 보기
 		map.put("/AdminReserv.do", new AdminReservAction()); // admin 전체 예매현황 보기
 		map.put("/ReservFromToday.do", new ReservFromTodayAction()); // admin 오늘부터의 예매현황 보기
+		map.put("/reviewInsert.do", new reviewInsertAction()); // user 리뷰작성
 		
 		
 		// 광희

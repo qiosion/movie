@@ -80,9 +80,7 @@ input[type='text'], input[type='password'] {
 				error:function(xhr,status,msg){
 					alert("존재하지 않는 회원입니다");
 				}, success : function (vo){
-					var id = vo.mbr_id;
-					console.log(vo.mbr_id);
-					console.log("아이디" + id);
+					var id = loginvo.mbr_id;
 					$("#showId").val(id);
 				}
 			})
@@ -90,9 +88,9 @@ input[type='text'], input[type='password'] {
 		}
 	}
 	function showId(vo){
-		msg = "아이디: " + vo.getMbr_id;
+		msg = "아이디: " + loginvo.getMbr_id;
 		console.log(msg);
-		msg2 = "아이디2: " + vo.mbr_id;
+		msg2 = "아이디2: " + loginvo.mbr_id;
 		console.log(msg2);
 		$("div[id='showId']").append(msg);
 		
@@ -135,9 +133,7 @@ input[type='text'], input[type='password'] {
 				error:function(xhr,status,msg){
 					alert("존재하지 않는 회원입니다");
 				}, success : function (vo){
-					var pw = vo.mbr_pw;
-					console.log(vo.mbr_pw);
-					console.log("비번" + pw);
+					var pw = loginvo.mbr_pw;
 					$("#showPw").val(pw);
 				}
 			})
@@ -234,7 +230,6 @@ input[type='text'], input[type='password'] {
 				<!-- Modal body -->
 				<div class="modal-body" align="center">
 					<form id="frm3" name="frm3" method="post">
-					<!-- action="findId.do"  -->
 						<table class="table">
 							<tr style="line-height: 32px;">
 								<td class="txt">이름</td>
