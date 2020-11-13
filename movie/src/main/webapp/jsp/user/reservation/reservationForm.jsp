@@ -435,7 +435,7 @@
 							if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
-							$.ajax({
+							/*$.ajax({
 								url: '${pageContext.request.contextPath}/ajax/ReservNo.do',
 								dataType:"json",
 								success:function(data){
@@ -443,7 +443,7 @@
 								},error:function(){
 									alert("no실패");
 								}
-							})
+							})*/
 							var date = new Date();
 							var year = date.getFullYear();
 							var month = (date.getMonth()+1); 
