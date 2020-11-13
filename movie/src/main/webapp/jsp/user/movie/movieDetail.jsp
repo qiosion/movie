@@ -163,7 +163,43 @@
 				</div>
 			</form>
 		</div>
-		<div id="tab-2" class="tab-content"></div>
+		<div id="tab-2" class="tab-content">
+			<form id="frm" name="frm" enctype="multipart/form-data">
+				<div class="col-sm-12 pt-3">
+					<div class="card">
+						<div class="card-header card-header-primary">
+							<span class="card-title" id="movieTitle"> <i
+								class="fas fa-square"></i>${vo.mvTitle} 관람평
+							</span>
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>작성자</th>
+											<th>내용</th>
+											<th>평점</th>
+											<th>작성일</th>
+										</tr>
+									</thead>
+									<tbody>
+									<c:forEach var="rv" items="${rvList}">
+										<tr>
+											<td>${rv.mvTitle }</td>
+											<td>${rv.rvCont }</td>
+											<td>${rv.rvRank }</td>
+											<td>${rv.rvDate }</td>
+										</tr>
+									</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			</div>
 		<div id="tab-3" class="tab-content">
 			<form id="frm" name="frm" enctype="multipart/form-data">
 				<div class="col-sm-12 pt-3">

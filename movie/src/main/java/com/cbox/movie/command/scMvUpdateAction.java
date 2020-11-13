@@ -17,17 +17,17 @@ public class scMvUpdateAction implements Action {
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("scMvUpdateAction");
 		ScreenMvVO vo = new ScreenMvVO();
-		vo.setTtScrDate(request.getParameter("ttScrDate"));
-		vo.setTtStart(request.getParameter("ttStart"));
-		vo.setTtEnd(request.getParameter("ttEnd"));
-		vo.setThNum(Integer.parseInt(request.getParameter("thNum")));
-		vo.setTtNum(Integer.parseInt(request.getParameter("ttNum")));
 		
 		System.out.println("1 : "+request.getParameter("ttScrDate"));
 		System.out.println("2 : "+request.getParameter("ttStart"));
 		System.out.println("3 : "+request.getParameter("ttEnd"));
-		System.out.println("4 : "+request.getParameter("thNum"));
-		System.out.println("5 : "+request.getParameter("ttNum"));
+		System.out.println("5 : "+request.getParameter("TTNum"));
+		System.out.println("5 : "+request.getParameter("thNum"));
+		vo.setTtScrDate(request.getParameter("ttScrDate"));
+		vo.setTtStart(request.getParameter("ttStart"));
+		vo.setTtEnd(request.getParameter("ttEnd"));
+		vo.setThNum(Integer.parseInt(request.getParameter("thNum")));
+		vo.setTtNum(Integer.parseInt(request.getParameter("TTNum")));
 		
 		ScreenMvDAO dao = new ScreenMvDAO();
 		dao.updateScreenMv(vo);

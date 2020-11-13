@@ -10,6 +10,7 @@ import com.cbox.common.DAO;
 import com.cbox.member.vo.MemberVO;
 import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
+import com.cbox.movie.vo.ReviewVO;
 
 public class MovieDAO extends DAO {
 
@@ -328,6 +329,43 @@ public class MovieDAO extends DAO {
 		} finally {
 			close();
 		}
+	}
+
+	// 리뷰 상세
+	private String SELECT_REVIEW = "SELECT MBR.MBR_ID, MV.MV_TITLE, RV.RV_RANK, RV.RV_CONT, RV.RV_DATE " + 
+			"FROM MEMBER MBR, MOVIE MV, REVIEW RV " + 
+			"WHERE MBR.MBR_NO = RV.MBR_NO " + 
+			"AND MV.MV_NUM = RV.MV_NUM " + 
+			"AND MV.MV_NUM = ?";
+	public List<ReviewVO> getReviewDetail(MovieVO vo2) {
+		ReviewVO rvVO = new ReviewVO();
+		List<ReviewVO> list = new ArrayList<ReviewVO>();
+		try {
+			psmt = conn.prepareStatement(SELECT_REVIEW);
+			psmt.setInt(1, vo.getMvNum());
+
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				rvVO.setRvNum(rs.getInt("rv_num"));
+				rvVO.setRvCont(rs.getString("rv_cont"));
+				rvVO.setRvRank(rs.getDouble("rv_rank"));
+				rvVO.setRvDate(rs.getDate("rv_date"));
+				rvVO.setMbrId(rs.getString("mbr_id"));
+				rvVO.setMbrNum(rs.getInt("mbr_num"));
+				rvVO.setMvTitle(rs.getString("mv_title"));
+				rvVO.setMvNum(rs.getInt("mv_num"));
+				
+				System.out.println("rvVO1 : "+rs.getInt("mv_num"));
+				System.out.println("rvVO2 : "+rs.getDouble("rv_rank"));
+				System.out.println("rvVO3 : "+rs.getInt("rv_num"));
+				list.add(rvVO);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
 	}
 
 	// 모든 동작 후 연결 끊어주기
