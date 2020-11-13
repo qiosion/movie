@@ -26,7 +26,8 @@ thead th {
 </head>
 <body>
 <script type="text/javascript">
-var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";$(function () {
+var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";
+$(function () {
     document.getElementById("today").valueAsDate = new Date();
 
     listOffice("yesterday");
@@ -119,7 +120,7 @@ function listOffice(type) {
 		</div>
 	</div>
 	<div class="row" style="height: 400px; margin: 20px 10px;">
-		<div class="col-sm-12 col-lg-6">
+		<div class="col-sm-12 col-lg-8">
 			<div style="display:none;"><input type="date" id="today"></div>
 			<div class="tit-heading-wrap tit-evt" id="title"></div>
 			<div style="margin-top: 5px;">
@@ -136,7 +137,7 @@ function listOffice(type) {
 				</table>
 			</div>
 		</div>
-		<div class="col-sm-12 col-lg-6" id="map" style="width: 100%;"></div>
+		<div class="col-sm-12 col-lg-4" id="map" style="width: 100%;"></div>
 	</div>
 	<script type="text/javascript"
 		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee28883e1eb341f656e2215eb7b6e27e&libraries=services"></script>
