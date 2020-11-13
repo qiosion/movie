@@ -7,12 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <style type="text/css">
-input[type='text'], input[type='password'] {
+input[type='date'] {
     height: calc(1.5em + .75rem + 2px) !important;
     width: 100% !important;
 }
-select {
-	border-radius: 5px;
+select.form-control {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
 }
 
 .btn-group input {
@@ -268,7 +269,7 @@ select {
 							<tr style="line-height: 32px;">
 								<td>제목&nbsp;<span style="color: red;">*</span></td>
 								<td id="mvList"><c:if test="${!empty mvList}">
-										<select id="mvNum" name="mvNum">
+										<select id="mvNum" name="mvNum" class="form-control">
 											<c:forEach var="sel" items="${mvList}">
 												<option value="${sel.mvNum}">${sel.mvTitle}</option>
 											</c:forEach>
@@ -276,7 +277,7 @@ select {
 									</c:if></td>
 								<td>상영관&nbsp;<span style="color: red;">*</span></td>
 								<td id="thList"><c:if test="${!empty thList}">
-										<select id="thNum" name="thNum">
+										<select id="thNum" name="thNum"  class="form-control">
 											<c:forEach var="th" items="${thList}">
 												<option value="${th.thNum}">${th.thName}</option>
 											</c:forEach>
@@ -286,7 +287,7 @@ select {
 							<tr>
 								<td style="width: 25%;">상영 시작&nbsp;<span
 									style="color: red;">*</span></td>
-								<td><select id="ttStart" name="ttStart">
+								<td><select id="ttStart" name="ttStart" class="form-control">
 										<option value="0" disabled>상영시작</option>
 										<option value="09:00">09:00</option>
 										<option value="09:30">09:30</option>
@@ -303,7 +304,7 @@ select {
 								</select></td>
 								<td style="width: 25%;">상영 종료&nbsp;<span
 									style="color: red;">*</span></td>
-								<td style="width: 25%;"><select id="ttEnd" name="ttEnd">
+								<td style="width: 25%;"><select id="ttEnd" name="ttEnd" class="form-control">
 										<option value="0" disabled>상영종료</option>
 										<option value="10:00">10:00</option>
 										<option value="10:30">10:30</option>
