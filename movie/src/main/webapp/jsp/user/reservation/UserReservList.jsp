@@ -41,7 +41,7 @@ th, td {
 }
 
 #selBtn {
-	background-color: #D85E48;
+	background-color: #689E8E;
 	padding: 5px;
 	border-radius: 5px;
 	color: white;
