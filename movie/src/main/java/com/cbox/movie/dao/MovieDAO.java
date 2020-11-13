@@ -337,7 +337,7 @@ public class MovieDAO extends DAO {
 			"WHERE MBR.MBR_NO = RV.MBR_NO " + 
 			"AND MV.MV_NUM = RV.MV_NUM " + 
 			"AND MV.MV_NUM = ?";
-	public List<ReviewVO> getReviewDetail(MovieVO vo2) {
+	public List<ReviewVO> getReviewDetail(MovieVO vo) {
 		ReviewVO rvVO = new ReviewVO();
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		try {

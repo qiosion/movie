@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -167,6 +168,13 @@ input[type='text'], input[type='password'] {
 								<input type="file" id="mvImg"
 									name="mvImg" style="width: 50px;"></td>
 							</tr>
+							<c:if test="${vo.mvPost ne null}">
+								<tr>
+									<td colspan="4" style="text-align: center;">
+										<img style="max-height: 350px;" src="${pageContext.request.contextPath}/images/${vo.mvPost}">
+									</td>
+								</tr>
+							</c:if>
 							<tr style="float: center; text-align: center;">
 								<td>티저 영상</td>
 								<td>
