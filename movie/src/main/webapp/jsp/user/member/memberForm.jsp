@@ -8,10 +8,14 @@
 <style type="text/css">
 .txt {
 	text-align: right;
+	vertical-align: middle;
 }
 input[type='text'], input[type='password'] {
     height: calc(1.5em + .75rem + 2px) !important;
     width: 100% !important;
+}
+td {
+	vertical-align: middle;
 }
 </style>
 <script type="text/javascript">
@@ -87,8 +91,8 @@ input[type='text'], input[type='password'] {
     							<td colspan="2"><input type="password" class="form-control pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
     						</tr>
     						<tr>
-    							<td colspan="3">
-    								<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+    							<td colspan="3" style="text-align: center;">
+    								<span id="alert-success" style="display: none; color: #0B8026; font-weight: bold;">비밀번호가 일치합니다.</span>
     								<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
     							</td>
 							</tr>
@@ -104,7 +108,7 @@ input[type='text'], input[type='password'] {
 				$("#alert-success").css("display","inline-block");
 				$("#alert-fail").css("display","none");
 			} else{
-				alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
+				//alert("비밀번호가 일치하지 않습니다. 비밀번호를 다시 확인해주세요");
 				$("#alert-success").css("display","none");
 				$("#alert-fail").css("display","inline-block");
 			}

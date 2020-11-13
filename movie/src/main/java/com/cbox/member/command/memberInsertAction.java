@@ -30,7 +30,11 @@ public class memberInsertAction implements Action {
 		if (n != 0) { // n이 0이 아니면 성공
 			response.setContentType("text/html; charset=UTF-8");
 			try {
-				response.sendRedirect("main.do");
+				PrintWriter out = response.getWriter();
+				//out.println("회원가입에 성공하였습니다");
+				out.println("<script>alert('회원가입 성공');</script>");
+				out.println("<script>location.href='main.do';</script>");
+				//response.sendRedirect("main.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
