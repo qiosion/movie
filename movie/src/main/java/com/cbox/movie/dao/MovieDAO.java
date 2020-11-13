@@ -332,7 +332,7 @@ public class MovieDAO extends DAO {
 	}
 
 	// 리뷰 상세
-	private String SELECT_REVIEW = "SELECT MBR.MBR_ID, MV.MV_TITLE, RV.RV_RANK, RV.RV_CONT, RV.RV_DATE " + 
+	private String SELECT_REVIEW = "SELECT * " + 
 			"FROM MEMBER MBR, MOVIE MV, REVIEW RV " + 
 			"WHERE MBR.MBR_NO = RV.MBR_NO " + 
 			"AND MV.MV_NUM = RV.MV_NUM " + 
@@ -351,7 +351,7 @@ public class MovieDAO extends DAO {
 				rvVO.setRvRank(rs.getDouble("rv_rank"));
 				rvVO.setRvDate(rs.getDate("rv_date"));
 				rvVO.setMbrId(rs.getString("mbr_id"));
-				rvVO.setMbrNum(rs.getInt("mbr_num"));
+				rvVO.setMbrNum(rs.getInt("mbr_no"));
 				rvVO.setMvTitle(rs.getString("mv_title"));
 				rvVO.setMvNum(rs.getInt("mv_num"));
 				
