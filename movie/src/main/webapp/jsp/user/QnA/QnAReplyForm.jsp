@@ -1,56 +1,53 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 <head>
-    <title>°Ô½ÃÆÇ - ´äº¯±Û</title>
-<style type="text/css">
-input[type='text'], input[type='password'] {
-    height: calc(1.5em + .75rem + 2px) !important;
-    width: 100% !important;
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
+<link rel="stylesheet" href="/css/info.css">
+<script>
+	function listFrm(){
+		location.href="QnAListForm.do";
+</script>
+<style>
+#btn {
+  background-color: white;
+  color: black;
+  border: 2px solid #555555;
+  width:50px;
+  height:30px;
+  border-radius:10%;
 }
+
+#btn:hover {
+  background-color: #555555;
+  color: white;
 </style>
 </head>
 <body>
-    <br>
-    <b><font size="6" color="gray">´ä±Û ÀÛ¼º</font></b>
-    <br>
-
-	<form method="post" action="QnAReply.do" name="QnAForm">
+	<form name="frm" id="frm" method="post" action="QnAReply.do"  >
 		<table width="700" border="3" bordercolor="lightgray" align="center">
-		<tr>
-				<td id="title">±Û¹øÈ£</td>
-				<td><input name="qa_no" type="text" size="70" maxlength="100"
-					/></td>
-			</tr>
-		<tr>
-				<td id="title">ÀÛ¼ºÀÚ</td>
-				<td><input name="qa_name" type="text" size="70" maxlength="100"
-					/></td>
-			</tr>
 			<tr>
-				<td id="title">Á¦ ¸ñ</td>
+				<td id="title">ì œëª©</td>
 				<td><input name="qa_title" type="text" size="70"
-					maxlength="100" /></td>
+					maxlength="100" value="" /></td>
 			</tr>
 			<tr>
-				<td id="title">³» ¿ë</td>
-				<td><textarea name="qa_cont" cols="72" rows="20">
-                </textarea></td>
+				<td id="title">ë‚ ì§œ</td>
+				<td><input name="qa_date" type="date" value=""></td>
 			</tr>
-			
 			<tr>
-				<td id="title">ÀÛ¼ºÀÏ</td>
-				<td><input name="qa_date" type="date" size="70"
-					maxlength="100" /></td>
-                
-			</tr>
-
-			<tr align="center" valign="middle">
-				<td colspan="5"><input type="reset" value="ÀÛ¼ºÃë¼Ò"> <input
-					type="submit" value="µî·Ï"> <input type="button" value="¸ñ·Ï">
+				<td id="title">ë‚´ ìš©</td>
+				<td><textarea name="qa_cont" cols="70" rows="10"></textarea>
 				</td>
 			</tr>
-		</table>
+			</table>
+		<div align="center" colspan="2"> 
+				<button id="btn" type="submit">ë“±ë¡</button>
+				<button id="btn" type="submit" onclick="listFrm()">ì‘ì„±ì·¨ì†Œ</button>
+		</div>
 	</form>
 
 </body>

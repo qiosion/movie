@@ -72,10 +72,7 @@ float: left;
   background-color: #555;
   color: white;
 }
-input[type='text'], input[type='password'] {
-    height: calc(1.5em + .75rem + 2px) !important;
-    width: 100% !important;
-}
+ 
 </style>
 <script type="text/javascript">
 	$(function(){
@@ -114,9 +111,9 @@ input[type='text'], input[type='password'] {
 	function couponSelectResult(coupon){
 		$('input:text[name="cp_no"]').val(coupon.cp_no);
 		$('input:text[name="cp_nm"]').val(coupon.cp_nm);
-		$('input:date[name="cp_vaild_date"]').val(coupon.cp_vaild_date); 
-		$('select[name="cp_type"]').val(coupon.cp_type).attr("selected","selected","selected","selected");
-		$('select[name="cp_discount"]').val(coupon.cp_discount).attr("selected","selected","selected","selected");
+		$('input:text[name="cp_vaild_date"]').val(coupon.cp_vaild_date); 
+		$('input:text[name="cp_type"]').val(coupon.cp_type);
+		$('input:text[name="cp_discount"]').val(coupon.cp_discount);
 	}
 	
 	function couponList(){
@@ -173,25 +170,15 @@ input[type='text'], input[type='password'] {
 		</div>				
 		<div class="form-group">
 			<label >유효기간:</label>
-			<input type="date" name="cp_vaild_date" >
+			<input type="text"  class="form-control"  name="cp_vaild_date" >
 		</div>	    
 		<div class="form-group">   
 			<label>쿠폰종류:</label>
-				<select class="form-control" name="cp_type">
-					   		<option value="VIP">VIP전용할인</option>
-					   		<option value="Gold">Gold전용할인</option>
-					   		<option value="SILVER">SILVER전용할인</option>
-					   		<option value="BRONZE">BRONZE전용할인</option>
-				</select>
+				<input type="text"  class="form-control"  name="cp_type" >
 		</div>
 		<div class="form-group">   
 			<label>할인금액:</label>
-				<select class="form-control" name="cp_discount">
-					   		<option value="10000">10000</option>
-					   		<option value="6000">6000</option>
-					   		<option value="4000">4000</option>
-					   		<option value="2000">2000</option>
-				</select>
+				<input type="text"  class="form-control"  name="cp_discount" >
 		</div>
 	</form>
 </div>
