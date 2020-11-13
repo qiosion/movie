@@ -47,13 +47,12 @@ public class QnADAO extends DAO {
 		int n =0;
 		try {
 			psmt = conn.prepareStatement(INSERT);
-			psmt.setInt(1, vo.getQa_no());
+			psmt.setString(1, vo.getQa_type());
 			psmt.setString(2, vo.getQa_name());
 			psmt.setString(3, vo.getQa_title());
 			psmt.setString(4, vo.getQa_cont());
 			psmt.setDate(5, vo.getQa_date());
-			psmt.setInt(6, vo.getQa_re_ref());
-			psmt.setInt(7, vo.getQa_re_lev());
+			psmt.setInt(6, vo.getQa_re_lev());
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
