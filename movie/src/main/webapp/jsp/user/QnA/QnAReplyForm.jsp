@@ -95,7 +95,7 @@ function replyFrm(){
 		<tbody>
 			<tr>
 				<td id="title">작성자</td>
-				<td><input type="text" name="qa_name" value="${mbr_nm}"></td>
+				<td><input type="text" name="qa_ad_name" value="${mbr_nm}"></td>
 			</tr>
 			<tr>
 			<td id="title">내용</td>

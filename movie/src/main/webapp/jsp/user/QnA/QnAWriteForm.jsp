@@ -52,7 +52,7 @@
 			<tr>
 				<td id="title">작성자</td>
 				<td><input name="qa_name" type="text" size="70"
-					maxlength="100" value="" /></td>
+					maxlength="100" value="${mbr_id}" /></td>
 			</tr>
 			<tr>
 				<td id="title">문의유형</td>

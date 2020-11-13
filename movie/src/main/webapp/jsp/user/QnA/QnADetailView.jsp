@@ -98,7 +98,7 @@ function replyFrm(){
 		<tbody>
 			<tr>
 				<td id="title">작성자</td>		
-					<td>${vo.qa_name}</td>
+					<td>${vo.qa_ad_name}</td>
 			</tr>
 			<tr>
 			<td id="title">내용</td>

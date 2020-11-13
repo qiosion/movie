@@ -17,7 +17,7 @@ public class QnADAO extends DAO {
 	private final String SELECT_ALL = "SELECT * FROM QNA ORDER BY QA_NO";
 	private final String SELECT = "SELECT * FROM QNA WHERE QA_NO=?";
 	private final String INSERT = "INSERT INTO QNA(QA_NO,QA_TYPE,QA_NAME,QA_TITLE,QA_CONT,QA_DATE,qa_ad_comment)VALUES(qna_num.NEXTVAL,?,?,?,?,?,?)";
-	private final String UPDATE = "UPDATE QNA SET qa_name=?, qa_ad_comment=? where qa_no=?";
+	private final String UPDATE = "UPDATE QNA SET QA_AD_NAME=?, QA_AD_COMMENT=? WHERE QA_NO=?";
 	
 	//리스트 조회
 	public List<QnAVO> selectAll(){
@@ -33,6 +33,7 @@ public class QnADAO extends DAO {
 				vo.setQa_cont(rs.getString("qa_cont"));
 				vo.setQa_date(rs.getDate("qa_date"));
 				vo.setQa_name(rs.getString("qa_name"));
+				vo.setQa_ad_name(rs.getString("qa_ad_name"));
 				vo.setQa_ad_comment(rs.getString("qa_ad_comment"));
 				list.add(vo);
 			}
@@ -71,6 +72,7 @@ public class QnADAO extends DAO {
 				vo.setQa_cont(rs.getString("qa_cont"));
 				vo.setQa_date(rs.getDate("qa_date"));
 				vo.setQa_name(rs.getString("qa_name"));	
+				vo.setQa_ad_name(rs.getString("qa_ad_name"));
 				vo.setQa_ad_comment(rs.getString("qa_ad_comment"));
 			}
 		}catch(SQLException e) {
@@ -83,7 +85,7 @@ public class QnADAO extends DAO {
 		int n=0;
 		try {
 			psmt = conn.prepareStatement(UPDATE);
-			psmt.setString(1, vo.getQa_name());
+			psmt.setString(1, vo.getQa_ad_name());
 			psmt.setString(2, vo.getQa_ad_comment());
 			psmt.setInt(3, vo.getQa_no());
 			n = psmt.executeUpdate();
