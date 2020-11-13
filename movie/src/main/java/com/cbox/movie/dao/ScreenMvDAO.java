@@ -202,7 +202,7 @@ public class ScreenMvDAO extends DAO {
 			+ "FROM TIMETABLE T, MOVIE M "
 			+ "WHERE T.MV_NUM = M.MV_NUM "
 			+ "AND M.MV_FINDATE >= SYSDATE "
-			+ "AND T.MV_NUM = ? AND T.TT_SCR_DATE = ? AND T.TH_NUM = ?";
+			+ "AND T.MV_NUM = ? AND T.TT_SCR_DATE = ? AND T.TH_NUM = ? AND T.TT_START = ?";
 	
 	public String checkDupl(ScreenMvVO scVO) {
 		String result = "N";
@@ -211,6 +211,7 @@ public class ScreenMvDAO extends DAO {
 			psmt.setInt(1, scVO.getMvNum());
 			psmt.setString(2, scVO.getTtScrDate());
 			psmt.setInt(3, scVO.getThNum());
+			psmt.setString(4, scVO.getTtStart());
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
