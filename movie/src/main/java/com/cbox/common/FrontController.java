@@ -156,12 +156,12 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/couponInsert.do", new couponInsertAction());//쿠폰등록
 		map.put("/ajax/couponSelect.do", new couponSelectAction());//쿠폰조회
 		//1:1문의
-		map.put("/QnAListForm.do", new QnAListFormAction());
-		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
-		map.put("/QnAInsert.do", new QnAInsertAction());
-		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
-		map.put("/QnADetailView.do", new QnADetailViewAction());
-		map.put("/QnAReply.do", new QnAReplyAction());
+		map.put("/QnAListForm.do", new QnAListFormAction()); //1:1문의 리스트 이동
+		map.put("/QnAWriteForm.do", new QnAWriteFormAction());//글등록페이지 이동
+		map.put("/QnAInsert.do", new QnAInsertAction());//글등록
+		map.put("/QnAReplyForm.do", new QnAReplyFormAction());//답변페이지 이동
+		map.put("/QnADetailView.do", new QnADetailViewAction());//글 상세내용
+		map.put("/QnAReply.do", new QnAReplyAction());//답변등록
 		
 		
 	}
