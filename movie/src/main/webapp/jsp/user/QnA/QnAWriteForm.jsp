@@ -66,10 +66,6 @@
 				
 			</tr>
 			<tr>
-				<td id="title">날짜</td>
-				<td><input name="qa_date" type="date" value=""></td>
-			</tr>
-			<tr>
 				<td id="title">내 용</td>
 				<td><textarea name="qa_cont" cols="70" rows="10"></textarea>
 				</td>

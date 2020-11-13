@@ -20,7 +20,6 @@ public class QnAInsertAction implements Action {
 		vo.setQa_title(request.getParameter("qa_title"));
 		vo.setQa_type(request.getParameter("qa_type"));
 		vo.setQa_name(request.getParameter("qa_name"));
-		vo.setQa_date(Date.valueOf(request.getParameter("qa_date")));
 		vo.setQa_cont(request.getParameter("qa_cont"));
 		
 		
