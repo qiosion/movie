@@ -204,12 +204,13 @@ input[type='text'], input[type='password'] {
 					</div>
 				</div>
 			</div>
+			<div class="text-center mt-3">
+				<button type="submit" class="btn btn-success" onclick="return formCheck()" style="margin-right: 30px;">수정</button>
+				<button type="button" class="btn btn-dark" onclick="location.href='main.do'" style="margin-right: 30px;">메인으로</button>
+				<button type="button" class="btn btn-danger" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
+			</div>
 		</div>
-		<div class="text-center mt-3">
-			<button type="submit" class="btn btn-success" onclick="return formCheck()" style="margin-right: 30px;">수정</button>
-			<button type="button" class="btn btn-dark" onclick="location.href='main.do'" style="margin-right: 30px;">메인으로</button>
-			<button type="button" class="btn btn-danger" id="memDelBtn" data-toggle="modal" data-target="#memDelPop">탈퇴</button>		
-		</div>
+		
 	</form>
 <!-- 팝업창 -->
 	<div class="modal" id="memDelPop">
