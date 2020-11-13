@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>°Ô½ÃÆÇ - ±Û¾²±â</title>
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
 <link rel="stylesheet" href="css/info.css">
 <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script>
@@ -58,7 +58,7 @@ function replyFrm(){
 <body>
 
 <div class="tit-heading-wrap tit-evt">
-	<h3>³»¿ë</h3>
+	<h3>ë‚´ìš©</h3>
 </div> 
 <br>
 
@@ -66,42 +66,42 @@ function replyFrm(){
 		<table class="table table-bordered">
 			<tbody>
 			<tr>
-				<td id="title">±Û¹øÈ£</td>
+				<td id="title">ê¸€ë²ˆí˜¸</td>
 				<td>${vo.qa_no}</td>
 			</tr>
 			<tr>
-				<td id="title">Á¦¸ñ</td>
+				<td id="title">ì œëª©</td>
 				<td>${vo.qa_title}</td>
 			</tr>
 			<tr>
-				<td id="title">¹®ÀÇÀ¯Çü</td>
+				<td id="title">ë¬¸ì˜ìœ í˜•</td>
 				<td>${vo.qa_type}</td>
 			</tr>
 			<tr>
-				<td id="title">³¯Â¥</td>
+				<td id="title">ë‚ ì§œ</td>
 				<td>${vo.qa_date}</td>
 			</tr>
 			<tr>
-				<td id="title">³» ¿ë</td>
+				<td id="title">ë‚´ ìš©</td>
 				<td id="cont">${vo.qa_cont}</td>
 			</tr>
 			</tbody>
 		</table>
 		<div align="center">
 				<c:if test="${mbr_author eq 'admin'}">
-	 			<button id="btn" type="submit" onclick ="replyFrm()">´äº¯´Þ±â</button>
+	 			<button id="btn" type="submit" onclick ="replyFrm()">ë‹µë³€ë‹¬ê¸°</button>
 	 			</c:if>
-				<button id="btn" type="submit" onclick="listFrm()">¸ñ·Ï</button>
+				<button id="btn" type="submit" onclick="listFrm()">ëª©ë¡</button>
 		</div>
 	</div>
 	<table class="table table-bordered">
 		<tbody>
 			<tr>
-				<td id="title">ÀÛ¼ºÀÚ</td>
-				<td>${vo.qa_ad_name}</td>
+				<td id="title">ìž‘ì„±ìž</td>		
+					<td>${vo.qa_name}</td>
 			</tr>
 			<tr>
-			<td id="title">³»¿ë</td>
+			<td id="title">ë‚´ìš©</td>
 			<td id="cont">${vo.qa_ad_comment}</td>
 			</tr>
 		</tbody>

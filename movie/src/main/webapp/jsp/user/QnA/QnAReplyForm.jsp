@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>°Ô½ÃÆÇ - ±Û¾²±â</title>
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
 <link rel="stylesheet" href="css/info.css">
 <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script>
@@ -58,7 +58,7 @@ function replyFrm(){
 <body>
 
 <div class="tit-heading-wrap tit-evt">
-	<h3>³»¿ë</h3>
+	<h3>ë‚´ìš©</h3>
 </div> 
 <br>
 <form method="post" action="QnAReply.do">
@@ -66,39 +66,39 @@ function replyFrm(){
 		<table class="table table-bordered">
 			<tbody>
 			<tr>
-				<td id="title">±Û¹øÈ£</td>
+				<td id="title">ê¸€ë²ˆí˜¸</td>
 				<td><input text="text" name="qa_no" value="${vo.qa_no}" readonly></td>
 			</tr>
 			<tr>
-				<td id="title">Á¦¸ñ</td>
+				<td id="title">ì œëª©</td>
 				<td>${vo.qa_title}</td>
 			</tr>
 			<tr>
-				<td id="title">¹®ÀÇÀ¯Çü</td>
+				<td id="title">ë¬¸ì˜ìœ í˜•</td>
 				<td>${vo.qa_type}</td>
 			</tr>
 			<tr>
-				<td id="title">³¯Â¥</td>
+				<td id="title">ë‚ ì§œ</td>
 				<td>${vo.qa_date}</td>
 			</tr>
 			<tr>
-				<td id="title">³» ¿ë</td>
+				<td id="title">ë‚´ ìš©</td>
 				<td id="cont">${vo.qa_cont}</td>
 			</tr>
 			</tbody>
 		</table>
 		<div align="center">
-				<button id="btn" type="submit" onclick="listFrm()">¸ñ·Ï</button>
+				<button id="btn" type="submit" onclick="listFrm()">ëª©ë¡</button>
 		</div>
 	</div>
 		<table class="table table-bordered">
 		<tbody>
 			<tr>
-				<td id="title">ÀÛ¼ºÀÚ</td>
-				<td><input type="text" name="qa_ad_name" value="${vo.qa_ad_name}"></td>
+				<td id="title">ì‘ì„±ì</td>
+				<td><input type="text" name="qa_name" value="${mbr_nm}"></td>
 			</tr>
 			<tr>
-			<td id="title">³»¿ë</td>
+			<td id="title">ë‚´ìš©</td>
 			<td id="cont"><textarea name="qa_ad_comment" cols="68" rows="20" class="form-control">
                    ${vo.qa_ad_comment}
                 </textarea> </td>
@@ -106,7 +106,7 @@ function replyFrm(){
 		</tbody>
 	</table>
 	<div>
-		<button id="btn" type="submit" class="btn btn-success" style="margin-right: 30px;">´äº¯</button>
+		<button id="btn" type="submit" class="btn btn-success" style="margin-right: 30px;">ë‹µë³€</button>
 	</div>
 	</form>
 	

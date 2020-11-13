@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cbox.QnA.command.QnADetailViewAction;
+import com.cbox.QnA.command.QnAInsertAction;
 import com.cbox.QnA.command.QnAListFormAction;
 import com.cbox.QnA.command.QnAReplyAction;
 import com.cbox.QnA.command.QnAReplyFormAction;
@@ -155,6 +156,7 @@ public class FrontController extends HttpServlet {
 		//1:1문의
 		map.put("/QnAListForm.do", new QnAListFormAction());
 		map.put("/QnAWriteForm.do", new QnAWriteFormAction());
+		map.put("/QnAInsert.do", new QnAInsertAction());
 		map.put("/QnAReplyForm.do", new QnAReplyFormAction());
 		map.put("/QnADetailView.do", new QnADetailViewAction());
 		map.put("/QnAReply.do", new QnAReplyAction());

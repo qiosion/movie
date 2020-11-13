@@ -9,17 +9,9 @@ public class QnAVO {
 	private String qa_cont;
 	private String qa_name;
 	private Date qa_date;
-	private String qa_ad_name;
 	private String qa_ad_comment;
 	
 	
-	
-	public String getQa_ad_name() {
-		return qa_ad_name;
-	}
-	public void setQa_ad_name(String qa_ad_name) {
-		this.qa_ad_name = qa_ad_name;
-	}
 	public String getQa_ad_comment() {
 		return qa_ad_comment;
 	}

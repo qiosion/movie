@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>°Ô½ÃÆÇ - ±Û¾²±â</title>
+<title>ê²Œì‹œíŒ - ê¸€ì“°ê¸°</title>
 <link rel="stylesheet" href="css/info.css">
 <link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <script>
@@ -44,19 +44,19 @@ function updateFrm(){
 			<div class="table-responsive">
 				<table class="table">
 					<tr style="line-height: 32px;">
-						<td class="txt">°øÁö¹øÈ£</td>
+						<td class="txt">ê³µì§€ë²ˆí˜¸</td>
 						<td><label id="info_Num">${vo.info_Num}</label></td>
 					</tr>
 					<tr>
-						<td class="txt">³¯Â¥</td>
+						<td class="txt">ë‚ ì§œ</td>
 						<td><label id="info_Date">${vo.info_Date}</label></td>
 					</tr>
 					<tr>
-						<td class="txt">Ä«Å×°í¸®</td>
+						<td class="txt">ì¹´í…Œê³ ë¦¬</td>
 						<td><label id="info_Category">${vo.info_Category}</label></td>
 					</tr>
 					<tr>
-						<td class="txt">³»¿ë</td>
+						<td class="txt">ë‚´ìš©</td>
 						<td><label id=info_Cont>${vo.info_Cont}</label></td>
 					</tr>
 				</table>
@@ -66,10 +66,10 @@ function updateFrm(){
 </div>
 <div class="text-center mt-3">
 	<c:if test="${mbr_author eq 'admin'}">
-		<button id="btn" type="button" class="btn btn-success" onclick = "updateFrm()" style="margin-right: 30px;">¼öÁ¤</button>
-		<button id="btn" type="button" class="btn btn-danger" onclick ="deleteFrm()" style="margin-right: 30px;">»èÁ¦</button>
+		<button id="btn" type="button" class="btn btn-success" onclick = "updateFrm()" style="margin-right: 30px;">ìˆ˜ì •</button>
+		<button id="btn" type="button" class="btn btn-danger" onclick ="deleteFrm()" style="margin-right: 30px;">ì‚­ì œ</button>
 	</c:if>
-	<button id="btn" type="button" class="btn btn-dark" onclick="listFrm()">¸ñ·Ï</button>
+	<button id="btn" type="button" class="btn btn-dark" onclick="listFrm()">ëª©ë¡</button>
 </div>
 </body>
 </html>

@@ -18,7 +18,7 @@ public class QnAReplyAction implements Action {
 		QnAVO vo = new QnAVO();
 		
 		vo.setQa_no(Integer.parseInt(request.getParameter("qa_no")));
-		vo.setQa_ad_name(request.getParameter("qa_ad_name"));
+		vo.setQa_name(request.getParameter("qa_name"));
 		vo.setQa_ad_comment(request.getParameter("qa_ad_comment"));
 		
 		

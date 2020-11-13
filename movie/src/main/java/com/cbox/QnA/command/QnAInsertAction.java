@@ -23,6 +23,7 @@ public class QnAInsertAction implements Action {
 		vo.setQa_date(Date.valueOf(request.getParameter("qa_date")));
 		vo.setQa_cont(request.getParameter("qa_cont"));
 		
+		
 		dao.insert(vo);
 		
 		try {

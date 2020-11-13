@@ -134,7 +134,6 @@ float: left;
                 	<td>제목</td>
                 	<td>문의유형</td>
                 	<td>작성일</td>
-                	<td>작성자</td>
            		</tr>
             </thead>
             <tbody>
@@ -144,7 +143,6 @@ float: left;
                 	<td id="td1"><a href="QnADetailView.do?qa_no=${qa.qa_no}">${qa.qa_title}</a></td>           	            
                 	<td>${qa.qa_type}</td>	
                 	<td>${qa.qa_date}</td>
-                	<td>${qa.qa_name}</td>
             	</tr>
             	</c:forEach>
             </tbody>   
