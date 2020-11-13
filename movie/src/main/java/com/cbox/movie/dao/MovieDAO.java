@@ -19,8 +19,10 @@ public class MovieDAO extends DAO {
 	private MovieVO vo;
 
 	private String SELECT_ALL = "SELECT * FROM MOVIE";
-//	private final String SELECT_PAGE = "select * from ( select a.*, rownum rn from (" + "select * from movie order by 1"
-//			+ ") a  ) b where rn between ? and ?";
+//	private String SELECT_ALL = "select mv.mv_num, mv.mv_title, mv.mv_strdate, mv.mv_cont, sum(rv_rank)/count(rv_rank) as rv_rank\r\n" + 
+//			"from movie mv, review rv\r\n" + 
+//			"where mv.mv_num = rv.mv_num\r\n" + 
+//			"group by mv.mv_num, mv_title, mv.mv_strdate, mv.mv_cont";
 	private String SELECT_SEARCH = "";
 	private String SELECT_EXPECTED = "SELECT * FROM MOVIE WHERE MV_STRDATE > SYSDATE"; // 상영 예정작
 	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";

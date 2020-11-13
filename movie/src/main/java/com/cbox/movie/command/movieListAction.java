@@ -30,6 +30,7 @@ public class movieListAction implements Action {
 		System.out.println("Keyword2 : "+searchVO.getKeyword());
 
 		list = dao.selectAll(searchVO);
+		
 //		request.setAttribute("movies", list);
 		try {
 			response.getWriter().print(new JSONArray(list));
