@@ -20,7 +20,6 @@ input[type='text'], input[type='password'] {
 	function movieDelete() {
 		$("#confirmDel").on("click", function() {
 			var delnum = '${vo.mvNum}';
-			console.log("movieDelete");
 			$.ajax({
 				url : "ajax/mvDelete.do",
 				data : {
@@ -29,7 +28,6 @@ input[type='text'], input[type='password'] {
 				dataType : 'json',
 				method : 'post',
 				success : function(xhr) {
-					console.log("삭제 xhr : "+xhr.result);
 					if(xhr.result) {
 						alert("삭제 성공");
 						location.href = "mvList.do";
@@ -46,7 +44,6 @@ input[type='text'], input[type='password'] {
 
 	function movieUpdate() {
 		$("#confirmUpt").on("click", function() {
-			console.log("movieUpdate");
 			// multipart
 			var form = $("#frm")[0];
 			var data = new FormData(form);

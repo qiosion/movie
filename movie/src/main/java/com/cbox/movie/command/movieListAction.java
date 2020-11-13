@@ -19,15 +19,12 @@ public class movieListAction implements Action {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 
-		System.out.println("movieListAction");
 		MovieDAO dao = new MovieDAO();
 		List<MovieVO> list = new ArrayList<MovieVO>();
 
 		MovieSearchVO searchVO = new MovieSearchVO();
 		searchVO.setType(request.getParameter("searchType"));
 		searchVO.setKeyword(request.getParameter("keyword"));
-		System.out.println("type2 : "+searchVO.getType());
-		System.out.println("Keyword2 : "+searchVO.getKeyword());
 
 		list = dao.selectAll(searchVO);
 		

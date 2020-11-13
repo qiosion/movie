@@ -16,7 +16,6 @@ public class scMvDetailAction implements Action {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 		int ttNum = Integer.parseInt(request.getParameter("ttNum"));
-		System.out.println("scMvDetailAction : "+ttNum);
 		ScreenMvVO vo = new ScreenMvVO(ttNum);
 		
 		ScreenMvDAO dao = new ScreenMvDAO();

@@ -24,7 +24,6 @@ public class movieDetailAction implements Action {
 		
 		List<ReviewVO> list = new ArrayList<ReviewVO>();
 		dao = new MovieDAO();
-		System.out.println("mvNum: " +vo.getMvNum());
 		list = dao.getReviewDetail(vo);
 		request.setAttribute("rvList", list);
 		

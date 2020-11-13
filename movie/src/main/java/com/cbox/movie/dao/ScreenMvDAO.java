@@ -90,8 +90,6 @@ public class ScreenMvDAO extends DAO {
 		
 		if (searchVO.getType() != null && !searchVO.getType().equals("") && searchVO.getKeyword() != null
 				&& !searchVO.getKeyword().equals("")) {
-			System.out.println("type : "+searchVO.getType());
-			System.out.println("keyword : "+searchVO.getKeyword());
 			if (searchVO.getType().equals("title")) {
 				whereCondition += " AND M.MV_TITLE LIKE '%'||?||'%'";
 			}
@@ -99,7 +97,6 @@ public class ScreenMvDAO extends DAO {
 		
 		try {
 			SELECT_LIST = SELECT_LIST + whereCondition + "ORDER BY 2, 3, 4";
-			System.out.println("getScreenList");
 			psmt = conn.prepareCall(SELECT_LIST);
 
 			int pos = 1;
@@ -131,7 +128,6 @@ public class ScreenMvDAO extends DAO {
 	}
 
 	public int count(MovieSearchVO searchVO) {
-		System.out.println("count");
 		int cnt = 0;
 		try {
 			String sql = "SELECT count(*) FROM TIMETABLE";
@@ -156,7 +152,6 @@ public class ScreenMvDAO extends DAO {
 
 	public ScreenMvVO detailScreenMv(ScreenMvVO scVO) {
 		try {
-			System.out.println("detailScreenMv");
 			psmt = conn.prepareStatement(DETAIL_MV);
 			psmt.setInt(1, scVO.getTtNum());
 			rs = psmt.executeQuery();
@@ -186,7 +181,6 @@ public class ScreenMvDAO extends DAO {
 
 	public void deleteScreenMv(ScreenMvVO scVO) {
 		try {
-			System.out.println("deleteScreenMv : " + scVO.getTtNum());
 			psmt = conn.prepareStatement(DELETE_MV);
 			psmt.setInt(1, scVO.getTtNum());
 			psmt.executeUpdate();
@@ -232,7 +226,6 @@ public class ScreenMvDAO extends DAO {
 
 	public void insertScreenMv(ScreenMvVO scVO) {
 		try {
-			System.out.println("insertScreenMv");
 			psmt = conn.prepareStatement(INSERT_MV);
 			psmt.setInt(1, scVO.getMvNum());
 			psmt.setString(2, scVO.getTtScrDate());
@@ -253,8 +246,6 @@ public class ScreenMvDAO extends DAO {
 			+ "TT_EMPTY = (SELECT TH_MAX FROM THEATER WHERE TH_NUM = ?) " + "WHERE TT_NUM=?";
 
 	public void updateScreenMv(ScreenMvVO scVO) {
-		System.out.println("updateScreenMv");
-
 		try {
 			psmt = conn.prepareStatement(UPDATE_MV);
 			psmt.setString(1, scVO.getTtScrDate());
@@ -283,10 +274,8 @@ public class ScreenMvDAO extends DAO {
 			rs = psmt.executeQuery();
 			
 			if(rs.next()) {
-				System.out.println("등록된게 있따.");
 				result = "Y";
 			} else {
-				System.out.println("등록된게 없다.");
 				result = "N";
 			}
 		} catch (SQLException e) {

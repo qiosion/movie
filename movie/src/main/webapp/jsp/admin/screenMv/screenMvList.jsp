@@ -74,8 +74,8 @@ select.form-control {
 		$("#menuSearchBtn").click(function() {
 			searchType = 'title';
 			keyword = $("#keyword").val();
-			console.log("keyword : "+keyword);
 			movieList(searchType, keyword);
+			$("#keyword").val("");
 		});
 	});
 
@@ -181,7 +181,6 @@ select.form-control {
 		if (num != "") {
 			alert("수정 중인 상영 정보입니다. 초기화 후 등록해주세요.");
 		} else {
-			console.log("num : " + num);
 			$(".text-center.mt-3 .btn.btn-success").attr("data-target",
 					"#mvInsertPop");
 		}

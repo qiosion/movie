@@ -118,8 +118,8 @@
 			$("#menuSearchBtn").click(function() {
 				searchType = 'title';
 				keyword = $("#keyword").val();
-				console.log("keyword : "+keyword);
 				movieList(searchType, keyword);
+				$("#keyword").val("");
 			});
 
 			$('.tgl-flat').change(function() {
@@ -129,7 +129,6 @@
 				} else {
 					keyword = "all";
 				}
-				console.log("keyword : " + keyword);
 				//localhost.href="${pageContext.request.contextPath}/movieList.do?searchType='chkType'&keyword="+chkType;
 				movieList(searchType, keyword);
 			});

@@ -15,7 +15,6 @@ public class scMvUpdateAction implements Action {
 
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("scMvUpdateAction");
 		ScreenMvVO vo = new ScreenMvVO();
 		
 		vo.setTtScrDate(request.getParameter("ttScrDate"));

@@ -44,8 +44,6 @@ function listOffice(type) {
 	var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.xml?key=" + serviceKey + "&targetDt=";
     date_list = $('#today').val().split('-');
     $("#title").empty();
-
-	console.log("type : "+type);
 	
     if(type == "select") {
         url = url + date_list[0] + date_list[1] + date_list[2];

@@ -19,7 +19,6 @@ public class mvUpdateAction implements Action {
 	@Override
 	public String exec(HttpServletRequest request, HttpServletResponse response) {
 
-		System.out.println("mvUpdateAction");
 		MovieDAO dao = new MovieDAO();
 		MovieVO vo = new MovieVO();
 
@@ -36,17 +35,6 @@ public class mvUpdateAction implements Action {
 
 		String addPath = request.getServletContext().getRealPath("/images");
 		// 포스터 : 단일
-		System.out.println("이전 데이터 : " + request.getParameter("prevPost"));
-		System.out.println("새 데이터 : " + request.getParameter("mvPost"));
-		if (request.getParameter("prevPost") == null) {
-			System.out.println("null이야");
-		} else if (request.getParameter("prevPost").equals("")) {
-			System.out.println("eq 공백이야");
-		} else if (request.getParameter("prevPost").equals("null")) {
-			System.out.println("eq null이야");
-		} else {
-			System.out.println("값이있어");
-		}
 		
 		try {
 			if (!request.getParameter("prevPost").equals("") && request.getParameter("mvPost") == null) {
@@ -56,7 +44,6 @@ public class mvUpdateAction implements Action {
 				String fileName = FileUtil.extractFileName(part);
 				if (!fileName.equals("")) {
 					String uploadFile = addPath + File.separator + fileName;
-					System.out.println("uploadFile : "+uploadFile);
 					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
 
 					vo.setMvPost(new File(uploadFile).getName());
@@ -68,7 +55,7 @@ public class mvUpdateAction implements Action {
 		}
 
 		// 스틸컷 : 단일
-		if (request.getParameter("prevImg") != null && request.getParameter("mvImg") == null) {
+		if (request.getParameter("prevImg").equals("") && request.getParameter("mvImg") == null) {
 			vo.setMvImg(request.getParameter("prevImg"));
 		} else {
 			try {
@@ -87,7 +74,7 @@ public class mvUpdateAction implements Action {
 		}
 
 		// 티저 : 단일
-		if (request.getParameter("prevTeaser") != null && request.getParameter("mvTeaser") == null) {
+		if (request.getParameter("prevTeaser").equals("") && request.getParameter("mvTeaser") == null) {
 			vo.setMvTeaser(request.getParameter("prevTeaser"));
 		} else {
 			try {
@@ -106,7 +93,6 @@ public class mvUpdateAction implements Action {
 		}
 
 		dao.movieUpdate(vo);
-		System.out.println("update 끝");
 
 		try {
 			response.getWriter().print("{\"result\":true}");

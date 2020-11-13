@@ -16,7 +16,6 @@ input[type='text'], input[type='password'] {
 
 	$(function() {
 		$("#export").click(function() {
-			console.log("export");
 			var chk = $("input[type='checkbox']:checked");
 			if (chk) {
 				$("#mvTitle").val(chk.parent().find('#mvTitle').text());
@@ -25,14 +24,11 @@ input[type='text'], input[type='password'] {
 				$("#mvAge").val(chk.parent().find('#mvAge').text());
 				$("#mvType").val(chk.parent().find('#mvType').text());
 				//$("#mvCha").val(chk.parent().children('#mvCha').text());
-				console.log(">>title : "+chk.parent().find('#mvTitle').text());
 
 				var strdate = chk.parent().find('#strdate').text();
-				console.log("?? " + strdate);
 				var yyyy = strdate.substring(0, 4);
 				var mm = strdate.substring(4, 6);
 				var dd = strdate.substring(6, 8);
-				console.log(">>> " + yyyy + "-" + mm + "-" + dd);
 				$("#strdate").val(yyyy + "-" + mm + "-" + dd);
 				//$("#searchPopup").modal("hide"); //닫기 
 				//$("#strdate").val(chk.parent().children('#strdate').text());
@@ -59,7 +55,6 @@ input[type='text'], input[type='password'] {
 	}
 
 	function showMvList() {
-		console.log("영화목록");
 		var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.xml?key="
 				+ serviceKey + "&movieNm=" + $("#keyword").val();
 
@@ -97,7 +92,6 @@ input[type='text'], input[type='password'] {
 	}
 
 	function movie(movieCd) {
-		console.log("movie : " + movieCd);
 		$("#result").empty();
 		var url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.xml?key="
 				+ serviceKey + "&movieCd=" + movieCd;
@@ -107,7 +101,6 @@ input[type='text'], input[type='password'] {
 					type : "GET",
 					dataType : "xml",
 					success : function(movie_data) {
-						console.log(movie_data);
 						var str = "";
 						//      str = str + "<img src='" + $(movie_data).find("imgSrc").text() + "'>";
 						str = str
@@ -138,7 +131,6 @@ input[type='text'], input[type='password'] {
 								});
 						var audit = $(movie_data).find("audit");
 						for (var i = 0; i < 1; i++) {
-							console.log("age");
 							str = str + "<p name='mvAge' id='mvAge'>"
 									+ audit.find("watchGradeNm").text()
 									+ "</p>";
@@ -172,7 +164,6 @@ input[type='text'], input[type='password'] {
 			var data = new FormData(form);
 
 			// 빈칸 체크
-			console.log("mvDir : " + $("#mvDir").val());
 			if (!$("#mvTitle").val()) {
 				alert("제목을 입력해주세요");
 				return false;				
@@ -193,8 +184,6 @@ input[type='text'], input[type='password'] {
 				alert("포스터 이미지를 첨부 해주세요.");
 				return false;				
 			}
-
-			console.log("movieInsert");
 
 			$.ajax({
 				url : "ajax/mvRegist.do",
