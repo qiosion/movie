@@ -33,9 +33,12 @@ table td, table th {
 	vertical-align: middle !important;
 	text-align: center;
 }
-input[type='text'], input[type='password'] {
+input[type='text'], input[type='password'], select {
     height: calc(1.5em + .75rem + 2px) !important;
     width: 100% !important;
+}
+input[type='date'] {
+	height: calc(1.5em + .75rem + 2px) !important;
 }
 </style>
 <script type="text/javascript">
