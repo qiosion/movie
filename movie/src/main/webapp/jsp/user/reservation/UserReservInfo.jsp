@@ -98,31 +98,7 @@
 		</div>
 		<div class="text-center mt-3">
 			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'">목록으로</button>
-			<!-- <button type="button" class="btn btn-danger" id="cancelBtn" data-toggle="modal" data-target="#cancelPop">예매 취소</button> -->
 		</div>
 	</form>
-<!-- 예매취소 팝업창
-	<div class="modal" id="cancelPop">
-		<div class="modal-dialog modal-dialog-scrollable">
-			<div class="modal-content">
-
-				<div class="modal-header">
-					<h1 class="modal-title">예매 취소</h1>
-					<button type="button" class="close" data-dismiss="modal">×</button>
-				</div>
-
-				<div class="modal-body">
-					<form id="frm2" name="frm2" action="" method="post">
-						<div id="cancel">
-							<input type="text" name="pwchk" id="pwchk" placeholder="비밀번호를 입력하세요">
-						</div>
-						<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
- -->
 </body>
 </html>

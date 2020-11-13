@@ -32,6 +32,15 @@
 	}
 </script>
 <style>
+.txt {
+	font-size: 20px;
+	font-weight: bolder;
+	width: 20%;
+}
+#info_Cont {
+	height:400px;
+	font-size: 15px;
+}
 /* #btn {
   background-color: white;
   color: black;
@@ -59,24 +68,20 @@ input[type='date'] {
 		<div class="col-sm-12 pt-3">
 			<div class="card">
 				<div class="card-header card-header-primary">
-					<span class="card-title" id="title">
+					<span class="card-title" class="txt">
 					<i class="fas fa-square"></i>공지사항 등록
 				</span>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-		<table width="700" border="3" bordercolor="lightgray" align="center">
+		<table class="table" width="700" border="3" bordercolor="lightgray" align="center">
 			<tr>
-				<td id="title">제목</td>
+				<td  class="txt">제목</td>
 				<td><input name="info_Title" type="text" size="70"
 					maxlength="100" value="" class="form-control" /></td>
 			</tr>
 			<tr>
-				<td id="title">날짜</td>
-				<td><input name="info_Date" type="date" value=""></td>
-			</tr>
-			<tr>
-				<td id="title">카테고리</td>
+				<td  class="txt">카테고리</td>
 				<td><select name="info_Category" class="form-control">
 						<option value="공지사항">공지사항</option>
 						<option value="이벤트">이벤트</option>
@@ -84,8 +89,8 @@ input[type='date'] {
 				
 			</tr>
 			<tr>
-				<td id="title">내 용</td>
-				<td><textarea name="info_Cont" cols="70" rows="10" class="form-control"></textarea>
+				<td class="txt">내 용</td>
+				<td><textarea id="info_Cont" name="info_Cont" cols="70" rows="10" class="form-control"></textarea>
 				</td>
 			</tr>
 			</table>

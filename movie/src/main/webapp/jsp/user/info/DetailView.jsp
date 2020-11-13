@@ -21,84 +21,55 @@ function updateFrm(){
 	
 </script>
 <style>
-.table > tbody > tr > td{
- 	font-color: #666666;
- 	font-size:large;
- 	font-weight:normal;
- 	border-bottom: 1px solid black;
- 	border-left-color: black;
- 	
- }
-.table > tbody > tr > #title{
-	width: 150px;
-	font-weight:bold;
-
+.txt {
+	font-size: 20px;
+	font-weight: bolder;
+	width: 20%;
 }
-.table > tbody > tr > #cont{
-	height:500px;
+#info_Cont {
+	height:400px;
+	font-size: 15px;
 }
-.table{
-	border-color: black;
-	
-}
-#btn {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  width:50px;
-  height:30px;
-  border-radius:10%;
-}
-
-#btn:hover {
-  background-color: #555555;
-  color: white;
-}
-
-
 </style>
 </head>
 <body>
-
-<div class="tit-heading-wrap tit-evt">
-	<h3>내용</h3>
-</div> 
-<br>
-
-<div id="container">
-		<table class="table table-bordered">
-			<tbody>
-			<tr>
-				<td id="title">공지번호</td>
-				<td>${vo.info_Num}</td>
-			</tr>
-			<tr>
-				<td id="title">제목</td>
-				<td>${vo.info_Title}</td>
-			</tr>
-			<tr>
-				<td id="title">날짜</td>
-				<td>${vo.info_Date}</td>
-			</tr>
-			<tr>
-				<td id="title">카테고리</td>
-				<td>${vo.info_Category}</td>
-				
-			</tr>
-			<tr>
-				<td id="title">내 용</td>
-				<td id="cont">${vo.info_Cont}</td>
-			</tr>
-			</tbody>
-		</table>
-		<div align="center">
-				<c:if test="${mbr_author eq 'admin'}">
-				<button id="btn" type="submit" onclick = "updateFrm()">수정</button>
-	 			<button id="btn" type="submit" onclick ="deleteFrm()">삭제</button>
-	 			</c:if>
-				<button id="btn" type="submit" onclick="listFrm()">목록</button>
+<div class="col-sm-12 pt-3">
+	<div class="card">
+		<div class="card-header card-header-primary">
+			<span class="card-title" id="title">
+			<i class="fas fa-square"></i>${vo.info_Title}
+			</span>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table">
+					<tr style="line-height: 32px;">
+						<td class="txt">공지번호</td>
+						<td><label id="info_Num">${vo.info_Num}</label></td>
+					</tr>
+					<tr>
+						<td class="txt">날짜</td>
+						<td><label id="info_Date">${vo.info_Date}</label></td>
+					</tr>
+					<tr>
+						<td class="txt">카테고리</td>
+						<td><label id="info_Category">${vo.info_Category}</label></td>
+					</tr>
+					<tr>
+						<td class="txt">내용</td>
+						<td><label id=info_Cont>${vo.info_Cont}</label></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
-
+</div>
+<div class="text-center mt-3">
+	<c:if test="${mbr_author eq 'admin'}">
+		<button id="btn" type="button" class="btn btn-success" onclick = "updateFrm()" style="margin-right: 30px;">수정</button>
+		<button id="btn" type="button" class="btn btn-danger" onclick ="deleteFrm()" style="margin-right: 30px;">삭제</button>
+	</c:if>
+	<button id="btn" type="button" class="btn btn-dark" onclick="listFrm()">목록</button>
+</div>
 </body>
 </html>

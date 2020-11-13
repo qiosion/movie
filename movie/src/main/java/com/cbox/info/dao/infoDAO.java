@@ -14,10 +14,10 @@ public class infoDAO extends DAO {
 	private ResultSet rs; // select 후 결과셋 받기
 	private infoVO vo;
 
-	private final String SELECT_ALL = "select * from( select a.*, rownum rn from("
-			+ "SELECT * FROM info order by info_num asc"
-			+ " ) a ) b where rn between ? and ? ";
-	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(seq_num.NEXTVAL,?,?,?,?)";
+	private final String SELECT_ALL = "SELECT * FROM( SELECT A.*, ROWNUM RN FROM("
+			+ "SELECT * FROM INFO ORDER BY INFO_NUM DESC"
+			+ " ) A ) B WHERE RN BETWEEN ? AND ? ";
+	private final String INSERT = "INSERT INTO INFO(INFO_NUM,INFO_TITLE,INFO_DATE,INFO_CATEGORY,INFO_CONT)VALUES(seq_num.NEXTVAL,?,SYSDATE,?,?)";
 	private final String SELECT = "SELECT * FROM INFO WHERE INFO_NUM=?";
 	private final String DELETE = "DELETE FROM INFO WHERE INFO_NUM = ?";
 	private final String UPDATE = "UPDATE INFO SET INFO_TITLE=?, INFO_DATE=SYSDATE, INFO_CATEGORY=?, INFO_CONT=? WHERE INFO_NUM=?";
@@ -54,9 +54,9 @@ public class infoDAO extends DAO {
 		try {
 			psmt = conn.prepareStatement(INSERT);
 			psmt.setString(1, vo.getInfo_Title());
-			psmt.setDate(2, vo.getInfo_Date());
-			psmt.setString(3, vo.getInfo_Category());
-			psmt.setString(4, vo.getInfo_Cont());
+			// psmt.setDate(2, vo.getInfo_Date());
+			psmt.setString(2, vo.getInfo_Category());
+			psmt.setString(3, vo.getInfo_Cont());
 			n = psmt.executeUpdate();
 
 		} catch (SQLException e) {

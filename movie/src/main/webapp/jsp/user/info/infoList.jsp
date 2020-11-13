@@ -110,22 +110,7 @@
  	text-align: center;
  	
  }
- 
- #btn {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  width:50px;
-  height:30px;
-  border-radius:10%;
-}
-
-#btn:hover {
-  background-color: #555555;
-  color: white;
-}
-
- </style>
+</style>
 </head>
 <body> 
 <div class="tit-heading-wrap tit-evt">
@@ -161,7 +146,7 @@
     </div>
    <c:if test="${mbr_author eq 'admin'}">
 	 <div align="right" id="topForm">
-         <button id="btn" type="submit" onclick="writeForm()">글등록</button>
+         <button id="btn" class="btn btn-danger" type="button" onclick="writeForm()">글등록</button>
     </div>
     </c:if>
    
