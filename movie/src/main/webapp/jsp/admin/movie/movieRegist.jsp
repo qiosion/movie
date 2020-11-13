@@ -4,6 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<style type="text/css">
+input[type='text'], input[type='password'] {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	var serviceKey = "0b20e5176c77db3f706f2e8a0783dec3";

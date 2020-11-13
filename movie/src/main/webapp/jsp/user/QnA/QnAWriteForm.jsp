@@ -6,6 +6,12 @@
 <head>
 <title>게시판 - 글쓰기</title>
 <link rel="stylesheet" href="/css/info.css">
+<style type="text/css">
+input[type='text'], input[type='password'] {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
+</style>
 <script>
 	function listFrm(){
 		location.href="QnAListForm.do";

@@ -44,6 +44,11 @@
 #btn:hover {
   background-color: #555555;
   color: white;
+}
+input[type='text'], input[type='password'] {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
 </style>
 </head>
 <body>
