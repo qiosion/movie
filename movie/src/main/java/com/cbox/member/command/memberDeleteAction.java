@@ -26,19 +26,25 @@ public class memberDeleteAction implements Action {
 		vo.setMbr_id(sid); // 세션아이디를 vo에 담는다
 		
 		String spw = (String)session.getAttribute("mbr_pw"); // 세션 비밀번호
-		String pwchk = request.getParameter("pwchk"); // 입력 비밀번호
-		//String pwchk = (String) request.getAttribute("pwchk");
-		if (pwchk == null || pwchk == "" ) {
+		String pchk = request.getParameter("pchk"); // 입력 비밀번호
+		//String pchk = (String) request.getAttribute("pwchk");
+		if (pchk == null || pchk == "" ) {
 			request.setAttribute("pwnull", "pw is null");
 			try {
-				response.sendRedirect("memberInfo.do");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('비밀번호를 입력하세요');</script>");
+				out.println("<script>location.href='memberInfo.do';</script>");
+				//response.sendRedirect("memberInfo.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		} else if (!spw.equals(pwchk)) {
+		} else if (!spw.equals(pchk)) {
 			request.setAttribute("pwwrong", "pw is wrong");
 			try {
-				response.sendRedirect("memberInfo.do");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('비밀번호가 틀렸습니다');</script>");
+				out.println("<script>location.href='memberInfo.do';</script>");
+				//response.sendRedirect("memberInfo.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -46,7 +52,10 @@ public class memberDeleteAction implements Action {
 			dao.delete(vo);
 			try {
 				session.invalidate();
-				response.sendRedirect("main.do");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('탈퇴되었습니다');</script>");
+				out.println("<script>location.href='main.do';</script>");
+				//response.sendRedirect("main.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

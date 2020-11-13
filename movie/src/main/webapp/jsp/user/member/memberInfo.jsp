@@ -104,7 +104,7 @@ input[type='text'], input[type='password'] {
 
 </ul>
 </div>
-
+<!-- 회원탈퇴 -->
 <c:if test="${pwnull ne null}">
 	<script> alert("비밀번호를 입력하세요");</script>
 </c:if>
@@ -226,10 +226,12 @@ input[type='text'], input[type='password'] {
 				<div class="modal-body">
 					<form id="frm2" name="frm2" action="memberDelete.do" method="post">
 						<div id="delete">
-							<input type="text" name="pwchk" id="pwchk" placeholder="비밀번호를 입력하세요">
+							<input type="text" name="pchk" id="pchk" placeholder="비밀번호를 입력하세요">
 						</div>
-						<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
-						<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						<div style="text-align: center; margin: 10px;">
+							<button type="submit" name="confirmDel" id="confirmDel" class="btn btn-success">탈퇴</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+						</div>
 					</form>
 				</div>
 			</div>
