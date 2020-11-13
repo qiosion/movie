@@ -10,9 +10,10 @@
 <title>Insert title here</title>
 <style type="text/css">
 input[type='text'], input[type='password'] {
-    height: calc(1.5em + .75rem + 2px) !important;
-    width: 100% !important;
+	height: calc(1.5em + .75rem + 2px) !important;
+	width: 100% !important;
 }
+
 #frm img {
 	display: block;
 	margin: 0px auto;
@@ -83,19 +84,19 @@ input[type='text'], input[type='password'] {
 			<p style="font-size: 20px;">${vo.mvAge}</p>
 			<p style="font-size: 20px; margin: 10px 0;">${vo.mvCont}</p>
 			<p style="font-size: 20px;">
-				<c:if test="${empty vo.mvRank}">
-								<c:forEach begin="1" end="5">&#127770;</c:forEach>
-							</c:if>
-							<c:if test="${!empty vo.mvRank}">
-								<c:set var="num" value="${vo.mvRank - (vo.mvRank % 1)}"/>
-								<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
-								<c:if test="${vo.mvRank-num eq 0.5}">
-								<script type="text/javascript">
-									console.log(">>>0.5");
-								</script>
-									<c:forEach begin="1" end="${vo.mvRank-num+1}">&#127767;</c:forEach>
-								</c:if>
-							</c:if>
+				<c:if test="${vo.mvRank eq 0.0}">
+					<c:forEach begin="1" end="5">&#127770;</c:forEach>
+				</c:if>
+				<c:if test="${!empty vo.mvRank}">
+					<c:set var="num" value="${vo.mvRank - (vo.mvRank % 1)}" />
+					<c:forEach begin="1" end="${num}">&#127773;</c:forEach>
+					<c:if test="${vo.mvRank-num eq 0.5}">
+						<script type="text/javascript">
+							console.log(">>>0.5");
+						</script>
+						<c:forEach begin="1" end="${vo.mvRank-num+1}">&#127767;</c:forEach>
+					</c:if>
+				</c:if>
 			</p>
 		</div>
 	</div>
@@ -188,14 +189,14 @@ input[type='text'], input[type='password'] {
 										</tr>
 									</thead>
 									<tbody>
-									<c:forEach var="rv" items="${rvList}">
-										<tr>
-											<td>${rv.mbrId }</td>
-											<td>${rv.rvCont }</td>
-											<td>${rv.rvRank }</td>
-											<td>${rv.rvDate }</td>
-										</tr>
-									</c:forEach>
+										<c:forEach var="rv" items="${rvList}">
+											<tr>
+												<td>${rv.mbrId }</td>
+												<td>${rv.rvCont }</td>
+												<td>${rv.rvRank }</td>
+												<td>${rv.rvDate }</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 							</div>
@@ -203,7 +204,7 @@ input[type='text'], input[type='password'] {
 					</div>
 				</div>
 			</form>
-			</div>
+		</div>
 		<div id="tab-3" class="tab-content">
 			<form id="frm" name="frm" enctype="multipart/form-data">
 				<div class="col-sm-12 pt-3">
@@ -217,7 +218,8 @@ input[type='text'], input[type='password'] {
 									<tbody>
 										<tr
 											style="line-height: 32px; float: center; text-align: center;">
-											<td colspan="4"><p style="size: 20px;">포스터 이미지</p> <img style="max-height: 400px;"
+											<td colspan="4"><p style="size: 20px;">포스터 이미지</p> <img
+												style="max-height: 400px;"
 												src="${pageContext.request.contextPath}/images/${vo.mvPost}"></td>
 										</tr>
 										<tr style="text-align: center;">
