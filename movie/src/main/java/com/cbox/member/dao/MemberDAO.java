@@ -222,7 +222,6 @@ public class MemberDAO extends DAO{
 			pstmt.setString(5, vo.getMbr_email());
 			pstmt.setString(6, vo.getMbr_phone());
 			if (vo.getMbr_e_yn() == "" || vo.getMbr_e_yn() == null) {
-				System.out.println("chk:" + vo.getMbr_e_yn());
 				pstmt.setString(7, "n");
 			} else {
 				pstmt.setString(7, vo.getMbr_e_yn());

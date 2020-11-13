@@ -22,22 +22,18 @@ public class FindIdAction implements Action {
 		Date mbr_birth = Date.valueOf(request.getParameter("mbr_birth"));
 		String mbr_phone = request.getParameter("mbr_phone");
 		
-		System.out.println("날짜 어케받냐" + mbr_birth);
-		
 		vo.setMbr_nm(mbr_nm);
 		vo.setMbr_birth(mbr_birth);
 		vo.setMbr_phone(mbr_phone);
 		
 		FindDAO dao = new FindDAO();
 		vo = dao.searchId(vo);
-		System.out.println("아디" + vo.getMbr_id());
 		
 		try {
 			response.getWriter().print(new JSONObject(vo));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// request.setAttribute("id", ivo.getMbr_id());
 		return null;
 	}
 
