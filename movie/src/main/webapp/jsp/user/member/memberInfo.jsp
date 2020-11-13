@@ -160,11 +160,11 @@ input[type='text'], input[type='password'] {
 </script>
 							<tr>
 								<td class="txt">이름</td>
-								<td><input type="text" value="${ myPage.mbr_nm }" readonly></td>
+								<td><input type="text" value="${ myPage.mbr_nm }" class="form-control" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">생년월일</td>
-								<td><input type="text" value="${ myPage.mbr_birth }" readonly></td>
+								<td><input type="text" value="${ myPage.mbr_birth }" class="form-control" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">전화번호</td>
@@ -176,11 +176,11 @@ input[type='text'], input[type='password'] {
 							</tr>
 							<tr>
 								<td class="txt">회원가입일</td>
-								<td><input type="text" value="${ myPage.mbr_regi_date }" readonly></td>
+								<td><input type="text" value="${ myPage.mbr_regi_date }" class="form-control" readonly></td>
 							</tr>
 							<tr>
 								<td class="txt">포인트</td>
-								<td><input type="text" value="${ myPage.mbr_point }" readonly></td>
+								<td><input type="text" value="${ myPage.mbr_point }" class="form-control" readonly></td>
 							</tr>
 							<tr>
     							<td class="txt">이메일 광고 수신여부</td>
