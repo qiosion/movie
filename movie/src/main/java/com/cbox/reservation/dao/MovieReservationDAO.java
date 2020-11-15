@@ -13,6 +13,7 @@ import com.cbox.reservation.vo.MovieReservationVO;
 import com.cbox.reservation.vo.MvFindDateDTO;
 import com.cbox.reservation.vo.MvFindImgDTO;
 import com.cbox.reservation.vo.ReservInsertDTO;
+import com.cbox.reservation.vo.ReservNoVO;
 import com.cbox.reservation.vo.mvFindDateVO;
 
 public class MovieReservationDAO extends DAO {
@@ -25,6 +26,13 @@ public class MovieReservationDAO extends DAO {
 	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
 	private MvFindImgDTO idto;
+	private final String SELECT_RESERV = 
+			"select tc_num\r\n" + 
+			"from(\r\n" + 
+			"select *\r\n" + 
+			"from ticketing\r\n" + 
+			"order by rownum desc)\r\n" + 
+			"where rownum=1";
 	private final String INSERT = 
 			"INSERT INTO TICKETING(TC_NUM, TT_NUM, TC_ST_NUM, TC_DATE, MBR_NO, TC_PAY_METHOD, TC_PRICE, TC_PPL)\r\n" + 
 			"VALUES (?,?,?,?,?,?,?,?)";
@@ -52,7 +60,22 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
-
+	public String selectReservNo() {
+		String reservNo = "";
+			try {
+				//sql준비하고
+				psmt = conn.prepareStatement(SELECT_RESERV);
+				rs = psmt.executeQuery();
+				if(rs.next()) {
+					reservNo = rs.getString("tc_num");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return reservNo;
+		
+	}
 	public void insertMvReserv(ReservInsertDTO dto) { //예매한 내역 저장
 		
 		try {

@@ -139,7 +139,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/mvFindTime.do", new mvFindTimeAction()); // 영화 id와 date에 맞는 상영시간 찾아오기.
 		map.put("/ajax/mvFindImg.do", new MvFindImgAction()); //mv image 갖고오기
 		map.put("/ajax/ReservInsert.do", new ReservInsertAction()); //예매내역 저장
-		map.put("//ajax/ReservNo.do", new ReservNoAction()); //예매번호 생성?
+		map.put("/ajax/ReservNo.do", new ReservNoAction()); //예매번호 생성
 
 		// 재훈
 

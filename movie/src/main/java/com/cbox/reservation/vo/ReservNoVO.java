@@ -1,7 +1,7 @@
 package com.cbox.reservation.vo;
 
 public class ReservNoVO {
-	String reservNo;
+	String reservNo; //예매번호
 
 	
 	public ReservNoVO() {

@@ -309,23 +309,7 @@
 						
 						
 					});
-					/*$(".btn-left").on("click",function(){
-						if($(this).attr("title")=="영화선택"){
-							alert("영화선택");
-						$(".step.step2").css("display","none");
-						$(".step.step1").css("display","block");
-						$("#ticket_tnb .tnb.step1 .btn-left").css("display","none");
-						$(".btn-right").css("background-position", "-150px -220px");
-						$("#tnb_step_btn_right").attr("title","좌석선택");	
-						$(".seatsClick .seatTable .seatTd").removeClass("selected");
-						$(".mouse_block").css("display","block");
-						$(".section.section-numberofpeople #nop_group_adult ul li").removeClass("selected");
-						if($(".section.section-numberofpeople #nop_group_adult ul li").data("count")==0){
-							$(this).addClass("selected");
-						}
-						}
-						
-					});*/
+					
 					
 					var screen = $(this).parents("div.theater").children().children(".floor").text();
 					$(".info.theater .row.screen .data").text(screen);
@@ -340,12 +324,14 @@
 			});//end test01 date button click 	
 		
 		}); //end #test00 a, movie button click
+		
+		
 		//$(".theater_minimap .seatsClick").
 		var title = ["A","B","C","D","E","F"];
 		var cnt=0;
 		var table = $("<table >").attr("class","seatTable");
 		var seaNum = 1;
-		for(var i=0; i<6 ; i++){
+		for(var i=0; i<6 ; i++){           //예약할 좌석출력할 테이블 ,출력할때 예매된 좌석은 막아야함.
 			var tr=$("<tr >").attr("class","seatTr");
 			for(var j=1; j<=8; j++){
 				var td=$("<td >").attr({"class":"seatTd", "data-seaNum":title[cnt]+"-"+j+"번"});
@@ -358,7 +344,7 @@
 		$(".theater_minimap .seatsClick").append(table);
 		
 		cnt=0;
-		table = $("<table>").attr("class","seatTableTitle"); //좌석테이블 생성
+		table = $("<table>").attr("class","seatTableTitle"); //A,B,C,D ~ 좌석열을 출력함.
 		for(var i=1; i<=6; i++){
 		    tr=$("<tr>").attr("class","seatTr");
 		    td=$("<td>").attr("class","seatTd");
@@ -435,15 +421,21 @@
 							if($("#tnb_step_btn_right").attr("title")=="결제선택"){
 							$(".step.step2").css("display","none");
 							$(".step.step3").css("display","block");
-							/*$.ajax({
+							//예매번호 생성
+							$.ajax({
 								url: '${pageContext.request.contextPath}/ajax/ReservNo.do',
 								dataType:"json",
+								async:false,
 								success:function(data){
-									alert("성공이쥬.");
+									console.log(data.no);
+									
+									no = data.no;
+									//console.log("ajax: " +no);
 								},error:function(){
 									alert("no실패");
 								}
-							})*/
+							});
+							//console.log("noajax:" + no); //이거부터 실행됨.
 							var date = new Date();
 							var year = date.getFullYear();
 							var month = (date.getMonth()+1); 
