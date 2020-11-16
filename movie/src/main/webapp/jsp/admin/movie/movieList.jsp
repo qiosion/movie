@@ -129,7 +129,7 @@ $(function() {
 			<tbody>
 				<c:forEach var="movie" items="${movies}">
 					<tr>
-						<td>${movie.mvNum }</td>
+						<td>${movie.rowNum }</td>
 						<td>${movie.mvTitle }</td>
 						<td><img id="mvPoster"
 							src="${pageContext.request.contextPath}/images/${movie.mvPost}"></td>

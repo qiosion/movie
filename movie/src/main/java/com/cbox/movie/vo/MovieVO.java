@@ -18,6 +18,8 @@ public class MovieVO {
 	private Double mvRank; // 평균 평점
 	private String mvPost; // 포스터 이미지
 	private String mvAge;	// 관람연령
+	
+	private int rowNum;
 
 	private Integer first;
 	private Integer last;
@@ -42,6 +44,14 @@ public class MovieVO {
 		this.mvTeaser = mvTeaser;
 		this.mvRank = mvRank;
 		this.mvAge = mvAge;
+	}
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 	public int getMvNum() {

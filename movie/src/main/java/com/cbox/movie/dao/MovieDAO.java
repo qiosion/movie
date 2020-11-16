@@ -123,7 +123,8 @@ public class MovieDAO extends DAO {
 
 			while (rs.next()) {
 				vo = new MovieVO();
-				vo.setMvNum(rs.getInt("rn"));
+				vo.setMvNum(rs.getInt("mv_num"));
+				vo.setRowNum(rs.getInt("rn"));
 				vo.setMvTitle(rs.getString("mv_title"));
 				vo.setMvDir(rs.getString("mv_dir"));
 				vo.setMvCha(rs.getString("mv_cha"));
