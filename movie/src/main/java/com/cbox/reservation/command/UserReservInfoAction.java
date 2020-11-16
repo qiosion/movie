@@ -15,7 +15,7 @@ public class UserReservInfoAction implements Action {
 		UserReservDAO dao = new UserReservDAO();
 		UserReservVO vo = new UserReservVO();
 
-		vo.setTc_num(Integer.parseInt(request.getParameter("tc_no")));
+		vo.setTc_num(request.getParameter("tc_no"));
 		vo = dao.userReservOne(vo.getTc_num());
 		request.setAttribute("infoData", vo);
 		return "/jsp/user/reservation/UserReservInfo.jsp";

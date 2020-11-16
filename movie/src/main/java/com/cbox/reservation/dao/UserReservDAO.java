@@ -34,14 +34,14 @@ public class UserReservDAO extends DAO {
 					"JOIN MEMBER MBR ON MBR.MBR_NO = TC.MBR_NO " + 
 					"WHERE TC.TC_NUM = ? )A )B";
 	
-	public UserReservVO userReservOne(int tcn) {
+	public UserReservVO userReservOne(String tcn) {
 		try {
 			pstmt = conn.prepareStatement(SELECT_ONE_RESERV);
-			pstmt.setInt(1, tcn);
+			pstmt.setString(1, tcn);
 			rs = pstmt.executeQuery();
 			vo = new UserReservVO();
 			if(rs.next()){
-				vo.setTc_num(rs.getInt("tc_num"));
+				vo.setTc_num(rs.getString("tc_num"));
 				vo.setTc_date(rs.getDate("tc_date"));
 				vo.setMv_title(rs.getString("mv_title"));
 				vo.setMv_num(rs.getInt("mv_num"));
@@ -76,7 +76,7 @@ public class UserReservDAO extends DAO {
 				vo.setTt_start(rs.getString("tt_start")); 
 				vo.setTc_st_num(rs.getString("tc_st_num"));
 				vo.setTh_name(rs.getString("th_name"));
-				vo.setTc_num(rs.getInt("tc_num"));
+				vo.setTc_num(rs.getString("tc_num"));
 				
 				list.add(vo);
 			}

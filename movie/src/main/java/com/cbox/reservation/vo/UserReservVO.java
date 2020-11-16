@@ -3,7 +3,7 @@ package com.cbox.reservation.vo;
 import java.sql.Date;
 
 public class UserReservVO {
-	private int tc_num;
+	private String tc_num;
 	private Date tc_date;
 	private String mv_title;
 	private int mv_num;
@@ -53,11 +53,11 @@ public class UserReservVO {
 		this.tc_date = tc_date;
 	}
 
-	public int getTc_num() {
+	public String getTc_num() {
 		return tc_num;
 	}
 
-	public void setTc_num(int tc_num) {
+	public void setTc_num(String tc_num) {
 		this.tc_num = tc_num;
 	}
 
@@ -125,7 +125,7 @@ public class UserReservVO {
 		this.last = last;
 	}
 
-	public UserReservVO(int tc_num, String mv_title, String tt_scr_date, String tt_start, String tc_st_num,
+	public UserReservVO(String tc_num, String mv_title, String tt_scr_date, String tt_start, String tc_st_num,
 			String th_name, int mbr_no, Integer first, Integer last) {
 		super();
 		this.tc_num = tc_num;
@@ -139,7 +139,7 @@ public class UserReservVO {
 		this.last = last;
 	}
 
-	public UserReservVO(int tc_num, String mv_title, String tt_scr_date, String tt_start, String tc_st_num,
+	public UserReservVO(String tc_num, String mv_title, String tt_scr_date, String tt_start, String tc_st_num,
 			String th_name, int mbr_no) {
 		super();
 		this.tc_num = tc_num;
@@ -151,7 +151,7 @@ public class UserReservVO {
 		this.mbr_no = mbr_no;
 	}
 
-	public UserReservVO(int tc_num, Date tc_date, String mv_title, String mv_age, String tt_scr_date, String tt_start,
+	public UserReservVO(String tc_num, Date tc_date, String mv_title, String mv_age, String tt_scr_date, String tt_start,
 			String tt_end, String tc_st_num, String th_name, int mbr_no) {
 		super();
 		this.tc_num = tc_num;

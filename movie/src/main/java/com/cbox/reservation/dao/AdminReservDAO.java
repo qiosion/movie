@@ -58,7 +58,7 @@ public class AdminReservDAO extends DAO {
 				vo.setTt_start(rs.getString("tt_start")); 
 				vo.setTc_st_num(rs.getString("tc_st_num"));
 				vo.setTh_name(rs.getString("th_name"));
-				vo.setTc_num(rs.getInt("tc_num"));
+				vo.setTc_num(rs.getString("tc_num"));
 				list.add(vo);
 			}
 		} catch(SQLException e) {
@@ -108,7 +108,7 @@ public class AdminReservDAO extends DAO {
 				vo.setTt_start(rs.getString("tt_start")); 
 				vo.setTc_st_num(rs.getString("tc_st_num"));
 				vo.setTh_name(rs.getString("th_name"));
-				vo.setTc_num(rs.getInt("tc_num"));
+				vo.setTc_num(rs.getString("tc_num"));
 				list.add(vo);
 			}
 		} catch (SQLException e) {
