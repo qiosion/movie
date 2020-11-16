@@ -329,6 +329,17 @@
 		//$(".theater_minimap .seatsClick").
 		var title = ["A","B","C","D","E","F"];
 		var cnt=0;
+		$.ajax({
+			url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
+			
+			success : function(){
+				alert("성공일까?")
+			},
+		
+			error : function(xhr, status){
+				alert("오류일까?");
+		}
+		});
 		var table = $("<table >").attr("class","seatTable");
 		var seaNum = 1;
 		for(var i=0; i<6 ; i++){           //예약할 좌석출력할 테이블 ,출력할때 예매된 좌석은 막아야함.

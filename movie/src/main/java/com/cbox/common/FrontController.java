@@ -65,6 +65,7 @@ import com.cbox.reservation.command.MvFindImgAction;
 import com.cbox.reservation.command.ReservFromTodayAction;
 import com.cbox.reservation.command.ReservInsertAction;
 import com.cbox.reservation.command.ReservNoAction;
+import com.cbox.reservation.command.ReservSeatSearchAction;
 import com.cbox.reservation.command.ReservationForm;
 import com.cbox.reservation.command.UserReservInfoAction;
 import com.cbox.reservation.command.UserReservListAction;
@@ -140,6 +141,7 @@ public class FrontController extends HttpServlet {
 		map.put("/ajax/mvFindImg.do", new MvFindImgAction()); //mv image 갖고오기
 		map.put("/ajax/ReservInsert.do", new ReservInsertAction()); //예매내역 저장
 		map.put("/ajax/ReservNo.do", new ReservNoAction()); //예매번호 생성
+		map.put("/ajax/ReservSeatSearch.do", new ReservSeatSearchAction()); //예매된좌석찾기
 
 		// 재훈
 
