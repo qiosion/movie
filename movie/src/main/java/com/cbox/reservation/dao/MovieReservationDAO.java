@@ -14,6 +14,7 @@ import com.cbox.reservation.vo.MvFindDateDTO;
 import com.cbox.reservation.vo.MvFindImgDTO;
 import com.cbox.reservation.vo.ReservInsertDTO;
 import com.cbox.reservation.vo.ReservNoVO;
+import com.cbox.reservation.vo.ReservSeatSearchDTO;
 import com.cbox.reservation.vo.mvFindDateVO;
 
 public class MovieReservationDAO extends DAO {
@@ -26,6 +27,16 @@ public class MovieReservationDAO extends DAO {
 	private mvFindDateVO mfvo;
 	private MovieReservationVO rvo;
 	private MvFindImgDTO idto;
+	
+	private final String SELECT_RESERV_SEAT =
+			"select tt.tt_num, tk.tc_st_num\r\n" + 
+			"from timetable tt, ticketing tk\r\n" + 
+			"where tt.tt_num = tk.tt_num\r\n" + 
+			"and mv_num=?\r\n" + 
+			"and tt_scr_date=?'\r\n" + 
+			"and tt_start = ?\r\n" + 
+			"and tt_end =?\r\n" + 
+			"and th_num = ?;";
 	private final String SELECT_RESERV = 
 			"select tc_num\r\n" + 
 			"from(\r\n" + 
@@ -60,6 +71,30 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		"and tk.tt_num = tt.tt_num\r\n" + 
 		"group by m.mv_title, tt.tt_scr_date, tt.tt_start, th.th_name, th.th_max";
 	
+
+	public List<ReservSeatSearchDTO> selectReservSeat(ReservSeatSearchDTO dto){
+		List<ReservSeatSearchDTO> list = new ArrayList<>();
+		try {
+			psmt = conn.prepareStatement(SELECT_RESERV_SEAT);
+			psmt.setString(1, dto.getEmSeatMv());
+			psmt.setString(2, dto.getEmDate());
+			psmt.setString(3, dto.getEmStart());
+			psmt.setString(4, dto.getEmEnd());
+			psmt.setInt(5, dto.getEmThNum());
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				ReservSeatSearchDTO dto1 = new ReservSeatSearchDTO();
+				dto1.setTt_num(rs.getInt("tt_num"));
+				dto1.setTc_st_num(rs.getString("tc_st_num"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return list;
+	}
 	public String selectReservNo() {
 		String reservNo = "";
 			try {

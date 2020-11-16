@@ -78,26 +78,23 @@
 
 	$(function(){
 		
-		
+
+		/*----------------------
+		* 영화를 선택
+		-----------------------*/
 		$("#test00 a").on("click",function(){ //예매에서 영화를 선택했을경우
+			
 			if($("#test01 li").hasClass("selected")){
 				$("#test01 li").removeClass("selected");
 			}
-			//$("#test01 a").css("background-color","");
-			//$("#test00 a").css("background-color","");
-			//$("#test00 .text").css("color","");			
-			//$(this).css("background-color", "black");
-			//$(this).children(".text").css("color","white");
 			if($("#test00 li").hasClass("selected")){
 				$("#test00 li").removeClass("selected");
 			}
 				$(this).parent().addClass("selected");
 				$("#test02").empty();
 			
-			
-			
 			//$(this).attr("title"); //영화 id
-			var paramid = $(this).attr("title");
+			localStorage.setItem("mid", $(this).attr("title"));
 			var param_id = {m_id: $(this).attr("title")};
 			//console.log($("#test01 li").attr("date"));
 			
@@ -107,11 +104,6 @@
 				data:param_id, //보낼 data
 				dataType: "json", //요청한 데이터를 받을 형식
 				success : mvFindDate,
-					//function(data){ //data에 결과값받아옴
-					//전송에 성공하면 실행될 코드
-					//alert(data[0].tt_scr_date);
-					
-				//},
 				error : function(xhr, status){
 					alert("오류");
 				}
@@ -129,221 +121,166 @@
 					alert("이미지 불러오기 오류");
 				}
 			});//end img ajax
-			
-			function mvFindImg(data){
-				var mv_title = data[0].mv_title;
-				var mv_post = data[0].mv_post;
-				//console.log(mv_title);
-				$(".info.movie .placeholder").css("display","none");
-				$(".info.movie .movie_poster img")
-				.attr({"src":"${pageContext.request.contextPath}/images/"+mv_post, "style":"display:inline"});
-				$(".info.movie .row.movie_title.colspan2").css("display","block");
-				$(".info.movie .row.movie_title.colspan2 a").attr("title",mv_title);
-				$(".info.movie .row.movie_title.colspan2 a").text(mv_title);
-
-				
-				
-				
-			}
-			var mvDate; //해당영화 상영일
-			var date; //전체 날짜
-			function mvFindDate(data){//start mvFindate
-				$("li.day span").css("color","#A9A9A9"); //영화누르면 모든날짜 회색
-				var test;
-				$.each(data,function(idx,items){
-					mvDate = items.tt_scr_date;
-					//str.slice(0, 5) + '-' + str.slice(5, 9) + '-' + str.slice(9);
-					//console.log(mvDate)
-					mvDate = mvDate.replaceAll("-","") //불러온 영화상영일에서 -제거
-					var list= $("#test01 li.day");
-					for(var i=0; i<list.length; i++){//브라우저의 li목록에 있는 날짜 다출력
-						//$("#test01 li.day")[i].children[0].children[0].style="color:#A9A9A9"
-						//$("#test01 li.day")[i].children[0].children[1].style="color:#A9A9A9"
-						 date = $(list[i]).data("date") +"";
-					//	console.log("li날짜 : " +date)
-						if(date.length != 8){
-							date = parseInt(date.replace(/(.{6})/g,"$10"));
-						}else{
-							date = parseInt(date);
-						}
-							//console.log("바뀐날짜 : " +date)
-						//mvDate - DB에서 가지고온 영화의 상영일, date = 브라우저에 뿌려진 현재 월의 날짜
-						if(mvDate == date) { //DB에서 갖고온 해당영화의 상영일과 , 브라우저에서 갖고온 날짜와 비교해서 같지않으면, 해당textcolor회색처리
-							$(list[i]).find("span").css("color","black"); //누를때마다 초기화
-							$(list[i]).attr("data-check","yes");
-							break;
-						}
-						
-						
-					}// end for
-					
-				});//end each
-			}//end funtion mvFindate
-			
-			$("#test01 a").on("click", function(){  //영화 클릭후 날짜 클릭
-				
-				if($("#test01 li").hasClass("selected")){
-					$("#test01 li").removeClass("selected");
-				}
-				
-				if($(this).parent(".day").data("check")=='yes'){
-					$(this).parent().addClass("selected");
-				}else{
-					alert("상영정보가 없습니다.");
-				}
-				
-				$(".btn-right").css("background-position", "0px -220px")
-				var screenInfo = $(".section.section-screen-select .playYMD-info");
-				var date2 = $(this).parent().data("date")+"";
-				if( date2.length !=8){
-					date2 = date2.replace(/(.{6})/g,"$10")
-				}else{
-					date2=date2;
-				}
-				//console.log((date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-"))
-				date2 = (date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
-				$(screenInfo).children(".date").text(date2);
-				var dayweek2 = $(this).children(".dayweek").text();
-				$(screenInfo).children(".exe").text("("+dayweek2+")");
-				
-				
-				//$("#test01 span").css("color","");
-				//$(this).css("background-color", "black");
-				//$("#tnb_step_btn_right").css("backgorund-position","0px 0px");
-				//$(this).children().css("color","white");
-				//console.log($(this).parent().data("date")) -- 클릭한 년월일
-				var cDate = $(this).parent().data("date")+""; //cDate - 클릭한 년월일., replace할려면 문자열이여야함
-				if(cDate.length != 8){
-					cDate = cDate.replace(/(.{6})/g,"$10");
-				}else{
-					cDate =cDate;
-				}
-				cDate = (cDate.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
-				//console.log(cDate);
-				var param_idDate = {m_id: paramid, m_date:cDate}; //영화 id값 받아오는거.
-				//console.log(param_idDate);
-				
-				$.ajax({
-					url:"${pageContext.request.contextPath}/ajax/mvFindTime.do", //data보낼 주소
-					type:"get", //전송방식
-					data:param_idDate, //보낼 data
-					dataType: "json", //요청한 데이터를 받을 형식
-					success : MvFindTime, //함수호출
-						//console.log(data[0]);
-					error : function(xhr, status){
-						alert("오류");
-					}
-				});//end ajax
-				//$("#test02 .theater").css("display","block"); --영화, 날짜에 맞는 영화시간표 출력해라.
-				
-				function MvFindTime(data){
-					
-					//$("#test02").css("display","none"); //time창 초기화
-					$("#test02").empty();
-					
-					//console.log(data.length);
-					for(var i=0; i<data.length; i++){
-					var test = '<div class="theater" screen_cd="'+i+'" >'+
-										'<span class="title"><span class="name">2D</span><span '+
-										'class="floor">'+data[i].th_name+'</span><span class="seatcount">(총'+data[i].th_max+'석)</span></span>'+
-									'<ul>'+
-										'<li data-tt_num="'+data[i].tt_num+'" data-remain_seat="211" '+
-											'play_start_tm="1800"  '+
-											'play_num="4"><a class="button" href="#" '+
-											'onclick="return false;"><span '+
-												'class="time">'+data[i].tt_start+'</span><span class="count">'+data[i].tt_empty+'석<!-- 잔여좌석 --></span>'+
-											'<div class="sreader">'+data[i].tt_end+'</div>'+
-												'<span class="sreader mod"></span></a></li>'+
-									 '</ul>'+
-								'</div>';
-					$("#test02").append(test);
-					} // end for
-				
-			
-				}//end MvFindTime function
-				$(".info.theater .placeholder").css("display","none");
-				//$(".info.theater .row.date").css("display","block");
-				//$(".info.theater .row.screen").css("display","block");
-				//$(".info.theater .row.number").css("display","block");
-				$(".info.theater .row").css("display","block");
-				//console.log($(this).children(".dayweek").text());
-				//console.log($(this).parent().data("date"));
-				var date = $(this).parent().data("date");
-				var dayweek = $(this).children(".dayweek").text();
-				
-				$(".info.theater .row.date .data").text(date+"("+dayweek+")");
-				$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")");
-				
-				//start #test02 click
-				$("#test02").on("click",".time", function(){ //비동기방식, 시간선택
-					$("#test02 a .time").css("background-color","");
-					$("#test02 a .time").css("color","");
-					$(this).css("background-color", "black");
-					$(this).css("color","white");
-					$(".btn-right").css("background-position", "-150px -220px"); //좌석선택 버튼 빨간색
-					
-					var text = $(this).parents("ul").prev().children(".floor").text();
-					$(".section.section-screen-select .screen").text(text);
-					var Cmax = $(this).parents("ul").prev().children(".seatcount").text();
-					Cmax = Cmax.substring(2,4);
-					$(".section.section-screen-select .totalNum").text(Cmax);
-					var emptySeat = $(this).siblings(".count").text();
-					emptySeat = emptySeat.substr(0,2);
-					$(".section.section-screen-select .restNum").text(emptySeat);
-					var start2 = $(this).text();//시작시간
-					var end2 = $(this).parent().children("div.sreader").text();//종료시간\
-					
-					$(".section.section-screen-select .time").text(start2+" ~ "+end2);
-					//예매할 영화,날짜, 시간의 상영번호 불러오기
-					
-					$("#tnb_step_btn_right").on("click",function(){
-						//console.log("aaa");
-						$(".step.step1").css("display","none");
-						$(".step.step2").css("display","block");
-						$("#ticket_tnb .info.path").css("display","none");
-						$(".tnb.step1 .info.seat").css("display","block");
-						$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
-						$(".btn-right").css("background-position", "0 -330px");
-						//$("#ticket_tnb .tnb.step1 .btn-left").css("display","block");
-						$(this).attr("title","결제선택");
-						
-						
-					});
-					
-					
-					var screen = $(this).parents("div.theater").children().children(".floor").text();
-					$(".info.theater .row.screen .data").text(screen);
-					var starttime= $(this).text();
-					var endtime = $(this).siblings(".sreader").text();
-					
-					$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime+"~"+endtime);
-					$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime+"~"+endtime);
-					
-				});//end #test02 time button click
-				
-			});//end test01 date button click 	
-		
 		}); //end #test00 a, movie button click
 		
 		
-		//$(".theater_minimap .seatsClick").
-		
-		
-		var title = ["A","B","C","D","E","F"];
-		var cnt=0;
-		$.ajax({
-			url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
-			type:"post",
+		/*----------------------
+		*날짜 클릭
+		-----------------------*/			
+		$("#test01 a").on("click", function(){  //영화 클릭후 날짜 클릭
+			
+			if($("#test01 li").hasClass("selected")){
+				$("#test01 li").removeClass("selected");
+			}
+			
+			if($(this).parent(".day").data("check")=='yes'){
+				$(this).parent().addClass("selected");
+			}else{
+				alert("상영정보가 없습니다.");
+			}
+			
+			$(".btn-right").css("background-position", "0px -220px")
+			var screenInfo = $(".section.section-screen-select .playYMD-info");
+			var date2 = $(this).parent().data("date")+"";
+			if( date2.length !=8){
+				date2 = date2.replace(/(.{6})/g,"$10")
+			}else{
+				date2=date2;
+			}
+			//console.log((date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-"))
+			date2 = (date2.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
+			$(screenInfo).children(".date").text(date2);
+			var dayweek2 = $(this).children(".dayweek").text();
+			$(screenInfo).children(".exe").text("("+dayweek2+")");
+			
+			var cDate = $(this).parent().data("date")+""; //cDate - 클릭한 년월일., replace할려면 문자열이여야함
+			if(cDate.length != 8){
+				cDate = cDate.replace(/(.{6})/g,"$10");
+			}else{
+				cDate =cDate;
+			}
+			cDate = (cDate.replace(/(.{4})/,"$1-")).replace(/(.{7})/,"$1-");
+			//console.log(cDate);
+			var param_idDate = {m_id: localStorage.getItem("mid"), m_date:cDate}; //영화 id값 받아오는거.
+			//console.log(param_idDate);
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/mvFindTime.do", //data보낼 주소
+				type:"get", //전송방식
+				data:param_idDate, //보낼 data
+				dataType: "json", //요청한 데이터를 받을 형식
+				success : MvFindTime, //함수호출
+					//console.log(data[0]);
+				error : function(xhr, status){
+					alert("오류");
+				}
+			});//end ajax
+			//$("#test02 .theater").css("display","block"); --영화, 날짜에 맞는 영화시간표 출력해라.
+			
 
-			dataType:"json",
-			success : function(){
-				alert("성공일까?")
-			},
+			$(".info.theater .placeholder").css("display","none");
+			$(".info.theater .row").css("display","block");
+			date = $(this).parent().data("date");
+			dayweek = $(this).children(".dayweek").text();
+			localStorage.setItem("date",date);
+			localStorage.setItem("dayweek",dayweek);
+			$(".info.theater .row.date .data").text(date+"("+dayweek+")");
+			$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")");
+			
+
+		});//end test01 date button click 	
+	
+
 		
-			error : function(xhr, status){
-				alert("오류일까?");
-		}
-		});
+		/*----------------------
+		*시간선택
+		-----------------------*/	
+		//start #test02 click
+		$("#test02").on("click",".time", function(){ //비동기방식, 시간선택
+			$("#test02 a .time").css("background-color","");
+			$("#test02 a .time").css("color","");
+			$(this).css("background-color", "black");
+			$(this).css("color","white");
+			$(".btn-right").css("background-position", "-150px -220px"); //좌석선택 버튼 빨간색
+			
+			var text = $(this).parents("ul").prev().children(".floor").text();
+			$(".section.section-screen-select .screen").text(text);
+			var Cmax = $(this).parents("ul").prev().children(".seatcount").text();
+			Cmax = Cmax.substring(2,4);
+			$(".section.section-screen-select .totalNum").text(Cmax);
+			var emptySeat = $(this).siblings(".count").text();
+			emptySeat = emptySeat.substr(0,2);
+			$(".section.section-screen-select .restNum").text(emptySeat);
+			var start2 = $(this).text();//시작시간
+			var end2 = $(this).parent().children("div.sreader").text();//종료시간\
+			
+			$(".section.section-screen-select .time").text(start2+" ~ "+end2);
+			//예매할 영화,날짜, 시간의 상영번호 불러오기
+			
+			$("#tnb_step_btn_right").on("click",function(){
+				//console.log("aaa");
+				$(".step.step1").css("display","none");
+				$(".step.step2").css("display","block");
+				$("#ticket_tnb .info.path").css("display","none");
+				$(".tnb.step1 .info.seat").css("display","block");
+				$("#ticket_tnb .tnb.step1 .info.seat .placeholder").css("display","none");
+				$(".btn-right").css("background-position", "0 -330px");
+				//$("#ticket_tnb .tnb.step1 .btn-left").css("display","block");
+				$(this).attr("title","결제선택");
+				
+				
+			});
+			
+			
+			var screen = $(this).parents("div.theater").children().children(".floor").text();
+			$(".info.theater .row.screen .data").text(screen);
+			var starttime= $(this).text();
+			var endtime = $(this).siblings(".sreader").text();
+			
+			var date = localStorage.getItem("date");
+			var dayweek = localStorage.getItem("dayweek");
+			$(".info.theater .row.date .data").text(date+"("+dayweek+")"+" "+starttime+"~"+endtime);
+			$(".info.theater .row.date .data").attr("title",date+"("+dayweek+")"+" "+starttime+"~"+endtime);
+			
+			drawSeat();
+			
+		});//end #test02 time button click
+		
+		
+		
+		//$(".theater_minimap .seatsClick").
+	
+		
+	function drawSeat(){
+			
+			var EmSeatMv = $(".ellipsis-line2 a").text(); //영화명
+			var EmDate = $(".info.theater .date .data").text().substr(0,8);//날짜를 뽑아서
+			EmDate = $(".info.theater .date .data").text().substr(0,8).replace(/(.{4})/,"$1-").replace(/(.{7})/,"$1-")//yyyy-dd-mm형식
+			var EmStart = $(".info.theater .date .data").text().substr(12, 5); //시작시간
+			var EmEnd = $(".info.theater .date .data").text().substr(18, 5); //종료시간
+			var EmThNum = $(".info.theater .screen .data").text().substr(0,1); //상영관넘버
+			var EmSeatDate = 
+				{EmSeatMv:EmSeatMv, EmDate:EmDate, EmStart:EmStart,
+					EmEnd:EmEnd, EmThNum:EmThNum}
+			
+			
+			$.ajax({
+				url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
+				contentType:"application/x-www-form-urlencoded",
+				type:"post",
+				data:EmSeatDate,
+				dataType:"json",
+				success : function(){
+					alert("성공일까?")
+				},
+			
+				error : function(xhr, status){
+					alert("오류일까?");
+				}
+			});
+			var title = ["A","B","C","D","E","F"];
+			var cnt=0;
+			
 		var table = $("<table >").attr("class","seatTable");
 		var seaNum = 1;
 		for(var i=0; i<6 ; i++){           //예약할 좌석출력할 테이블 ,출력할때 예매된 좌석은 막아야함.
@@ -370,125 +307,210 @@
 			$(".theater_minimap .seatsLeft").append(table);
 			
 		}
+	}
 		
-		var ReservNum; //예매인원
-		var btnCount = 0;//좌석클릭카운트
-		var seanum= "";// 좌석번호
-		var persons=0;
-		$("#nop_group_adult ul li").on("click", function(){//예매인원클릭
-			btnCount=0;//좌석클릭카운트 초기화
-			seanum="";
-			$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
-			$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text("");
-			persons =$(this).data("count");
-			$(".info.theater .row.number .data").text(persons+"명");
-			$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
-			$(".btn-right").css("background-position", "0 -330px");
-			$("#nop_group_adult ul li.selected").removeClass("selected");
-			$(this).addClass("selected");
-			
-			if($(this).data("count")>0){
-				$(".mouse_block").css("display","none");
-			}else{
-				$(".mouse_block").css("display","block");
-			}
-				
-			ReservNum = $(this).data("count");
-		}); //end 예매인원 선택
-		
-		var no=0;//예매번호
-		$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
-			//console.log($(this).data("seanum"));
-			if($(this).hasClass("selected")){
-				$(this).removeClass("selected");
-				btnCount=$("td.selected").length;
-				var testSeat =$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text();
-				var testSeanum = $(this).data("seanum");
-				//console.log(testSeat+ " : "+ testSeanum);
-				//console.log(testSeat.replace(testSeanum,""));
-				seanum = testSeat.replace(testSeanum,"");
-				$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
-				if(btnCount != ReservNum){
-					$(".btn-right").css("background-position", "0 -330px");
-				}
-			}else{
-				//console.log(ReservNum);
-				//예매인원 받아와서, 인원수에맞게 클릭
-				seanum = seanum + $(this).data("seanum");
 	
-				if(btnCount >= ReservNum){
-					alert("선택한 예매인원수를 초과하셨습니다.");
+	function mvFindImg(data){
+		var mv_title = data[0].mv_title;
+		var mv_post = data[0].mv_post;
+		//console.log(mv_title);
+		$(".info.movie .placeholder").css("display","none");
+		$(".info.movie .movie_poster img")
+		.attr({"src":"${pageContext.request.contextPath}/images/"+mv_post, "style":"display:inline"});
+		$(".info.movie .row.movie_title.colspan2").css("display","block");
+		$(".info.movie .row.movie_title.colspan2 a").attr("title",mv_title);
+		$(".info.movie .row.movie_title.colspan2 a").text(mv_title);
+		
+	}
+	
+	function mvFindDate(data){//start mvFindate
+		var mvDate; //해당영화 상영일
+		var date; //전체 날짜
+		$("li.day span").css("color","#A9A9A9"); //영화누르면 모든날짜 회색
+		var test;
+		$.each(data,function(idx,items){
+			mvDate = items.tt_scr_date;
+			//str.slice(0, 5) + '-' + str.slice(5, 9) + '-' + str.slice(9);
+			//console.log(mvDate)
+			mvDate = mvDate.replaceAll("-","") //불러온 영화상영일에서 -제거
+			var list= $("#test01 li.day");
+			for(var i=0; i<list.length; i++){//브라우저의 li목록에 있는 날짜 다출력
+				//$("#test01 li.day")[i].children[0].children[0].style="color:#A9A9A9"
+				//$("#test01 li.day")[i].children[0].children[1].style="color:#A9A9A9"
+				 date = $(list[i]).data("date") +"";
+			//	console.log("li날짜 : " +date)
+				if(date.length != 8){
+					date = parseInt(date.replace(/(.{6})/g,"$10"));
 				}else{
-					$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
-					$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","block");
-					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text("8000");
-					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text(persons);
-					var price =$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text();
-					var quantity = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text();
-					var sum = (parseInt(price) * parseInt(quantity));
-					$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .price").text(sum);  
-					$(this).addClass("selected");
-					btnCount=$("td.selected").length;
-					if(btnCount == ReservNum){
-						$(".btn-right").css("background-position", "-150px -330px");
-						
-						$("#tnb_step_btn_right").on("click",function(){
-							if($("#tnb_step_btn_right").attr("title")=="결제선택"){
-							$(".step.step2").css("display","none");
-							$(".step.step3").css("display","block");
-							//예매번호 생성
-							$.ajax({
-								url: '${pageContext.request.contextPath}/ajax/ReservNo.do',
-								dataType:"json",
-								async:false,
-								success:function(data){
-									console.log(data.no);
-									
-									no = data.no;
-									//console.log("ajax: " +no);
-								},error:function(){
-									alert("no실패");
-								}
-							});
-							//console.log("noajax:" + no); //이거부터 실행됨.
-							var date = new Date();
-							var year = date.getFullYear();
-							var month = (date.getMonth()+1); 
-							var day = date.getDate();
-							var Rno = (year+""+month+""+day+"-"+no);
-							var Rday = (year+"-"+month+"-"+day);
-							$(".step.step3 .resultReserv td.ReservNo").text(Rno);
-							$(".step.step3 .resultReserv td.ReservDay").text(Rday);
-							$(".step.step3 .resultReserv td.ReservNum").text(persons);
-							var mvTitle = $("#ticket_tnb .tnb.step1 .info.movie div span a").attr("title");
-							$(".step.step3 .resultReserv td.ReservMv").text(mvTitle);
-							var mvNum= $("#ticket_tnb .tnb.step1 .info.theater .row.screen .data").text();
-							$(".step.step3 .resultReserv td.ReservMvNum").text(mvNum);
-							var mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
-							mvDay = String(mvDay).substr(0,12);
-							$(".step.step3 .resultReserv td.ReservMvDay").text(mvDay);
-							mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
-							//console.log(mvDay);
-							mvDay = String(mvDay).substr(12);
-							$(".step.step3 .resultReserv td.ReservMvTime").text(mvDay);
-							var mvSeat = $("#ticket_tnb .tnb.step1 .info.seat .row.seat_no .data").text();
-							$(".step.step3 .resultReserv td.ReservMvSeat").text(mvSeat);
-							var ReservPrice = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .data").text();
-							$(".step.step3 .resultReserv td.ReservPrice").text(ReservPrice);
-							$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
-							$(this).css({"background-position":"0px -550px","width":"220px"});
-							$(".btn-left").css("background-position","0 -110px");
-							$(".btn-left").attr("title","좌석선택");
-							$(this).attr("title","결제완료");
-							
-							
+					date = parseInt(date);
+				}
+					//console.log("바뀐날짜 : " +date)
+				//mvDate - DB에서 가지고온 영화의 상영일, date = 브라우저에 뿌려진 현재 월의 날짜
+				if(mvDate == date) { //DB에서 갖고온 해당영화의 상영일과 , 브라우저에서 갖고온 날짜와 비교해서 같지않으면, 해당textcolor회색처리
+					$(list[i]).find("span").css("color","black"); //누를때마다 초기화
+					$(list[i]).attr("data-check","yes");
+					break;
+				}
+				
+				
+			}// end for
+			
+		});//end each
+	}//end funtion mvFindate
+
+	
+	function MvFindTime(data){
+		
+		//$("#test02").css("display","none"); //time창 초기화
+		$("#test02").empty();
+		
+		//console.log(data.length);
+		for(var i=0; i<data.length; i++){
+		var test = '<div class="theater" screen_cd="'+i+'" >'+
+							'<span class="title"><span class="name">2D</span><span '+
+							'class="floor">'+data[i].th_name+'</span><span class="seatcount">(총'+data[i].th_max+'석)</span></span>'+
+						'<ul>'+
+							'<li data-tt_num="'+data[i].tt_num+'" data-remain_seat="211" '+
+								'play_start_tm="1800"  '+
+								'play_num="4"><a class="button" href="#" '+
+								'onclick="return false;"><span '+
+									'class="time">'+data[i].tt_start+'</span><span class="count">'+data[i].tt_empty+'석<!-- 잔여좌석 --></span>'+
+								'<div class="sreader">'+data[i].tt_end+'</div>'+
+									'<span class="sreader mod"></span></a></li>'+
+						 '</ul>'+
+					'</div>';
+		$("#test02").append(test);
+		} // end for
+	
+
+	}//end MvFindTime function	
+	/*----------------------
+	*예매인원클릭
+	-----------------------*/	
+	var ReservNum; //예매인원
+	var btnCount = 0;//좌석클릭카운트
+	var seanum= "";// 좌석번호
+	var persons=0;
+	$("#nop_group_adult ul li").on("click", function(){//예매인원클릭
+		btnCount=0;//좌석클릭카운트 초기화
+		seanum="";
+		$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
+		$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text("");
+		persons =$(this).data("count");
+		$(".info.theater .row.number .data").text(persons+"명");
+		$(".seatTable .seatTd.selected").removeClass("selected");//좌석선택 초기화
+		$(".btn-right").css("background-position", "0 -330px");
+		$("#nop_group_adult ul li.selected").removeClass("selected");
+		$(this).addClass("selected");
+		
+		if($(this).data("count")>0){
+			$(".mouse_block").css("display","none");
+		}else{
+			$(".mouse_block").css("display","block");
+		}
+			
+		ReservNum = $(this).data("count");
+	}); //end 예매인원 선택
+		
+
+	/*----------------------
+	*예매인원클릭
+	-----------------------*/
+	var no=0;//예매번호
+	$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
+		//console.log($(this).data("seanum"));
+		if($(this).hasClass("selected")){
+			$(this).removeClass("selected");
+			btnCount=$("td.selected").length;
+			var testSeat =$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text();
+			var testSeanum = $(this).data("seanum");
+			//console.log(testSeat+ " : "+ testSeanum);
+			//console.log(testSeat.replace(testSeanum,""));
+			seanum = testSeat.replace(testSeanum,"");
+			$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
+			if(btnCount != ReservNum){
+				$(".btn-right").css("background-position", "0 -330px");
+			}
+		}else{
+			//console.log(ReservNum);
+			//예매인원 받아와서, 인원수에맞게 클릭
+			seanum = seanum + $(this).data("seanum");
+
+			if(btnCount >= ReservNum){
+				alert("선택한 예매인원수를 초과하셨습니다.");
+			}else{
+				$("#ticket_tnb .tnb.step1 .info.seat .data.ellipsis-line3").text(seanum);
+				$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","block");
+				$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text("8000");
+				$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text(persons);
+				var price =$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .price").text();
+				var quantity = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-adult .quantity").text();
+				var sum = (parseInt(price) * parseInt(quantity));
+				$("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .price").text(sum);  
+				$(this).addClass("selected");
+				btnCount=$("td.selected").length;
+				if(btnCount == ReservNum){
+					$(".btn-right").css("background-position", "-150px -330px");
+					
+					$("#tnb_step_btn_right").on("click",function(){
+						if($("#tnb_step_btn_right").attr("title")=="결제선택"){
+						$(".step.step2").css("display","none");
+						$(".step.step3").css("display","block");
+						//예매번호 생성
+						$.ajax({
+							url: '${pageContext.request.contextPath}/ajax/ReservNo.do',
+							dataType:"json",
+							async:false,
+							success:function(data){
+								console.log(data.no);
+								
+								no = data.no;
+								//console.log("ajax: " +no);
+							},error:function(){
+								alert("no실패");
 							}
 						});
+						//console.log("noajax:" + no); //이거부터 실행됨.
+						var date = new Date();
+						var year = date.getFullYear();
+						var month = (date.getMonth()+1); 
+						var day = date.getDate();
+						var Rno = (year+""+month+""+day+"-"+no);
+						var Rday = (year+"-"+month+"-"+day);
+						$(".step.step3 .resultReserv td.ReservNo").text(Rno);
+						$(".step.step3 .resultReserv td.ReservDay").text(Rday);
+						$(".step.step3 .resultReserv td.ReservNum").text(persons);
+						var mvTitle = $("#ticket_tnb .tnb.step1 .info.movie div span a").attr("title");
+						$(".step.step3 .resultReserv td.ReservMv").text(mvTitle);
+						var mvNum= $("#ticket_tnb .tnb.step1 .info.theater .row.screen .data").text();
+						$(".step.step3 .resultReserv td.ReservMvNum").text(mvNum);
+						var mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
+						mvDay = String(mvDay).substr(0,12);
+						$(".step.step3 .resultReserv td.ReservMvDay").text(mvDay);
+						mvDay = $("#ticket_tnb .tnb.step1 .info.theater .row.date .data").attr("title");
+						//console.log(mvDay);
+						mvDay = String(mvDay).substr(12);
+						$(".step.step3 .resultReserv td.ReservMvTime").text(mvDay);
+						var mvSeat = $("#ticket_tnb .tnb.step1 .info.seat .row.seat_no .data").text();
+						$(".step.step3 .resultReserv td.ReservMvSeat").text(mvSeat);
+						var ReservPrice = $("#ticket_tnb .tnb.step1 .info.payment-ticket .row.payment-final .data").text();
+						$(".step.step3 .resultReserv td.ReservPrice").text(ReservPrice);
+						$("#ticket_tnb .tnb.step1 .info.payment-ticket").css("display","none");
+						$(this).css({"background-position":"0px -550px","width":"220px"});
+						$(".btn-left").css("background-position","0 -110px");
+						$(".btn-left").attr("title","좌석선택");
+						$(this).attr("title","결제완료");
 						
-					}
+						
+						}
+					});
+					
 				}
 			}
-		});//end 좌석선택 function
+		}
+	});//end 좌석선택 function
+		
+		
 		$(".btn-left").on("click",function(){
 			if($(this).attr("title")=="좌석선택"){
 				alert("좌석선택");
@@ -522,6 +544,8 @@
 					}
 			}
 		});
+		
+		
 		$("#tnb_step_btn_right").on("click",function(){
 			if($(this).attr("title")=="결제완료"){
 					var today = new Date();
