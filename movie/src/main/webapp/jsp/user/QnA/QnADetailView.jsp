@@ -10,10 +10,11 @@
 function listFrm(){
 	location.href="QnAListForm.do";
 }
-
-
 function replyFrm(){
 	location.href="QnAReplyForm.do?qa_no=${vo.qa_no}";
+}
+function deleteFrm(){
+	location.href="QnADelete.do?qa_no=${vo.qa_no}";
 }
 	
 </script>
@@ -104,6 +105,7 @@ function replyFrm(){
 	<div align="center">
 				<c:if test="${mbr_author eq 'admin'}">
 	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
+	 			<button id="btn" type="submit" onclick ="deleteFrm()">삭제</button>
 	 			</c:if>
 				<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>
