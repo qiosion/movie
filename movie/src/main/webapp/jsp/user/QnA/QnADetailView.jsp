@@ -19,40 +19,15 @@ function deleteFrm(){
 	
 </script>
 <style>
-.table > tbody > tr > td{
- 	font-color: #666666;
- 	font-size:large;
- 	font-weight:normal;
- 	border-bottom: 1px solid black;
- 	border-left-color: black;
- 	
- }
-.table > tbody > tr > #title{
-	width: 150px;
-	font-weight:bold;
-
+.txt {
+	font-size: 20px;
+	font-weight: bolder;
+	width: 20%;
 }
-.table > tbody > tr > #cont{
-	height:500px;
+#qa_cont {
+	height:400px;
+	font-size: 15px;
 }
-.table{
-	border-color: black;
-	
-}
-#btn {
-  background-color: white;
-  color: black;
-  border: 2px solid #555555;
-  width:50px;
-  height:30px;
-  border-radius:10%;
-}
-
-#btn:hover {
-  background-color: #555555;
-  color: white;
-}
-
 
 </style>
 </head>
@@ -63,51 +38,61 @@ function deleteFrm(){
 </div> 
 <br>
 
-<div id="container">
-		<table class="table table-bordered">
-			<tbody>
-			<tr>
-				<td id="title">글번호</td>
-				<td>${vo.qa_no}</td>
-			</tr>
-			<tr>
-				<td id="title">제목</td>
-				<td>${vo.qa_title}</td>
-			</tr>
-			<tr>
-				<td id="title">문의유형</td>
-				<td>${vo.qa_type}</td>
-			</tr>
-			<tr>
-				<td id="title">날짜</td>
-				<td>${vo.qa_date}</td>
-			</tr>
-			<tr>
-				<td id="title">내 용</td>
-				<td id="cont">${vo.qa_cont}</td>
-			</tr>
-			</tbody>
-		</table>
-		<hr>
+	<div class="col-sm-12 pt-3">
+		<div class="card">
+			<div class="card-header card-header-primary">
+				<span class="card-title" id="title"> <i class="fas fa-square"></i>${vo.qa_title}
+				</span>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table">
+						<tr style="line-height: 32px;">
+							<td class="txt">글번호</td>
+							<td><label id="qa_no">${vo.qa_no}</label></td>
+						</tr>
+						<tr>
+							<td class="txt">문의유형</td>
+							<td><label id="qa_type">${vo.qa_type}</label></td>
+						</tr>
+						<tr>
+							<td class="txt">날짜</td>
+							<td><label id="qa_date">${vo.qa_date}</label></td>
+						</tr>
+						<tr>
+							<td class="txt">내용</td>
+							<td><label id="qa_cont">${vo.qa_cont}</label></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
-	<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td id="title">작성자</td>		
-					<td>${vo.qa_ad_name}</td>
-			</tr>
-			<tr>
-			<td id="title">내용</td>
-			<td id="cont">${vo.qa_ad_comment}</td>
-			</tr>
-		</tbody>
-	</table>
-	<div align="center">
+	<div class="tit-heading-wrap tit-evt">
+		<h3>답변</h3>
+	</div>
+	<div class="col-sm-12 pt-3">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table">
+					<tr>
+						<td class="txt">작성자</td>
+						<td>${vo.qa_ad_name}</td>
+					</tr>
+					<tr>
+						<td class="txt">내용</td>
+						<td id="qa_cont">${vo.qa_ad_comment}</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="text-center mt-3">
 				<c:if test="${mbr_author eq 'admin'}">
-	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
-	 			<button id="btn" type="submit" onclick ="deleteFrm()">삭제</button>
+	 				<button id="btn" type="button" class="btn btn-success" onclick ="replyFrm()">답변달기</button>
+	 				<button id="btn" type="button" class="btn btn-danger" onclick ="deleteFrm()">삭제</button>
 	 			</c:if>
-				<button id="btn" type="submit" onclick="listFrm()">목록</button>
+					<button id="btn" type="button" class="btn btn-dark" onclick="listFrm()">목록</button>
 		</div>
 		
 </body>
