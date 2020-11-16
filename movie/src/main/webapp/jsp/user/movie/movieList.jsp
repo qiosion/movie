@@ -180,7 +180,7 @@
 				$('<li>').append($('<div>').html('<a href="movieDetail.do?seq='+item.mvNum+'"><img id="moviePoster" src="${pageContext.request.contextPath}/images/'+item.mvPost+'"></a>'))
 						.append($('<div>').attr('id', 'div1').html('<p style="font-size:20px;">'+ item.mvTitle+ '</p>'))
 						.append($('<div>').attr('id', 'div2').html('<span style="font-size:15px;">평점 : '+ rank+ '</span> | <span style="font-size:15px;">개봉일 : '+ item.strdate+ '</span><p style="font-size:15px; margin-top:5px;">'+ cont+ '</p>'))
-						.append($('<div>').attr('id', 'div3').html('<a href="#" class="ticketBtn">예매</a>'))
+						.append($('<div>').attr('id', 'div3').html('<a href="reservation/reservationForm.do" class="ticketBtn Rerv">예매</a>'))
 						.appendTo('ol[id="listCont"]');
 			});
 		}

@@ -95,7 +95,7 @@ input[type='text'], input[type='password'] {
 		<div id="infoR">
 			<img src="${pageContext.request.contextPath}/images/${vo.mvPost}">
 			<div class="btnDiv">
-				<a href="#" class="ticketBtn">예매</a>
+				<a href="reservation/reservationForm.do" class="ticketBtn Rerv">예매</a>
 			</div>
 		</div>
 		<div id="infoL">
