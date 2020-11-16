@@ -1,10 +1,13 @@
 package com.cbox.reservation.command;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONArray;
 
 import com.cbox.common.Action;
 import com.cbox.reservation.dao.MovieReservationDAO;
@@ -30,6 +33,13 @@ public class ReservSeatSearchAction implements Action {
 		List<ReservSeatSearchDTO> list = new ArrayList<>();
 		list = dao.selectReservSeat(dto);
 		
+		
+		try {
+			response.getWriter().print(new JSONArray(list));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 

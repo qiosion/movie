@@ -29,14 +29,15 @@ public class MovieReservationDAO extends DAO {
 	private MvFindImgDTO idto;
 	
 	private final String SELECT_RESERV_SEAT =
-			"select tt.tt_num, tk.tc_st_num\r\n" + 
-			"from timetable tt, ticketing tk\r\n" + 
-			"where tt.tt_num = tk.tt_num\r\n" + 
-			"and mv_num=?\r\n" + 
-			"and tt_scr_date=?'\r\n" + 
-			"and tt_start = ?\r\n" + 
-			"and tt_end =?\r\n" + 
-			"and th_num = ?;";
+			"select tt.tt_num, tk.tc_st_num\n"
+			+ "from timetable tt, ticketing tk, movie mv\n"
+			+ "where tt.tt_num = tk.tt_num\n"
+			+ "and tt.mv_num = mv.mv_num\n"
+			+ "and mv_title=?\n"
+			+ "and tt_scr_date=?\n"
+			+ "and tt_start = ?\n"
+			+ "and tt_end =?\n"
+			+ "and th_num=?";
 	private final String SELECT_RESERV = 
 			"select tc_num\r\n" + 
 			"from(\r\n" + 
@@ -86,6 +87,7 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 				ReservSeatSearchDTO dto1 = new ReservSeatSearchDTO();
 				dto1.setTt_num(rs.getInt("tt_num"));
 				dto1.setTc_st_num(rs.getString("tc_st_num"));
+				list.add(dto1);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -24,6 +24,7 @@ public class ReservInsertAction implements Action {
 			String ReservMvSeat = request.getParameter("ReservMvSeat");
 			int ReservPrice = Integer.parseInt(request.getParameter("ReservPrice"));
 			
+			
 			//받아온 파라미터값 DTO에 담기
 			ReservInsertDTO dto = new ReservInsertDTO();
 			dto.setReservNo(ReservNo);

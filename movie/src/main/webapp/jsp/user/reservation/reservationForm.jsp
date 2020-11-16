@@ -244,6 +244,8 @@
 			
 			drawSeat();
 			
+			
+			
 		});//end #test02 time button click
 		
 		
@@ -264,20 +266,7 @@
 					EmEnd:EmEnd, EmThNum:EmThNum}
 			
 			
-			$.ajax({
-				url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
-				contentType:"application/x-www-form-urlencoded",
-				type:"post",
-				data:EmSeatDate,
-				dataType:"json",
-				success : function(){
-					alert("성공일까?")
-				},
 			
-				error : function(xhr, status){
-					alert("오류일까?");
-				}
-			});
 			var title = ["A","B","C","D","E","F"];
 			var cnt=0;
 			
@@ -307,7 +296,27 @@
 			$(".theater_minimap .seatsLeft").append(table);
 			
 		}
-	}
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
+			contentType:"application/x-www-form-urlencoded",
+			type:"post",
+			data:EmSeatDate,
+			dataType:"json",
+			async:false,
+			success : function(data){
+				//console.log(data[1]);
+				for(var i=0;i<data.length;i++){
+				//console.log(data[0].tc_st_num);
+					data[i].tc_st_num
+				}
+			},
+		
+			error : function(xhr, status){
+				alert("오류일까?");
+			}
+		});
+	} //end draw table
 		
 	
 	function mvFindImg(data){
@@ -417,7 +426,8 @@
 	*예매인원클릭
 	-----------------------*/
 	var no=0;//예매번호
-	$(".seatTable .seatTd").on("click",function(){ //예매인원에 맞게 좌석선택
+	$(document).on("click",".seatTable .seatTd",function(){ //예매인원에 맞게 좌석선택
+		
 		//console.log($(this).data("seanum"));
 		if($(this).hasClass("selected")){
 			$(this).removeClass("selected");
@@ -434,7 +444,8 @@
 		}else{
 			//console.log(ReservNum);
 			//예매인원 받아와서, 인원수에맞게 클릭
-			seanum = seanum + $(this).data("seanum");
+			seanum = seanum +' '+$(this).data("seanum");
+			
 
 			if(btnCount >= ReservNum){
 				alert("선택한 예매인원수를 초과하셨습니다.");
