@@ -87,12 +87,7 @@ function replyFrm(){
 			</tr>
 			</tbody>
 		</table>
-		<div align="center">
-				<c:if test="${mbr_author eq 'admin'}">
-	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
-	 			</c:if>
-				<button id="btn" type="submit" onclick="listFrm()">목록</button>
-		</div>
+		<hr>
 	</div>
 	<table class="table table-bordered">
 		<tbody>
@@ -106,6 +101,12 @@ function replyFrm(){
 			</tr>
 		</tbody>
 	</table>
+	<div align="center">
+				<c:if test="${mbr_author eq 'admin'}">
+	 			<button id="btn" type="submit" onclick ="replyFrm()">답변달기</button>
+	 			</c:if>
+				<button id="btn" type="submit" onclick="listFrm()">목록</button>
+		</div>
 		
 </body>
 </html>

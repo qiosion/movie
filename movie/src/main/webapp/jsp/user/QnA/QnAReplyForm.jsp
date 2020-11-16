@@ -61,55 +61,55 @@ function replyFrm(){
 	<h3>내용</h3>
 </div> 
 <br>
-<form method="post" action="QnAReply.do">
-<div id="container">
+	<form method="post" action="QnAReply.do">
+		<div id="container">
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td id="title">글번호</td>
+						<td><input name="qa_no" value="${vo.qa_no}"
+							readonly></td>
+					</tr>
+					<tr>
+						<td id="title">제목</td>
+						<td>${vo.qa_title}</td>
+					</tr>
+					<tr>
+						<td id="title">문의유형</td>
+						<td>${vo.qa_type}</td>
+					</tr>
+					<tr>
+						<td id="title">날짜</td>
+						<td>${vo.qa_date}</td>
+					</tr>
+					<tr>
+						<td id="title">내 용</td>
+						<td id="cont">${vo.qa_cont}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<table class="table table-bordered">
 			<tbody>
-			<tr>
-				<td id="title">글번호</td>
-				<td><input text="text" name="qa_no" value="${vo.qa_no}" readonly></td>
-			</tr>
-			<tr>
-				<td id="title">제목</td>
-				<td>${vo.qa_title}</td>
-			</tr>
-			<tr>
-				<td id="title">문의유형</td>
-				<td>${vo.qa_type}</td>
-			</tr>
-			<tr>
-				<td id="title">날짜</td>
-				<td>${vo.qa_date}</td>
-			</tr>
-			<tr>
-				<td id="title">내 용</td>
-				<td id="cont">${vo.qa_cont}</td>
-			</tr>
+				<tr>
+					<td id="title">작성자</td>
+					<td><input type="text" name="qa_ad_name" value="${mbr_nm}"></td>
+				</tr>
+				<tr>
+					<td id="title">내용</td>
+					<td id="cont"><textarea name="qa_ad_comment" cols="68"
+							rows="20" class="form-control">
+                   ${vo.qa_ad_comment}
+                </textarea></td>
+				</tr>
 			</tbody>
 		</table>
-		<div align="center">
-				<button id="btn" type="submit" onclick="listFrm()">목록</button>
+		<div>
+			<button id="btn" type="submit">답변</button>
+			<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>
-	</div>
-		<table class="table table-bordered">
-		<tbody>
-			<tr>
-				<td id="title">작성자</td>
-				<td><input type="text" name="qa_ad_name" value="${mbr_nm}"></td>
-			</tr>
-			<tr>
-			<td id="title">내용</td>
-			<td id="cont"><textarea name="qa_ad_comment" cols="68" rows="20" class="form-control">
-                   ${vo.qa_ad_comment}
-                </textarea> </td>
-			</tr>
-		</tbody>
-	</table>
-	<div>
-		<button id="btn" type="submit" class="btn btn-success" style="margin-right: 30px;">답변</button>
-	</div>
 	</form>
-	
+
 
 
 </body>

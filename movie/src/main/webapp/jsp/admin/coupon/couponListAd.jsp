@@ -100,7 +100,7 @@ input[type='date'] {
 	function couponSelectResult(coupon) {
 		$('input:text[name="cp_no"]').val(coupon.cp_no);
 		$('input:text[name="cp_nm"]').val(coupon.cp_nm);
-		$('input:date[name="cp_vaild_date"]').val(coupon.cp_vaild_date);
+		$('input[type="date"]').val(coupon.cp_vaild_date);
 		$('select[name="cp_type"]').val(coupon.cp_type).attr("selected",
 				"selected", "selected", "selected");
 		$('select[name="cp_discount"]').val(coupon.cp_discount).attr(
