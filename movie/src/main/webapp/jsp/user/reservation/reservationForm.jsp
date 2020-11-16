@@ -327,11 +327,15 @@
 		
 		
 		//$(".theater_minimap .seatsClick").
+		
+		
 		var title = ["A","B","C","D","E","F"];
 		var cnt=0;
 		$.ajax({
 			url:"${pageContext.request.contextPath}/ajax/ReservSeatSearch.do",
-			
+			type:"post",
+
+			dataType:"json",
 			success : function(){
 				alert("성공일까?")
 			},
