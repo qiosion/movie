@@ -47,21 +47,27 @@
 </style>
 <script>
 	$(function(){
-		var ReservNo = ${ infoData.tc_num };
+		
+		var ReservNo = "${ infoData.tc_num }";
+		console.log(ReservNo)
 		$(".btn-delete").on("click",function(){
-			
+			 var confirm_test = confirm("예매 취소하시겠습니까?");
+			if(confirm_test== true){
+				 // 확인(예) 버튼 클릭 시 이벤트
 			$.ajax({
 				url: "${pageContext.request.contextPath}/ajax/ReservDelete.do",
 				contentType:"application/x-www-form-urlencoded",
 				type:"post",
 				data:{ReservNo : ReservNo},
-				dataType:"json",
 				success:function(){
-					alert("성공인가요 ~?")
+					alert("예매취소 되었습니다.");
+					location.href ="${pageContext.request.contextPath}/UserReservList.do";
 				},error:function(xhr, status){
 					alert("오류일까?");
 				}
 			});
+			}
+			
 		});//end click
 	});
 </script>
@@ -118,7 +124,7 @@
 		</div>
 		<div class="text-center mt-3">
 			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'">목록으로</button>
-			<button type="button" class="btn btn-delete">예매취소</button>
+			<button type="button" class="btn btn-dark btn-delete">예매취소</button>
 		</div>
 	</form>
 </body>

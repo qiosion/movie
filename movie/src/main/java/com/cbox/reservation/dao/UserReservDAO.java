@@ -33,7 +33,20 @@ public class UserReservDAO extends DAO {
 					"JOIN THEATER TH ON TH.TH_NUM = TT.TH_NUM " + 
 					"JOIN MEMBER MBR ON MBR.MBR_NO = TC.MBR_NO " + 
 					"WHERE TC.TC_NUM = ? )A )B";
+	private String DELETE_RESERV = 
+			"DELETE FROM TICKETING\r\n" + 
+			"WHERE TC_NUM=?";
 	
+	public void reservDelete(String ReservNo) {
+		try {
+			pstmt = conn.prepareStatement(DELETE_RESERV);
+			pstmt.setString(1, ReservNo);
+			int r = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	public UserReservVO userReservOne(String tcn) {
 		try {
 			pstmt = conn.prepareStatement(SELECT_ONE_RESERV);
