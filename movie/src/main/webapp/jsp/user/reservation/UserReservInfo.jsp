@@ -50,7 +50,7 @@
 		
 		var ReservNo = "${ infoData.tc_num }";
 		console.log(ReservNo)
-		$(".btn-delete").on("click",function(){
+		$("#btn_delete").on("click",function(){
 			 var confirm_test = confirm("예매 취소하시겠습니까?");
 			if(confirm_test== true){
 				 // 확인(예) 버튼 클릭 시 이벤트
@@ -82,6 +82,7 @@
   <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
 </ul>
 </div>
+<div style="min-height: 600px">
 	<form class="frm" id="frm" name="frm" method="post" style="padding: 20px; max-width: 70%; margin-bottom: 10px;">
 		<div class="col-sm-12 pt-3">
 			<div class="card">
@@ -123,9 +124,10 @@
 			</div>
 		</div>
 		<div class="text-center mt-3">
-			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'">목록으로</button>
-			<button type="button" class="btn btn-dark btn-delete">예매취소</button>
+			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'" style="margin-right: 30px;">목록으로</button>
+			<button type="button" class="btn btn-danger" id="btn_delete" style="margin-right: 30px;">예매취소</button>
 		</div>
 	</form>
+</div>
 </body>
 </html>
