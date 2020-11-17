@@ -45,6 +45,25 @@
 	top:120px;
 }
 </style>
+<script>
+	$(function(){
+		$(".btn-delete").on("click",function(){
+			
+			$.ajax({
+				url: "${pageContext.request.contextPath}/ajax/ReservDelete.do",
+				contentType:"application/x-www-form-urlencoded",
+				type:"post",
+				data:EmSeatDate,
+				dataType:"json",
+				success:function(){
+					
+				},error:function(xhr, status){
+					alert("오류일까?");
+				}
+			});
+		});//end click
+	});
+</script>
 </head>
 <body>
 <div id="menubar">
@@ -98,6 +117,7 @@
 		</div>
 		<div class="text-center mt-3">
 			<button type="button" class="btn btn-dark" onclick="location.href='UserReservList.do'">목록으로</button>
+			<button type="button" class="btn btn-delete">예매취소</button>
 		</div>
 	</form>
 </body>

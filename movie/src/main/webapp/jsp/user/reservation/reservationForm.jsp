@@ -492,7 +492,7 @@
 							dataType:"json",
 							async:false,
 							success:function(data){
-								console.log(data.no);
+								//console.log(data.no);
 								
 								no = data.no;
 								//console.log("ajax: " +no);
