@@ -25,10 +25,8 @@ public class MovieDAO extends DAO {
 //			"GROUP BY MV.MV_NUM, MV_TITLE, MV.MV_STRDATE, MV.MV_CONT) A";
 	private String SELECT_SEARCH = "";
 	private String SELECT_EXPECTED = "SELECT * FROM MOVIE WHERE MV_STRDATE > SYSDATE"; // 상영 예정작
-	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
-//	private final String DETAIL = "SELECT MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE, AVG(RV.RV_RANK) AS MV_RANK " + 
-//			"FROM MOVIE MV, REVIEW RV WHERE MV.MV_NUM = RV.MV_NUM AND MV.MV_NUM = ? " + 
-//			"GROUP BY MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE";
+//	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
+	private String DETAIL = "";
 	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
 	private final String DELETE = "DELETE FROM MOVIE WHERE MV_NUM=?";
 
@@ -241,6 +239,21 @@ public class MovieDAO extends DAO {
 
 	public MovieVO getMovieDetail(MovieVO vo) {
 		try {
+			String CHK = "SELECT * FROM REVIEW WHERE MV_NUM = ?";
+			psmt = conn.prepareStatement(CHK);
+			psmt.setInt(1, vo.getMvNum());
+
+			rs = psmt.executeQuery();
+
+			if (rs.next()) {
+				DETAIL = "SELECT MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE, AVG(RV.RV_RANK) AS MV_RANK " + 
+						"FROM MOVIE MV, REVIEW RV WHERE MV.MV_NUM = RV.MV_NUM AND MV.MV_NUM = ? " + 
+						"GROUP BY MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE";
+			} else {
+				DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
+			}
+			
+			
 			psmt = conn.prepareStatement(DETAIL);
 			psmt.setInt(1, vo.getMvNum());
 
