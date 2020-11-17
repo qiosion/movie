@@ -135,7 +135,7 @@ input[type='text'], input[type='password'] {
 								<td><input type="password" class="form-control pw" id="mbr_pw2" name="mbr_pw2" placeholder="비밀번호 확인"></td>
 							</tr>
 							<tr><td colspan="2">	
-								<span id="alert-success" style="display: none;">비밀번호가 일치합니다.</span>
+								<span id="alert-success"  style="display: none; color: #0B8026; font-weight: bold;">비밀번호가 일치합니다.</span>
     							<span id="alert-fail" style="display: none; color: #d92742; font-weight: bold;">비밀번호가 일치하지 않습니다.</span>
 							</td></tr>
 <script>
