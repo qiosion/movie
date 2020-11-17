@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cbox.common.DAO;
-import com.cbox.member.vo.MemberVO;
 import com.cbox.movie.vo.MovieSearchVO;
 import com.cbox.movie.vo.MovieVO;
 import com.cbox.movie.vo.ReviewVO;
@@ -246,7 +245,7 @@ public class MovieDAO extends DAO {
 			rs = psmt.executeQuery();
 
 			if (rs.next()) {
-				DETAIL = "SELECT MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE, AVG(RV.RV_RANK) AS MV_RANK " + 
+				DETAIL = "SELECT MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE, ROUND(AVG(RV.RV_RANK),2) AS MV_RANK " + 
 						"FROM MOVIE MV, REVIEW RV WHERE MV.MV_NUM = RV.MV_NUM AND MV.MV_NUM = ? " + 
 						"GROUP BY MV.MV_NUM, MV.MV_TITLE, MV.MV_DIR, MV.MV_CHA, MV.MV_STRDATE, MV.MV_FINDATE, MV.MV_SUM, MV.MV_TYPE, MV.MV_CONT, MV.MV_IMG, MV.MV_TEASER, MV.MV_POST, MV.MV_AGE";
 			} else {
