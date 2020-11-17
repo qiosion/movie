@@ -1,6 +1,7 @@
 package com.cbox.member.command;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,13 +33,17 @@ public class memberUpdateAction implements Action {
 
 		if (n != 0) { // n이 0이면 입력실패. 0이 아니면 insert 성공.
 			try {
-				response.sendRedirect("memberInfo.do");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('수정되었습니다');</script>");
+				out.println("<script>location.href='memberInfo.do';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
-				response.sendRedirect("memberInfo.do");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('수정에 실패하였습니다');</script>");
+				out.println("<script>location.href='memberInfo.do';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
