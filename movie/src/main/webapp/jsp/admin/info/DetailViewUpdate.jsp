@@ -8,6 +8,12 @@
 function listFrm(){
 	location.href="infoList.do";
 }
+function updateFrm(){
+	alert("수정이 완료되었습니다.")
+	location.href="infoList.do"
+}
+
+
 </script>
 <style>
 /* #btn {
@@ -38,7 +44,7 @@ input[type='date'] {
 </div> 
 <br>
 <div> -->
-   	<form method="post" action="infoUpdate.do">
+   	<form id="frm" name="frm" method="post" action="infoUpdate.do">
 <div class="col-sm-12 pt-3">
 			<div class="card">
 				<div class="card-header card-header-primary">
@@ -86,7 +92,7 @@ input[type='date'] {
 			</div>
 		</div>
 		<div class="text-center mt-3">
-				<button id="btn" type="submit" class="btn btn-success" style="margin-right: 30px;">수정</button>
+				<button id="btn" type="submit" class="btn btn-success" style="margin-right: 30px;" onclick="updateFrm()">수정</button>
 				<button id="btn" type="button" onclick="listFrm()" class="btn btn-dark">목록</button>
 		</div>
 	</form>

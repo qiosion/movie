@@ -14,6 +14,7 @@ function replyFrm(){
 	location.href="QnAReplyForm.do?qa_no=${vo.qa_no}";
 }
 function deleteFrm(){
+	alert("삭제 되었습니다.")
 	location.href="QnADelete.do?qa_no=${vo.qa_no}";
 }
 	
@@ -72,16 +73,16 @@ function deleteFrm(){
 		<h3>답변</h3>
 	</div>
 	<div class="col-sm-12 pt-3">
-		<div class="card-body">
+		<div class="card">
 			<div class="table-responsive">
 				<table class="table">
 					<tr>
 						<td class="txt">작성자</td>
-						<td>${vo.qa_ad_name}</td>
+						<td><label id="qa_ad_name">${vo.qa_ad_name}</label></td>
 					</tr>
 					<tr>
 						<td class="txt">내용</td>
-						<td id="qa_cont">${vo.qa_ad_comment}</td>
+						<td><label id="qa_cont">${vo.qa_ad_comment}</label></td>
 					</tr>
 				</table>
 			</div>

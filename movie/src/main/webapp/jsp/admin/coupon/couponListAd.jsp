@@ -109,6 +109,8 @@ input[type='date'] {
 	//쿠폰등록
 	function couponInsert() {
 		$('#btnInsert').on('click', function() {
+			var result = confirm("쿠폰을 정말로 등록하시겠습니까?");
+			if(result){
 			$.ajax({
 				url : "ajax/couponInsert.do",
 				dataType : 'json',
@@ -121,6 +123,7 @@ input[type='date'] {
 					alert("status: " + status + "er: " + message);
 				}
 			});
+			}
 		});
 	}
 	function couponList() {

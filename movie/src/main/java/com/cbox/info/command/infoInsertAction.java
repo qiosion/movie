@@ -20,7 +20,6 @@ public class infoInsertAction implements Action {
 		
 		
 		vo.setInfo_Title(request.getParameter("info_Title"));
-		vo.setInfo_Date(Date.valueOf(request.getParameter("info_Date")));
 		vo.setInfo_Category(request.getParameter("info_Category"));
 		vo.setInfo_Cont(request.getParameter("info_Cont"));
 		

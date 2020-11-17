@@ -11,7 +11,7 @@ function listFrm(){
 	location.href="infoList.do";
 }
 function deleteFrm(){
-	
+	alert("삭제 되었습니다.")
 	location.href="infoDelete.do?info_Num=${vo.info_Num}";
 	
 }

@@ -12,15 +12,9 @@
 	}
 	function addFrm(){
 		var ad = document.frm;
-		
 		if(ad.info_Title.value == ""){
 			alert("제목을 입력하세요");
 			ad.info_Title.focus();
-			return false;
-		}
-		if(ad.info_Date.value == ""){
-			alert("날짜를 입력하세요");
-			ad.info_Date.focus();
 			return false;
 		}
 		if(ad.info_Cont.value == ""){

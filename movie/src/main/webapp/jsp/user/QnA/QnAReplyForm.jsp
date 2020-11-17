@@ -13,6 +13,7 @@ function listFrm(){
 
 
 function replyFrm(){
+	alert("답변작성완료")
 	location.href="QnAReply.do?qa_no=${vo.qa_no}";
 }
 	
@@ -105,7 +106,7 @@ function replyFrm(){
 			</tbody>
 		</table>
 		<div>
-			<button id="btn" type="submit">답변</button>
+			<button id="btn" type="submit" onclick="replyFrm()">답변</button>
 			<button id="btn" type="submit" onclick="listFrm()">목록</button>
 		</div>
 	</form>
