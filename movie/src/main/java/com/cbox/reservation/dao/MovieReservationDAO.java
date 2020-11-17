@@ -43,7 +43,7 @@ public class MovieReservationDAO extends DAO {
 			"from(\r\n" + 
 			"select *\r\n" + 
 			"from ticketing\r\n" + 
-			"order by rownum)\r\n" + 
+			"order by rownum desc)\r\n" + 
 			"where rownum=1";
 	private final String INSERT = 
 			"INSERT INTO TICKETING(TC_NUM, TT_NUM, TC_ST_NUM, TC_DATE, MBR_NO, TC_PAY_METHOD, TC_PRICE, TC_PPL)\r\n" + 

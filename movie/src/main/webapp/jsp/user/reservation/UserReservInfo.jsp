@@ -47,16 +47,17 @@
 </style>
 <script>
 	$(function(){
+		var ReservNo = ${ infoData.tc_num };
 		$(".btn-delete").on("click",function(){
 			
 			$.ajax({
 				url: "${pageContext.request.contextPath}/ajax/ReservDelete.do",
 				contentType:"application/x-www-form-urlencoded",
 				type:"post",
-				data:EmSeatDate,
+				data:{ReservNo : ReservNo},
 				dataType:"json",
 				success:function(){
-					
+					alert("성공인가요 ~?")
 				},error:function(xhr, status){
 					alert("오류일까?");
 				}
