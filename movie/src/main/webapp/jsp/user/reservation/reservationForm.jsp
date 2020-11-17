@@ -306,9 +306,28 @@
 			async:false,
 			success : function(data){
 				//console.log(data[1]);
+				var SeatTd = $(".seatTable .seatTd")
+				//예매된 좌석 , 예매 불가능하게 !!!!!!!!!!!!!!
 				for(var i=0;i<data.length;i++){
 				//console.log(data[0].tc_st_num);
-					data[i].tc_st_num
+					var SeatNum = data[i].tc_st_num.split(' ');
+					
+					for(var a=0; a<SeatNum.length;a++){
+						//SeatNum[a]
+					
+						for(var j=0;j<SeatTd.length;j++){
+							if(SeatNum[a]==$(SeatTd[j]).data("seanum")){
+								$(SeatTd[j]).css("background-color","red");
+								$(SeatTd[j]).on("click",function(){
+									
+									alert("이미 예약된 자리입니다.");
+									return false; //클릭시 발생하는 이벤트막기
+								});
+							}
+							
+						}
+					}
+					
 				}
 			},
 		
