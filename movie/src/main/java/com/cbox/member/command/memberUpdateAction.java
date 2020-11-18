@@ -20,6 +20,7 @@ public class memberUpdateAction implements Action {
 		
 		HttpSession session = request.getSession();
 		String sid = (String) session.getAttribute("mbr_id");
+		String spw = (String) session.getAttribute("mbr_pw");
 		
 		MemberDAO dao = new MemberDAO();
 		MemberVO vo = new MemberVO();
@@ -33,6 +34,7 @@ public class memberUpdateAction implements Action {
 
 		if (n != 0) { // n이 0이면 입력실패. 0이 아니면 insert 성공.
 			try {
+				session.setAttribute("mbr_pw", vo.getMbr_pw());
 				PrintWriter out = response.getWriter();
 				out.println("<script>alert('수정되었습니다');</script>");
 				out.println("<script>location.href='memberInfo.do';</script>");
