@@ -31,18 +31,16 @@ public class memberInsertAction implements Action {
 			response.setContentType("text/html; charset=UTF-8");
 			try {
 				PrintWriter out = response.getWriter();
-				//out.println("회원가입에 성공하였습니다");
 				out.println("<script>alert('회원가입 성공');</script>");
 				out.println("<script>location.href='main.do';</script>");
-				//response.sendRedirect("main.do");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else {
 			try {
 				PrintWriter out = response.getWriter();
-				out.println("회원가입에 실패하였습니다");
-				//response.sendRedirect("memberForm.do");
+				out.println("<script>alert('회원가입 실패');</script>");
+				out.println("<script>location.href='memberForm.do';</script>");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
