@@ -52,6 +52,13 @@ function replyFrm(){
   background-color: #555555;
   color: white;
 }
+input[type='text'], input[type='password'], select {
+    height: calc(1.5em + .75rem + 2px) !important;
+    width: 100% !important;
+}
+input[type='date'] {
+	height: calc(1.5em + .75rem + 2px) !important;
+}
 
 
 </style>
@@ -63,38 +70,56 @@ function replyFrm(){
 </div> 
 <br>
 	<form method="post" action="QnAReply.do">
-		<div id="container">
-			<table class="table table-bordered">
-				<tbody>
-					<tr>
-						<td id="title">글번호</td>
-						<td><input name="qa_no" value="${vo.qa_no}"
-							readonly></td>
-					</tr>
-					<tr>
-						<td id="title">제목</td>
-						<td>${vo.qa_title}</td>
-					</tr>
-					<tr>
-						<td id="title">문의유형</td>
-						<td>${vo.qa_type}</td>
-					</tr>
-					<tr>
-						<td id="title">날짜</td>
-						<td>${vo.qa_date}</td>
-					</tr>
-					<tr>
-						<td id="title">내 용</td>
-						<td id="cont">${vo.qa_cont}</td>
-					</tr>
-				</tbody>
-			</table>
+
+		<div class="col-sm-12 pt-3">
+			<div class="card">
+				<div class="card-header card-header-primary">
+					<span class="card-title" id="title"> <i
+						class="fas fa-square"></i>QnA답변
+					</span>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table class="table" width="700" border="3"
+							bordercolor="lightgray" align="center">
+							<tr>
+								<td id="title">글번호</td>
+								<td><input type="text" name="qa_no" value="${vo.qa_no}"class="form-control" readonly></td>
+							</tr>
+							<tr>
+								<td id="title">제목</td>
+								<td><input name="qa_title" type="text" size="70" maxlength="100" 
+                    class="form-control" value="${vo.qa_title}"readonly/></td>
+							</tr>
+							<tr>
+								<td id="title">문의유형</td>
+								<td><input name="qa_type" type="text" size="70" maxlength="100" 
+                    class="form-control" value="${vo.qa_type}"readonly/></td>
+							</tr>
+							<tr>
+								<td id="title">날짜</td>
+								<td><input name="qa_date" type="text" size="70" maxlength="100" 
+                    class="form-control" value="${vo.qa_date}"readonly/></td>
+							</tr>
+							<tr>
+								<td id="title">내 용</td>
+								<td ><textarea name="qa_cont" cols="68" rows="20" class="form-control" readonly>
+                   ${vo.qa_cont}
+                </textarea></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
+<div class="tit-heading-wrap tit-evt">
+	<h3>답변</h3>
+</div> 
 		<table class="table table-bordered">
 			<tbody>
 				<tr>
 					<td id="title">작성자</td>
-					<td><input type="text" name="qa_ad_name" value="${mbr_nm}"></td>
+					<td><input type="text" name="qa_ad_name" value="${mbr_nm}" readonly></td>
 				</tr>
 				<tr>
 					<td id="title">내용</td>
