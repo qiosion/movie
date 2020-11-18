@@ -128,7 +128,7 @@ td {
   								<td colspan="2"><input type="text" class="form-control" id="mbr_phone" name="mbr_phone" placeholder="-없이 입력"></td>
   							</tr>
   							<tr>
-  								<td class="txt">이메일&nbsp;<span style="color: red;">*</span></td>
+  								<td class="txt">이메일</td>
   								<td colspan="2"><input type="email" class="form-control" id="mbr_email" name="mbr_email" placeholder="abc@example.com"></td>
   							</tr>
     						<tr>

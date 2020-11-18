@@ -73,22 +73,11 @@ input[type='text'], input[type='password'] {
 			f.mbr_pw.focus();
 			return false;
 		}
- 		/*
-		if(f.mbr_birth.value == "") {
-			alert ("생년월일을 선택하세요");
-			f.mbr_birth.focus();
-			return false;
-		} */
 		if(isNaN(f.mbr_phone.value)) {
 			alert ("전화번호는 숫자만 입력가능합니다");
 			f.mbr_phone.focus();
 			return false;
 		}
-/* 		if(f.mbr_phone.value == "") {
-			alert ("전화번호를 입력하세요");
-			f.mbr_phone.focus();
-			return false;
-		} */
 	return true;
 	}
 </script>
