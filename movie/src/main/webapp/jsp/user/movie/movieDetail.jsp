@@ -105,7 +105,7 @@ input[type='text'], input[type='password'] {
 
 			<jsp:useBean id="today" class="java.util.Date" />
 			<fmt:formatDate var="now" value="${today}" pattern="yyyy-MM-dd" />
-			<c:if test="${vo.findate >= now }">
+			<c:if test="${vo.findate >= now && vo.strdate <= now }">
 				<span id="status" style="height:40px; float: left; vertical-align: middle;">현재상영중</span>
 			</c:if>
 			</div>
