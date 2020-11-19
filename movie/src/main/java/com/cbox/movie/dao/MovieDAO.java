@@ -49,7 +49,7 @@ public class MovieDAO extends DAO {
 		}
 		
 		try {
-			SELECT_ALL = SELECT_ALL + whereCondition;
+			SELECT_ALL = SELECT_ALL + whereCondition + "ORDER BY 5 DESC";
 			psmt = conn.prepareStatement(SELECT_ALL);
 
 			int pos = 1;
@@ -103,7 +103,7 @@ public class MovieDAO extends DAO {
 
 		try {
 			SELECT_SEARCH = "SELECT B.* FROM ( SELECT A.*, ROWNUM RN FROM ( " + "SELECT * FROM MOVIE" + whereCondition
-					+ " ORDER BY 1 ) A  ) B WHERE RN BETWEEN ? AND ?";
+					+ " ORDER BY 5 DESC ) A  ) B WHERE RN BETWEEN ? AND ?";
 			psmt = conn.prepareStatement(SELECT_SEARCH);
 //			psmt = conn.prepareStatement(SELECT_PAGE);
 //			psmt.setInt(1, searchVO.getFirst());
