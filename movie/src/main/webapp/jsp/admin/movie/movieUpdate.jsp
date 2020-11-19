@@ -161,7 +161,7 @@ input[type='text'], input[type='password'] {
 									type="hidden" name="prevPost" id="prevPost"
 									value="${vo.mvPost}"><c:if
 										test="${vo.mvPost ne null}">
-										<img style="max-height: 350px; max-width: 500px;"
+										<img style="max-height: 350px; max-width: 450px;"
 											src="${pageContext.request.contextPath}/images/${vo.mvPost}">
 									</c:if> <!-- <input type="file" id="mvPost"
 									name="mvPost" style="width: 50px;"> --></td>
@@ -169,7 +169,7 @@ input[type='text'], input[type='password'] {
 								<td style="width: 50px;"><input type="hidden"
 									name="prevImg" id="prevImg" value="${vo.mvImg}"><c:if
 										test="${vo.mvImg ne null}">
-										<img style="max-height: 350px;"
+										<img style="max-height: 350px; max-width: 450px;"
 											src="${pageContext.request.contextPath}/images/${vo.mvImg}">
 									</c:if> <!-- <input
 									type="file" id="mvImg" name="mvImg" style="width: 50px;"> --></td>
