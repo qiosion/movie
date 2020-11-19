@@ -33,67 +33,63 @@ public class mvUpdateAction implements Action {
 		vo.setMvSum(request.getParameter("mvSum"));
 		vo.setMvCont(request.getParameter("mvCont"));
 
-		String addPath = request.getServletContext().getRealPath("/images");
-		// 포스터 : 단일
-		System.out.println("prevPost : "+request.getParameter("prevPost"));
-		System.out.println("mvPost : "+request.getParameter("mvPost"));
-		try {
-			if (!request.getParameter("prevPost").equals("") && request.getParameter("mvPost") == null) {
-				vo.setMvPost(request.getParameter("prevPost"));
-			} else {
-				Part  part = request.getPart("mvPost");
-				String fileName = FileUtil.extractFileName(part);
-				if (!fileName.equals("")) {
-					String uploadFile = addPath + File.separator + fileName;
-					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
-
-					vo.setMvPost(new File(uploadFile).getName());
-				}
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		// 스틸컷 : 단일
-		System.out.println("prevImg : "+request.getParameter("prevImg"));
-		System.out.println("mvImg : "+request.getParameter("mvImg"));
-		if (request.getParameter("prevImg").equals("") && request.getParameter("mvImg") == null) {
-			vo.setMvImg(request.getParameter("prevImg"));
-		} else {
-			try {
-				Part part = request.getPart("mvImg");
-				String fileName = FileUtil.extractFileName(part);
-				if (!fileName.equals("")) {
-					String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-//					File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
-
-					vo.setMvImg(new File(uploadFile).getName());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-		// 티저 : 단일
-		if (request.getParameter("prevTeaser").equals("") && request.getParameter("mvTeaser") == null) {
-			vo.setMvTeaser(request.getParameter("prevTeaser"));
-		} else {
-			try {
-				Part part = request.getPart("mvTeaser");
-				String fileName = FileUtil.extractFileName(part);
-				if (!fileName.equals("")) {
-					String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
-//					File renameFile = FileRenamePolicy.rename(new File(uploadFile));
-					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
-
-					vo.setMvTeaser(new File(uploadFile).getName());
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
+//		String addPath = request.getServletContext().getRealPath("/images");
+//		// 포스터 : 단일
+//		try {
+//			if (!request.getParameter("prevPost").equals("") && request.getParameter("mvPost") == null) {
+//				vo.setMvPost(request.getParameter("prevPost"));
+//			} else {
+//				Part  part = request.getPart("mvPost");
+//				String fileName = FileUtil.extractFileName(part);
+//				if (!fileName.equals("")) {
+//					String uploadFile = addPath + File.separator + fileName;
+//					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
+//
+//					vo.setMvPost(new File(uploadFile).getName());
+//				}
+//			}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//
+//		// 스틸컷 : 단일
+//		if (request.getParameter("prevImg").equals("") && request.getParameter("mvImg") == null) {
+//			vo.setMvImg(request.getParameter("prevImg"));
+//		} else {
+//			try {
+//				Part part = request.getPart("mvImg");
+//				String fileName = FileUtil.extractFileName(part);
+//				if (!fileName.equals("")) {
+//					String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
+////					File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+//					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
+//
+//					vo.setMvImg(new File(uploadFile).getName());
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//		// 티저 : 단일
+//		if (request.getParameter("prevTeaser").equals("") && request.getParameter("mvTeaser") == null) {
+//			vo.setMvTeaser(request.getParameter("prevTeaser"));
+//		} else {
+//			try {
+//				Part part = request.getPart("mvTeaser");
+//				String fileName = FileUtil.extractFileName(part);
+//				if (!fileName.equals("")) {
+//					String uploadFile = addPath + File.separator + fileName; // File.separator 구분기호?
+////					File renameFile = FileRenamePolicy.rename(new File(uploadFile));
+//					part.write(new File(uploadFile).getAbsolutePath()); // 절대경로
+//
+//					vo.setMvTeaser(new File(uploadFile).getName());
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 
 		dao.movieUpdate(vo);
 
