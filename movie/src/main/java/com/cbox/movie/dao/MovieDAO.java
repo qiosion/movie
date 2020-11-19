@@ -49,7 +49,7 @@ public class MovieDAO extends DAO {
 		}
 		
 		try {
-			SELECT_ALL = SELECT_ALL + whereCondition + "ORDER BY 5 DESC";
+			SELECT_ALL = SELECT_ALL + whereCondition;
 			psmt = conn.prepareStatement(SELECT_ALL);
 
 			int pos = 1;
