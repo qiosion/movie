@@ -61,6 +61,7 @@ function listOffice(type) {
             var str = "";
 
             if ($(mydata).find("dailyBoxOffice").text() == "") {
+            	$("#list").empty();
                 $("#list").append("자료가 없습니다.");
                 return;
             }
