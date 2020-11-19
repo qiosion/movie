@@ -57,7 +57,7 @@ function updateFrm(){
 					</tr>
 					<tr>
 						<td class="txt">내용</td>
-						<td><label id=info_Cont>${vo.info_Cont}</label></td>
+						<td><label id=info_Cont><pre>${vo.info_Cont}</pre></label></td>
 					</tr>
 				</table>
 			</div>

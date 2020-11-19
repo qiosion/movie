@@ -62,7 +62,7 @@ function deleteFrm(){
 						</tr>
 						<tr>
 							<td class="txt">내용</td>
-							<td><label id="qa_cont">${vo.qa_cont}</label></td>
+							<td><label id="qa_cont"><pre>${vo.qa_cont}</pre></label></td>
 						</tr>
 					</table>
 				</div>
@@ -82,7 +82,7 @@ function deleteFrm(){
 					</tr>
 					<tr>
 						<td class="txt">내용</td>
-						<td><label id="qa_cont">${vo.qa_ad_comment}</label></td>
+						<td><label id="qa_cont"><pre>${vo.qa_ad_comment}</pre></label></td>
 					</tr>
 				</table>
 			</div>
