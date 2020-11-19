@@ -92,6 +92,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 		
@@ -109,6 +111,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+				close();
 			}
 			return reservNo;
 		
@@ -134,6 +138,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 	}
@@ -153,6 +159,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return list;
 	}
@@ -177,6 +185,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 				
 		return list;
@@ -198,6 +208,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return list;
 	} // end selectMvDate
@@ -230,8 +242,9 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
-		
 		
 		return list;
 		
@@ -257,6 +270,8 @@ private final String SELECT_ALL_TIME_DATE_MOVIE =
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 		return Rlist;

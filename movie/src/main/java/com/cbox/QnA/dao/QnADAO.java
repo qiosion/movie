@@ -39,6 +39,8 @@ public class QnADAO extends DAO {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return list;
 	}
@@ -55,6 +57,8 @@ public class QnADAO extends DAO {
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 	}
@@ -76,6 +80,8 @@ public class QnADAO extends DAO {
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return vo;
 	}
@@ -90,6 +96,8 @@ public class QnADAO extends DAO {
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 	}
@@ -103,11 +111,23 @@ public class QnADAO extends DAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 	}
 	
-	
-	
-
+	private void close() {
+		try {
+			// 열어준거의 반대방향으로 닫아준다.
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

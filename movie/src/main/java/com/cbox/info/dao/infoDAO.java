@@ -45,6 +45,8 @@ public class infoDAO extends DAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return list;
 	}
@@ -61,6 +63,8 @@ public class infoDAO extends DAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 	}
@@ -80,6 +84,8 @@ public class infoDAO extends DAO {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return vo;
 	}
@@ -95,6 +101,8 @@ public class infoDAO extends DAO {
 			n = psmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 	}
@@ -109,6 +117,8 @@ public class infoDAO extends DAO {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
 		
@@ -125,6 +135,8 @@ public class infoDAO extends DAO {
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return cnt;
 	}
@@ -139,7 +151,23 @@ public class infoDAO extends DAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return n;
+	}
+
+	
+	private void close() {
+		try {
+			if (rs != null)
+				rs.close();
+			if (psmt != null)
+				psmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

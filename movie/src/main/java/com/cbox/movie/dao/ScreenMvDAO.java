@@ -280,6 +280,8 @@ public class ScreenMvDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
 		return result;

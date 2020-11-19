@@ -33,7 +33,19 @@ public class IdChkDAO extends DAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		return result;
+	}
+	
+	private void close() { // 커넥션 끊어주는 close()메소드
+		try {
+			if(rs != null) rs.close();
+			if(pstmt != null) pstmt.close();
+			if(conn != null) conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
