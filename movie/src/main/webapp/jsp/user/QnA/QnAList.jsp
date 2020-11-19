@@ -115,7 +115,7 @@ float: left;
 </ul>
 </div>
 <div class="tit-heading-wrap tit-evt">
-<h3>1:1문의</h3>
+<h3>Q&A</h3>
 </div>   
 <br>
 <c:if test="${mbr_author eq 'user'}">
