@@ -26,7 +26,8 @@ public class MovieDAO extends DAO {
 	private String SELECT_EXPECTED = "SELECT * FROM MOVIE WHERE MV_STRDATE > SYSDATE"; // 상영 예정작
 //	private final String DETAIL = "SELECT * FROM MOVIE WHERE MV_NUM = ?";
 	private String DETAIL = "";
-	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
+//	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_IMG=?, MV_TEASER=?, MV_POST=?, MV_AGE=? WHERE MV_NUM = ?";
+	private final String UPDATE = "UPDATE MOVIE SET MV_DIR=?, MV_CHA=?, MV_STRDATE=?, MV_FINDATE=?, MV_SUM=?, MV_TYPE=?, MV_CONT=?, MV_AGE=? WHERE MV_NUM = ?";
 	private final String DELETE = "DELETE FROM MOVIE WHERE MV_NUM=?";
 
 	private final String INSERT = "INSERT INTO MOVIE(MV_NUM, MV_TITLE, MV_DIR, MV_CHA, MV_STRDATE, MV_FINDATE, MV_SUM, MV_TYPE, MV_CONT, MV_IMG, MV_TEASER, MV_POST, MV_AGE)"
@@ -318,11 +319,11 @@ public class MovieDAO extends DAO {
 			psmt.setString(5, vo.getMvSum());
 			psmt.setString(6, vo.getMvType());
 			psmt.setString(7, vo.getMvCont());
-			psmt.setString(8, vo.getMvImg());
-			psmt.setString(9, vo.getMvTeaser());
-			psmt.setString(10, vo.getMvPost());
-			psmt.setString(11, vo.getMvAge());
-			psmt.setInt(12, vo.getMvNum());
+//			psmt.setString(8, vo.getMvImg());
+//			psmt.setString(9, vo.getMvTeaser());
+//			psmt.setString(10, vo.getMvPost());
+			psmt.setString(8, vo.getMvAge());
+			psmt.setInt(9, vo.getMvNum());
 
 			psmt.executeUpdate();
 		} catch (SQLException e) {

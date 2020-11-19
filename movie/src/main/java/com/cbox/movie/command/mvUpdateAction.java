@@ -35,7 +35,8 @@ public class mvUpdateAction implements Action {
 
 		String addPath = request.getServletContext().getRealPath("/images");
 		// 포스터 : 단일
-		
+		System.out.println("prevPost : "+request.getParameter("prevPost"));
+		System.out.println("mvPost : "+request.getParameter("mvPost"));
 		try {
 			if (!request.getParameter("prevPost").equals("") && request.getParameter("mvPost") == null) {
 				vo.setMvPost(request.getParameter("prevPost"));
@@ -55,6 +56,8 @@ public class mvUpdateAction implements Action {
 		}
 
 		// 스틸컷 : 단일
+		System.out.println("prevImg : "+request.getParameter("prevImg"));
+		System.out.println("mvImg : "+request.getParameter("mvImg"));
 		if (request.getParameter("prevImg").equals("") && request.getParameter("mvImg") == null) {
 			vo.setMvImg(request.getParameter("prevImg"));
 		} else {
