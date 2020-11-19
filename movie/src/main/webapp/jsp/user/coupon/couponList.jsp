@@ -154,7 +154,7 @@ float: left;
   <li><a href="${pageContext.request.contextPath}/memberInfo.do">회원정보</a></li>
   <li><a href="${pageContext.request.contextPath}/UserReservList.do">예매정보</a></li>
   <li><a href="${pageContext.request.contextPath}/couponForm.do">쿠폰</a></li>
-  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의</a></li>
+  <li><a href="${pageContext.request.contextPath}/QnAListForm.do">Q&A</a></li>
 </ul>
 </div> 
 <div id="container">

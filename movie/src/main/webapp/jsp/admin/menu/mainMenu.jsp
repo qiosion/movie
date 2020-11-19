@@ -50,7 +50,7 @@
 						class="sr-only">(current)</span>
 				</a></li>
 					<li class="nav-item active"><a class="nav-link" onfocus="blur()"
-					href="${pageContext.request.contextPath}/QnAListForm.do">1:1문의관리 <span
+					href="${pageContext.request.contextPath}/QnAListForm.do">Q&A문의관리 <span
 						class="sr-only">(current)</span>
 				</a></li>
 			</ul>
