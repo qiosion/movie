@@ -75,7 +75,7 @@ input[type='date'] {
 			<div class="card">
 				<div class="card-header card-header-primary">
 					<span class="card-title" id="title"> <i
-						class="fas fa-square"></i>QnA답변
+						class="fas fa-square"></i>Q&A답변
 					</span>
 				</div>
 				<div class="card-body">
