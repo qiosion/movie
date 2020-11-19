@@ -181,8 +181,8 @@ input[type='text'], input[type='password'] {
 									style="width: 50px;"></td>
 								<td colspan="2"> --><c:if
 										test="${vo.mvTeaser ne null}">
-										<img style="max-height: 350px;"
-											src="${pageContext.request.contextPath}/images/${vo.mvTeaser}">
+										<video autoplay="autoplay"
+													src="${pageContext.request.contextPath}/images/${vo.mvTeaser}"></video>
 									</c:if></td>
 							</tr>
 						</tbody>
