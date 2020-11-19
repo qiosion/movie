@@ -25,7 +25,8 @@ public class MemberDAO extends DAO{
 	private final String INSERT = "INSERT INTO MEMBER(MBR_NO, MBR_ID, MBR_PW, MBR_NM, MBR_BIRTH, MBR_EMAIL, MBR_PHONE, MBR_E_YN)"
 								+ "VALUES (MBR_SEQ.NEXTVAL,?,?,?,?,?,?,?)";
 	private final String UPDATE = "UPDATE MEMBER SET MBR_PW = ?, MBR_EMAIL = ?, MBR_PHONE = ?, MBR_E_YN = ? WHERE MBR_ID = ?";
-	private final String DELETE = "DELETE FROM MEMBER WHERE MBR_ID = ?";
+	private final String DELETE = "UPDATE MEMBER SET MBR_NM = 'DELETED', MBR_PW = 'DELETED', MBR_EMAIL = 'DELETED', MBR_PHONE = '0', MBR_E_YN = '', MBR_POINT='' WHERE MBR_ID = ?";
+	//private final String DELETE = "DELETE FROM MEMBER WHERE MBR_ID = ?";
 
 	public List<MemberVO> selectAll(){
 		List<MemberVO> list = new ArrayList<MemberVO>();
@@ -262,7 +263,6 @@ public class MemberDAO extends DAO{
 		try {
 			pstmt = conn.prepareStatement(DELETE);
 			pstmt.setString(1, vo.getMbr_id());
-			
 			n = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
