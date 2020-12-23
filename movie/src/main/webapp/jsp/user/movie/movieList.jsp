@@ -87,6 +87,7 @@
 	margin-bottom: 20px;
 	min-height: 30px;
 }
+
 #div3 {
 	text-align: center;
 }
@@ -96,8 +97,8 @@
 	<script>
 		$(function() {
 			var keyword = "";
-			var searchType ="";
-			
+			var searchType = "";
+
 			movieList();
 
 			$(window).scroll(function() {
@@ -114,7 +115,7 @@
 				}, 400);
 				return false;
 			});
-			
+
 			$("#menuSearchBtn").click(function() {
 				searchType = 'title';
 				keyword = $("#keyword").val();
@@ -123,7 +124,7 @@
 			});
 
 			$('.tgl-flat').change(function() {
-				searchType ="chkType";
+				searchType = "chkType";
 				if ($('.tgl-flat').is(":checked")) {
 					keyword = "ing";
 				} else {
@@ -152,37 +153,66 @@
 
 		function movieListResult(data) {
 			$("ol[id='listCont']").empty();
-			$.each(data, function(idx, item) {
-				var rank = "";
-				if (item.mvRank == "") {
-					for (var i = 0; i < 5; i++) {
-						rank += '&#127770';
-					}
-				} else {
-					var cnt = Math.floor(item.mvRank);
-					for (var i = 0; i < cnt; i++) {
-						rank += '&#127773';
-					}
-					if ((item.mvRank - cnt) == 0.5) {
-						rank += '&#127767';
-					} else {
-						rank += '&#127770';
-					}
-				}
+			$
+					.each(
+							data,
+							function(idx, item) {
+								var rank = "";
+								if (item.mvRank == "") {
+									for (var i = 0; i < 5; i++) {
+										rank += '&#127770';
+									}
+								} else {
+									var cnt = Math.floor(item.mvRank);
+									for (var i = 0; i < cnt; i++) {
+										rank += '&#127773';
+									}
+									if ((item.mvRank - cnt) == 0.5) {
+										rank += '&#127767';
+									} else {
+										rank += '&#127770';
+									}
+								}
 
-				var cont = "";
-				if (typeof item.mvCont == "undefined") {
-					cont = "";
-				} else {
-					cont = item.mvCont
-				}
+								var cont = "";
+								if (typeof item.mvCont == "undefined") {
+									cont = "";
+								} else {
+									cont = item.mvCont
+								}
 
-				$('<li>').append($('<div>').html('<a href="movieDetail.do?seq='+item.mvNum+'"><img id="moviePoster" src="${pageContext.request.contextPath}/images/'+item.mvPost+'"></a>'))
-						.append($('<div>').attr('id', 'div1').html('<p style="font-size:20px;">'+ item.mvTitle+ '</p>'))
-						.append($('<div>').attr('id', 'div2').html('<span style="font-size:15px;">평점 : '+ rank+ '</span> | <span style="font-size:15px;">개봉일 : '+ item.strdate+ '</span><p style="font-size:15px; margin-top:5px;">'+ cont+ '</p>'))
-						.append($('<div>').attr('id', 'div3').html('<a href="reservation/reservationForm.do" class="ticketBtn Rerv">예매</a>'))
-						.appendTo('ol[id="listCont"]');
-			});
+								$('<li>')
+										.append(
+												$('<div>')
+														.html(
+																'<a href="movieDetail.do?seq='
+																		+ item.mvNum
+																		+ '"><img id="moviePoster" src="${pageContext.request.contextPath}/images/'+item.mvPost+'"></a>'))
+										.append(
+												$('<div>')
+														.attr('id', 'div1')
+														.html(
+																'<p style="font-size:20px;">'
+																		+ item.mvTitle
+																		+ '</p>'))
+										.append(
+												$('<div>')
+														.attr('id', 'div2')
+														.html(
+																'<span style="font-size:15px;">평점 : '
+																		+ rank
+																		+ '</span> | <span style="font-size:15px;">개봉일 : '
+																		+ item.strdate
+																		+ '</span><p style="font-size:15px; margin-top:5px;">'
+																		+ cont
+																		+ '</p>'))
+										.append(
+												$('<div>')
+														.attr('id', 'div3')
+														.html(
+																'<a href="reservation/reservationForm.do" class="ticketBtn Rerv">예매</a>'))
+										.appendTo('ol[id="listCont"]');
+							});
 		}
 	</script>
 
@@ -199,9 +229,9 @@
 	<div id="tab-1" class="tab-content current">
 		<div align="right">
 			<form name="search" id="search">
-				<input type="hidden" name="action" value="list" />
-				<input type="hidden" name="p" value="1" />
-				<select id="searchType" name="searchType">
+				<input type="hidden" name="action" value="list" /> <input
+					type="hidden" name="p" value="1" /> <select id="searchType"
+					name="searchType">
 					<option value="title">제목</option>
 				</select> <input type="text" name="keyword" id="keyword" placeholder="영화 제목">
 				<button type="button" id="menuSearchBtn">검색</button>
