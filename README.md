@@ -1,18 +1,7 @@
 # CBOX Project
 > 영화 예매 사이트<br>
-> 개발기간 : 2020.10 ~ 2020.12
-
-##  개발팀 소개 Team Description
-- 이화진(조장)
-	- https://github.com/hwajin3114
-	- https://github.com/jjini0414
-- 강은선
-	- https://github.com/qiosion
-	- https://github.com/oivevri
-- 동광희
-	- https://github.com/Railac
-- 오재훈
-	- https://github.com/awfawf123
+> 개발기간 : 2020.10 ~ 2020.12<br>
+> 개발인원 : 4인
 
 ##  프로젝트 소개 Project Description
 - 지속되는 코로나로 인해 영화관에서 마음 편히 영화를 볼 수 없는 때, 고객 유치가 어려운 소규모 극장을 위한 영화 예매 사이트를 제작해보았다.<br>
